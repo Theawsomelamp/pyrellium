@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "dispersed=false": {
+      "model": "pyrellium:block/spores"
+    },
+    "dispersed=true": {
+      "model": "pyrellium:block/empty"
+    }
+  }
+}

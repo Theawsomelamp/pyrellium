@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "pyrellium:block/medium_opal_bud"
+  }
+}

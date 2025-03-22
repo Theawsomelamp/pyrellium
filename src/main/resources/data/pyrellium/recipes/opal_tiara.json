@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "pyrellium:opal"
+    },
+    "X": {
+      "item": "minecraft:ghast_tear"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#X#"
+  ],
+  "result": {
+    "item": "pyrellium:opal_tiara"
+  },
+  "show_notification": true
+}

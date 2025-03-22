@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pyrellium:block/opal_block"
+    }
+  }
+}

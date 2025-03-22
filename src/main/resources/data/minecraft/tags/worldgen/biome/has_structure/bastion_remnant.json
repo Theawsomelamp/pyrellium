@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:crimson_forest",
+    "minecraft:nether_wastes",
+    "minecraft:soul_sand_valley",
+    "minecraft:warped_forest",
+    "pyrellium:quartz_caverns",
+    "pyrellium:mushroom_wastes",
+    "pyrellium:frostburn_valley",
+    "pyrellium:monolith_plains",
+    "pyrellium:infested_valley",
+    "pyrellium:crystal_forest",
+    "pyrellium:burning_desert",
+    "pyrellium:ghostly_woods"
+    
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "structures": [
+    {
+      "structure": "pyrellium:dragon_fossil",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 128976912,
+    "exclusion_zone": {
+      "other_set": "minecraft:nether_complexes",
+      "chunk_count": 6
+    },
+    "spread_type": "triangular",
+    "spacing": 12,
+    "separation": 6
+  }
+}

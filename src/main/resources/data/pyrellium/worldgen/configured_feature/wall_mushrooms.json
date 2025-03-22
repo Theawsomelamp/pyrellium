@@ -1,0 +1,62 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "tries": 128,
+    "xz_spread": 6,
+    "y_spread": 14,
+    "feature": {
+      "feature": {
+        "type": "pyrellium:wall_growth_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "pyrellium:brown_wall_mushroom"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "pyrellium:red_wall_mushroom"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "pyrellium:brown_shelf_mushroom"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "pyrellium:red_shelf_mushroom"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "offset": [
+              0,
+              0,
+              0
+            ],
+            "blocks": [
+              "minecraft:netherrack",
+              "minecraft:mushroom_stem",
+              "pyrellium:netherrack_mycelium"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

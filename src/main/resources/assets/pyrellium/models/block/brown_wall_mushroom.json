@@ -1,0 +1,6 @@
+{
+  "parent": "pyrellium:block/wall_mushroom",
+  "textures": {
+    "mushroom": "pyrellium:block/brown_wall_mushroom"
+  }
+}

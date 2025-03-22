@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pyrellium:block/dead_sprouts"
+  },
+  "display": {
+  "firstperson_righthand": {
+    "rotation": [ 0, -90, 25 ],
+    "translation": [ 0, 6, 0 ],
+    "scale": [ 0.68, 0.68, 0.68 ]
+  }
+}
+}

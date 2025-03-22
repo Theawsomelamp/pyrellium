@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "pyrellium:block/opal_cluster",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "pyrellium:block/opal_cluster",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "pyrellium:block/opal_cluster",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "pyrellium:block/opal_cluster",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "pyrellium:block/opal_cluster"
+    },
+    "facing=west": {
+      "model": "pyrellium:block/opal_cluster",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

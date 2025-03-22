@@ -1,0 +1,6 @@
+{
+  "parent": "pyrellium:block/bounceshroom",
+  "textures": {
+    "mushroom": "pyrellium:block/red_bounceshroom"
+  }
+}

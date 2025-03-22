@@ -1,0 +1,18 @@
+{
+  "feature": "pyrellium:freeze_lava_lake",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 256
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "absolute": 31
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

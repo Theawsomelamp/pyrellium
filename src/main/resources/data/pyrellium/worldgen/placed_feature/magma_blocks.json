@@ -1,0 +1,18 @@
+{
+  "feature": "pyrellium:magma_blocks",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 4
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "absolute": 31
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

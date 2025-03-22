@@ -1,0 +1,38 @@
+{
+  "feature": {
+    "type": "minecraft:simple_random_selector",
+    "config": {
+      "features": [
+        {
+          "feature": "pyrellium:jelly_tree_white",
+          "placement": []
+        },
+        {
+          "feature": "pyrellium:jelly_tree_purple",
+          "placement": []
+        }
+      ]
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 4
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:matching_blocks",
+        "offset": [
+          0,
+          -1,
+          0
+        ],
+        "blocks": "minecraft:warped_nylium"
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

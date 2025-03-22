@@ -1,0 +1,9 @@
+{
+  "asset_name": "opal",
+  "description": {
+    "color": "#A2B3F1",
+    "translate": "trim_material.pyrellium.opal"
+  },
+  "ingredient": "pyrellium:opal",
+  "item_model_index": 0.63
+}

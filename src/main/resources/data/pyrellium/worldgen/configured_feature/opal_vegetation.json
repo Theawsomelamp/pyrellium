@@ -1,0 +1,52 @@
+{
+  "type": "minecraft:nether_forest_vegetation",
+  "config": {
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 4,
+          "data": {
+            "Name": "pyrellium:small_opal_bud",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          }
+        },
+        {
+          "weight": 3,
+          "data": {
+            "Name": "pyrellium:medium_opal_bud",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "pyrellium:large_opal_bud",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "pyrellium:opal_cluster",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          }
+        }
+      ]
+    },
+    "spread_width": 6,
+    "spread_height": 3
+  }
+}

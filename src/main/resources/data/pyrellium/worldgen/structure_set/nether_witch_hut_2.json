@@ -1,0 +1,19 @@
+{
+  "structures": [
+    {
+      "structure": "pyrellium:nether_witch_hut_2",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 10820128,
+    "exclusion_zone": {
+      "other_set": "minecraft:nether_complexes",
+      "chunk_count": 6
+    },
+    "spread_type": "triangular",
+    "spacing": 12,
+    "separation": 6
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "pyrellium:block/small_opal_bud",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "pyrellium:block/small_opal_bud",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "pyrellium:block/small_opal_bud",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "pyrellium:block/small_opal_bud",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "pyrellium:block/small_opal_bud"
+    },
+    "facing=west": {
+      "model": "pyrellium:block/small_opal_bud",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

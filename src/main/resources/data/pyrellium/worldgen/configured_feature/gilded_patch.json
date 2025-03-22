@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "tries": 4,
+    "xz_spread": 7,
+    "y_spread": 3,
+    "feature": {
+      "feature": {
+        "type": "minecraft:replace_single_block",
+        "config": {
+          "targets": [
+            {
+              "target": {
+                "predicate_type": "minecraft:block_match",
+                "block": "minecraft:blackstone"
+              },
+              "state": {
+                "Name": "minecraft:gilded_blackstone"
+              }
+            }
+          ]
+        }
+      },
+      "placement": []
+    }
+  }
+}

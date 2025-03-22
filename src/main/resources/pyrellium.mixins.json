@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.lankaster.pyrellium.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ActiveTargetGoalAccessor",
+    "BlockItemMixin",
+    "ExtendSpyglass",
+    "GhastEntityMixin",
+    "ItemMixin",
+    "WarningSuppressor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

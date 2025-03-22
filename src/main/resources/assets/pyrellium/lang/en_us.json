@@ -1,0 +1,42 @@
+{
+  "itemgroup.pyrellium": "Pyrellium",
+
+  "biome.pyrellium.blackstone_springs": "Blackstone Springs",
+  "biome.pyrellium.burning_desert": "Burning Desert",
+  "biome.pyrellium.crystal_forest": "Crystal Forest",
+  "biome.pyrellium.frostburn_valley": "Frostburn Valley",
+  "biome.pyrellium.ghostly_woods": "Ghostly Woods",
+  "biome.pyrellium.infested_valley": "Infested Valley",
+  "biome.pyrellium.monolith_plains": "Monolith Plains",
+  "biome.pyrellium.mushroom_wastes": "Mushroom Wastes",
+  "biome.pyrellium.quartz_caverns": "Quartz Caverns",
+
+  "item.pyrellium.opal": "Opal",
+  "item.pyrellium.opal_spyglass": "Opal Spyglass",
+  "item.pyrellium.opal_tiara": "Opal Tiara",
+
+  "block.pyrellium.opal_block": "Opal Block",
+  "block.pyrellium.budding_opal": "Budding Opal",
+  "block.pyrellium.opal_cluster": "Opal Cluster",
+  "block.pyrellium.small_opal_bud": "Small Opal Bud",
+  "block.pyrellium.medium_opal_bud": "Medium Opal Bud",
+  "block.pyrellium.large_opal_bud": "Large Opal Bud",
+  "block.pyrellium.clear_amethyst_block": "Clear Amethyst Block",
+  "block.pyrellium.clear_opal_block": "Clear Opal Block",
+  "block.pyrellium.freezing_ice": "Freezing Ice",
+  "block.pyrellium.silk_block": "Silk Block",
+  "block.pyrellium.silk_carpet": "Silk Carpet",
+  "block.pyrellium.netherrack_mycelium": "Netherrack Mycelium",
+  "block.pyrellium.dead_sprouts": "Dead Sprouts",
+  "block.pyrellium.dead_roots": "Dead Roots",
+  "block.pyrellium.bone": "Bone",
+  "block.pyrellium.brown_bounceshroom": "Brown Bounceshroom",
+  "block.pyrellium.red_bounceshroom": "Red Bounceshroom",
+  "block.pyrellium.brown_wall_mushroom": "Brown Wall Mushroom",
+  "block.pyrellium.red_wall_mushroom": "Red Wall Mushroom",
+  "block.pyrellium.brown_shelf_mushroom": "Brown Shelf Mushroom",
+  "block.pyrellium.red_shelf_mushroom": "Red Shelf Mushroom",
+  "block.pyrellium.spores": "Spores",
+
+  "trim_material.pyrellium.opal": "Opal Material"
+}

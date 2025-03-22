@@ -1,0 +1,6 @@
+{
+  "parent": "pyrellium:block/cube_all_inner_faces",
+  "textures": {
+    "all": "pyrellium:block/spores"
+  }
+}

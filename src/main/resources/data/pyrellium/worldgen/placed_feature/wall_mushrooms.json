@@ -1,0 +1,27 @@
+{
+  "feature": "pyrellium:wall_mushrooms",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 128
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "above_bottom": 31
+        },
+        "max_inclusive": {
+          "absolute": 192
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
