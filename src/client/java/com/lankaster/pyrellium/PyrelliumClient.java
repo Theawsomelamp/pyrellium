@@ -1,12 +1,15 @@
 package com.lankaster.pyrellium;
 
 import com.lankaster.pyrellium.block.ModBlocks;
+import com.lankaster.pyrellium.entity.CrystalArrowRenderer;
+import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.util.BlockOutline;
 import com.lankaster.pyrellium.util.HatRender;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.render.RenderLayer;
 
@@ -16,6 +19,8 @@ public class PyrelliumClient implements ClientModInitializer {
 		WorldRenderEvents.START.register(BlockOutline::renderBoxOverlay);
 
 		ArmorRenderer.register(new HatRender(), ModItems.OPAL_TIARA);
+
+		EntityRendererRegistry.register(ModEntities.CRYSTAL_ARROW, CrystalArrowRenderer::new);
 
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.OPAL_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SMALL_OPAL_BUD, RenderLayer.getCutout());

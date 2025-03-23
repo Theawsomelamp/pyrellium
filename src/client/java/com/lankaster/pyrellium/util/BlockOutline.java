@@ -40,7 +40,7 @@ public class BlockOutline {
         float tickDelta = 1.0F; //Used for tracking animation progress; no tracking is 1.0F
         boolean includeFluids = true; //Whether to detect fluids as blocks
 
-        if (client.player.getActiveItem().getItem()== ModItems.OPAL_SPYGLASS) {
+        if (client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
             HitResult hit = client.cameraEntity.raycast(maxReach, tickDelta, includeFluids);
 
             return switch (hit.getType()) {
@@ -56,7 +56,7 @@ public class BlockOutline {
 
     public static BlockPos saveBlock() {
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client.options.attackKey.isPressed()) {
+        if (client.options.attackKey.isPressed() && client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
             savedPos = raycast();
         } else if (savedPos != null && client.world.isChunkLoaded(savedPos.getX(), savedPos.getZ())) {
             return savedPos;

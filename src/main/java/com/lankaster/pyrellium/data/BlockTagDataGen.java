@@ -15,17 +15,18 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-                .add(ModBlocks.OPAL_BLOCK)
-                .add(ModBlocks.SMALL_OPAL_BUD)
-                .add(ModBlocks.MEDIUM_OPAL_BUD)
-                .add(ModBlocks.LARGE_OPAL_BUD)
-                .add(ModBlocks.OPAL_CLUSTER)
-                .add(ModBlocks.BUDDING_OPAL)
-                .add(ModBlocks.CLEAR_AMETHYST_BLOCK)
-                .add(ModBlocks.CLEAR_OPAL_BLOCK)
-                .add(ModBlocks.FREEZING_ICE)
-                .add(ModBlocks.NETHERRACK_MYCELIUM)
-                .add(ModBlocks.BONE);
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
+                ModBlocks.OPAL_BLOCK,
+                ModBlocks.SMALL_OPAL_BUD,
+                ModBlocks.MEDIUM_OPAL_BUD,
+                ModBlocks.LARGE_OPAL_BUD,
+                ModBlocks.OPAL_CLUSTER,
+                ModBlocks.BUDDING_OPAL,
+                ModBlocks.CLEAR_AMETHYST_BLOCK,
+                ModBlocks.CLEAR_OPAL_BLOCK,
+                ModBlocks.FREEZING_ICE,
+                ModBlocks.NETHERRACK_MYCELIUM,
+                ModBlocks.BONE
+        );
     }
 }
