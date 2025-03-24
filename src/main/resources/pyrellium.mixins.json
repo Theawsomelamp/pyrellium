@@ -5,6 +5,7 @@
   "mixins": [
     "ActiveTargetGoalAccessor",
     "BlockItemMixin",
+    "DispenserBehaviorMixin",
     "ExtendSpyglass",
     "GhastEntityMixin",
     "ItemMixin",
