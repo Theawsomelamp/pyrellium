@@ -1,24 +1,33 @@
 package com.lankaster.pyrellium.entity;
 
 import com.google.common.base.Predicates;
+import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.item.ModItems;
+import com.lankaster.pyrellium.networking.ModNetworkingConstants;
+import com.lankaster.pyrellium.particles.ModParticleTypes;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class CrystalArrowEntity extends PersistentProjectileEntity {
-    public boolean opal = false;
+    public static boolean opal;
 
     public CrystalArrowEntity(EntityType<? extends CrystalArrowEntity> type, World world) {
         super(type, world);
@@ -33,13 +42,28 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
     }
 
     public void initFromStack(ItemStack stack) {
-        this.opal = !stack.isOf(ModItems.AMETHYST_ARROW);
+        opal = !stack.isOf(ModItems.AMETHYST_ARROW);
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeBoolean(opal);
+
+        ServerPlayNetworking.send((ServerPlayerEntity) this.getOwner(), ModNetworkingConstants.OPAL_ARROW_ID, buf);
     }
 
     public void tick() {
         super.tick();
-        if (this.getWorld().isClient && !this.inGround) {
-            this.getWorld().addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), (double)0.0F, (double)0.0F, (double)0.0F);
+        Pyrellium.LOGGER.info(String.valueOf(opal));
+        if (this.getWorld().isClient) {
+            if (!this.inGround) {
+                this.getWorld().addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), (double) 0.0F, (double) 0.0F, (double) 0.0F);
+            } else if (opal) {
+                for (int i = 0; i < 8; ++i) {
+                    this.getWorld().addParticle(ModParticleTypes.OPAL_SHARD, this.getX(), this.getY(), this.getZ(), MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F), 0.05F, MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F));
+                }
+            } else {
+                for (int i = 0; i < 8; ++i) {
+                    this.getWorld().addParticle(ModParticleTypes.AMETHYST_SHARD, this.getX(), this.getY(), this.getZ(), MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F), 0.05F, MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F));
+                }
+            }
         }
     }
 
@@ -76,10 +100,20 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
         super.onBlockHit(blockHitResult);
     }
 
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putBoolean("Opal", opal);
+    }
+
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        opal = nbt.getBoolean("Opal");
+    }
+
     @Override
     protected void age() {
         ++this.inGroundTime;
-        if (this.inGroundTime >= 1) {
+        if (this.inGroundTime >= 2) {
             this.discard();
         }
     }

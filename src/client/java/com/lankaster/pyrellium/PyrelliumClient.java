@@ -4,6 +4,8 @@ import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.entity.CrystalArrowRenderer;
 import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.ModItems;
+import com.lankaster.pyrellium.networking.ModClientNetworking;
+import com.lankaster.pyrellium.particles.ModParticles;
 import com.lankaster.pyrellium.util.BlockOutline;
 import com.lankaster.pyrellium.util.HatRender;
 import net.fabricmc.api.ClientModInitializer;
@@ -21,6 +23,10 @@ public class PyrelliumClient implements ClientModInitializer {
 		ArmorRenderer.register(new HatRender(), ModItems.OPAL_TIARA);
 
 		EntityRendererRegistry.register(ModEntities.CRYSTAL_ARROW, CrystalArrowRenderer::new);
+
+		ModParticles.registerParticle();
+
+		ModClientNetworking.registerPacketReceivers();
 
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.OPAL_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SMALL_OPAL_BUD, RenderLayer.getCutout());
