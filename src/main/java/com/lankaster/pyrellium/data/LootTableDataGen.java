@@ -4,6 +4,7 @@ import com.lankaster.pyrellium.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 import net.minecraft.loot.entry.ItemEntry;
 
 public class LootTableDataGen extends FabricBlockLootTableProvider {
@@ -33,5 +34,6 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.BROWN_SHELF_MUSHROOM, dropsWithSilkTouchOrShears(ModBlocks.BROWN_SHELF_MUSHROOM, addSurvivesExplosionCondition(Blocks.BROWN_MUSHROOM, ItemEntry.builder(Blocks.BROWN_MUSHROOM))));
         addDrop(ModBlocks.RED_SHELF_MUSHROOM, dropsWithSilkTouchOrShears(ModBlocks.RED_SHELF_MUSHROOM, addSurvivesExplosionCondition(Blocks.RED_MUSHROOM, ItemEntry.builder(Blocks.RED_MUSHROOM))));
         addDrop(ModBlocks.SPORES, dropsNothing());
+        addDrop(ModBlocks.HANGING_SILK, dropsWithSilkTouchOrShears(ModBlocks.HANGING_SILK, addSurvivesExplosionCondition(Items.STRING, ItemEntry.builder(Items.STRING))));
     }
 }

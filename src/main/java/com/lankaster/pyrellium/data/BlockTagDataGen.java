@@ -28,5 +28,9 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.NETHERRACK_MYCELIUM,
                 ModBlocks.BONE
         );
+
+        getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(
+                ModBlocks.HANGING_SILK
+        );
     }
 }

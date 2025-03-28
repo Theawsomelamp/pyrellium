@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "tip=false": {
+      "model": "pyrellium:block/hanging_silk"
+    },
+    "tip=true": {
+      "model": "pyrellium:block/hanging_silk_tip"
+    }
+  }
+}

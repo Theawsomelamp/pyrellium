@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-22T12:13:32.4291661	Pyrellium/Block Loot Tables
+// 1.20.1	2025-03-28T12:24:55.3854661	Pyrellium/Block Loot Tables
 1dd70424bb5fb6322f59022789adceced71e10f7 data\pyrellium\loot_tables\blocks\brown_bounceshroom.json
 29a968d2b5eac9b626a966be233b29b3e3cf684d data\pyrellium\loot_tables\blocks\brown_wall_mushroom.json
 8bbf5319fe9a8626724eacb2baf6b71dc681882c data\pyrellium\loot_tables\blocks\opal_block.json
@@ -16,6 +16,7 @@ bb90021d3a3004729a99c15db1e1d96b4ca4aae7 data\pyrellium\loot_tables\blocks\dead_
 f0bf47a919265f1e20032e25a89b6d4b9dee53ac data\pyrellium\loot_tables\blocks\large_opal_bud.json
 6de11d059bad2eec05cc9222d3813d72628e001f data\pyrellium\loot_tables\blocks\clear_amethyst_block.json
 7de05c172a88e3e067f9cbe32d4f5e6c1d882215 data\pyrellium\loot_tables\blocks\small_opal_bud.json
-6c5ca9884dbeeae61b64b3f1245b294e8ac42221 data\pyrellium\loot_tables\blocks\clear_opal_block.json
+fd15814479e506d83b40b5eb0ccbea9fa76cac69 data\pyrellium\loot_tables\blocks\hanging_silk.json
 995ada513e6beed2d2564ede4b757b88651a0b73 data\pyrellium\loot_tables\blocks\red_shelf_mushroom.json
+6c5ca9884dbeeae61b64b3f1245b294e8ac42221 data\pyrellium\loot_tables\blocks\clear_opal_block.json
 60aeba8c0d2a7b598be41f423241d7e133910554 data\pyrellium\loot_tables\blocks\brown_shelf_mushroom.json
