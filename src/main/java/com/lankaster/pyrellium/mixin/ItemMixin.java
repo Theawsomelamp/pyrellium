@@ -31,7 +31,7 @@ public class ItemMixin {
             ItemStack itemStack = context.getStack();
             BlockPos posBelow = blockPos.down();
             BlockState blockState = world.getBlockState(posBelow);
-            if ((blockState.isSideSolidFullSquare(world, blockPos, direction) || blockState.isOf(ModBlocks.BONE)) && itemStack.isOf(Items.BONE)) {
+            if ((blockState.isSideSolidFullSquare(world, blockPos, direction) || (blockState.isOf(ModBlocks.BONE)) && blockState.get(FLOWER_AMOUNT) < 4) && itemStack.isOf(Items.BONE)) {
                 if (world instanceof ServerWorld) {
                     if (blockState.isOf(ModBlocks.BONE)) {
                         world.setBlockState(posBelow, blockState.with(FLOWER_AMOUNT, Math.min(4, blockState.get(FLOWER_AMOUNT) + 1)));
