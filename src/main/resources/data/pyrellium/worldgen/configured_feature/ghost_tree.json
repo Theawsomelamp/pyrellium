@@ -27,12 +27,9 @@
       "entries": [
         {
           "data": {
-            "Name": "minecraft:oak_leaves",
-            "Properties": {
-              "persistent": "true"
-            }
+            "Name": "pyrellium:ghostly_leaves"
           },
-          
+
           "weight": 16
         },
         {

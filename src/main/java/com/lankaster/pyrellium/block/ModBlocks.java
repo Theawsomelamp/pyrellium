@@ -42,7 +42,9 @@ public class ModBlocks {
 
     public static final Block DEAD_ROOTS = registerBlock("dead_roots", new RootsBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS)));
     public static final Block DEAD_SPROUTS = registerBlock("dead_sprouts", new SproutsBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS)));
+    public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", new Block(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
     public static final Block BONE = registerBlockWithoutBlockItem("bone", new BoneItemBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)));
+    public static final Block BOMB_PLANT = registerBlock("bomb_plant", new BombPlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY)));
 
     private static Block registerBlockWithoutBlockItem(String name, Block block){
         return Registry.register(Registries.BLOCK, new Identifier(Pyrellium.MOD_ID, name), block);

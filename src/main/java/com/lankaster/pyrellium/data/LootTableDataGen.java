@@ -35,5 +35,7 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.RED_SHELF_MUSHROOM, dropsWithSilkTouchOrShears(ModBlocks.RED_SHELF_MUSHROOM, addSurvivesExplosionCondition(Blocks.RED_MUSHROOM, ItemEntry.builder(Blocks.RED_MUSHROOM))));
         addDrop(ModBlocks.SPORES, dropsNothing());
         addDrop(ModBlocks.HANGING_SILK, dropsWithSilkTouchOrShears(ModBlocks.HANGING_SILK, addSurvivesExplosionCondition(Items.STRING, ItemEntry.builder(Items.STRING))));
+        addDropWithSilkTouch(ModBlocks.BOMB_PLANT);
+        addDrop(ModBlocks.GHOSTLY_LEAVES, dropsWithShears(ModBlocks.GHOSTLY_LEAVES));
     }
 }
