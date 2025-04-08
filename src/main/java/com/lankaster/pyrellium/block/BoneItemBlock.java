@@ -1,6 +1,8 @@
 package com.lankaster.pyrellium.block;
 
 import net.minecraft.block.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -11,6 +13,10 @@ import net.minecraft.world.WorldView;
 public class BoneItemBlock extends FlowerbedBlock {
     public BoneItemBlock(Settings settings) {
         super(settings);
+    }
+
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        return new ItemStack(Items.BONE);
     }
 
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {

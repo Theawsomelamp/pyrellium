@@ -16,6 +16,7 @@
   "item.pyrellium.opal_tiara": "Opal Tiara",
   "item.pyrellium.amethyst_arrow": "Amethyst Arrow",
   "item.pyrellium.opal_arrow": "Opal Arrow",
+  "item.pyrellium.bomb_flower": "Bomb Flower",
 
   "block.pyrellium.opal_block": "Opal Block",
   "block.pyrellium.budding_opal": "Budding Opal",
@@ -40,7 +41,7 @@
   "block.pyrellium.red_shelf_mushroom": "Red Shelf Mushroom",
   "block.pyrellium.spores": "Spores",
   "block.pyrellium.hanging_silk": "Hanging Silk",
-  "block.pyrellium.bomb_plant": "Bomb Flower",
+  "block.pyrellium.bomb_plant": "Bomb Plant",
   "block.pyrellium.ghostly_leaves": "Ghostly Leaves",
 
   "trim_material.pyrellium.opal": "Opal Material"
