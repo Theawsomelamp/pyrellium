@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.block;
 
 import com.lankaster.pyrellium.Pyrellium;
+import com.lankaster.pyrellium.config.ConfigHandler;
 import com.lankaster.pyrellium.item.ModItemGroups;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -32,8 +33,8 @@ public class ModBlocks {
     public static final Block HANGING_SILK = registerBlock("hanging_silk", new HangingSilkBlock(FabricBlockSettings.create().ticksRandomly().noCollision().burnable().strength(0.75F).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", new Block(FabricBlockSettings.copyOf(Blocks.CRIMSON_NYLIUM)));
-    public static final Block BROWN_BOUNCESHROOM = registerBlock("brown_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM_BLOCK), 0.75F));
-    public static final Block RED_BOUNCESHROOM = registerBlock("red_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM_BLOCK), 1.0F));
+    public static final Block BROWN_BOUNCESHROOM = registerBlock("brown_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM_BLOCK), ConfigHandler.getConfig().blocksConfig().brownBounce()));
+    public static final Block RED_BOUNCESHROOM = registerBlock("red_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM_BLOCK), ConfigHandler.getConfig().blocksConfig().redBounce()));
     public static final Block BROWN_WALL_MUSHROOM = registerBlockWithoutBlockItem("brown_wall_mushroom", new WallMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM)));
     public static final Block RED_WALL_MUSHROOM = registerBlockWithoutBlockItem("red_wall_mushroom", new WallMushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM)));
     public static final Block BROWN_SHELF_MUSHROOM = registerBlock("brown_shelf_mushroom", new BrownShelfMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM)));
@@ -44,7 +45,7 @@ public class ModBlocks {
     public static final Block DEAD_SPROUTS = registerBlock("dead_sprouts", new SproutsBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS)));
     public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", new Block(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
     public static final Block BONE = registerBlockWithoutBlockItem("bone", new BoneItemBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)));
-    public static final Block BOMB_PLANT = registerBlock("bomb_plant", new BombPlantBlock(FabricBlockSettings.create().mapColor(MapColor.DARK_GREEN).noCollision().strength(0.1F).sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block BOMB_PLANT = registerBlock("bomb_plant", new BombPlantBlock(FabricBlockSettings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
 
     private static Block registerBlockWithoutBlockItem(String name, Block block){
         return Registry.register(Registries.BLOCK, new Identifier(Pyrellium.MOD_ID, name), block);
