@@ -14,6 +14,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 
 public class PyrelliumClient implements ClientModInitializer {
 	@Override
@@ -23,6 +24,7 @@ public class PyrelliumClient implements ClientModInitializer {
 		ArmorRenderer.register(new HatRender(), ModItems.OPAL_TIARA);
 
 		EntityRendererRegistry.register(ModEntities.CRYSTAL_ARROW, CrystalArrowRenderer::new);
+		EntityRendererRegistry.register(ModEntities.BOMB_FLOWER, FlyingItemEntityRenderer::new);
 
 		ModParticles.registerParticle();
 
