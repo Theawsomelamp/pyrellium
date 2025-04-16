@@ -11,6 +11,7 @@
     "pyrellium:clear_opal_block",
     "pyrellium:freezing_ice",
     "pyrellium:netherrack_mycelium",
-    "pyrellium:bone"
+    "pyrellium:bone",
+    "pyrellium:quartz_crystal"
   ]
 }

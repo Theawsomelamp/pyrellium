@@ -107,7 +107,8 @@
       "minecraft:ore_gold_nether",
       "pyrellium:ore_quartz_caverns",
       "minecraft:ore_ancient_debris_large",
-      "minecraft:ore_debris_small"
+      "minecraft:ore_debris_small",
+      "pyrellium:quartz_crystals"
     ],
     [],
     [

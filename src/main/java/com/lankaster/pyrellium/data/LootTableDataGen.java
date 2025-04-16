@@ -36,5 +36,6 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SPORES, dropsNothing());
         addDrop(ModBlocks.HANGING_SILK, dropsWithSilkTouchOrShears(ModBlocks.HANGING_SILK, addSurvivesExplosionCondition(Items.STRING, ItemEntry.builder(Items.STRING))));
         addDrop(ModBlocks.GHOSTLY_LEAVES, dropsWithShears(ModBlocks.GHOSTLY_LEAVES));
+        addDrop(ModBlocks.QUARTZ_CRYSTAL);
     }
 }

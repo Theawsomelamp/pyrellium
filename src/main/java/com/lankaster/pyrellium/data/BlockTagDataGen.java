@@ -26,7 +26,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.CLEAR_OPAL_BLOCK,
                 ModBlocks.FREEZING_ICE,
                 ModBlocks.NETHERRACK_MYCELIUM,
-                ModBlocks.BONE
+                ModBlocks.BONE,
+                ModBlocks.QUARTZ_CRYSTAL
         );
 
         getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(
