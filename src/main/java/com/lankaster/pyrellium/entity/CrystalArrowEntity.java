@@ -1,7 +1,6 @@
 package com.lankaster.pyrellium.entity;
 
 import com.google.common.base.Predicates;
-import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.ModNetworkingConstants;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
@@ -51,7 +50,6 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
 
     public void tick() {
         super.tick();
-        Pyrellium.LOGGER.info(String.valueOf(opal));
         if (this.getWorld().isClient) {
             if (!this.inGround) {
                 this.getWorld().addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), (double) 0.0F, (double) 0.0F, (double) 0.0F);
