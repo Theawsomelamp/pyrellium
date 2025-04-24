@@ -7,11 +7,14 @@
     },
     "X": {
       "item": "minecraft:ghast_tear"
+    },
+    "Y": {
+      "item": "minecraft:gold_ingot"
     }
   },
   "pattern": [
     " # ",
-    "#X#"
+    "YXY"
   ],
   "result": {
     "item": "pyrellium:opal_tiara"
