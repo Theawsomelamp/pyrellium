@@ -13,6 +13,9 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -46,6 +49,11 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
         buf.writeBoolean(opal);
 
         ServerPlayNetworking.send((ServerPlayerEntity) this.getOwner(), ModNetworkingConstants.OPAL_ARROW_ID, buf);
+    }
+
+    @Override
+    public Packet<ClientPlayPacketListener> createSpawnPacket() {
+        return new EntitySpawnS2CPacket(this);
     }
 
     public void tick() {

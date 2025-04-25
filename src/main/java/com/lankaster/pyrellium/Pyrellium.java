@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium;
 
 import com.lankaster.pyrellium.config.ConfigHandler;
+import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
 import net.fabricmc.api.ModInitializer;
 
@@ -34,6 +35,8 @@ public class Pyrellium implements ModInitializer {
 
 		ModFeatures.registerModFeatures();
 		ModParticleTypes.registerParticle();
+
+		ModEntities.registerEntities();
 
 		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
