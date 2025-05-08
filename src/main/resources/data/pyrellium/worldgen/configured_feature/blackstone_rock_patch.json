@@ -12,10 +12,10 @@
             {
               "target": {
                 "predicate_type": "minecraft:block_match",
-                "block": "minecraft:lava"
+                "block": "minecraft:air"
               },
               "state": {
-                "Name": "minecraft:magma_block"
+                "Name": "pyrellium:blackstone_rock"
               }
             }
           ]
@@ -28,10 +28,10 @@
             "type": "minecraft:matching_blocks",
             "offset": [
               0,
-              1,
+              -1,
               0
             ],
-            "blocks": "minecraft:air"
+            "blocks": "minecraft:lava"
           }
         }
       ]

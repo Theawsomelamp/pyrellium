@@ -1,5 +1,19 @@
 {
-  "feature": "pyrellium:magma_patch",
+  "feature": {
+    "config": {
+      "features": [
+        {
+          "feature": "pyrellium:magma_patch",
+          "placement": []
+        },
+        {
+          "feature": "pyrellium:blackstone_rock_patch",
+          "placement": []
+        }
+      ]
+    },
+    "type": "minecraft:simple_random_selector"
+  },
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
@@ -8,7 +22,13 @@
     {
       "type": "minecraft:height_range",
       "height": {
-        "absolute": 31
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "above_bottom": 31
+        },
+        "max_inclusive": {
+          "absolute": 32
+        }
       }
     },
     {

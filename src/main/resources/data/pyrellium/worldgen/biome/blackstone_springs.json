@@ -94,7 +94,8 @@
       "minecraft:ore_quartz_deltas",
       "minecraft:ore_ancient_debris_large",
       "minecraft:ore_debris_small",
-      "pyrellium:gilded_patch"
+      "pyrellium:gilded_patch",
+      "pyrellium:blackstone_rock_patch"
     ]
   ]
 }

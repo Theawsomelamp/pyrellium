@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "pyrellium:block/blackstone_rock"
+      },
+      {
+        "model": "pyrellium:block/blackstone_rock",
+        "y": 90
+      },
+      {
+        "model": "pyrellium:block/blackstone_rock",
+        "y": 180
+      },
+      {
+        "model": "pyrellium:block/blackstone_rock",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -11,6 +11,9 @@
   "biome.pyrellium.mushroom_wastes": "Mushroom Wastes",
   "biome.pyrellium.quartz_caverns": "Quartz Caverns",
 
+  "entity.pyrellium.crystal_arrow": "Crystal Arrow",
+  "entity.pyrellium.bomb_flower": "Bomb Flower",
+
   "item.pyrellium.opal": "Opal",
   "item.pyrellium.opal_spyglass": "Opal Spyglass",
   "item.pyrellium.opal_tiara": "Opal Tiara",
@@ -44,6 +47,7 @@
   "block.pyrellium.bomb_plant": "Bomb Plant",
   "block.pyrellium.ghostly_leaves": "Ghostly Leaves",
   "block.pyrellium.quartz_crystal": "Quartz Crystal",
+  "block.pyrellium.blackstone_rock": "Blackstone Rock",
 
   "trim_material.pyrellium.opal": "Opal Material"
 }

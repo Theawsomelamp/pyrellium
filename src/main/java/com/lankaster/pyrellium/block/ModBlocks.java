@@ -10,6 +10,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.PlaceableOnWaterItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -47,6 +48,7 @@ public class ModBlocks {
     public static final Block BONE = registerBlockWithoutBlockItem("bone", new BoneItemBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)));
     public static final Block BOMB_PLANT = registerBlock("bomb_plant", new BombPlantBlock(FabricBlockSettings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block QUARTZ_CRYSTAL = registerBlock("quartz_crystal", new AmethystClusterBlock(7, 3, FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
+    public static final Block BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE).nonOpaque()));
 
     private static Block registerBlockWithoutBlockItem(String name, Block block){
         return Registry.register(Registries.BLOCK, new Identifier(Pyrellium.MOD_ID, name), block);
@@ -60,6 +62,18 @@ public class ModBlocks {
     private static Item registerBlockItem(String name, Block block) {
         Item item = Registry.register(Registries.ITEM, new Identifier(Pyrellium.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings()));
+        ItemGroupEvents.modifyEntriesEvent(ModItemGroups.PYRELLIUM).register(entries -> entries.add(item));
+        return item;
+    }
+
+    private static Block registerPlaceableOnWaterBlock(String name, Block block) {
+        registerPlaceableOnWaterBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, new Identifier(Pyrellium.MOD_ID, name), block);
+    }
+
+    private static Item registerPlaceableOnWaterBlockItem(String name, Block block) {
+        Item item = Registry.register(Registries.ITEM, new Identifier(Pyrellium.MOD_ID, name),
+                new PlaceableOnWaterItem(block, new FabricItemSettings()));
         ItemGroupEvents.modifyEntriesEvent(ModItemGroups.PYRELLIUM).register(entries -> entries.add(item));
         return item;
     }
