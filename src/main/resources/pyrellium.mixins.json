@@ -9,6 +9,7 @@
     "ExtendSpyglass",
     "GhastEntityMixin",
     "ItemMixin",
+    "StraySpawningMixin",
     "WarningSuppressor"
   ],
   "injectors": {
