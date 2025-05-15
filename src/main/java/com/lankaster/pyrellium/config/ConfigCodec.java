@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 public record ConfigCodec(BlocksConfig blocksConfig) {
     public static final Codec<ConfigCodec> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            BlocksConfig.CODEC.fieldOf("blocks").orElse(BlocksConfig.DEFAULT).forGetter(ConfigCodec::blocksConfig)
+            BlocksConfig.CODEC.fieldOf("block").orElse(BlocksConfig.DEFAULT).forGetter(ConfigCodec::blocksConfig)
     ).apply(instance, ConfigCodec::new));
 
     public record BlocksConfig(float redBounce, float brownBounce, float explodeStrength) {

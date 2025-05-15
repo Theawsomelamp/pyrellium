@@ -19,7 +19,7 @@ import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 public class PyrelliumClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		WorldRenderEvents.START.register(BlockOutline::renderBoxOverlay);
+		WorldRenderEvents.AFTER_ENTITIES.register(BlockOutline::renderBoxOverlay);
 
 		ArmorRenderer.register(new HatRender(), ModItems.OPAL_TIARA);
 

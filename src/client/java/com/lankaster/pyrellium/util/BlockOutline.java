@@ -38,7 +38,7 @@ public class BlockOutline {
         MinecraftClient client = MinecraftClient.getInstance();
         double maxReach = 1000; //The farthest target the cameraEntity can detect
         float tickDelta = 1.0F; //Used for tracking animation progress; no tracking is 1.0F
-        boolean includeFluids = true; //Whether to detect fluids as blocks
+        boolean includeFluids = true; //Whether to detect fluids as block
 
         if (client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
             HitResult hit = client.cameraEntity.raycast(maxReach, tickDelta, includeFluids);

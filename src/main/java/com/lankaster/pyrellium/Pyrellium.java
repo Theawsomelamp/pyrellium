@@ -2,6 +2,7 @@ package com.lankaster.pyrellium;
 
 import com.lankaster.pyrellium.config.ConfigHandler;
 import com.lankaster.pyrellium.entity.ModEntities;
+import com.lankaster.pyrellium.networking.OpalPayload;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
 import net.fabricmc.api.ModInitializer;
 
@@ -11,6 +12,7 @@ import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.feature.ModFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
@@ -30,6 +32,8 @@ public class Pyrellium implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ConfigHandler.load(Path.of(System.getProperty("user.dir") + File.separator + "config" + File.separator + Pyrellium.MOD_ID + ".json"));
+
+		PayloadTypeRegistry.playS2C().register(OpalPayload.ID, OpalPayload.CODEC);
 
 		ModItemGroups.registerItemGroups();
 

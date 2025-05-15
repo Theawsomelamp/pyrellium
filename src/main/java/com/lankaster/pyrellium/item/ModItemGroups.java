@@ -13,7 +13,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
-    public static final RegistryKey<ItemGroup> PYRELLIUM = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(Pyrellium.MOD_ID, "pyrellium"));
+    public static final RegistryKey<ItemGroup> PYRELLIUM = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Pyrellium.MOD_ID, "pyrellium"));
 
     public static void registerItemGroups() {
         Registry.register(Registries.ITEM_GROUP, PYRELLIUM, FabricItemGroup.builder()

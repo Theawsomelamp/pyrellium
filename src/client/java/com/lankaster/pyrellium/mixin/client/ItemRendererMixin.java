@@ -2,26 +2,55 @@ package com.lankaster.pyrellium.mixin.client;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.item.ModItems;
-import net.minecraft.client.render.VertexConsumerProvider;
+import com.llamalad7.mixinextras.sugar.Local;;
+import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.ModelIdentifier;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
-    @ModifyVariable(method = "renderItem", at = @At(value = "HEAD"), argsOnly = true)
-    public BakedModel useOpalSpyglassModel(BakedModel value, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+
+    @Shadow
+    @Final
+    private ItemModels models;
+
+    @Shadow
+    public abstract ItemModels getModels();
+
+    @ModifyVariable(
+            method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V",
+            at = @At(value = "HEAD"),
+            argsOnly = true
+    )
+    public BakedModel renderItem(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) ModelTransformationMode renderMode) {
         if (stack.isOf(ModItems.OPAL_TIARA) && renderMode == ModelTransformationMode.HEAD) {
-            return ((ItemRendererAccessor) this).getModels().getModelManager().getModel(new ModelIdentifier(Pyrellium.MOD_ID, "opal_tiara_model", "inventory"));
-        } else if (stack.isOf(ModItems.OPAL_SPYGLASS) && renderMode != ModelTransformationMode.GUI) {
-            return ((ItemRendererAccessor) this).getModels().getModelManager().getModel(new ModelIdentifier(Pyrellium.MOD_ID, "opal_spyglass_model", "inventory"));
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Pyrellium.MOD_ID, "opal_tiara_model")));
+        } else if (stack.getItem() == ModItems.OPAL_SPYGLASS && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Pyrellium.MOD_ID, "opal_spyglass")));
         }
-        return value;
+
+        return bakedModel;
+    }
+
+    @ModifyVariable(
+            method = "getModel",
+            at = @At(value = "STORE"),
+            ordinal = 1
+    )
+    public BakedModel getHeldItemModelMixin(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack) {
+        if (stack.getItem() == ModItems.OPAL_SPYGLASS) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Pyrellium.MOD_ID, "opal_spyglass_model")));
+        }
+
+        return bakedModel;
     }
 }

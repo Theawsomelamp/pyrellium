@@ -2,6 +2,7 @@ package com.lankaster.pyrellium.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
@@ -19,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 
 public class WallMushroomBlock extends HorizontalFacingBlock implements Fertilizable {
+    public static final MapCodec<WallMushroomBlock> CODEC = createCodec(WallMushroomBlock::new);
     private static final Map<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.createCuboidShape(5.0F, 4.0F, 0.0F, 11.0F, 13.0F, 7.0F), Direction.SOUTH, Block.createCuboidShape(5.0F, 4.0F, 9.0F, 11.0F, 13.0F, 16.0F), Direction.WEST, Block.createCuboidShape(0.0F, 4.0F, 5.0F, 7.0F, 13.0F, 11.0F), Direction.EAST, Block.createCuboidShape(9.0F, 4.0F, 5.0F, 16.0F, 13.0F, 11.0F)));
 
     public WallMushroomBlock(Settings settings) {
@@ -26,7 +28,11 @@ public class WallMushroomBlock extends HorizontalFacingBlock implements Fertiliz
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
-    @SuppressWarnings("deprecation")
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return CODEC;
+    }
+
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return getBoundingShape(state);
     }
@@ -35,7 +41,6 @@ public class WallMushroomBlock extends HorizontalFacingBlock implements Fertiliz
         return BOUNDING_SHAPES.get(state.get(FACING));
     }
 
-    @SuppressWarnings("deprecation")
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return canPlaceAt(world, pos, state.get(FACING).getOpposite());
     }
@@ -63,7 +68,6 @@ public class WallMushroomBlock extends HorizontalFacingBlock implements Fertiliz
         return null;
     }
 
-    @SuppressWarnings("deprecation")
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         return state.get(FACING) == direction && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
@@ -73,7 +77,7 @@ public class WallMushroomBlock extends HorizontalFacingBlock implements Fertiliz
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return true;
     }
 

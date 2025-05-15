@@ -2,9 +2,8 @@ package com.lankaster.pyrellium.entity;
 
 import com.google.common.base.Predicates;
 import com.lankaster.pyrellium.item.ModItems;
-import com.lankaster.pyrellium.networking.ModNetworkingConstants;
+import com.lankaster.pyrellium.networking.OpalPayload;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -12,10 +11,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -27,6 +22,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class CrystalArrowEntity extends PersistentProjectileEntity {
     public static boolean opal;
@@ -35,25 +31,18 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
         super(type, world);
     }
 
-    public CrystalArrowEntity(World world, LivingEntity owner) {
-        super(ModEntities.CRYSTAL_ARROW, owner, world);
+    public CrystalArrowEntity(World world, LivingEntity shooter, ItemStack itemStack, @Nullable ItemStack shotFrom) {
+        super(ModEntities.CRYSTAL_ARROW, shooter, world, itemStack, shotFrom);
     }
 
-    public CrystalArrowEntity(World world, double x, double y, double z) {
-        super(ModEntities.CRYSTAL_ARROW, x, y, z, world);
+    public CrystalArrowEntity(World world, double x, double y, double z, ItemStack stack, @Nullable ItemStack shotFrom) {
+        super(ModEntities.CRYSTAL_ARROW, x, y, z, world, stack, shotFrom);
     }
 
     public void initFromStack(ItemStack stack) {
-        opal = !stack.isOf(ModItems.AMETHYST_ARROW);
-        PacketByteBuf buf = PacketByteBufs.create();
-        buf.writeBoolean(opal);
+        OpalPayload payload = new OpalPayload(!stack.isOf(ModItems.AMETHYST_ARROW));
 
-        ServerPlayNetworking.send((ServerPlayerEntity) this.getOwner(), ModNetworkingConstants.OPAL_ARROW_ID, buf);
-    }
-
-    @Override
-    public Packet<ClientPlayPacketListener> createSpawnPacket() {
-        return new EntitySpawnS2CPacket(this);
+        ServerPlayNetworking.send((ServerPlayerEntity) this.getOwner(), payload);
     }
 
     public void tick() {
@@ -95,7 +84,7 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
         if (!this.getWorld().isClient()) {
             BlockPos blockPos = blockHitResult.getBlockPos();
             World world = getWorld();
-            Box box = new Box(blockPos.add(2, 2, 2), blockPos.add(-2, -1, -2));
+            Box box = new Box(blockPos.add(2, 2, 2).toCenterPos(), blockPos.add(-2, -1, -2).toCenterPos());
             for (Entity target : world.getEntitiesByClass(Entity.class, box, Predicates.alwaysTrue())) {
                 if (target instanceof LivingEntity) {
                     target.damage(target.getDamageSources().arrow(this, getOwner()), 2);
@@ -126,6 +115,15 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
 
     @Override
     protected ItemStack asItemStack() {
+        if (opal) {
+            return new ItemStack(ModItems.OPAL_ARROW);
+        } else {
+            return new ItemStack(ModItems.AMETHYST_ARROW);
+        }
+    }
+
+    @Override
+    protected ItemStack getDefaultItemStack() {
         if (opal) {
             return new ItemStack(ModItems.OPAL_ARROW);
         } else {

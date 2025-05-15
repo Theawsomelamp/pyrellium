@@ -2,20 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "X": {
-      "item": "minecraft:spider_eye"
-    },
     "#": {
-      "item": "minecraft:string"
+      "item": "pyrellium:opal"
     }
   },
   "pattern": [
-    " # ",
-    "#X#",
-    " # "
+    "##",
+    "##"
   ],
   "result": {
-    "item": "pyrellium:silk_block"
+    "id": "pyrellium:opal_block"
   },
   "show_notification": true
 }

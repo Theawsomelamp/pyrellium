@@ -14,7 +14,7 @@ public class ModFeatures {
     public static final Feature PILLAR = registerFeature("pillar", new PillarFeature(PillarFeatureConfig.CODEC));
 
     private static Feature registerFeature(String name, Feature feature) {
-        return Registry.register(Registries.FEATURE, new Identifier(Pyrellium.MOD_ID, name), feature);
+        return Registry.register(Registries.FEATURE, Identifier.of(Pyrellium.MOD_ID, name), feature);
     }
 
     public static void registerModFeatures() {

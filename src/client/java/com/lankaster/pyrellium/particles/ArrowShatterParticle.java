@@ -2,7 +2,7 @@ package com.lankaster.pyrellium.particles;
 
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.SimpleParticleType;
 
 public class ArrowShatterParticle extends SpriteBillboardParticle {
     protected ArrowShatterParticle(ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
@@ -33,14 +33,14 @@ public class ArrowShatterParticle extends SpriteBillboardParticle {
         super.tick();
     }
 
-    public static class AmethystFactory implements ParticleFactory<DefaultParticleType> {
+    public static class AmethystFactory implements ParticleFactory<SimpleParticleType> {
         private final SpriteProvider spriteProvider;
 
         public AmethystFactory(SpriteProvider spriteProvider) {
             this.spriteProvider = spriteProvider;
         }
 
-        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
+        public Particle createParticle(SimpleParticleType SimpleParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
             ArrowShatterParticle arrowShatterParticle = new ArrowShatterParticle(clientWorld, d, e, f, g, h, i);
             arrowShatterParticle.setSprite(this.spriteProvider);
             arrowShatterParticle.setColor(1.0F, 1.0F, 1.0F);
@@ -48,14 +48,14 @@ public class ArrowShatterParticle extends SpriteBillboardParticle {
         }
     }
 
-    public static class OpalFactory implements ParticleFactory<DefaultParticleType> {
+    public static class OpalFactory implements ParticleFactory<SimpleParticleType> {
         private final SpriteProvider spriteProvider;
 
         public OpalFactory(SpriteProvider spriteProvider) {
             this.spriteProvider = spriteProvider;
         }
 
-        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
+        public Particle createParticle(SimpleParticleType SimpleParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
             ArrowShatterParticle arrowShatterParticle = new ArrowShatterParticle(clientWorld, d, e, f, g, h, i);
             arrowShatterParticle.setSprite(this.spriteProvider);
             arrowShatterParticle.setColor(1.0F, 1.0F, 1.0F);

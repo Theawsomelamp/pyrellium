@@ -6,10 +6,13 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class LootTableDataGen extends FabricBlockLootTableProvider {
-    public LootTableDataGen(FabricDataOutput dataOutput) {
-        super(dataOutput);
+    public LootTableDataGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, registryLookup);
     }
 
     @Override

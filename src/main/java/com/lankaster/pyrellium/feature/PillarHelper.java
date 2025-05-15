@@ -55,7 +55,7 @@ public class PillarHelper {
         return canReplace(state) || state.isOf(Blocks.LAVA);
     }
 
-    //TODO: add tag to check for certain blocks
+    //TODO: add tag to check for certain block
     public static boolean canReplace(BlockState state) {
         return !state.isAir();
     }

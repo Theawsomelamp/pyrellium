@@ -22,7 +22,6 @@ public class HangingSilkBlock extends Block implements Fertilizable {
         this.setDefaultState((this.stateManager.getDefaultState()).with(TIP, true));
     }
 
-    @SuppressWarnings("deprecation")
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return this.canPlaceAt(world, pos);
     }
@@ -33,7 +32,6 @@ public class HangingSilkBlock extends Block implements Fertilizable {
         return MultifaceGrowthBlock.canGrowOn(world, Direction.UP, blockPos, blockState) || blockState.isOf(ModBlocks.HANGING_SILK);
     }
 
-    @SuppressWarnings("deprecation")
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (direction == Direction.UP && !state.canPlaceAt(world, pos)) {
             world.scheduleBlockTick(pos, this, 1);
@@ -42,7 +40,6 @@ public class HangingSilkBlock extends Block implements Fertilizable {
         return state.with(TIP, !world.getBlockState(pos.down()).isOf(this));
     }
 
-    @SuppressWarnings("deprecation")
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (!this.canPlaceAt(world, pos)) {
             world.breakBlock(pos, true);
@@ -50,7 +47,7 @@ public class HangingSilkBlock extends Block implements Fertilizable {
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return this.canGrowInto(world.getBlockState(this.getTipPos(world, pos).down()));
     }
 
@@ -83,7 +80,6 @@ public class HangingSilkBlock extends Block implements Fertilizable {
         }
     }
 
-    @SuppressWarnings("deprecation")
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         entity.slowMovement(state, new Vec3d(0.25F, 0.05F, 0.25F));
     }

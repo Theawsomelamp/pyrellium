@@ -3,15 +3,15 @@
   "category": "building",
   "key": {
     "#": {
-      "item": "pyrellium:opal"
+      "item": "pyrellium:silk_block"
     }
   },
   "pattern": [
-    "##",
     "##"
   ],
   "result": {
-    "item": "pyrellium:opal_block"
+    "count": 3,
+    "id": "pyrellium:silk_carpet"
   },
   "show_notification": true
 }

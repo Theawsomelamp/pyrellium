@@ -3,23 +3,21 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "minecraft:stick"
+      "item": "pyrellium:opal"
     },
     "X": {
-      "item": "minecraft:amethyst_shard"
+      "item": "minecraft:ghast_tear"
     },
     "Y": {
-      "item": "minecraft:feather"
+      "item": "minecraft:gold_ingot"
     }
   },
   "pattern": [
-    "X",
-    "#",
-    "Y"
+    " # ",
+    "YXY"
   ],
   "result": {
-    "count": 4,
-    "item": "pyrellium:amethyst_arrow"
+    "id": "pyrellium:opal_tiara"
   },
   "show_notification": true
 }

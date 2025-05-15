@@ -33,23 +33,21 @@ public class SporesBlock extends Block {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(hand);
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        ItemStack itemStack = player.getStackInHand(Hand.MAIN_HAND);
         if (itemStack.isOf(Items.GLASS_BOTTLE)) {
             itemStack.decrement(1);
             if (itemStack.isEmpty()) {
-                player.setStackInHand(hand, new ItemStack(ModBlocks.SPORES));
+                player.setStackInHand(Hand.MAIN_HAND, new ItemStack(ModBlocks.SPORES));
             } else if (!player.getInventory().insertStack(new ItemStack(ModBlocks.SPORES))) {
                 player.dropItem(new ItemStack(ModBlocks.SPORES), false);
             }
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             world.playSound(null, pos, SoundEvents.BLOCK_FROGSPAWN_BREAK, SoundCategory.BLOCKS);
         }
-        return super.onUse(state, world, pos, player, hand, hit);
+        return super.onUse(state, world, pos, player, hit);
     }
 
-    @SuppressWarnings("deprecation")
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!state.get(DISPERSED)) {
             if (entity instanceof LivingEntity livingEntity) {
@@ -63,7 +61,6 @@ public class SporesBlock extends Block {
         }
     }
 
-    @SuppressWarnings("deprecation")
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(DISPERSED)) {
             world.setBlockState(pos, state.cycle(DISPERSED), 2);

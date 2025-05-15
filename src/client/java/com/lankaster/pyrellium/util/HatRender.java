@@ -25,8 +25,8 @@ public class HatRender implements ArmorRenderer {
             matrices.push();
             contextModel.getHead().rotate(matrices);
             matrices.scale(1.19F, 1.19F, 1.19F);
-            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, model.getLayer(Identifier.of(Pyrellium.MOD_ID, "textures/item/opal_tiara_model.png")), false, stack.hasGlint());
-            model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, model.getLayer(Identifier.of(Pyrellium.MOD_ID, "textures/item/opal_tiara_model.png")), false);
+            model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, -1);
             matrices.pop();
         }
     }

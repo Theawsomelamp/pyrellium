@@ -12,6 +12,6 @@ public class CrystalArrowRenderer extends ProjectileEntityRenderer<CrystalArrowE
 
     @Override
     public Identifier getTexture(CrystalArrowEntity entity) {
-        return CrystalArrowEntity.opal ? new Identifier(Pyrellium.MOD_ID, "textures/entity/opal_arrow.png") : new Identifier(Pyrellium.MOD_ID, "textures/entity/amethyst_arrow.png");
+        return CrystalArrowEntity.opal ? Identifier.of(Pyrellium.MOD_ID, "textures/entity/opal_arrow.png") : Identifier.of(Pyrellium.MOD_ID, "textures/entity/amethyst_arrow.png");
     }
 }
