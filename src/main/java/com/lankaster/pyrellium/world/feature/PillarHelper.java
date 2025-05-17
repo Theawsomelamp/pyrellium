@@ -1,4 +1,4 @@
-package com.lankaster.pyrellium.feature;
+package com.lankaster.pyrellium.world.feature;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

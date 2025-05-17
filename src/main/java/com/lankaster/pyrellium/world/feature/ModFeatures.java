@@ -1,4 +1,4 @@
-package com.lankaster.pyrellium.feature;
+package com.lankaster.pyrellium.world.feature;
 
 import com.lankaster.pyrellium.Pyrellium;
 import net.minecraft.registry.Registries;

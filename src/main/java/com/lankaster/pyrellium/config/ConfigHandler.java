@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class ConfigHandler {
     private static ConfigCodec LOADED_CONFIG = new ConfigCodec(
-         ConfigCodec.BlocksConfig.DEFAULT
+            ConfigCodec.BlocksConfig.DEFAULT,
+            ConfigCodec.BiomeConfig.DEFAULT
     );
 
     public static ConfigCodec getConfig() {

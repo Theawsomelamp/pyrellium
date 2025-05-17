@@ -1,4 +1,4 @@
-package com.lankaster.pyrellium.feature;
+package com.lankaster.pyrellium.world.feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

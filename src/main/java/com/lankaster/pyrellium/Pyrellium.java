@@ -4,26 +4,17 @@ import com.lankaster.pyrellium.config.ConfigHandler;
 import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.networking.OpalPayload;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
+import com.lankaster.pyrellium.world.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
 import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.item.ModItemGroups;
 import com.lankaster.pyrellium.item.ModItems;
-import com.lankaster.pyrellium.feature.ModFeatures;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import com.lankaster.pyrellium.world.feature.ModFeatures;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.gen.GenerationStep;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.nio.file.Path;
 
 public class Pyrellium implements ModInitializer {
 	public static final String MOD_ID = "pyrellium";
@@ -46,11 +37,6 @@ public class Pyrellium implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
 
-		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.LOCAL_MODIFICATIONS, RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(MOD_ID, "opal_geode")));
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SOUL_SAND_VALLEY), GenerationStep.Feature.LOCAL_MODIFICATIONS, RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(MOD_ID, "cool_lava_lake")));
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SOUL_SAND_VALLEY), GenerationStep.Feature.UNDERGROUND_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(MOD_ID, "bones")));
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.NETHER_WASTES), GenerationStep.Feature.UNDERGROUND_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(MOD_ID, "quartz_crystals_rare")));
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.CRIMSON_FOREST), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(MOD_ID, "crimson_stems")));
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.WARPED_FOREST), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(MOD_ID, "warped_stems")));
+		ModWorldGeneration.register();
 	}
 }
