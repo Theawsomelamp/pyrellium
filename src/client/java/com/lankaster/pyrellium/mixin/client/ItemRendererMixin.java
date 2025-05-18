@@ -2,7 +2,7 @@ package com.lankaster.pyrellium.mixin.client;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.item.ModItems;
-import com.llamalad7.mixinextras.sugar.Local;;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;

@@ -80,9 +80,7 @@
   "features": [
     [],
     [],
-    [
-      "pyrellium:obsidian_monolith"
-    ],
+    [],
     [],
     [],
     [],
@@ -99,8 +97,7 @@
       "minecraft:ore_gold_nether",
       "minecraft:ore_quartz_nether",
       "minecraft:ore_ancient_debris_large",
-      "minecraft:ore_debris_small",
-      "pyrellium:monolith_floor"
+      "minecraft:ore_debris_small"
     ],
     [],
     [
@@ -109,8 +106,7 @@
       "minecraft:red_mushroom_normal",
       "minecraft:weeping_vines",
       "minecraft:crimson_forest_vegetation",
-      "pyrellium:crimson_fungi_rare",
-      "pyrellium:bomb_plants"
+      "pyrellium:crimson_fungi_rare"
     ]
   ]
 }
