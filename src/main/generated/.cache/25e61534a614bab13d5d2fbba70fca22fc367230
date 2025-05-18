@@ -1,3 +1,3 @@
-// 1.20.1	2025-05-07T16:08:15.34829	Pyrellium/Tags for minecraft:block
-c890891222c8b99e2746b1c7f9b86d7ecf6aa80a data\minecraft\tags\blocks\mineable\pickaxe.json
-194f1e7326ebe369c472872c57c476df97fd7440 data\minecraft\tags\blocks\sword_efficient.json
+// 1.21.1	2025-05-18T16:41:01.8297461	Pyrellium/Tags for minecraft:block
+47c1ae65162602833d8ad7f1a7d4d33f8c30fcf3 data\minecraft\tags\block\sword_efficient.json
+efd1a3f7ea39d6775eea7a9d279c7bbc2ff9f89a data\minecraft\tags\block\mineable\pickaxe.json
