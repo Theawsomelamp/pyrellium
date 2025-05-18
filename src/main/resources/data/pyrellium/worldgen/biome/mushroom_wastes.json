@@ -108,9 +108,7 @@
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "pyrellium:nether_mushroom_patch",
-      "pyrellium:nether_huge_mushroom",
-      "pyrellium:wall_mushrooms",
-      "pyrellium:spores"
+      "pyrellium:nether_huge_mushroom"
     ]
   ]
 }
