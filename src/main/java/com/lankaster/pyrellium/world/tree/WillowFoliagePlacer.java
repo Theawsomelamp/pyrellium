@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.TreeFeature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
@@ -22,17 +23,19 @@ import net.minecraft.world.gen.foliage.FoliagePlacerType;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 public class WillowFoliagePlacer extends BlobFoliagePlacer {
-    public static final Codec<WillowFoliagePlacer> CODEC = RecordCodecBuilder.create((instance) -> createCodec(instance).and(instance.group(Codec.floatRange(0, 1).fieldOf("chance").forGetter((foliagePlacer) -> foliagePlacer.chance), IntProvider.createValidatingCodec(0, 16).fieldOf("length").forGetter((foliagePlacer) -> foliagePlacer.length), BlockStateProvider.TYPE_CODEC.fieldOf("provider").forGetter((foliagePlacer) -> foliagePlacer.provider))).apply(instance, WillowFoliagePlacer::new));
+    public static final Codec<WillowFoliagePlacer> CODEC = RecordCodecBuilder.create((instance) -> createCodec(instance).and(instance.group(Codec.floatRange(0, 1).fieldOf("chance").forGetter((foliagePlacer) -> foliagePlacer.chance), IntProvider.createValidatingCodec(0, 16).fieldOf("length").forGetter((foliagePlacer) -> foliagePlacer.length), BlockStateProvider.TYPE_CODEC.fieldOf("provider").forGetter((foliagePlacer) -> foliagePlacer.provider), BlockStateProvider.TYPE_CODEC.fieldOf("tip_provider").forGetter((foliagePlacer) -> foliagePlacer.tipProvider))).apply(instance, WillowFoliagePlacer::new));
     public static final FoliagePlacerType<WillowFoliagePlacer> WILLOW_FOLIAGE_PLACER = Registry.register(Registries.FOLIAGE_PLACER_TYPE, Identifier.of(Pyrellium.MOD_ID, "willow_foliage_placer"), new FoliagePlacerType<>(WillowFoliagePlacer.CODEC));
     private final float chance;
     private final IntProvider length;
     private final BlockStateProvider provider;
+    private final BlockStateProvider tipProvider;
 
-    public WillowFoliagePlacer(IntProvider intProvider, IntProvider intProvider2, int i, float chance, IntProvider length, BlockStateProvider provider) {
+    public WillowFoliagePlacer(IntProvider intProvider, IntProvider intProvider2, int i, float chance, IntProvider length, BlockStateProvider provider, BlockStateProvider tipProvider) {
         super(intProvider, intProvider2, i);
         this.chance = chance;
         this.length = length;
         this.provider = provider;
+        this.tipProvider = tipProvider;
     }
 
     protected FoliagePlacerType<?> getType() {
@@ -55,7 +58,7 @@ public class WillowFoliagePlacer extends BlobFoliagePlacer {
             int k = -radius - 1;
 
             while(k < radius + i) {
-                boolean bl = placer.hasPlacedBlock(mutable.move(Direction.UP));
+                boolean bl = placer.hasPlacedBlock(mutable.move(Direction.UP)) && world.testBlockState(mutable, (blockState) -> blockState.isSideSolidFullSquare((BlockView) world, mutable, Direction.UP));
                 mutable.move(Direction.DOWN);
                 if (bl && generateColumn(world, placer, random, chance, treeNode.getCenter(), mutable)) {
                     generateColumn(world, placer, random, chance, treeNode.getCenter(), mutable);
@@ -72,7 +75,7 @@ public class WillowFoliagePlacer extends BlobFoliagePlacer {
             return false;
         } else {
             if (random.nextFloat() < chance) {
-                for (int i = 0; i < length.get(random); ++i) {
+                for (int i = 0; i < length.get(random) -1; ++i) {
                     BlockState blockState = provider.get(random, pos);
                     if (blockState.contains(Properties.WATERLOGGED)) {
                         blockState = blockState.with(Properties.WATERLOGGED, world.testFluidState(pos, (fluidState) -> fluidState.isEqualAndStill(Fluids.WATER)));
@@ -83,6 +86,7 @@ public class WillowFoliagePlacer extends BlobFoliagePlacer {
                         pos.move(Direction.DOWN);
                     }
                 }
+                placer.placeBlock(pos, tipProvider.get(random, pos));
             }
             return true;
         }
