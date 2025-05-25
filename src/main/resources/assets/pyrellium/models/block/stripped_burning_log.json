@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "pyrellium:block/stripped_burning_log_top",
+    "side": "pyrellium:block/stripped_burning_log_side"
+  }
+}

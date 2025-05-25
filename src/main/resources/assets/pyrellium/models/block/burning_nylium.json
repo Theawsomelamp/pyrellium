@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "minecraft:block/netherrack",
+    "side": "pyrellium:block/burning_nylium_side",
+    "top": "pyrellium:block/burning_nylium"
+  }
+}

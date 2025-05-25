@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "pyrellium:burning_log",
+    "pyrellium:burning_wood",
+    "pyrellium:stripped_burning_log",
+    "pyrellium:stripped_burning_wood"
+  ]
+}

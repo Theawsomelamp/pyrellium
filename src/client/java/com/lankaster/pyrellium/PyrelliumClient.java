@@ -6,6 +6,7 @@ import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.ModClientNetworking;
 import com.lankaster.pyrellium.particles.ModParticles;
+import com.lankaster.pyrellium.render.ModBlockEntityRenderer;
 import com.lankaster.pyrellium.util.BlockOutline;
 import com.lankaster.pyrellium.util.HatRender;
 import net.fabricmc.api.ClientModInitializer;
@@ -14,6 +15,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.BoatEntityRenderer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 
 public class PyrelliumClient implements ClientModInitializer {
@@ -25,6 +27,10 @@ public class PyrelliumClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(ModEntities.CRYSTAL_ARROW, CrystalArrowRenderer::new);
 		EntityRendererRegistry.register(ModEntities.BOMB_FLOWER, FlyingItemEntityRenderer::new);
+		EntityRendererRegistry.register(ModEntities.BURNING_BOAT, (context) -> new BoatEntityRenderer(context, false));
+		EntityRendererRegistry.register(ModEntities.BURNING_CHEST_BOAT, (context) -> new BoatEntityRenderer(context, true));
+
+		ModBlockEntityRenderer.register();
 
 		ModParticles.registerParticle();
 
@@ -50,5 +56,6 @@ public class PyrelliumClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GHOSTLY_LEAVES, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.QUARTZ_CRYSTAL, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACKSTONE_ROCK, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BURNING_TRAPDOOR, RenderLayer.getCutout());
 	}
 }

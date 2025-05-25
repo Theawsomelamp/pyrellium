@@ -14,6 +14,10 @@ public class ModEntities {
             FabricEntityTypeBuilder.<CrystalArrowEntity>create(SpawnGroup.MISC, CrystalArrowEntity::new).dimensions(EntityDimensions.fixed(0.5F, 0.5F)).build());
     public static final EntityType<BombFlowerEntity> BOMB_FLOWER = Registry.register(Registries.ENTITY_TYPE, new Identifier(Pyrellium.MOD_ID, "bomb_flower"),
             FabricEntityTypeBuilder.<BombFlowerEntity>create(SpawnGroup.MISC, BombFlowerEntity::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).build());
+    public static final EntityType<ModBoatEntity> BURNING_BOAT = Registry.register(Registries.ENTITY_TYPE, new Identifier(Pyrellium.MOD_ID, "burning_boat"),
+            FabricEntityTypeBuilder.<ModBoatEntity>create(SpawnGroup.MISC, ModBoatEntity::new).dimensions(EntityDimensions.fixed(1.375F, 0.5625F)).build());
+    public static final EntityType<ModChestBoatEntity> BURNING_CHEST_BOAT = Registry.register(Registries.ENTITY_TYPE, new Identifier(Pyrellium.MOD_ID, "burning_chest_boat"),
+            FabricEntityTypeBuilder.<ModChestBoatEntity>create(SpawnGroup.MISC, ModChestBoatEntity::new).dimensions(EntityDimensions.fixed(1.375F, 0.5625F)).build());
 
     public static void registerEntities() {
 

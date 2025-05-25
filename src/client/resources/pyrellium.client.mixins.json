@@ -3,6 +3,7 @@
   "package": "com.lankaster.pyrellium.mixin.client",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "BoatEntityRenderMixin",
     "InGameHudMixin",
     "ItemRendererAccessor",
     "ItemRendererMixin",

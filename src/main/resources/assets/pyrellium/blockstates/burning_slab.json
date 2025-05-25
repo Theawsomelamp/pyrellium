@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pyrellium:block/burning_slab"
+    },
+    "type=double": {
+      "model": "pyrellium:block/burning_slab_full"
+    },
+    "type=top": {
+      "model": "pyrellium:block/burning_slab_top"
+    }
+  }
+}

@@ -4,8 +4,7 @@ import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.item.armor.OpalTiaraItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.SpyglassItem;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -18,8 +17,7 @@ public class ModItems {
     public static final Item OPAL_ARROW = registerItem("opal_arrow", new CrystalArrowItem(new FabricItemSettings()));
     public static final Item BOMB_FLOWER = registerItem("bomb_flower", new BombFlowerItem((new Item.Settings()).maxCount(16)));
 
-
-    private static Item registerItem(String name, Item item) {
+    public static Item registerItem(String name, Item item) {
         addToItemGroup(item);
         return Registry.register(Registries.ITEM, new Identifier(Pyrellium.MOD_ID, name), item);
     }
