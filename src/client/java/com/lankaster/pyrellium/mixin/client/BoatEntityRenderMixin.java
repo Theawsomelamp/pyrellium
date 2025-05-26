@@ -9,7 +9,6 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.render.entity.BoatEntityRenderer;
 import net.minecraft.client.render.entity.model.CompositeEntityModel;
 import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.entity.vehicle.ChestBoatEntity;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,11 +19,9 @@ public class BoatEntityRenderMixin {
     private Object addCustomTexture(Pair<Identifier, CompositeEntityModel<BoatEntity>> instance, Operation<Identifier> original, BoatEntity boatEntity) {
         if (boatEntity instanceof ModBoatEntity) {
             return new Identifier(Pyrellium.MOD_ID, "textures/entity/boat/burning.png");
-        } else if (boatEntity instanceof ChestBoatEntity chestBoatEntity) {
-            if (chestBoatEntity instanceof ModChestBoatEntity) {
-                return new Identifier(Pyrellium.MOD_ID, "textures/entity/chest_boat/burning.png");
-            }
+        } else if (boatEntity instanceof ModChestBoatEntity) {
+            return new Identifier(Pyrellium.MOD_ID, "textures/entity/chest_boat/burning.png");
         }
-        return instance.getFirst();
+        return original.call(instance);
     }
 }

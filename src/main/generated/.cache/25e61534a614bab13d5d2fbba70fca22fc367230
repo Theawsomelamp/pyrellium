@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-25T10:39:55.9400357	Pyrellium/Tags for minecraft:block
+// 1.20.1	2025-05-26T09:11:40.7889997	Pyrellium/Tags for minecraft:block
 6a3e2bd59948fcf0d8bfed782a484cde4ecc3ea2 data\minecraft\tags\blocks\wall_signs.json
 82fcf10078bf7aaf374bdc6fb64840aa7415912b data\minecraft\tags\blocks\logs.json
 82fcf10078bf7aaf374bdc6fb64840aa7415912b data\pyrellium\tags\blocks\burning_logs.json
@@ -14,5 +14,5 @@ e36a30dc061f995da90f58fcdfd7af8f3d52b9af data\minecraft\tags\blocks\wall_hanging
 ad4a3cc5c8ac19aa3959f09256c63dad232e1994 data\minecraft\tags\blocks\standing_signs.json
 c1792407d811de934a07d9aeee163c6063600cee data\minecraft\tags\blocks\planks.json
 ddf420d289cdbcefbe6b5c140206d7524d101ac5 data\minecraft\tags\blocks\mineable\pickaxe.json
-f45b6778c88d05743373c6a58b83fe83f43ec099 data\minecraft\tags\blocks\wooden_doors.json
 194f1e7326ebe369c472872c57c476df97fd7440 data\minecraft\tags\blocks\sword_efficient.json
+f45b6778c88d05743373c6a58b83fe83f43ec099 data\minecraft\tags\blocks\wooden_doors.json
