@@ -19,7 +19,7 @@ public class ModItems {
     public static final Item BOMB_FLOWER = registerItem("bomb_flower", new BombFlowerItem((new Item.Settings()).maxCount(16)));
 
 
-    private static Item registerItem(String name, Item item) {
+    public static Item registerItem(String name, Item item) {
         addToItemGroup(item);
         return Registry.register(Registries.ITEM, Identifier.of(Pyrellium.MOD_ID, name), item);
     }

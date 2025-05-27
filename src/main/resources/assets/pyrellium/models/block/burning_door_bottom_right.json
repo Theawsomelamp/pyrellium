@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_right",
+  "textures": {
+    "bottom": "pyrellium:block/burning_door_bottom",
+    "top": "pyrellium:block/burning_door_top"
+  }
+}

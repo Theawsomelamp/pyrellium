@@ -13,6 +13,8 @@
 
   "entity.pyrellium.crystal_arrow": "Crystal Arrow",
   "entity.pyrellium.bomb_flower": "Bomb Flower",
+  "entity.pyrellium.burning_boat": "Boat",
+  "entity.pyrellium.burning_chest_boat": "Boat with Chest",
 
   "item.pyrellium.opal": "Opal",
   "item.pyrellium.opal_spyglass": "Opal Spyglass",
@@ -20,6 +22,9 @@
   "item.pyrellium.amethyst_arrow": "Amethyst Arrow",
   "item.pyrellium.opal_arrow": "Opal Arrow",
   "item.pyrellium.bomb_flower": "Bomb Flower",
+  "item.pyrellium.burning_sign": "Burning Sign",
+  "item.pyrellium.burning_boat": "Burning Boat",
+  "item.pyrellium.burning_chest_boat": "Burning Boat with Chest",
 
   "block.pyrellium.opal_block": "Opal Block",
   "block.pyrellium.budding_opal": "Budding Opal",
@@ -48,6 +53,24 @@
   "block.pyrellium.ghostly_leaves": "Ghostly Leaves",
   "block.pyrellium.quartz_crystal": "Quartz Crystal",
   "block.pyrellium.blackstone_rock": "Blackstone Rock",
+  "block.pyrellium.burning_nylium": "Burning Nylium",
+  "block.pyrellium.burning_log": "Burning Log",
+  "block.pyrellium.burning_wood": "Burning Wood",
+  "block.pyrellium.stripped_burning_log": "Stripped Burning Log",
+  "block.pyrellium.stripped_burning_wood": "Stripped Burning Wood",
+  "block.pyrellium.burning_planks": "Burning Planks",
+  "block.pyrellium.burning_stairs": "Burning Stairs",
+  "block.pyrellium.burning_slab": "Burning Slab",
+  "block.pyrellium.burning_fence": "Burning Fence",
+  "block.pyrellium.burning_fence_gate": "Burning Fence Gate",
+  "block.pyrellium.burning_trapdoor": "Burning Trapdoor",
+  "block.pyrellium.burning_door": "Burning Door",
+  "block.pyrellium.burning_pressure_plate": "Burning Pressure Plate",
+  "block.pyrellium.burning_button": "Burning Button",
+  "block.pyrellium.burning_sign": "Burning Sign",
+  "block.pyrellium.burning_wall_sign": "Burning Sign",
+  "block.pyrellium.burning_hanging_sign": "Burning Hanging Sign",
+  "block.pyrellium.burning_wall_hanging_sign": "Burning Hanging Sign",
 
   "trim_material.pyrellium.opal": "Opal Material"
 }

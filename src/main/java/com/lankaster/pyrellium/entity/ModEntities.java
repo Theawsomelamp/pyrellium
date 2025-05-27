@@ -12,6 +12,10 @@ public class ModEntities {
             EntityType.Builder.<CrystalArrowEntity>create(CrystalArrowEntity::new, SpawnGroup.MISC).dimensions(0.5F, 0.5F).build());
     public static final EntityType<BombFlowerEntity> BOMB_FLOWER = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "bomb_flower"),
             EntityType.Builder.<BombFlowerEntity>create(BombFlowerEntity::new, SpawnGroup.MISC).dimensions(0.25F, 0.25F).build());
+    public static final EntityType<ModBoatEntity> BURNING_BOAT = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "burning_boat"),
+            EntityType.Builder.<ModBoatEntity>create(ModBoatEntity::new, SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build());
+    public static final EntityType<ModChestBoatEntity> BURNING_CHEST_BOAT = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "burning_chest_boat"),
+            EntityType.Builder.<ModChestBoatEntity>create(ModChestBoatEntity::new, SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build());
 
     public static void registerEntities() {
 

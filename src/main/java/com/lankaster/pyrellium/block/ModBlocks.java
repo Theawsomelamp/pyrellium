@@ -2,13 +2,19 @@ package com.lankaster.pyrellium.block;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.ConfigHandler;
+import com.lankaster.pyrellium.entity.ModBoatEntity;
+import com.lankaster.pyrellium.entity.ModChestBoatEntity;
+import com.lankaster.pyrellium.item.ModBoatItem;
 import com.lankaster.pyrellium.item.ModItemGroups;
+import com.lankaster.pyrellium.item.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.PlaceableOnWaterItem;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -48,6 +54,32 @@ public class ModBlocks {
     public static final Block QUARTZ_CRYSTAL = registerBlock("quartz_crystal", new AmethystClusterBlock(7, 3, AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK)));
     public static final Block BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", new CarpetBlock(AbstractBlock.Settings.copy(Blocks.BLACKSTONE).nonOpaque()));
 
+    public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));
+    public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new Block(AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM)));
+    public static final Block BURNING_LOG = registerBlock("burning_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
+    public static final Block BURNING_WOOD = registerBlock("burning_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_HYPHAE).sounds(BlockSoundGroup.WOOD)));
+    public static final Block STRIPPED_BURNING_LOG = registerBlock("stripped_burning_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
+    public static final Block STRIPPED_BURNING_WOOD = registerBlock("stripped_burning_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CRIMSON_HYPHAE).sounds(BlockSoundGroup.WOOD)));
+    public static final Block BURNING_PLANKS = registerBlock("burning_planks", new Block(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS).sounds(BlockSoundGroup.WOOD)));
+    public static final Block BURNING_STAIRS = registerBlock("burning_stairs", new StairsBlock(BURNING_PLANKS.getDefaultState(), AbstractBlock.Settings.copy(BURNING_PLANKS)));
+    public static final Block BURNING_SLAB = registerBlock("burning_slab", new SlabBlock(AbstractBlock.Settings.copy(BURNING_PLANKS)));
+    public static final Block BURNING_FENCE = registerBlock("burning_fence", new FenceBlock(AbstractBlock.Settings.copy(BURNING_PLANKS)));
+    public static final Block BURNING_FENCE_GATE = registerBlock("burning_fence_gate", new FenceGateBlock(BURNING, AbstractBlock.Settings.copy(BURNING_PLANKS)));
+    public static final Block BURNING_DOOR = registerBlock("burning_door", new DoorBlock(BURNING.setType(), AbstractBlock.Settings.copy(BURNING_PLANKS)));
+    public static final Block BURNING_TRAPDOOR = registerBlock("burning_trapdoor", new TrapdoorBlock(BURNING.setType(), AbstractBlock.Settings.copy(BURNING_PLANKS).nonOpaque()));
+    public static final Block BURNING_PRESSURE_PLATE = registerBlock("burning_pressure_plate", new PressurePlateBlock(BURNING.setType(), AbstractBlock.Settings.copy(BURNING_PLANKS).noCollision().pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block BURNING_BUTTON = registerBlock("burning_button", new ButtonBlock(BURNING.setType(), 30, AbstractBlock.Settings.copy(BURNING_PLANKS).noCollision().pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block BURNING_SIGN = registerBlockWithoutBlockItem("burning_sign", new SignBlock(BURNING, AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F)));
+    public static final Block BURNING_WALL_SIGN = registerBlockWithoutBlockItem("burning_wall_sign", new WallSignBlock(BURNING, AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).dropsLike(BURNING_SIGN)));
+    public static final Block BURNING_HANGING_SIGN = registerBlockWithoutBlockItem("burning_hanging_sign", new HangingSignBlock(BURNING, AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F)));
+    public static final Block BURNING_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("burning_wall_hanging_sign", new WallHangingSignBlock(BURNING, AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).dropsLike(BURNING_HANGING_SIGN)));
+
+    /// Registry order being an ass
+    public static final Item BURNING_SIGN_ITEM = ModItems.registerItem("burning_sign", new SignItem((new Item.Settings().maxCount(16)), ModBlocks.BURNING_SIGN, ModBlocks.BURNING_WALL_SIGN));
+    public static final Item BURNING_HANGING_SIGN_ITEM = ModItems.registerItem("burning_hanging_sign", new HangingSignItem(ModBlocks.BURNING_HANGING_SIGN, ModBlocks.BURNING_WALL_HANGING_SIGN, (new Item.Settings().maxCount(16))));
+    public static final Item BURNING_BOAT = ModItems.registerItem("burning_boat", new ModBoatItem(false, ModBoatEntity.Type.BURNING, ModChestBoatEntity.Type.BURNING, (new Item.Settings()).maxCount(1)));
+    public static final Item BURNING_CHEST_BOAT = ModItems.registerItem("burning_chest_boat", new ModBoatItem(true, ModBoatEntity.Type.BURNING, ModChestBoatEntity.Type.BURNING, (new Item.Settings()).maxCount(1)));
+
     private static Block registerBlockWithoutBlockItem(String name, Block block){
         return Registry.register(Registries.BLOCK, Identifier.of(Pyrellium.MOD_ID, name), block);
     }
@@ -76,6 +108,16 @@ public class ModBlocks {
         return item;
     }
 
+    public static void registerStrippables() {
+        StrippableBlockRegistry.register(BURNING_LOG, STRIPPED_BURNING_LOG);
+        StrippableBlockRegistry.register(BURNING_WOOD, STRIPPED_BURNING_WOOD);
+    }
+
     public static void registerModBlocks() {
+        registerStrippables();
+        BlockEntityType.SIGN.addSupportedBlock(ModBlocks.BURNING_SIGN);
+        BlockEntityType.SIGN.addSupportedBlock(ModBlocks.BURNING_WALL_SIGN);
+        BlockEntityType.HANGING_SIGN.addSupportedBlock(ModBlocks.BURNING_HANGING_SIGN);
+        BlockEntityType.HANGING_SIGN.addSupportedBlock(ModBlocks.BURNING_WALL_HANGING_SIGN);
     }
 }

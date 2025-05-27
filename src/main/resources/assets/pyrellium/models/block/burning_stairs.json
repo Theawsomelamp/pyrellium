@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "pyrellium:block/burning_planks",
+    "side": "pyrellium:block/burning_planks",
+    "top": "pyrellium:block/burning_planks"
+  }
+}
