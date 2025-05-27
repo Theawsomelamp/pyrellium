@@ -30,6 +30,10 @@ public class ItemTagDataGen extends FabricTagProvider.ItemTagProvider{
                 ModBlocks.BURNING_PLANKS.asItem()
         );
 
+        getOrCreateTagBuilder(ItemTags.WOODEN_SLABS).add(
+                ModBlocks.BURNING_SLAB.asItem()
+        );
+
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
                 ModBlocks.BURNING_LOG.asItem(),
                 ModBlocks.BURNING_WOOD.asItem(),
