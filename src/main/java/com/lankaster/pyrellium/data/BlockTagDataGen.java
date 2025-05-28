@@ -40,6 +40,19 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.HANGING_SILK
         );
 
+        getOrCreateTagBuilder(BlockTags.NYLIUM).add(
+                ModBlocks.NETHERRACK_MYCELIUM,
+                ModBlocks.BURNING_NYLIUM
+        );
+
+        getOrCreateTagBuilder(BlockTags.LEAVES).add(
+                ModBlocks.BURNING_LEAVES
+        );
+
+        getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
+                ModBlocks.BURNING_SAPLING
+        );
+
         getOrCreateTagBuilder(BlockTags.LOGS).add(
                 ModBlocks.BURNING_LOG,
                 ModBlocks.BURNING_WOOD,

@@ -1,9 +1,9 @@
 {
-  "feature": "pyrellium:desert_fire",
+  "feature": "pyrellium:burning_grove_vegetation",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
-      "count": 1
+      "count": 3
     },
     {
       "type": "minecraft:biome"

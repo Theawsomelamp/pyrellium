@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "tip=false": {
+      "model": "pyrellium:block/burning_vines"
+    },
+    "tip=true": {
+      "model": "pyrellium:block/burning_vines_tip"
+    }
+  }
+}

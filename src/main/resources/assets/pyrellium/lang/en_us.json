@@ -2,7 +2,7 @@
   "itemgroup.pyrellium": "Pyrellium",
 
   "biome.pyrellium.blackstone_springs": "Blackstone Springs",
-  "biome.pyrellium.burning_desert": "Burning Desert",
+  "biome.pyrellium.burning_grove": "Burning Grove",
   "biome.pyrellium.crystal_forest": "Crystal Forest",
   "biome.pyrellium.frostburn_valley": "Frostburn Valley",
   "biome.pyrellium.ghostly_woods": "Ghostly Woods",
@@ -53,7 +53,7 @@
   "block.pyrellium.ghostly_leaves": "Ghostly Leaves",
   "block.pyrellium.quartz_crystal": "Quartz Crystal",
   "block.pyrellium.blackstone_rock": "Blackstone Rock",
-  "block.pyrellium.burning_nylium": "Burning Nylium",
+  "block.pyrellium.burning_nylium": "Amber Nylium",
   "block.pyrellium.burning_log": "Burning Log",
   "block.pyrellium.burning_wood": "Burning Wood",
   "block.pyrellium.stripped_burning_log": "Stripped Burning Log",
@@ -71,6 +71,11 @@
   "block.pyrellium.burning_wall_sign": "Burning Sign",
   "block.pyrellium.burning_hanging_sign": "Burning Hanging Sign",
   "block.pyrellium.burning_wall_hanging_sign": "Burning Hanging Sign",
+  "block.pyrellium.burning_leaves": "Burning Leaves",
+  "block.pyrellium.burning_sapling": "Burning Sapling",
+  "block.pyrellium.burning_sprouts": "Amber Sprouts",
+  "block.pyrellium.burning_roots": "Amber Roots",
+  "block.pyrellium.burning_vines": "Burning Vines",
 
   "trim_material.pyrellium.opal": "Opal Material"
 }

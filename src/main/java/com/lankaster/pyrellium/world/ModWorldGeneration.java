@@ -73,7 +73,7 @@ public class ModWorldGeneration {
             NetherBiomes.addNetherBiome(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "blackstone_springs")), MultiNoiseUtil.createNoiseHypercube(-0.25f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.15f));
 
         if (ConfigHandler.getConfig().biomeConfig().doBurningDesert())
-            NetherBiomes.addNetherBiome(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "burning_desert")), MultiNoiseUtil.createNoiseHypercube(-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
+            NetherBiomes.addNetherBiome(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "burning_grove")), MultiNoiseUtil.createNoiseHypercube(-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
 
         if (ConfigHandler.getConfig().biomeConfig().doCrystalForest())
             NetherBiomes.addNetherBiome(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "crystal_forest")), MultiNoiseUtil.createNoiseHypercube(0.0f, 0.75f, 0.0f, 0.0f, 0.0f, 0.0f, 0.325f));

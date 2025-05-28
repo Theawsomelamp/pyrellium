@@ -59,7 +59,7 @@ public class WillowFoliagePlacer extends BlobFoliagePlacer {
             int k = -radius - 1;
 
             while(k < radius + i) {
-                boolean bl = placer.hasPlacedBlock(mutable.move(Direction.UP)) && world.testBlockState(mutable, (blockState) -> blockState.isSideSolidFullSquare((BlockView) world, mutable, Direction.UP));
+                boolean bl = placer.hasPlacedBlock(mutable.move(Direction.UP)) && world.testBlockState(mutable, (blockState) -> blockState.isFullCube((BlockView) world, mutable));
                 mutable.move(Direction.DOWN);
                 if (bl && generateColumn(world, placer, random, chance, treeNode.getCenter(), mutable)) {
                     generateColumn(world, placer, random, chance, treeNode.getCenter(), mutable);
@@ -82,7 +82,7 @@ public class WillowFoliagePlacer extends BlobFoliagePlacer {
                         blockState = blockState.with(Properties.WATERLOGGED, world.testFluidState(pos, (fluidState) -> fluidState.isEqualAndStill(Fluids.WATER)));
                     }
 
-                    if (TreeFeature.canReplace(world, pos)){
+                    if (TreeFeature.canReplace(world, pos.down())){
                         placer.placeBlock(pos, blockState);
                         pos.move(Direction.DOWN);
                     }

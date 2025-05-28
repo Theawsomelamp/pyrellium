@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:soul_sand_valley",
-    "pyrellium:frostburn_valley",
-    "pyrellium:burning_desert"
+    "pyrellium:frostburn_valley"
   ]
 }

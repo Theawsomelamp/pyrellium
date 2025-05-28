@@ -37,7 +37,7 @@ public class ModBlocks {
     public static final Block SILK_CARPET = registerBlock("silk_carpet", new CarpetBlock(AbstractBlock.Settings.copy(Blocks.MOSS_CARPET).sounds(BlockSoundGroup.WOOL).velocityMultiplier(0.4F).jumpVelocityMultiplier(0.5F)));
     public static final Block HANGING_SILK = registerBlock("hanging_silk", new HangingSilkBlock(AbstractBlock.Settings.create().ticksRandomly().noCollision().burnable().strength(0.75F).pistonBehavior(PistonBehavior.DESTROY)));
 
-    public static final Block NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", new Block(AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM)));
+    public static final Block NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", new NyliumBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM)));
     public static final Block BROWN_BOUNCESHROOM = registerBlock("brown_bounceshroom", new BounceMushroomBlock(AbstractBlock.Settings.copy(Blocks.BROWN_MUSHROOM_BLOCK), ConfigHandler.getConfig().blocksConfig().brownBounce()));
     public static final Block RED_BOUNCESHROOM = registerBlock("red_bounceshroom", new BounceMushroomBlock(AbstractBlock.Settings.copy(Blocks.RED_MUSHROOM_BLOCK), ConfigHandler.getConfig().blocksConfig().redBounce()));
     public static final Block BROWN_WALL_MUSHROOM = registerBlockWithoutBlockItem("brown_wall_mushroom", new WallMushroomBlock(AbstractBlock.Settings.copy(Blocks.BROWN_MUSHROOM)));
@@ -55,7 +55,9 @@ public class ModBlocks {
     public static final Block BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", new CarpetBlock(AbstractBlock.Settings.copy(Blocks.BLACKSTONE).nonOpaque()));
 
     public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));
-    public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new Block(AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM)));
+    public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new NyliumBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM)));
+    public static final Block BURNING_LEAVES = registerBlock("burning_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block BURNING_SAPLING = registerBlock("burning_sapling", new SaplingBlock(SaplingGenerator.OAK, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
     public static final Block BURNING_LOG = registerBlock("burning_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
     public static final Block BURNING_WOOD = registerBlock("burning_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_HYPHAE).sounds(BlockSoundGroup.WOOD)));
     public static final Block STRIPPED_BURNING_LOG = registerBlock("stripped_burning_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
@@ -73,6 +75,9 @@ public class ModBlocks {
     public static final Block BURNING_WALL_SIGN = registerBlockWithoutBlockItem("burning_wall_sign", new WallSignBlock(BURNING, AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).dropsLike(BURNING_SIGN)));
     public static final Block BURNING_HANGING_SIGN = registerBlockWithoutBlockItem("burning_hanging_sign", new HangingSignBlock(BURNING, AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F)));
     public static final Block BURNING_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("burning_wall_hanging_sign", new WallHangingSignBlock(BURNING, AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).dropsLike(BURNING_HANGING_SIGN)));
+    public static final Block BURNING_ROOTS = registerBlock("burning_roots", new RootsBlock(AbstractBlock.Settings.copy(Blocks.WARPED_ROOTS)));
+    public static final Block BURNING_SPROUTS = registerBlock("burning_sprouts", new SproutsBlock(AbstractBlock.Settings.copy(Blocks.NETHER_SPROUTS)));
+    public static final Block BURNING_VINES = registerBlock("burning_vines", new HangingVinesBlock(AbstractBlock.Settings.copy(Blocks.TWISTING_VINES)));
 
     /// Registry order being an ass
     public static final Item BURNING_SIGN_ITEM = ModItems.registerItem("burning_sign", new SignItem((new Item.Settings().maxCount(16)), ModBlocks.BURNING_SIGN, ModBlocks.BURNING_WALL_SIGN));
