@@ -88,7 +88,9 @@ public class BurningTrunkPlacer extends TrunkPlacer {
                 }
             }
 
-            nodes.add(new FoliagePlacer.TreeNode(pos.move(direction).toImmutable(), 0, false));
+            this.getAndSetState(world, replacer, random, pos, config);
+
+            nodes.add(new FoliagePlacer.TreeNode(pos.move(Direction.UP).toImmutable(), 0, false));
 
             pos.set(startPos);
         }

@@ -22,7 +22,7 @@ public record ConfigCodec(BlocksConfig blocksConfig, BiomeConfig biomeConfig, Fe
     public record BiomeConfig(boolean doBlackstoneSprings, boolean doBurningDesert, boolean doCrystalForest, boolean doFrostburnValley, boolean doGhostlyWoods, boolean doInfestedValley, boolean doMonolithPlains, boolean doMushroomWastes, boolean doQuartzCaverns) {
         public static final Codec<BiomeConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.BOOL.fieldOf("blackstone_springs_enabled").orElse(true).forGetter(BiomeConfig::doBlackstoneSprings),
-                Codec.BOOL.fieldOf("burning_desert_enabled").orElse(true).forGetter(BiomeConfig::doBurningDesert),
+                Codec.BOOL.fieldOf("burning_grove_enabled").orElse(true).forGetter(BiomeConfig::doBurningDesert),
                 Codec.BOOL.fieldOf("crystal_forest_enabled").orElse(true).forGetter(BiomeConfig::doCrystalForest),
                 Codec.BOOL.fieldOf("frostburn_valley_enabled").orElse(true).forGetter(BiomeConfig::doFrostburnValley),
                 Codec.BOOL.fieldOf("ghostly_woods_enabled").orElse(true).forGetter(BiomeConfig::doGhostlyWoods),

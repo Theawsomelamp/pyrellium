@@ -1,0 +1,94 @@
+{
+  "type": "minecraft:tree",
+  "config": {
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "pyrellium:burning_nylium"
+      }
+    },
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "pyrellium:burning_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    "trunk_placer": {
+      "type": "pyrellium:burning_trunk_placer",
+      "base_height": 8,
+      "height_rand_a": 4,
+      "height_rand_b": 0,
+      "fork_height": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 5,
+          "max_inclusive": 7
+        }
+      },
+      "branch_count": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 3,
+          "max_inclusive": 4
+        }
+      },
+      "bend_chance": 0.3
+    },
+    "foliage_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "pyrellium:burning_leaves"
+          },
+          "weight": 9
+        },
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "foliage_placer": {
+      "type": "pyrellium:willow_foliage_placer",
+      "radius": 2,
+      "offset": 1,
+      "height": 3,
+      "chance": 0.5,
+      "length": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 3,
+          "max_inclusive": 6
+        }
+      },
+      "provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "pyrellium:burning_vines",
+          "Properties": {
+            "tip": "false"
+          }
+        }
+      },
+      "tip_provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "pyrellium:burning_vines",
+          "Properties": {
+            "tip": "true"
+          }
+        }
+      }
+    },
+    "decorators": [],
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size"
+    }
+  }
+}

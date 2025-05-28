@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-26T09:11:40.7909802	Pyrellium/Block Loot Tables
+// 1.20.1	2025-05-28T11:14:38.8363106	Pyrellium/Block Loot Tables
 93102bd17f2a787e84afb869449f41386b8dfe10 data\pyrellium\loot_tables\blocks\burning_log.json
 1e6045dbdf191e27be1641f83b356d403e9ac809 data\pyrellium\loot_tables\blocks\silk_carpet.json
 8bbf5319fe9a8626724eacb2baf6b71dc681882c data\pyrellium\loot_tables\blocks\opal_block.json
@@ -13,6 +13,7 @@ c99b7559553a317320f07278c8d3eca7ec4312b7 data\pyrellium\loot_tables\blocks\burni
 2c0c753f5e631efbb10329994c725f2092143e7f data\pyrellium\loot_tables\blocks\medium_opal_bud.json
 bb90021d3a3004729a99c15db1e1d96b4ca4aae7 data\pyrellium\loot_tables\blocks\dead_sprouts.json
 bfbd52074c6c90be6c40a0343f0f85c449a209af data\pyrellium\loot_tables\blocks\blackstone_rock.json
+68838522e001035db280c58a7cf9fa173367755b data\pyrellium\loot_tables\blocks\burning_leaves.json
 7de05c172a88e3e067f9cbe32d4f5e6c1d882215 data\pyrellium\loot_tables\blocks\small_opal_bud.json
 9a681c1fc66b7ad6d56a7e62cd3fec6c24296c30 data\pyrellium\loot_tables\blocks\burning_door.json
 60aeba8c0d2a7b598be41f423241d7e133910554 data\pyrellium\loot_tables\blocks\brown_shelf_mushroom.json
@@ -31,7 +32,9 @@ be11e34717f0152db04a75bcbf79bf94e222cb40 data\pyrellium\loot_tables\blocks\burni
 9b90c54f0f7de97d7247c4f3b07d69699d1c09cf data\pyrellium\loot_tables\blocks\netherrack_mycelium.json
 d0e54798d23931c287fa53d4f5d69aa564a915bf data\pyrellium\loot_tables\blocks\burning_stairs.json
 197f92afcef958c80cbe31e521d73f711845c319 data\pyrellium\loot_tables\blocks\dead_roots.json
+c78d36829c1b42776a7b8ebf5156cce0f984c958 data\pyrellium\loot_tables\blocks\burning_vines.json
 f0bf47a919265f1e20032e25a89b6d4b9dee53ac data\pyrellium\loot_tables\blocks\large_opal_bud.json
+9d9a8ed24c31f34b4a662809e5e1df89c60ab91c data\pyrellium\loot_tables\blocks\burning_sprouts.json
 6de11d059bad2eec05cc9222d3813d72628e001f data\pyrellium\loot_tables\blocks\clear_amethyst_block.json
 2d75d9fb0fdbb1aabd34f8c6d7eb81b4c704c300 data\pyrellium\loot_tables\blocks\burning_pressure_plate.json
 fd15814479e506d83b40b5eb0ccbea9fa76cac69 data\pyrellium\loot_tables\blocks\hanging_silk.json
@@ -39,3 +42,4 @@ d40eda51e7403164948463d77bc6cf41b341999f data\pyrellium\loot_tables\blocks\burni
 6c5ca9884dbeeae61b64b3f1245b294e8ac42221 data\pyrellium\loot_tables\blocks\clear_opal_block.json
 995ada513e6beed2d2564ede4b757b88651a0b73 data\pyrellium\loot_tables\blocks\red_shelf_mushroom.json
 217db69434aea678986ee6ce20dac5ae4fa2b08b data\pyrellium\loot_tables\blocks\burning_trapdoor.json
+6ae7adf7e9ddde1c31a2ce6e0560e80e2f6a983f data\pyrellium\loot_tables\blocks\burning_roots.json

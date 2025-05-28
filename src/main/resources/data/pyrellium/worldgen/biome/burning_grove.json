@@ -9,7 +9,7 @@
       "tick_chance": 0.0111
     },
     "ambient_sound": "minecraft:ambient.nether_wastes.loop",
-    "fog_color": 11893010,
+    "fog_color": 11627291,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2,
@@ -36,7 +36,6 @@
     [],
     [
       "minecraft:spring_open",
-      "pyrellium:desert_fire",
       "minecraft:glowstone_extra",
       "minecraft:glowstone",
       "minecraft:ore_magma",
@@ -51,7 +50,8 @@
     [],
     [
       "minecraft:spring_lava",
-      "pyrellium:patch_dead_bush"
+      "pyrellium:burning_tree",
+      "pyrellium:burning_grove_vegetation"
     ]
   ],
   "has_precipitation": false,

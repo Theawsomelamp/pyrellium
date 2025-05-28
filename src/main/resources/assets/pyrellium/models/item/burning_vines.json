@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pyrellium:block/burning_vines_tip"
+  }
+}

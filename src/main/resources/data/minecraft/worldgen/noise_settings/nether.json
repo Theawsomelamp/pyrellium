@@ -1301,10 +1301,11 @@
       {
         "type": "minecraft:condition",
         "if_true": {
-          "type": "minecraft:biome",
-          "biome_is": [
-            "pyrellium:burning_desert"
-          ]
+          "type": "minecraft:stone_depth",
+          "offset": 0,
+          "surface_type": "floor",
+          "add_surface_depth": false,
+          "secondary_depth_range": 0
         },
         "then_run": {
           "type": "minecraft:sequence",
@@ -1312,55 +1313,88 @@
             {
               "type": "minecraft:condition",
               "if_true": {
-                "type": "minecraft:noise_threshold",
-                "noise": "minecraft:nether_state_selector",
-                "min_threshold": 0.25,
-                "max_threshold": 10000
+                "type": "minecraft:not",
+                "invert": {
+                  "type": "minecraft:y_above",
+                  "anchor": {
+                    "absolute": 32
+                  },
+                  "surface_depth_multiplier": 0,
+                  "add_stone_depth": false
+                }
               },
               "then_run": {
-                "type": "minecraft:block",
-                "result_state": {
-                  "Name": "minecraft:red_terracotta"
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:hole"
+                },
+                "then_run": {
+                  "type": "minecraft:block",
+                  "result_state": {
+                    "Name": "minecraft:lava",
+                    "Properties": {
+                      "level": "0"
+                    }
+                  }
                 }
               }
             },
             {
               "type": "minecraft:condition",
               "if_true": {
-                "type": "minecraft:noise_threshold",
-                "noise": "minecraft:nether_state_selector",
-                "min_threshold": -0.25,
-                "max_threshold": 0.25
+                "type": "minecraft:biome",
+                "biome_is": [
+                  "pyrellium:burning_grove"
+                ]
               },
               "then_run": {
-                "type": "minecraft:sequence",
-                "sequence": [
-                  {
-                    "type": "minecraft:condition",
-                    "if_true": {
-                      "type": "minecraft:not",
-                      "invert": {
-                        "type": "minecraft:stone_depth",
-                        "offset": 0,
-                        "add_surface_depth": false,
-                        "secondary_depth_range": 0,
-                        "surface_type": "ceiling"
-                      }
-                    },
-                    "then_run": {
-                      "type": "minecraft:block",
-                      "result_state": {
-                        "Name": "minecraft:red_sand"
-                      }
-                    }
-                  },
-                  {
-                    "type": "minecraft:block",
-                    "result_state": {
-                      "Name": "minecraft:smooth_red_sandstone"
-                    }
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:not",
+                  "invert": {
+                    "type": "minecraft:noise_threshold",
+                    "noise": "minecraft:netherrack",
+                    "min_threshold": 0.54,
+                    "max_threshold": 1.7976931348623157e+308
                   }
-                ]
+                },
+                "then_run": {
+                  "type": "minecraft:condition",
+                  "if_true": {
+                    "type": "minecraft:y_above",
+                    "anchor": {
+                      "absolute": 31
+                    },
+                    "surface_depth_multiplier": 0,
+                    "add_stone_depth": false
+                  },
+                  "then_run": {
+                    "type": "minecraft:sequence",
+                    "sequence": [
+                      {
+                        "type": "minecraft:condition",
+                        "if_true": {
+                          "type": "minecraft:noise_threshold",
+                          "noise": "minecraft:nether_wart",
+                          "min_threshold": 1.17,
+                          "max_threshold": 1.7976931348623157e+308
+                        },
+                        "then_run": {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "minecraft:warped_wart_block"
+                          }
+                        }
+                      },
+                      {
+                        "type": "minecraft:block",
+                        "result_state": {
+                          "Name": "pyrellium:burning_nylium"
+                        }
+                      }
+                    ]
+                  }
+                }
               }
             }
           ]
