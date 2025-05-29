@@ -1,10 +1,10 @@
-// 1.20.1	2025-05-28T17:13:09.8221067	Pyrellium/Block Loot Tables
+// 1.20.1	2025-05-29T12:53:37.7130449	Pyrellium/Block Loot Tables
 8bbf5319fe9a8626724eacb2baf6b71dc681882c data\pyrellium\loot_tables\blocks\opal_block.json
 7b709985b88ab806d800e4cd995062c2cda9051f data\pyrellium\loot_tables\blocks\red_bounceshroom.json
 5d93dc7c391695feb45cdace7ffa159b24a73328 data\pyrellium\loot_tables\blocks\burning_sign.json
 96a4c768b19935446da175f6e46c038cc013e83c data\pyrellium\loot_tables\blocks\ghostly_leaves.json
-c3f2b562142dfa5bded6f7e60581b5e0b1650a74 data\pyrellium\loot_tables\blocks\red_wall_mushroom.json
 c5f5d80f4c05c59dfed91485f5c5b7860736eb3a data\pyrellium\loot_tables\blocks\silk_block.json
+c3f2b562142dfa5bded6f7e60581b5e0b1650a74 data\pyrellium\loot_tables\blocks\red_wall_mushroom.json
 c99b7559553a317320f07278c8d3eca7ec4312b7 data\pyrellium\loot_tables\blocks\burning_planks.json
 163941a8471c64d36e8b9b3311955d3056ab0d65 data\pyrellium\loot_tables\blocks\potted_burning_sapling.json
 2c0c753f5e631efbb10329994c725f2092143e7f data\pyrellium\loot_tables\blocks\medium_opal_bud.json
