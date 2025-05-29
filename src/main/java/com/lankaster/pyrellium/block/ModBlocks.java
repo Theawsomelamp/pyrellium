@@ -15,7 +15,7 @@ import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.block.sapling.OakSaplingGenerator;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -39,7 +39,7 @@ public class ModBlocks {
     public static final Block SILK_CARPET = registerBlock("silk_carpet", new CarpetBlock(FabricBlockSettings.copyOf(Blocks.MOSS_CARPET).sounds(BlockSoundGroup.WOOL).velocityMultiplier(0.4F).jumpVelocityMultiplier(0.5F)));
     public static final Block HANGING_SILK = registerBlock("hanging_silk", new HangingSilkBlock(FabricBlockSettings.create().ticksRandomly().noCollision().burnable().strength(0.75F).pistonBehavior(PistonBehavior.DESTROY)));
 
-    public static final Block NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", new NyliumBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_NYLIUM)));
+    public static final Block NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", new ModNyliumBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_NYLIUM)));
     public static final Block BROWN_BOUNCESHROOM = registerBlock("brown_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM_BLOCK), ConfigHandler.getConfig().blocksConfig().brownBounce()));
     public static final Block RED_BOUNCESHROOM = registerBlock("red_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM_BLOCK), ConfigHandler.getConfig().blocksConfig().redBounce()));
     public static final Block BROWN_WALL_MUSHROOM = registerBlockWithoutBlockItem("brown_wall_mushroom", new WallMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM)));
@@ -57,9 +57,10 @@ public class ModBlocks {
     public static final Block BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE).nonOpaque()));
 
     public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(new Identifier(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));
-    public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new NyliumBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_NYLIUM)));
+    public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new ModNyliumBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_NYLIUM)));
     public static final Block BURNING_LEAVES = registerBlock("burning_leaves", new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
-    public static final Block BURNING_SAPLING = registerBlock("burning_sapling", new SaplingBlock(new OakSaplingGenerator(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
+    public static final Block BURNING_SAPLING = registerBlock("burning_sapling", new SaplingBlock(new BurningSaplingGenerator(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
+    public static final Block POTTED_BURNING_SAPLING = registerBlockWithoutBlockItem("potted_burning_sapling", new FlowerPotBlock(ModBlocks.BURNING_SAPLING, FabricBlockSettings.copyOf(Blocks.POTTED_OAK_SAPLING)));
     public static final Block BURNING_LOG = registerBlock("burning_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
     public static final Block BURNING_WOOD = registerBlock("burning_wood", new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_HYPHAE).sounds(BlockSoundGroup.WOOD)));
     public static final Block STRIPPED_BURNING_LOG = registerBlock("stripped_burning_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
@@ -80,6 +81,8 @@ public class ModBlocks {
     public static final Block BURNING_ROOTS = registerBlock("burning_roots", new RootsBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS)));
     public static final Block BURNING_SPROUTS = registerBlock("burning_sprouts", new SproutsBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS)));
     public static final Block BURNING_VINES = registerBlock("burning_vines", new HangingVinesBlock(FabricBlockSettings.copyOf(Blocks.TWISTING_VINES)));
+    public static final Block PYROLILY = registerBlock("pyrolily", new BurningFlowerBlock(StatusEffects.FIRE_RESISTANCE, 5, FabricBlockSettings.copyOf(Blocks.POPPY).luminance(9)));
+    public static final Block POTTED_PYROLILY = registerBlockWithoutBlockItem("potted_pyrolily", new FlowerPotBlock(ModBlocks.PYROLILY, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY).luminance(7)));
 
     /// Registry order being an ass
     public static final Item BURNING_SIGN_ITEM = ModItems.registerItem("burning_sign", new SignItem((new Item.Settings().maxCount(16)), ModBlocks.BURNING_SIGN, ModBlocks.BURNING_WALL_SIGN));

@@ -58,5 +58,9 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.BURNING_ROOTS, dropsWithShears(ModBlocks.BURNING_ROOTS));
         addDrop(ModBlocks.BURNING_SPROUTS, dropsWithShears(ModBlocks.BURNING_SPROUTS));
         addDrop(ModBlocks.BURNING_VINES, dropsWithShears(ModBlocks.BURNING_VINES));
+        addDrop(ModBlocks.BURNING_SAPLING);
+        addDrop(ModBlocks.POTTED_BURNING_SAPLING, pottedPlantDrops(ModBlocks.BURNING_SAPLING));
+        addDrop(ModBlocks.PYROLILY);
+        addDrop(ModBlocks.POTTED_PYROLILY, pottedPlantDrops(ModBlocks.PYROLILY));
     }
 }

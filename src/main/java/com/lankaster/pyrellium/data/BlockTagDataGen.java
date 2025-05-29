@@ -40,7 +40,7 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.HANGING_SILK
         );
 
-        getOrCreateTagBuilder(BlockTags.NYLIUM).add(
+        getOrCreateTagBuilder(BlockTags.DIRT).add(
                 ModBlocks.NETHERRACK_MYCELIUM,
                 ModBlocks.BURNING_NYLIUM
         );
@@ -51,6 +51,15 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
 
         getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
                 ModBlocks.BURNING_SAPLING
+        );
+
+        getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(
+                ModBlocks.PYROLILY
+        );
+
+        getOrCreateTagBuilder(BlockTags.FLOWER_POTS).add(
+                ModBlocks.POTTED_BURNING_SAPLING,
+                ModBlocks.POTTED_PYROLILY
         );
 
         getOrCreateTagBuilder(BlockTags.LOGS).add(

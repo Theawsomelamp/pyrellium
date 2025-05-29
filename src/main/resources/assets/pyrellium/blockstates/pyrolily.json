@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "pyrellium:block/pyrolily_inactive"
+    },
+    "active=true": {
+      "model": "pyrellium:block/pyrolily"
+    }
+  }
+}
