@@ -34,7 +34,7 @@ public record ConfigCodec(BlocksConfig blocksConfig, BiomeConfig biomeConfig, Fe
         public static final BiomeConfig DEFAULT = new BiomeConfig(true, true, true, true, true, true, true, true, true);
     }
 
-    public record FeatureConfig(boolean doOpalGeodes, boolean doCoolLavaLake, boolean doBones, boolean doFallenLogs, boolean doSpores, boolean doWallMushrooms, boolean doBombFlowers, boolean doMonolith, boolean doGildedBlackstone, boolean doBlackstoneRocks, boolean doFloorCrystals, boolean doFloorSilk, boolean doHangingSilk, boolean doSpikes) {
+    public record FeatureConfig(boolean doOpalGeodes, boolean doCoolLavaLake, boolean doBones, boolean doFallenLogs, boolean doSpores, boolean doWallMushrooms, boolean doBombFlowers, boolean doMonolith, boolean doGildedBlackstone, boolean doBlackstoneRocks, boolean doFloorCrystals, boolean doFloorSilk, boolean doHangingSilk, boolean doSpikes, boolean doPyrolily) {
         public static final Codec<FeatureConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.BOOL.fieldOf("opal_geodes").orElse(true).forGetter(FeatureConfig::doOpalGeodes),
                 Codec.BOOL.fieldOf("lava_lake_additions").orElse(true).forGetter(FeatureConfig::doCoolLavaLake),
@@ -49,8 +49,9 @@ public record ConfigCodec(BlocksConfig blocksConfig, BiomeConfig biomeConfig, Fe
                 Codec.BOOL.fieldOf("crystal_forest_floor_crystals").orElse(true).forGetter(FeatureConfig::doFloorCrystals),
                 Codec.BOOL.fieldOf("infested_valley_floor_decorations").orElse(true).forGetter(FeatureConfig::doFloorSilk),
                 Codec.BOOL.fieldOf("infested_valley_hanging_silk").orElse(true).forGetter(FeatureConfig::doHangingSilk),
-                Codec.BOOL.fieldOf("quartz_caverns_spikes").orElse(true).forGetter(FeatureConfig::doSpikes)
+                Codec.BOOL.fieldOf("quartz_caverns_spikes").orElse(true).forGetter(FeatureConfig::doSpikes),
+                Codec.BOOL.fieldOf("burning_grove_pyrolily").orElse(true).forGetter(FeatureConfig::doPyrolily)
         ).apply(instance, FeatureConfig::new));
-        public static final FeatureConfig DEFAULT = new FeatureConfig(true, true, true, true, true, true, true, true, true, true, true, true, true, true);
+        public static final FeatureConfig DEFAULT = new FeatureConfig(true, true, true, true, true, true, true, true, true, true, true, true, true, true, true);
     }
 }

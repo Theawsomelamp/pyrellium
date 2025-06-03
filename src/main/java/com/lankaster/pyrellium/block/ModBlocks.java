@@ -14,6 +14,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -55,9 +56,10 @@ public class ModBlocks {
     public static final Block BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", new CarpetBlock(AbstractBlock.Settings.copy(Blocks.BLACKSTONE).nonOpaque()));
 
     public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));
-    public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new NyliumBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM)));
+    public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new ModNyliumBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM)));
     public static final Block BURNING_LEAVES = registerBlock("burning_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
-    public static final Block BURNING_SAPLING = registerBlock("burning_sapling", new SaplingBlock(SaplingGenerator.OAK, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
+    public static final Block BURNING_SAPLING = registerBlock("burning_sapling", new SaplingBlock(new ModSaplingGenerator().BURNING, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
+    public static final Block POTTED_BURNING_SAPLING = registerBlockWithoutBlockItem("potted_burning_sapling", new FlowerPotBlock(ModBlocks.BURNING_SAPLING, AbstractBlock.Settings.copy(Blocks.POTTED_OAK_SAPLING)));
     public static final Block BURNING_LOG = registerBlock("burning_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
     public static final Block BURNING_WOOD = registerBlock("burning_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_HYPHAE).sounds(BlockSoundGroup.WOOD)));
     public static final Block STRIPPED_BURNING_LOG = registerBlock("stripped_burning_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
@@ -78,6 +80,8 @@ public class ModBlocks {
     public static final Block BURNING_ROOTS = registerBlock("burning_roots", new RootsBlock(AbstractBlock.Settings.copy(Blocks.WARPED_ROOTS)));
     public static final Block BURNING_SPROUTS = registerBlock("burning_sprouts", new SproutsBlock(AbstractBlock.Settings.copy(Blocks.NETHER_SPROUTS)));
     public static final Block BURNING_VINES = registerBlock("burning_vines", new HangingVinesBlock(AbstractBlock.Settings.copy(Blocks.TWISTING_VINES)));
+    public static final Block PYROLILY = registerBlock("pyrolily", new BurningFlowerBlock(StatusEffects.FIRE_RESISTANCE, 5, AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 9)));
+    public static final Block POTTED_PYROLILY = registerBlockWithoutBlockItem("potted_pyrolily", new FlowerPotBlock(ModBlocks.PYROLILY, AbstractBlock.Settings.copy(Blocks.POTTED_POPPY).luminance((state) -> 7)));
 
     /// Registry order being an ass
     public static final Item BURNING_SIGN_ITEM = ModItems.registerItem("burning_sign", new SignItem((new Item.Settings().maxCount(16)), ModBlocks.BURNING_SIGN, ModBlocks.BURNING_WALL_SIGN));

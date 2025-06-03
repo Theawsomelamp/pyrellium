@@ -73,9 +73,12 @@
   "block.pyrellium.burning_wall_hanging_sign": "Burning Hanging Sign",
   "block.pyrellium.burning_leaves": "Burning Leaves",
   "block.pyrellium.burning_sapling": "Burning Sapling",
+  "block.pyrellium.potted_burning_sapling": "Potted Burning Sapling",
   "block.pyrellium.burning_sprouts": "Amber Sprouts",
   "block.pyrellium.burning_roots": "Amber Roots",
   "block.pyrellium.burning_vines": "Burning Vines",
+  "block.pyrellium.pyrolily": "Pyrolily",
+  "block.pyrellium.potted_pyrolily": "Potted Pyrolily",
 
   "trim_material.pyrellium.opal": "Opal Material"
 }
