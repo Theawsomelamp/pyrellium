@@ -30,7 +30,7 @@ public class HangingVinesBlock extends Block implements Fertilizable {
     private boolean canPlaceAt(BlockView world, BlockPos pos) {
         BlockPos blockPos = pos.offset(Direction.UP);
         BlockState blockState = world.getBlockState(blockPos);
-        return MultifaceGrowthBlock.canGrowOn(world, Direction.UP, blockPos, blockState) || blockState.isOf(ModBlocks.HANGING_SILK);
+        return MultifaceGrowthBlock.canGrowOn(world, Direction.UP, blockPos, blockState) || blockState.isOf(this.asBlock());
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
