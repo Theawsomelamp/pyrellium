@@ -1,0 +1,15 @@
+{
+  "feature": "pyrellium:bedrock_gradient",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 10
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "below_top": 6
+      }
+    }
+  ]
+}

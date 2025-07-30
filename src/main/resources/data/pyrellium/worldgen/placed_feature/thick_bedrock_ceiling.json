@@ -1,0 +1,11 @@
+{
+  "feature": "pyrellium:thick_bedrock_ceiling",
+  "placement": [
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "below_top": 5
+      }
+    }
+  ]
+}
