@@ -1,0 +1,13 @@
+{
+  "type": "pyrellium:square",
+  "config": {
+    "height": 5,
+    "width": 16,
+    "provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:bedrock"
+      }
+    }
+  }
+}
