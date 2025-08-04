@@ -33,7 +33,7 @@ public class ModBlocks {
     public static final Block CLEAR_AMETHYST_BLOCK = registerBlock("clear_amethyst_block", new TransparentBlock(AbstractBlock.Settings.copy(Blocks.AMETHYST_BLOCK).nonOpaque()));
     public static final Block CLEAR_OPAL_BLOCK = registerBlock("clear_opal_block", new TransparentBlock(AbstractBlock.Settings.copy(Blocks.AMETHYST_BLOCK).nonOpaque()));
 
-    public static final Block FREEZING_ICE = registerBlock("freezing_ice", new FreezingIceBlock(AbstractBlock.Settings.copy(Blocks.PACKED_ICE)));
+    public static final Block FREEZING_ICE = registerBlock("freezing_ice", new FreezingIceBlock(AbstractBlock.Settings.copy(Blocks.PACKED_ICE).nonOpaque()));
     public static final Block SILK_BLOCK = registerBlock("silk_block", new Block(AbstractBlock.Settings.copy(Blocks.WHITE_WOOL)));
     public static final Block SILK_CARPET = registerBlock("silk_carpet", new CarpetBlock(AbstractBlock.Settings.copy(Blocks.MOSS_CARPET).sounds(BlockSoundGroup.WOOL).velocityMultiplier(0.4F).jumpVelocityMultiplier(0.5F)));
     public static final Block HANGING_SILK = registerBlock("hanging_silk", new HangingSilkBlock(AbstractBlock.Settings.create().ticksRandomly().noCollision().burnable().strength(0.75F).pistonBehavior(PistonBehavior.DESTROY)));

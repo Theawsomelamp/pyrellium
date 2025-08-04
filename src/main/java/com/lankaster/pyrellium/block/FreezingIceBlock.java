@@ -1,13 +1,13 @@
 package com.lankaster.pyrellium.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.TransparentBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class FreezingIceBlock extends Block {
+public class FreezingIceBlock extends TransparentBlock {
 
     public FreezingIceBlock(Settings settings) {
         super(settings);
