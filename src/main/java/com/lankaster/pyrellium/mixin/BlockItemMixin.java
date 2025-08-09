@@ -30,13 +30,14 @@ public class BlockItemMixin {
         Hand hand = context.getHand();
         ItemPlacementContext itemPlacementContext = new ItemPlacementContext(context);
         BlockPos blockPos = itemPlacementContext.getBlockPos();
+        BlockState blockStateInit = world.getBlockState(blockPos);
         ItemStack itemStack = context.getStack();
         if (direction != Direction.DOWN && direction != Direction.UP){
             BlockPos posSide = blockPos.offset(direction.getOpposite());
             BlockState blockState = world.getBlockState(posSide);
             BlockPos posDown = blockPos.offset(Direction.DOWN);
             BlockState blockStateDown = world.getBlockState(posDown);
-            if (blockState.isSideSolidFullSquare(world, blockPos, direction) && !blockStateDown.isSideSolidFullSquare(world, blockPos, Direction.DOWN) ) {
+            if ((blockState.isSideSolidFullSquare(world, blockPos, direction) && blockStateInit.isAir()) && !blockStateDown.isSideSolidFullSquare(world, blockPos, Direction.DOWN) ) {
                 if (world instanceof ServerWorld) {
                     if (itemStack.isOf(Items.BROWN_MUSHROOM)) {
                         world.setBlockState(blockPos, ModBlocks.BROWN_WALL_MUSHROOM.getDefaultState().with(FACING, direction.getOpposite()));
