@@ -51,6 +51,7 @@ public class ModBlocks {
     public static final Block DEAD_ROOTS = registerBlock("dead_roots", new RootsBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS)));
     public static final Block DEAD_SPROUTS = registerBlock("dead_sprouts", new SproutsBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS)));
     public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", new Block(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
+    public static final Block HEADSTONE = registerBlock("headstone", new HeadStoneBlock(FabricBlockSettings.create().mapColor(Blocks.STONE.getDefaultMapColor()).instrument(Instrument.BASS).solid().nonOpaque().strength(1.5F, 6.0F), WoodType.OAK));
     public static final Block BONE = registerBlockWithoutBlockItem("bone", new BoneItemBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)));
     public static final Block BOMB_PLANT = registerBlock("bomb_plant", new BombPlantBlock(FabricBlockSettings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block QUARTZ_CRYSTAL = registerBlock("quartz_crystal", new AmethystClusterBlock(7, 3, FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));

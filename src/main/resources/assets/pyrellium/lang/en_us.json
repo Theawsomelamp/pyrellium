@@ -79,6 +79,9 @@
   "block.pyrellium.burning_vines": "Burning Vines",
   "block.pyrellium.pyrolily": "Pyrolily",
   "block.pyrellium.potted_pyrolily": "Potted Pyrolily",
+  "block.pyrellium.headstone": "Headstone",
+
+  "headstone.edit": "Edit Headstone Message",
 
   "trim_material.pyrellium.opal": "Opal Material"
 }

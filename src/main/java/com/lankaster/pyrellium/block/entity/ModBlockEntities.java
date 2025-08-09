@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 public interface ModBlockEntities {
     BlockEntityType<ModSignBlockEntity> BURNING_SIGN = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Pyrellium.MOD_ID, "signs"), FabricBlockEntityTypeBuilder.create(ModSignBlockEntity::new).addBlocks(ModBlocks.BURNING_SIGN, ModBlocks.BURNING_WALL_SIGN).build());
     BlockEntityType<ModHangingSignBlockEntity> BURNING_HANGING_SIGN = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Pyrellium.MOD_ID, "hanging_signs"), FabricBlockEntityTypeBuilder.create(ModHangingSignBlockEntity::new).addBlocks(ModBlocks.BURNING_HANGING_SIGN, ModBlocks.BURNING_WALL_HANGING_SIGN).build());
+    BlockEntityType<HeadStoneBlockEntity> HEADSTONE = Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Pyrellium.MOD_ID, "headstone"), FabricBlockEntityTypeBuilder.create(HeadStoneBlockEntity::new).addBlocks(ModBlocks.HEADSTONE).build());
 
     static void registerBlockEntities() {
     }
