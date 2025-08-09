@@ -20,7 +20,8 @@ public class ConfigHandler {
     private static ConfigCodec LOADED_CONFIG = new ConfigCodec(
             ConfigCodec.BlocksConfig.DEFAULT,
             ConfigCodec.BiomeConfig.DEFAULT,
-            ConfigCodec.FeatureConfig.DEFAULT
+            ConfigCodec.GlobalFeatureConfig.DEFAULT,
+            ConfigCodec.BiomeFeatureConfig.DEFAULT
     );
 
     public static ConfigCodec getConfig() {

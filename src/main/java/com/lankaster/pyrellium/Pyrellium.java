@@ -1,5 +1,6 @@
 package com.lankaster.pyrellium;
 
+import com.lankaster.pyrellium.block.entity.ModBlockEntities;
 import com.lankaster.pyrellium.config.ConfigHandler;
 import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.networking.OpalPayload;
@@ -35,6 +36,7 @@ public class Pyrellium implements ModInitializer {
 		ModEntities.registerEntities();
 
 		ModBlocks.registerModBlocks();
+		ModBlockEntities.registerBlockEntities();
 		ModItems.registerModItems();
 
 		ModWorldGeneration.register();

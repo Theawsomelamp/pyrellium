@@ -33,7 +33,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.BONE,
                 ModBlocks.QUARTZ_CRYSTAL,
                 ModBlocks.BLACKSTONE_ROCK,
-                ModBlocks.BURNING_NYLIUM
+                ModBlocks.BURNING_NYLIUM,
+                ModBlocks.HEADSTONE
         );
 
         getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(

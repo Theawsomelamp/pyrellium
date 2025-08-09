@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "pyrellium:block/headstone",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "pyrellium:block/headstone",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "pyrellium:block/headstone"
+    },
+    "facing=west": {
+      "model": "pyrellium:block/headstone",
+      "y": 90
+    }
+  }
+}
