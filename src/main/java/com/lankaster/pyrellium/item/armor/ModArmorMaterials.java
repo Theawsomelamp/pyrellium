@@ -3,12 +3,14 @@ package com.lankaster.pyrellium.item.armor;
 import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    OPAL("opal", 56, new int[]{1, 2, 3, 1}, 24, SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, 0.0F, 0.0F, Ingredient.ofItems(ModItems.OPAL));
+    OPAL("opal", 56, new int[]{1, 2, 3, 1}, 24, SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, 0.0F, 0.0F, Ingredient.ofItems(ModItems.OPAL)),
+    MUSHROOM("mushroom", 74, new int[]{1, 2, 3, 1}, 16, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient.ofItems(Items.RED_MUSHROOM));
 
     private static final int[] BASE_DURABILITY = new int[]{1, 1, 1, 1};
     private final String name;

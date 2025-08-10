@@ -9,11 +9,11 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 
-public class HatRenderer<t extends Entity> extends EntityModel<t> {
+public class OpalTiaraRenderer<t extends Entity> extends EntityModel<t> {
     public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(Identifier.of(Pyrellium.MOD_ID, "opal_tiara"), "main");
     public final ModelPart hat;
 
-    public HatRenderer(ModelPart root) {
+    public OpalTiaraRenderer(ModelPart root) {
         this.hat = root.getChild("hat");
     }
 

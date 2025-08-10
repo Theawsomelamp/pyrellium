@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:red_mushroom_block"
+    },
+    "X": {
+      "item": "minecraft:leather_helmet"
+    },
+    "Y": {
+      "item": "minecraft:red_mushroom"
+    }
+  },
+  "pattern": [
+    " # ",
+    "YXY"
+  ],
+  "result": {
+    "item": "pyrellium:mushroom_cap"
+  },
+  "show_notification": true
+}

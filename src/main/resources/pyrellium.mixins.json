@@ -9,6 +9,7 @@
     "ExtendSpyglass",
     "GhastEntityMixin",
     "ItemMixin",
+    "LivingEntityMixin",
     "StraySpawningMixin",
     "WarningSuppressor"
   ],

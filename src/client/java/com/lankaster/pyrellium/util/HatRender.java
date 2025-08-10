@@ -15,7 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
 public class HatRender implements ArmorRenderer {
-    private static final com.lankaster.pyrellium.util.HatRenderer<?> model = new HatRenderer<>(HatRenderer.getTexturedModelData().createModel());
+    private static final OpalTiaraRenderer<?> opalTiara = new OpalTiaraRenderer<>(OpalTiaraRenderer.getTexturedModelData().createModel());
+    private static final MushroomCapRenderer<?> mushroomCap = new MushroomCapRenderer<>(MushroomCapRenderer.getTexturedModelData().createModel());
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, ItemStack stack, LivingEntity entity,
@@ -25,8 +26,17 @@ public class HatRender implements ArmorRenderer {
             matrices.push();
             contextModel.getHead().rotate(matrices);
             matrices.scale(1.19F, 1.19F, 1.19F);
-            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, model.getLayer(Identifier.of(Pyrellium.MOD_ID, "textures/item/opal_tiara_model.png")), false, stack.hasGlint());
-            model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, opalTiara.getLayer(Identifier.of(Pyrellium.MOD_ID, "textures/item/opal_tiara_model.png")), false, stack.hasGlint());
+            opalTiara.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+            matrices.pop();
+        }
+
+        if (!stack.isEmpty() && stack.isOf(ModItems.MUSHROOM_CAP)) {
+            matrices.push();
+            contextModel.getHead().rotate(matrices);
+            matrices.scale(1.19F, 1.19F, 1.19F);
+            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, mushroomCap.getLayer(Identifier.of(Pyrellium.MOD_ID, "textures/item/mushroom_cap_model.png")), false, stack.hasGlint());
+            mushroomCap.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
             matrices.pop();
         }
     }
