@@ -27,6 +27,7 @@ public class PyrelliumClient implements ClientModInitializer {
 		WorldRenderEvents.AFTER_ENTITIES.register(BlockOutline::renderBoxOverlay);
 
 		ArmorRenderer.register(new HatRender(), ModItems.OPAL_TIARA);
+		ArmorRenderer.register(new HatRender(), ModItems.MUSHROOM_CAP);
 
 		EntityRendererRegistry.register(ModEntities.CRYSTAL_ARROW, CrystalArrowRenderer::new);
 		EntityRendererRegistry.register(ModEntities.BOMB_FLOWER, FlyingItemEntityRenderer::new);

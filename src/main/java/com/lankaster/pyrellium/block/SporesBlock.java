@@ -1,9 +1,11 @@
 package com.lankaster.pyrellium.block;
 
+import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -51,7 +53,9 @@ public class SporesBlock extends Block {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!state.get(DISPERSED)) {
             if (entity instanceof LivingEntity livingEntity) {
-                livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100));
+                if (!livingEntity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
+                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100));
+                }
             }
             world.setBlockState(pos, state.cycle(DISPERSED), 2);
             world.scheduleBlockTick(pos, this, 200);

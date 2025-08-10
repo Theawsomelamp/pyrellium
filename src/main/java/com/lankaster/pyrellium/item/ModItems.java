@@ -17,6 +17,7 @@ public class ModItems {
     public static final Item AMETHYST_ARROW = registerItem("amethyst_arrow", new CrystalArrowItem(new Item.Settings()));
     public static final Item OPAL_ARROW = registerItem("opal_arrow", new CrystalArrowItem(new Item.Settings()));
     public static final Item BOMB_FLOWER = registerItem("bomb_flower", new BombFlowerItem((new Item.Settings()).maxCount(16)));
+    public static final Item MUSHROOM_CAP = registerItem("mushroom_cap", new ArmorItem(ModArmorMaterials.MUSHROOM_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(7))));
 
 
     public static Item registerItem(String name, Item item) {
