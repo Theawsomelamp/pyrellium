@@ -11,6 +11,16 @@
       "state": {
         "Name": "minecraft:smooth_quartz"
       }
-    }
+    },
+    "tip": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "pyrellium:quartz_crystal",
+        "Properties": {
+          "facing": "up"
+        }
+      }
+    },
+    "chance": 0.2
   }
 }
