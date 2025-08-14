@@ -24,8 +24,10 @@ public class SpikeFeature extends Feature<SpikeFeatureConfig> {
         int number = config.height().get(random);
         int height;
         BlockStateProvider state = config.state();
+        BlockStateProvider tip = config.tip();
 
         BlockState blockState = state.get(random, origin);
+        BlockState tipState = tip.get(random, origin);
 
         for(BlockPos blockPos2 : BlockPos.iterate(origin.add(-2, 0, -2), origin.add(2, 0, 2))) {
             int m = blockPos2.getX() - origin.getX();
@@ -43,6 +45,9 @@ public class SpikeFeature extends Feature<SpikeFeatureConfig> {
                 for (int i = 0; i < (height - random.nextInt(2)); i++) {
                     world.setBlockState(blockPos2, blockState, 2);
                     blockPos2 = blockPos2.up();
+                    if (random.nextFloat() < config.chance()) {
+                        world.setBlockState(blockPos2, tipState,2);
+                    }
 
                     if (blockPos2.getY() >= world.getTopY()) break;
                 }
