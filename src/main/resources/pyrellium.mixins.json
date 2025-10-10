@@ -5,11 +5,13 @@
   "mixins": [
     "ActiveTargetGoalAccessor",
     "BlockItemMixin",
+    "ChunkGeneratorSettingsAccessor",
     "DispenserBehaviorMixin",
     "ExtendSpyglass",
     "GhastEntityMixin",
     "ItemMixin",
     "LivingEntityMixin",
+    "MinecraftServerMixin",
     "StraySpawningMixin",
     "WarningSuppressor"
   ],
