@@ -35,15 +35,16 @@ public record ConfigCodec(BlocksConfig blocksConfig, BiomeConfig biomeConfig, Gl
         public static final BiomeConfig DEFAULT = new BiomeConfig(true, true, true, true, true, true, true, true, true);
     }
 
-    public record GlobalFeatureConfig(boolean doOpalGeodes, boolean doCoolLavaLake, boolean doFallenLogs, boolean doGildedBlackstone, boolean doThickCeiling) {
+    public record GlobalFeatureConfig(boolean doOpalGeodes, boolean doCoolLavaLake, boolean doFallenLogs, boolean doGildedBlackstone, boolean doThickCeiling, boolean doIncreasedHeight) {
         public static final Codec<GlobalFeatureConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.BOOL.fieldOf("opal_geodes").orElse(true).forGetter(GlobalFeatureConfig::doOpalGeodes),
                 Codec.BOOL.fieldOf("lava_lake_additions").orElse(true).forGetter(GlobalFeatureConfig::doCoolLavaLake),
                 Codec.BOOL.fieldOf("nether_forest_fallen_logs").orElse(true).forGetter(GlobalFeatureConfig::doFallenLogs),
                 Codec.BOOL.fieldOf("gilded_blackstone_patches").orElse(true).forGetter(GlobalFeatureConfig::doGildedBlackstone),
-                Codec.BOOL.fieldOf("thicker_bedrock_ceiling").orElse(true).forGetter(GlobalFeatureConfig::doThickCeiling)
+                Codec.BOOL.fieldOf("thicker_bedrock_ceiling").orElse(true).forGetter(GlobalFeatureConfig::doThickCeiling),
+                Codec.BOOL.fieldOf("192_block_nether_height").orElse(true).forGetter(GlobalFeatureConfig::doIncreasedHeight)
         ).apply(instance, GlobalFeatureConfig::new));
-        public static final GlobalFeatureConfig DEFAULT = new GlobalFeatureConfig(true, true, true, true, true);
+        public static final GlobalFeatureConfig DEFAULT = new GlobalFeatureConfig(true, true, true, true, true, true);
     }
 
     public record BiomeFeatureConfig(boolean doBones, boolean doSpores, boolean doWallMushrooms, boolean doBombFlowers, boolean doMonolith, boolean doBlackstoneRocks, boolean doFloorCrystals, boolean doFloorSilk, boolean doHangingSilk, boolean doSpikes, boolean doPyrolily, boolean doHeadstones) {

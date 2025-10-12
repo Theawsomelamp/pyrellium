@@ -18,6 +18,7 @@ import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 
 public class ModSurfaceRules {
 
+    private static final MaterialRules.MaterialRule BEDROCK = MaterialRules.block(Blocks.BEDROCK.getDefaultState());
     private static final MaterialRules.MaterialRule GRAVEL = MaterialRules.block(Blocks.GRAVEL.getDefaultState());
     private static final MaterialRules.MaterialRule LAVA = MaterialRules.block(Blocks.LAVA.getDefaultState());
     private static final MaterialRules.MaterialRule BLACKSTONE = MaterialRules.block(Blocks.BLACKSTONE.getDefaultState());
@@ -35,7 +36,9 @@ public class ModSurfaceRules {
     public static MaterialRules.MaterialRule createPyrelliumSurfaceRule(){
         MaterialRules.MaterialRule gravel = MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.PATCH, -0.012), MaterialRules.condition(MaterialRules.aboveYWithStoneDepth(YOffset.fixed(30), 0), MaterialRules.condition(MaterialRules.not(MaterialRules.aboveYWithStoneDepth(YOffset.fixed(35), 0)), GRAVEL)));
 
-        return MaterialRules.sequence(MaterialRules.condition(MaterialRules.biome(
+        return MaterialRules.sequence(MaterialRules.condition(MaterialRules.verticalGradient("bedrock_floor", YOffset.getBottom(), YOffset.aboveBottom(5)), BEDROCK),
+                MaterialRules.condition(MaterialRules.not(MaterialRules.verticalGradient("bedrock_roof", YOffset.belowTop(5), YOffset.getTop())), BEDROCK),
+                MaterialRules.condition(MaterialRules.biome(
                                 RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "frostburn_valley"))),
                         MaterialRules.sequence(MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING_WITH_SURFACE_DEPTH,
                                 MaterialRules.sequence(MaterialRules.condition(
@@ -84,7 +87,8 @@ public class ModSurfaceRules {
                                 MaterialRules.sequence(MaterialRules.condition(MaterialRules.not(MaterialRules.noiseThreshold(NoiseParametersKeys.NETHERRACK, 0.54)),
                                         MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH,
                                                 MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.NETHER_STATE_SELECTOR, -0.075F, 0.075F),
-                                                        BLACKSTONE))), BURNING_NYLIUM)))),
+                                                        BLACKSTONE))), MaterialRules.condition(MaterialRules.aboveY(YOffset.fixed(31), 0),
+                                        MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, BURNING_NYLIUM)))))),
                 MaterialRules.condition(MaterialRules.biome(
                                 RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "ghostly_woods"))),
                         MaterialRules.sequence(MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING_WITH_SURFACE_DEPTH,
