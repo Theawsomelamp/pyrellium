@@ -3,6 +3,7 @@ package com.lankaster.pyrellium.world;
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.mixin.ChunkGeneratorSettingsAccessor;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -107,6 +108,8 @@ public class ModSurfaceRules {
     }
 
     public static void addModMaterialRules(MinecraftServer server, RegistryKey<DimensionOptions> dimensionKey) {
+        if (FabricLoader.getInstance().isModLoaded("terrablender")) return;
+
         DimensionOptions levelStem = server.getCombinedDynamicRegistries().getCombinedRegistryManager()
                 .get(RegistryKeys.DIMENSION).get(dimensionKey);
         if (levelStem == null) {
