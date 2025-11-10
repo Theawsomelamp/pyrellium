@@ -5,6 +5,7 @@ import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.ModNetworkingConstants;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -48,7 +49,9 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
         PacketByteBuf buf = PacketByteBufs.create();
         buf.writeBoolean(opal);
 
-        ServerPlayNetworking.send((ServerPlayerEntity) this.getOwner(), ModNetworkingConstants.OPAL_ARROW_ID, buf);
+        for (ServerPlayerEntity player : PlayerLookup.tracking(this)) {
+            ServerPlayNetworking.send(player, ModNetworkingConstants.OPAL_ARROW_ID, buf);
+        }
     }
 
     @Override
