@@ -37,6 +37,11 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.HEADSTONE
         );
 
+        getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).add(
+                ModBlocks.BURNING_LEAVES,
+                ModBlocks.GHOSTLY_LEAVES
+        );
+
         getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(
                 ModBlocks.HANGING_SILK
         );
@@ -47,7 +52,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
         );
 
         getOrCreateTagBuilder(BlockTags.LEAVES).add(
-                ModBlocks.BURNING_LEAVES
+                ModBlocks.BURNING_LEAVES,
+                ModBlocks.GHOSTLY_LEAVES
         );
 
         getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
