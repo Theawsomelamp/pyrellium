@@ -1,15 +1,16 @@
-// 1.21.1	2025-08-09T12:24:55.9431255	Pyrellium/Tags for minecraft:block
+// 1.21.1	2025-11-12T08:35:38.1853096	Pyrellium/Tags for minecraft:block
 e776cdd90ed2e128be2b9c048211c7f84beedbc1 data\minecraft\tags\block\wooden_fences.json
 28e1f9b85fbcf405360f5271421c17a567c2c060 data\minecraft\tags\block\dirt.json
-467da1a7feec497bb75987c1d645cd2714d7d726 data\minecraft\tags\block\wooden_pressure_plates.json
 b3474e1abc8f56832f3c8d498b32e8c74ec194bd data\minecraft\tags\block\wooden_trapdoors.json
+467da1a7feec497bb75987c1d645cd2714d7d726 data\minecraft\tags\block\wooden_pressure_plates.json
+0314cb1d5f5990e19a7f7862601582afc799e0ad data\minecraft\tags\block\mineable\hoe.json
 d8bba4b4b75af85c6c4bb349ad2e56f9bdbc4cc4 data\minecraft\tags\block\flower_pots.json
 fa1bfd287a55552b7f14c259acf37bc2e83bbce2 data\minecraft\tags\block\wooden_slabs.json
-0b01cec32bc3f1d6875a4b4e6dd35eb431899dd5 data\minecraft\tags\block\wooden_buttons.json
 d26f0d908e00b9fbc7cfcff1ee505c0a9680ed33 data\minecraft\tags\block\logs.json
-d8cf892405b561daf20f555ee3897d807bdeceb2 data\minecraft\tags\block\wall_signs.json
+0b01cec32bc3f1d6875a4b4e6dd35eb431899dd5 data\minecraft\tags\block\wooden_buttons.json
 85773a5c5f30927257453688c1303d7d4dba7e96 data\minecraft\tags\block\ceiling_hanging_signs.json
-8059883233993537cef1c999879acea9aad428d0 data\minecraft\tags\block\leaves.json
+d8cf892405b561daf20f555ee3897d807bdeceb2 data\minecraft\tags\block\wall_signs.json
+0314cb1d5f5990e19a7f7862601582afc799e0ad data\minecraft\tags\block\leaves.json
 c691235943f501a4fd6027f7064148b9ddda1b1a data\minecraft\tags\block\saplings.json
 fe4f46ef72e251c8e30cbd8b991bc72f8eb94e64 data\minecraft\tags\block\wooden_stairs.json
 d26f0d908e00b9fbc7cfcff1ee505c0a9680ed33 data\pyrellium\tags\block\burning_logs.json
