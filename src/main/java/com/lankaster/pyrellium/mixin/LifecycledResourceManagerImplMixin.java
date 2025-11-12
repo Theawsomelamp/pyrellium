@@ -8,7 +8,6 @@ import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.ConfigHandler;
 import com.lankaster.pyrellium.world.ModNoiseSettings;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resource.*;
 import net.minecraft.util.Identifier;
 import org.apache.commons.io.input.CharSequenceInputStream;
@@ -29,7 +28,6 @@ public class LifecycledResourceManagerImplMixin {
     @Unique
     @SuppressWarnings("deprecation")
     private static Resource readAndApply(Optional<Resource> resource, ModNoiseSettings data) {
-        Pyrellium.LOGGER.info("Adding Pyrellium Noise Settings");
 
         String result = "";
         if (resource.isEmpty())
@@ -69,7 +67,7 @@ public class LifecycledResourceManagerImplMixin {
     @ModifyReturnValue(method = "findResources", at = @At("RETURN"))
     public Map<Identifier, Resource> findConfiguredResources(Map<Identifier, Resource> original, String startingPath, Predicate<Identifier> allowedPathPredicate) {
         ModNoiseSettings data = new ModNoiseSettings(Identifier.of("minecraft", "worldgen/noise_settings/nether.json"), () -> ConfigHandler.getConfig().globalFeatureConfig().doIncreasedHeight(), ModNoiseSettings::changeNoiseRouter);
-        ModNoiseSettings data2 = new ModNoiseSettings(Identifier.of("minecraft", "worldgen/noise_settings/nether.json"), () -> FabricLoader.getInstance().isModLoaded("terrablender"), ModNoiseSettings::changeSurfaceRules);
+        ModNoiseSettings data2 = new ModNoiseSettings(Identifier.of("minecraft", "worldgen/noise_settings/nether.json"), () -> true, ModNoiseSettings::changeSurfaceRules);
 
         List<Identifier> ids = new ArrayList<>(original.keySet());
         for (Identifier id : ids) {
@@ -79,6 +77,8 @@ public class LifecycledResourceManagerImplMixin {
             }
             if (!data2.enabled.get()) continue;
             original.replace(id, readAndApply(Optional.of(original.get(id)), data2));
+
+            Pyrellium.LOGGER.info("Adding Pyrellium Noise Settings");
         }
 
         return original;

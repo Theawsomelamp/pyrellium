@@ -47,9 +47,6 @@ public class ModNoiseSettings {
         return gson.toJson(json);
     }
 
-    //Pretty sure this could cause some incompatibilities
-    //However Terrablender yeets Pyrellium surface out of existence when added on 1.21 the other way
-    //So doing this as a temporary band-aid fix while Terrablender is installed
     public static String changeSurfaceRules(JsonElement json) {
         JsonObject baseRules = json.getAsJsonObject().get("surface_rule").getAsJsonObject();
         JsonArray sequence = new JsonArray();
