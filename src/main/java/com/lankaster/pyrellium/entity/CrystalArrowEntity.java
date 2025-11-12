@@ -4,6 +4,7 @@ import com.google.common.base.Predicates;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.OpalPayload;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -40,9 +41,12 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
     }
 
     public void initFromStack(ItemStack stack) {
-        OpalPayload payload = new OpalPayload(!stack.isOf(ModItems.AMETHYST_ARROW));
+        opal = !stack.isOf(ModItems.AMETHYST_ARROW);
+        OpalPayload payload = new OpalPayload(opal);
 
-        ServerPlayNetworking.send((ServerPlayerEntity) this.getOwner(), payload);
+        for (ServerPlayerEntity player : PlayerLookup.tracking(this)) {
+            ServerPlayNetworking.send(player, payload);
+        }
     }
 
     public void tick() {

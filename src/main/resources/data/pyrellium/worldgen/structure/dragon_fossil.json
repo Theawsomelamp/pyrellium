@@ -1,6 +1,9 @@
 {
   "type": "minecraft:jigsaw",
-  "biomes": "pyrellium:frostburn_valley",
+  "biomes": [
+    "pyrellium:frostburn_valley",
+    "minecraft:soul_sand_valley"
+  ],
   "step": "surface_structures",
   "spawn_overrides": {},
   "terrain_adaptation": "beard_box",
