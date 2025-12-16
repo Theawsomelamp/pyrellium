@@ -57,7 +57,7 @@ public class BlockOutline {
     public static BlockPos saveBlock() {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.options.attackKey.isPressed() && client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
-            savedPos = raycast();
+            savedPos = (client.options.sneakKey.isPressed() ? null : raycast());
         } else if (savedPos != null && client.world.isChunkLoaded(savedPos.getX(), savedPos.getZ())) {
             return savedPos;
         }
