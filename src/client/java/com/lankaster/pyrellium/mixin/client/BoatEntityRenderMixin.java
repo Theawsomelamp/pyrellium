@@ -17,10 +17,10 @@ import org.spongepowered.asm.mixin.injection.At;
 public class BoatEntityRenderMixin {
     @WrapOperation(method = "render(Lnet/minecraft/entity/vehicle/BoatEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At(value = "INVOKE", target = "Lcom/mojang/datafixers/util/Pair;getFirst()Ljava/lang/Object;"))
     private Object addCustomTexture(Pair<Identifier, CompositeEntityModel<BoatEntity>> instance, Operation<Identifier> original, BoatEntity boatEntity) {
-        if (boatEntity instanceof ModBoatEntity) {
-            return new Identifier(Pyrellium.MOD_ID, "textures/entity/boat/burning.png");
-        } else if (boatEntity instanceof ModChestBoatEntity) {
-            return new Identifier(Pyrellium.MOD_ID, "textures/entity/chest_boat/burning.png");
+        if (boatEntity instanceof ModBoatEntity modBoatEntity) {
+            return new Identifier(Pyrellium.MOD_ID, "textures/entity/boat/" + modBoatEntity.getCustomVariant().asString() + ".png");
+        } else if (boatEntity instanceof ModChestBoatEntity modChestBoatEntity) {
+            return new Identifier(Pyrellium.MOD_ID, "textures/entity/chest_boat/" + modChestBoatEntity.getCustomVariant().asString() + ".png");
         }
         return original.call(instance);
     }
