@@ -1,9 +1,5 @@
 package com.lankaster.pyrellium.mixin;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.world.ModNoiseSettings;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
@@ -41,25 +37,6 @@ public class LifecycledResourceManagerImplMixin {
         String finalResult = result;
         return new Resource(resource.get().getPack(),
                 () -> new CharSequenceInputStream(finalResult, Charset.defaultCharset()));
-    }
-
-    @Unique
-    private static JsonObject read(Optional<Resource> resource) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-        String result = "";
-        if (resource.isEmpty())
-            result = "";
-        else {
-            try {
-                result = new String(resource.get().getInputStream().readAllBytes());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        String finalResult = result;
-        return gson.fromJson(finalResult, JsonElement.class).getAsJsonObject();
     }
 
     @ModifyReturnValue(method = "findResources", at = @At("RETURN"))
