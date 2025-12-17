@@ -20,12 +20,16 @@ public class ConfigHandler {
     private static ConfigCodec LOADED_CONFIG = new ConfigCodec(
             ConfigCodec.BlocksConfig.DEFAULT,
             ConfigCodec.BiomeConfig.DEFAULT,
-            ConfigCodec.GlobalFeatureConfig.DEFAULT,
-            ConfigCodec.BiomeFeatureConfig.DEFAULT
+            ConfigCodec.GlobalFeatureConfig.DEFAULT
     );
 
     public static ConfigCodec getConfig() {
         return LOADED_CONFIG;
+    }
+
+    public static JsonElement noiseToJson(ConfigCodec.BiomeNoiseConfig noise) {
+        Optional<JsonElement> result = ConfigCodec.BiomeNoiseConfig.CODEC.encodeStart(JsonOps.INSTANCE, noise).result();
+        return result.orElse(null);
     }
 
     public static void load(Path path) {

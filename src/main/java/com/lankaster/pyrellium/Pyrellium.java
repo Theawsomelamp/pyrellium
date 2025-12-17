@@ -5,6 +5,7 @@ import com.lankaster.pyrellium.config.ConfigHandler;
 import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.networking.OpalPayload;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
+import com.lankaster.pyrellium.world.ModNoiseSettings;
 import com.lankaster.pyrellium.world.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
@@ -25,6 +26,7 @@ public class Pyrellium implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ConfigHandler.load(FabricLoader.getInstance().getConfigDir().resolve("pyrellium.json"));
+		ModNoiseSettings.register();
 
 		PayloadTypeRegistry.playS2C().register(OpalPayload.ID, OpalPayload.CODEC);
 

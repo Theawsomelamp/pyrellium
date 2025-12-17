@@ -2,9 +2,13 @@ package com.lankaster.pyrellium.world;
 
 
 import com.google.gson.*;
+import com.lankaster.pyrellium.config.ConfigHandler;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -29,6 +33,25 @@ public class ModNoiseSettings {
         return gson.fromJson(string, JsonElement.class);
     }
 
+    public static List<ModNoiseSettings> INSTANCES = new LinkedList<>();
+
+    public static @Nullable ModNoiseSettings get(Identifier id) {
+        for (ModNoiseSettings data : INSTANCES) {
+            if (data.target.equals(id)) return data;
+        }
+        return null;
+    }
+
+    protected static void register(Identifier target, Supplier<Boolean> enabled, Function<JsonElement, String> provider) {
+        INSTANCES.add(new ModNoiseSettings(target, enabled, provider));
+    }
+
+    public static void register() {
+        register(Identifier.of("minecraft", "worldgen/noise_settings/nether.json"), () -> true, ModNoiseSettings::changeNoiseRouter);
+
+        register(Identifier.of("minecraft", "dimension/the_nether.json"), () -> true, ModNoiseSettings::changeBiomeNoise);
+    }
+
     public static boolean detectModification(JsonElement json) {
         JsonElement defaultNoise = getJson("""
                 {"height":128,"min_y":0,"size_horizontal":1,"size_vertical":2}""");
@@ -37,17 +60,35 @@ public class ModNoiseSettings {
         return (!json.getAsJsonObject().get("noise").equals(defaultNoise)) || (!json.getAsJsonObject().get("noise_router").equals(defaultRouter));
     }
 
-    public static String changeNoiseRouter(JsonElement json) {
-        json.getAsJsonObject().asMap().replace("noise", getJson("""
-                        { "min_y": 0, "height": 192, "size_horizontal": 1, "size_vertical": 2 }"""));
+    public static String changeBiomeNoise(JsonElement json) {
+        JsonArray baseNoise = json.getAsJsonObject().get("generator").getAsJsonObject().get("biome_source").getAsJsonObject().get("biomes").getAsJsonArray();
+        JsonArray sequence = new JsonArray();
 
-        json.getAsJsonObject().get("noise_router")
-                .getAsJsonObject().asMap().replace("final_density", new JsonPrimitive("pyrellium:final_density"));
+        for (Pair<Identifier, JsonElement> noise : ModWorldGeneration.getNoiseBiomes().stream().toList()) {
+            JsonObject biome = getJson("{\"biome\": \"" + noise.getFirst().toString() + "\"}").getAsJsonObject();
+            biome.add("parameters", noise.getSecond());
+            sequence.add(biome);
+        }
+        sequence.addAll(baseNoise);
+
+        JsonObject source = getJson("""
+                    {
+                      "type": "minecraft:multi_noise"
+                    }""").getAsJsonObject();
+        source.add("biomes", sequence);
+        json.getAsJsonObject().get("generator").getAsJsonObject().asMap().replace("biome_source", source);
 
         return gson.toJson(json);
     }
 
-    public static String changeSurfaceRules(JsonElement json) {
+    public static String changeNoiseRouter(JsonElement json) {
+        if (ConfigHandler.getConfig().globalFeatureConfig().doIncreasedHeight() && !detectModification(json)) {
+            json.getAsJsonObject().asMap().replace("noise", getJson("""
+                    { "min_y": 0, "height": 192, "size_horizontal": 1, "size_vertical": 2 }"""));
+
+            json.getAsJsonObject().get("noise_router").getAsJsonObject().asMap().replace("final_density", new JsonPrimitive("pyrellium:final_density"));
+        }
+
         JsonObject baseRules = json.getAsJsonObject().get("surface_rule").getAsJsonObject();
         JsonArray sequence = new JsonArray();
         sequence.add(getJson("""
