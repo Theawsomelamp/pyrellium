@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.lankaster.pyrellium.Pyrellium;
-import com.lankaster.pyrellium.config.ConfigHandler;
 import com.lankaster.pyrellium.world.ModNoiseSettings;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.resource.*;
@@ -65,17 +64,11 @@ public class LifecycledResourceManagerImplMixin {
 
     @ModifyReturnValue(method = "findResources", at = @At("RETURN"))
     public Map<Identifier, Resource> findConfiguredResources(Map<Identifier, Resource> original, String startingPath, Predicate<Identifier> allowedPathPredicate) {
-        ModNoiseSettings data = new ModNoiseSettings(Identifier.of("minecraft", "worldgen/noise_settings/nether.json"), () -> ConfigHandler.getConfig().globalFeatureConfig().doIncreasedHeight(), ModNoiseSettings::changeNoiseRouter);
-        ModNoiseSettings data2 = new ModNoiseSettings(Identifier.of("minecraft", "worldgen/noise_settings/nether.json"), () -> true, ModNoiseSettings::changeSurfaceRules);
-
         List<Identifier> ids = new ArrayList<>(original.keySet());
         for (Identifier id : ids) {
-            if (!data.target.equals(id)) continue;
-            if (!ModNoiseSettings.detectModification(read(Optional.of(original.get(id)))) && data.enabled.get()) {
-                original.replace(id, readAndApply(Optional.of(original.get(id)), data));
-            }
-            if (!data2.enabled.get()) continue;
-            original.replace(id, readAndApply(Optional.of(original.get(id)), data2));
+            ModNoiseSettings data = ModNoiseSettings.get(id);
+            if (data == null || !data.enabled.get()) continue;
+            original.replace(id, readAndApply(Optional.of(original.get(id)), data));
 
             Pyrellium.LOGGER.info("Adding Pyrellium Noise Settings");
         }

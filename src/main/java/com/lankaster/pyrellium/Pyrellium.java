@@ -5,6 +5,7 @@ import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
 import com.lankaster.pyrellium.block.ModBlocks;
+import com.lankaster.pyrellium.world.ModNoiseSettings;
 import com.lankaster.pyrellium.world.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
@@ -23,6 +24,7 @@ public class Pyrellium implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ConfigHandler.load(FabricLoader.getInstance().getConfigDir().resolve("pyrellium.json"));
+		ModNoiseSettings.register();
 
 		ModItemGroups.registerItemGroups();
 
