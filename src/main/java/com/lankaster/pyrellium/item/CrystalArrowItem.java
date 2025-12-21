@@ -7,10 +7,15 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class CrystalArrowItem extends ArrowItem {
     public CrystalArrowItem(Item.Settings settings) {
@@ -28,5 +33,11 @@ public class CrystalArrowItem extends ArrowItem {
         arrowEntity.initFromStack(stack);
         arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
         return arrowEntity;
+    }
+
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        super.appendTooltip(stack, context, tooltip, type);
+
+        tooltip.add(Text.translatable("item.pyrellium.crystal_arrow.desc").formatted(Formatting.GRAY));
     }
 }
