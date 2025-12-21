@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item OPAL = registerItem("opal", new Item(new FabricItemSettings()));
-    public static final Item OPAL_SPYGLASS = registerItem("opal_spyglass", new SpyglassItem(new FabricItemSettings().maxCount(1)));
+    public static final Item OPAL_SPYGLASS = registerItem("opal_spyglass", new OpalSpyglassItem(new FabricItemSettings().maxCount(1)));
     public static final Item OPAL_TIARA = registerItem("opal_tiara", new OpalTiaraItem(new FabricItemSettings()));
     public static final Item AMETHYST_ARROW = registerItem("amethyst_arrow", new CrystalArrowItem(new FabricItemSettings()));
     public static final Item OPAL_ARROW = registerItem("opal_arrow", new CrystalArrowItem(new FabricItemSettings()));
