@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pyrellium:burning_planks"
+    "pyrellium:burning_planks",
+    "pyrellium:shaderoot_planks"
   ]
 }

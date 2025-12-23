@@ -27,7 +27,7 @@ public class ModBoatItem extends Item {
     private final ModChestBoatEntity.Type chestype;
     private final boolean chest;
 
-    public ModBoatItem(boolean chest, ModBoatEntity.Type type, ModChestBoatEntity.Type chestType, Item.Settings settings) {
+    public ModBoatItem(boolean chest, ModBoatEntity.Type type, ModChestBoatEntity.Type chestType, Settings settings) {
         super(settings);
         this.chest = chest;
         this.type = type;

@@ -24,6 +24,6 @@ public class ModWallHangingSignBlock extends WallHangingSignBlock{
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.BURNING_HANGING_SIGN, HangingSignBlockEntity::tick);
+        return checkType(type, ModBlockEntities.PYRELLIUM_HANGING_SIGN, HangingSignBlockEntity::tick);
     }
 }

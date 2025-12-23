@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "pyrellium:shaderoot_planks"
+    }
+  ],
+  "result": {
+    "item": "pyrellium:shaderoot_button"
+  }
+}

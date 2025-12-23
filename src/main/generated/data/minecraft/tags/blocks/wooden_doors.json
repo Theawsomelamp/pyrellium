@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pyrellium:burning_door"
+    "pyrellium:burning_door",
+    "pyrellium:shaderoot_door"
   ]
 }

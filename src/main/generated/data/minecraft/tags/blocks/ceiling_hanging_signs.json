@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pyrellium:burning_hanging_sign"
+    "pyrellium:burning_hanging_sign",
+    "pyrellium:shaderoot_hanging_sign"
   ]
 }

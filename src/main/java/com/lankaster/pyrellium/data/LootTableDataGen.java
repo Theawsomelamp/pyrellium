@@ -63,5 +63,20 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.PYROLILY);
         addDrop(ModBlocks.POTTED_PYROLILY, pottedPlantDrops(ModBlocks.PYROLILY));
         addDrop(ModBlocks.HEADSTONE);
+        addDrop(ModBlocks.BURNING_LOG);
+        addDrop(ModBlocks.BURNING_WOOD);
+        addDrop(ModBlocks.STRIPPED_BURNING_LOG);
+        addDrop(ModBlocks.STRIPPED_BURNING_WOOD);
+        addDrop(ModBlocks.SHADEROOT_PLANKS);
+        addDrop(ModBlocks.SHADEROOT_STAIRS);
+        addDrop(ModBlocks.SHADEROOT_SLAB, slabDrops(ModBlocks.SHADEROOT_SLAB));
+        addDrop(ModBlocks.SHADEROOT_FENCE);
+        addDrop(ModBlocks.SHADEROOT_FENCE_GATE);
+        addDrop(ModBlocks.SHADEROOT_TRAPDOOR);
+        addDrop(ModBlocks.SHADEROOT_DOOR, doorDrops(ModBlocks.SHADEROOT_DOOR));
+        addDrop(ModBlocks.SHADEROOT_PRESSURE_PLATE);
+        addDrop(ModBlocks.SHADEROOT_BUTTON);
+        addDrop(ModBlocks.BURNING_SIGN);
+        addDrop(ModBlocks.BURNING_HANGING_SIGN);
     }
 }

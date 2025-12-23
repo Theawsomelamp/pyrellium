@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "pyrellium:block/shaderoot_planks",
+    "side": "pyrellium:block/shaderoot_planks",
+    "top": "pyrellium:block/shaderoot_planks"
+  }
+}

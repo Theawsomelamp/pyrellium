@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pyrellium:burning_fence_gate"
+    "pyrellium:burning_fence_gate",
+    "pyrellium:shaderoot_fence_gate"
   ]
 }

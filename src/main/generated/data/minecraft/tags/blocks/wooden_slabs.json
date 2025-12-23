@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pyrellium:burning_slab"
+    "pyrellium:burning_slab",
+    "pyrellium:shaderoot_slab"
   ]
 }

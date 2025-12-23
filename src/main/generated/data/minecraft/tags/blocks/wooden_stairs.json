@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pyrellium:burning_stairs"
+    "pyrellium:burning_stairs",
+    "pyrellium:shaderoot_stairs"
   ]
 }

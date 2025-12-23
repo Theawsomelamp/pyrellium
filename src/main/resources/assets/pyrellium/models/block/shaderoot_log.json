@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "pyrellium:block/shaderoot_log_top",
+    "side": "pyrellium:block/shaderoot_log_side"
+  }
+}
