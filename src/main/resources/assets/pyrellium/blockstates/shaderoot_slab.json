@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pyrellium:block/shaderoot_slab"
+    },
+    "type=double": {
+      "model": "pyrellium:block/shaderoot_slab_full"
+    },
+    "type=top": {
+      "model": "pyrellium:block/shaderoot_slab_top"
+    }
+  }
+}

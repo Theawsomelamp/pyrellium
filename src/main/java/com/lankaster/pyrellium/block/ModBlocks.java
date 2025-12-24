@@ -90,6 +90,32 @@ public class ModBlocks {
     public static final Item BURNING_BOAT = ModItems.registerItem("burning_boat", new ModBoatItem(false, ModBoatEntity.Type.BURNING, ModChestBoatEntity.Type.BURNING, (new Item.Settings()).maxCount(1)));
     public static final Item BURNING_CHEST_BOAT = ModItems.registerItem("burning_chest_boat", new ModBoatItem(true, ModBoatEntity.Type.BURNING, ModChestBoatEntity.Type.BURNING, (new Item.Settings()).maxCount(1)));
 
+    /// Back to the blocks
+    public static final WoodType SHADEROOT = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "shaderoot"), new BlockSetType("shaderoot"));
+    public static final Block SHADEROOT_LOG = registerBlock("shaderoot_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).sounds(BlockSoundGroup.WOOD)));
+    public static final Block SHADEROOT_WOOD = registerBlock("shaderoot_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).sounds(BlockSoundGroup.WOOD)));
+    public static final Block STRIPPED_SHADEROOT_LOG = registerBlock("stripped_shaderoot_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_STEM).sounds(BlockSoundGroup.WOOD)));
+    public static final Block STRIPPED_SHADEROOT_WOOD = registerBlock("stripped_shaderoot_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_HYPHAE).sounds(BlockSoundGroup.WOOD)));
+    public static final Block SHADEROOT_PLANKS = registerBlock("shaderoot_planks", new Block(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS).sounds(BlockSoundGroup.WOOD)));
+    public static final Block SHADEROOT_STAIRS = registerBlock("shaderoot_stairs", new StairsBlock(SHADEROOT_PLANKS.getDefaultState(), AbstractBlock.Settings.copy(SHADEROOT_PLANKS)));
+    public static final Block SHADEROOT_SLAB = registerBlock("shaderoot_slab", new SlabBlock(AbstractBlock.Settings.copy(SHADEROOT_PLANKS)));
+    public static final Block SHADEROOT_FENCE = registerBlock("shaderoot_fence", new FenceBlock(AbstractBlock.Settings.copy(SHADEROOT_PLANKS)));
+    public static final Block SHADEROOT_FENCE_GATE = registerBlock("shaderoot_fence_gate", new FenceGateBlock(SHADEROOT, AbstractBlock.Settings.copy(SHADEROOT_PLANKS)));
+    public static final Block SHADEROOT_DOOR = registerBlock("shaderoot_door", new DoorBlock(SHADEROOT.setType(), AbstractBlock.Settings.copy(SHADEROOT_PLANKS)));
+    public static final Block SHADEROOT_TRAPDOOR = registerBlock("shaderoot_trapdoor", new TrapdoorBlock(SHADEROOT.setType(), AbstractBlock.Settings.copy(SHADEROOT_PLANKS).nonOpaque()));
+    public static final Block SHADEROOT_PRESSURE_PLATE = registerBlock("shaderoot_pressure_plate", new PressurePlateBlock(SHADEROOT.setType(), AbstractBlock.Settings.copy(SHADEROOT_PLANKS)));
+    public static final Block SHADEROOT_BUTTON = registerBlock("shaderoot_button", new ButtonBlock(SHADEROOT.setType(), 30, AbstractBlock.Settings.copy(SHADEROOT_PLANKS).noCollision().pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block SHADEROOT_SIGN = registerBlockWithoutBlockItem("shaderoot_sign", new SignBlock(SHADEROOT, AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F)));
+    public static final Block SHADEROOT_WALL_SIGN = registerBlockWithoutBlockItem("shaderoot_wall_sign", new WallSignBlock(SHADEROOT, AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).dropsLike(SHADEROOT_SIGN)));
+    public static final Block SHADEROOT_HANGING_SIGN = registerBlockWithoutBlockItem("shaderoot_hanging_sign", new HangingSignBlock(SHADEROOT, AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F)));
+    public static final Block SHADEROOT_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("shaderoot_wall_hanging_sign", new WallHangingSignBlock(SHADEROOT, AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).dropsLike(SHADEROOT_HANGING_SIGN)));
+
+    /// More Items
+    public static final Item SHADEROOT_SIGN_ITEM = ModItems.registerItem("shaderoot_sign", new SignItem((new Item.Settings().maxCount(16)), ModBlocks.SHADEROOT_SIGN, ModBlocks.SHADEROOT_WALL_SIGN));
+    public static final Item SHADEROOT_HANGING_SIGN_ITEM = ModItems.registerItem("shaderoot_hanging_sign", new HangingSignItem(ModBlocks.SHADEROOT_HANGING_SIGN, ModBlocks.SHADEROOT_WALL_HANGING_SIGN, (new Item.Settings().maxCount(16))));
+    public static final Item SHADEROOT_BOAT = ModItems.registerItem("shaderoot_boat", new ModBoatItem(false, ModBoatEntity.Type.SHADEROOT, ModChestBoatEntity.Type.SHADEROOT, (new Item.Settings()).maxCount(1)));
+    public static final Item SHADEROOT_CHEST_BOAT = ModItems.registerItem("shaderoot_chest_boat", new ModBoatItem(true, ModBoatEntity.Type.SHADEROOT, ModChestBoatEntity.Type.SHADEROOT, (new Item.Settings()).maxCount(1)));
+
     private static Block registerBlockWithoutBlockItem(String name, Block block){
         return Registry.register(Registries.BLOCK, Identifier.of(Pyrellium.MOD_ID, name), block);
     }
@@ -121,13 +147,23 @@ public class ModBlocks {
     public static void registerStrippables() {
         StrippableBlockRegistry.register(BURNING_LOG, STRIPPED_BURNING_LOG);
         StrippableBlockRegistry.register(BURNING_WOOD, STRIPPED_BURNING_WOOD);
+        StrippableBlockRegistry.register(SHADEROOT_LOG, STRIPPED_SHADEROOT_LOG);
+        StrippableBlockRegistry.register(SHADEROOT_WOOD, STRIPPED_SHADEROOT_WOOD);
     }
 
-    public static void registerModBlocks() {
-        registerStrippables();
+    public static void registerSigns() {
         BlockEntityType.SIGN.addSupportedBlock(ModBlocks.BURNING_SIGN);
         BlockEntityType.SIGN.addSupportedBlock(ModBlocks.BURNING_WALL_SIGN);
         BlockEntityType.HANGING_SIGN.addSupportedBlock(ModBlocks.BURNING_HANGING_SIGN);
         BlockEntityType.HANGING_SIGN.addSupportedBlock(ModBlocks.BURNING_WALL_HANGING_SIGN);
+        BlockEntityType.SIGN.addSupportedBlock(ModBlocks.SHADEROOT_SIGN);
+        BlockEntityType.SIGN.addSupportedBlock(ModBlocks.SHADEROOT_WALL_SIGN);
+        BlockEntityType.HANGING_SIGN.addSupportedBlock(ModBlocks.SHADEROOT_HANGING_SIGN);
+        BlockEntityType.HANGING_SIGN.addSupportedBlock(ModBlocks.SHADEROOT_WALL_HANGING_SIGN);
+    }
+
+    public static void registerModBlocks() {
+        registerStrippables();
+        registerSigns();
     }
 }

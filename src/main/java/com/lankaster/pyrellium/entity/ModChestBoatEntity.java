@@ -14,6 +14,7 @@ import net.minecraft.util.function.ValueLists;
 import net.minecraft.world.World;
 
 import java.util.function.IntFunction;
+import java.util.function.Supplier;
 
 public class ModChestBoatEntity extends ChestBoatEntity {
 
@@ -60,14 +61,15 @@ public class ModChestBoatEntity extends ChestBoatEntity {
 
 
     public enum Type implements StringIdentifiable {
-        BURNING(ModBlocks.BURNING_CHEST_BOAT, "burning");
+        BURNING(() -> ModBlocks.BURNING_CHEST_BOAT, "burning"),
+        SHADEROOT(() -> ModBlocks.SHADEROOT_CHEST_BOAT, "shaderoot");
 
         private final String name;
-        private final Item baseItem;
+        private final Supplier<Item> baseItem;
         public static final StringIdentifiable.EnumCodec<Type> CODEC = StringIdentifiable.createCodec(ModChestBoatEntity.Type::values);
         private static final IntFunction<Type> BY_ID = ValueLists.createIdToValueFunction(Enum::ordinal, values(), BURNING);
 
-        Type(Item baseItem, String string) {
+        Type(Supplier<Item> baseItem, String string) {
             this.name = string;
             this.baseItem = baseItem;
         }
@@ -77,7 +79,7 @@ public class ModChestBoatEntity extends ChestBoatEntity {
         }
 
         public Item getBaseItem() {
-            return this.baseItem;
+            return this.baseItem.get();
         }
 
         public static ModChestBoatEntity.Type getType(int type) {

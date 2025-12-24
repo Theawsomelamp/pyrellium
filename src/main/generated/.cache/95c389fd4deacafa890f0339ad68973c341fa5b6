@@ -1,5 +1,6 @@
-// 1.21.1	2025-11-12T08:35:38.18731	Pyrellium/Tags for minecraft:item
-fa1bfd287a55552b7f14c259acf37bc2e83bbce2 data\minecraft\tags\item\wooden_slabs.json
-10be561f5e4f9beb755be7f8944195a8b86ffbd6 data\minecraft\tags\item\planks.json
+// 1.21.1	2025-12-24T16:01:08.4748176	Pyrellium/Tags for minecraft:item
+bfd54eb15d5fbfa0c6803425b06910a113e16a77 data\minecraft\tags\item\wooden_slabs.json
+9d5b219c81ea711f6bdc2f74b352e4fde756f389 data\minecraft\tags\item\planks.json
 6189648a4212b48ddedaddd3a2da997ac8699d63 data\minecraft\tags\item\arrows.json
 d26f0d908e00b9fbc7cfcff1ee505c0a9680ed33 data\pyrellium\tags\item\burning_logs.json
+280d860ee9c6d0c0d4d59eda026075ad5fb97732 data\pyrellium\tags\item\shaderoot_logs.json

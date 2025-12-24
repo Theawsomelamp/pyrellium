@@ -13,6 +13,7 @@ import net.minecraft.util.function.ValueLists;
 import net.minecraft.world.World;
 
 import java.util.function.IntFunction;
+import java.util.function.Supplier;
 
 public class ModBoatEntity extends BoatEntity {
 
@@ -59,14 +60,15 @@ public class ModBoatEntity extends BoatEntity {
 
 
     public enum Type implements StringIdentifiable {
-        BURNING(ModBlocks.BURNING_BOAT, "burning");
+        BURNING(() -> ModBlocks.BURNING_BOAT, "burning"),
+        SHADEROOT(() -> ModBlocks.SHADEROOT_BOAT, "shaderoot");
 
         private final String name;
-        private final Item baseItem;
+        private final Supplier<Item> baseItem;
         public static final StringIdentifiable.EnumCodec<Type> CODEC = StringIdentifiable.createCodec(ModBoatEntity.Type::values);
         private static final IntFunction<Type> BY_ID = ValueLists.createIdToValueFunction(Enum::ordinal, values(), BURNING);
 
-        Type(Item baseItem, String string) {
+        Type(Supplier<Item> baseItem, String string) {
             this.name = string;
             this.baseItem = baseItem;
         }
@@ -76,7 +78,7 @@ public class ModBoatEntity extends BoatEntity {
         }
 
         public Item getBaseItem() {
-            return this.baseItem;
+            return this.baseItem.get();
         }
 
         public static ModBoatEntity.Type getType(int type) {

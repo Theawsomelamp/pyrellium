@@ -73,59 +73,76 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.BURNING_LOG,
                 ModBlocks.BURNING_WOOD,
                 ModBlocks.STRIPPED_BURNING_LOG,
-                ModBlocks.STRIPPED_BURNING_WOOD
+                ModBlocks.STRIPPED_BURNING_WOOD,
+                ModBlocks.SHADEROOT_LOG,
+                ModBlocks.SHADEROOT_WOOD,
+                ModBlocks.STRIPPED_SHADEROOT_LOG,
+                ModBlocks.STRIPPED_SHADEROOT_WOOD
         );
 
         getOrCreateTagBuilder(BlockTags.PLANKS).add(
-                ModBlocks.BURNING_PLANKS
+                ModBlocks.BURNING_PLANKS,
+                ModBlocks.SHADEROOT_PLANKS
         );
 
         getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS).add(
-                ModBlocks.BURNING_STAIRS
+                ModBlocks.BURNING_STAIRS,
+                ModBlocks.SHADEROOT_STAIRS
         );
 
         getOrCreateTagBuilder(BlockTags.WOODEN_SLABS).add(
-                ModBlocks.BURNING_SLAB
+                ModBlocks.BURNING_SLAB,
+                ModBlocks.SHADEROOT_SLAB
         );
 
         getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(
-                ModBlocks.BURNING_FENCE
+                ModBlocks.BURNING_FENCE,
+                ModBlocks.SHADEROOT_FENCE
         );
 
         getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(
-                ModBlocks.BURNING_FENCE_GATE
+                ModBlocks.BURNING_FENCE_GATE,
+                ModBlocks.SHADEROOT_FENCE_GATE
         );
 
         getOrCreateTagBuilder(BlockTags.WOODEN_DOORS).add(
-                ModBlocks.BURNING_DOOR
+                ModBlocks.BURNING_DOOR,
+                ModBlocks.SHADEROOT_DOOR
         );
 
         getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS).add(
-                ModBlocks.BURNING_TRAPDOOR
+                ModBlocks.BURNING_TRAPDOOR,
+                ModBlocks.SHADEROOT_TRAPDOOR
         );
 
         getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES).add(
-                ModBlocks.BURNING_PRESSURE_PLATE
+                ModBlocks.BURNING_PRESSURE_PLATE,
+                ModBlocks.SHADEROOT_PRESSURE_PLATE
         );
 
         getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS).add(
-                ModBlocks.BURNING_BUTTON
+                ModBlocks.BURNING_BUTTON,
+                ModBlocks.SHADEROOT_BUTTON
         );
 
         getOrCreateTagBuilder(BlockTags.STANDING_SIGNS).add(
-                ModBlocks.BURNING_SIGN
+                ModBlocks.BURNING_SIGN,
+                ModBlocks.SHADEROOT_SIGN
         );
 
         getOrCreateTagBuilder(BlockTags.WALL_SIGNS).add(
-                ModBlocks.BURNING_WALL_SIGN
+                ModBlocks.BURNING_WALL_SIGN,
+                ModBlocks.SHADEROOT_WALL_SIGN
         );
 
         getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS).add(
-                ModBlocks.BURNING_HANGING_SIGN
+                ModBlocks.BURNING_HANGING_SIGN,
+                ModBlocks.SHADEROOT_HANGING_SIGN
         );
 
         getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS).add(
-                ModBlocks.BURNING_WALL_HANGING_SIGN
+                ModBlocks.BURNING_WALL_HANGING_SIGN,
+                ModBlocks.SHADEROOT_WALL_HANGING_SIGN
         );
 
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
@@ -133,6 +150,13 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.BURNING_WOOD,
                 ModBlocks.STRIPPED_BURNING_LOG,
                 ModBlocks.STRIPPED_BURNING_WOOD
+        );
+
+        getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "shaderoot_logs"))).add(
+                ModBlocks.SHADEROOT_LOG,
+                ModBlocks.SHADEROOT_WOOD,
+                ModBlocks.STRIPPED_SHADEROOT_LOG,
+                ModBlocks.STRIPPED_SHADEROOT_WOOD
         );
     }
 }

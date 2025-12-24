@@ -3,6 +3,10 @@
     "pyrellium:burning_log",
     "pyrellium:burning_wood",
     "pyrellium:stripped_burning_log",
-    "pyrellium:stripped_burning_wood"
+    "pyrellium:stripped_burning_wood",
+    "pyrellium:shaderoot_log",
+    "pyrellium:shaderoot_wood",
+    "pyrellium:stripped_shaderoot_log",
+    "pyrellium:stripped_shaderoot_wood"
   ]
 }

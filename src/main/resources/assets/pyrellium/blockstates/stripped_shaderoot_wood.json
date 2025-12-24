@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "pyrellium:block/stripped_shaderoot_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "pyrellium:block/stripped_shaderoot_wood"
+    },
+    "axis=z": {
+      "model": "pyrellium:block/stripped_shaderoot_wood",
+      "x": 90
+    }
+  }
+}

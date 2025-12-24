@@ -61,15 +61,19 @@ public class BlockOutline {
 
     public static BlockPos saveBlock() {
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client.options.pickItemKey.wasPressed() && client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS && savedPos != null) {
-            MarkerPayload markerPayload = new MarkerPayload(savedPos);
-            client.world.playSound(client.player.getPos().x, client.player.getPos().y, client.player.getPos().z, SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, SoundCategory.PLAYERS, 1.0f, 1.0f, true);
-            ClientPlayNetworking.send(markerPayload);
+
+        if (client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
+            if (client.options.pickItemKey.wasPressed() && savedPos != null) {
+                MarkerPayload markerPayload = new MarkerPayload(savedPos);
+                client.world.playSound(client.player.getPos().x, client.player.getPos().y, client.player.getPos().z, SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, SoundCategory.PLAYERS, 1.0f, 1.0f, true);
+                ClientPlayNetworking.send(markerPayload);
+            } else if (client.options.attackKey.wasPressed()) {
+                savedPos = (client.options.sneakKey.isPressed() ? null : raycast());
+                sharedPos = (client.options.sneakKey.isPressed() ? null : sharedPos);
+            }
         }
 
-        if (client.options.attackKey.wasPressed() && client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
-            savedPos = (client.options.sneakKey.isPressed() ? null : raycast());
-        } else if (savedPos != null && client.world.isChunkLoaded(savedPos.getX(), savedPos.getZ())) {
+        if (savedPos != null && client.world.isChunkLoaded(savedPos.getX(), savedPos.getZ())) {
             return savedPos;
         }
         return null;
