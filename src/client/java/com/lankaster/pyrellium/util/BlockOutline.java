@@ -69,7 +69,7 @@ public class BlockOutline {
                 buf.writeBlockPos(savedPos);
                 client.world.playSound(client.player.getPos().x, client.player.getPos().y, client.player.getPos().z, SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, SoundCategory.PLAYERS, 1.0f, 1.0f, true);
                 ClientPlayNetworking.send(ModNetworkingConstants.MARKER_ID, buf);
-            } else if (client.options.attackKey.wasPressed() && client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
+            } else if (client.options.attackKey.wasPressed()) {
                 savedPos = (client.options.sneakKey.isPressed() ? null : raycast());
                 sharedPos = (client.options.sneakKey.isPressed() ? null : sharedPos);
             }
