@@ -37,9 +37,14 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.HEADSTONE
         );
 
+        getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
+                ModBlocks.DRAINED_SOUL_SOIL
+        );
+
         getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).add(
                 ModBlocks.BURNING_LEAVES,
-                ModBlocks.GHOSTLY_LEAVES
+                ModBlocks.GHOSTLY_LEAVES,
+                ModBlocks.FLOWERING_GHOSTLY_LEAVES
         );
 
         getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(
@@ -53,7 +58,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
 
         getOrCreateTagBuilder(BlockTags.LEAVES).add(
                 ModBlocks.BURNING_LEAVES,
-                ModBlocks.GHOSTLY_LEAVES
+                ModBlocks.GHOSTLY_LEAVES,
+                ModBlocks.FLOWERING_GHOSTLY_LEAVES
         );
 
         getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
@@ -143,6 +149,18 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
         getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS).add(
                 ModBlocks.BURNING_WALL_HANGING_SIGN,
                 ModBlocks.SHADEROOT_WALL_HANGING_SIGN
+        );
+
+        getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE).add(
+                ModBlocks.DRAINED_SOUL_SOIL
+        );
+
+        getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(
+                ModBlocks.DRAINED_SOUL_SOIL
+        );
+
+        getOrCreateTagBuilder(BlockTags.NYLIUM).add(
+                ModBlocks.DRAINED_SOUL_SOIL
         );
 
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(

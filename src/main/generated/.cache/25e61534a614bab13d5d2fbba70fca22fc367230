@@ -1,4 +1,6 @@
-// 1.21.1	2025-12-24T16:01:08.4721292	Pyrellium/Tags for minecraft:block
+// 1.21.1	2026-01-11T13:25:10.6195144	Pyrellium/Tags for minecraft:block
+d6b16621103fa81875363e19e5331d3703737e7a data\minecraft\tags\block\nylium.json
+d6b16621103fa81875363e19e5331d3703737e7a data\minecraft\tags\block\mineable\shovel.json
 1ce900f3685830f47dd558c1fef790de818c0283 data\minecraft\tags\block\wooden_fences.json
 28e1f9b85fbcf405360f5271421c17a567c2c060 data\minecraft\tags\block\dirt.json
 d8bba4b4b75af85c6c4bb349ad2e56f9bdbc4cc4 data\minecraft\tags\block\flower_pots.json
@@ -9,17 +11,19 @@ d8bba4b4b75af85c6c4bb349ad2e56f9bdbc4cc4 data\minecraft\tags\block\flower_pots.j
 2b9b6aee46cd000c9648dfe74495c2d7997e525a data\minecraft\tags\block\wooden_stairs.json
 d26f0d908e00b9fbc7cfcff1ee505c0a9680ed33 data\pyrellium\tags\block\burning_logs.json
 47c1ae65162602833d8ad7f1a7d4d33f8c30fcf3 data\minecraft\tags\block\sword_efficient.json
+d6b16621103fa81875363e19e5331d3703737e7a data\minecraft\tags\block\sculk_replaceable.json
 8946f06b6aa051ff19510d2636d6dc0f8bf099d3 data\minecraft\tags\block\small_flowers.json
 dec9ac3de37268fea09e14ac550c2401b1d617ae data\minecraft\tags\block\wooden_doors.json
 f25a7e37613c6258983bec87d87ca14ec272a228 data\minecraft\tags\block\fence_gates.json
+d6b16621103fa81875363e19e5331d3703737e7a data\minecraft\tags\block\soul_fire_base_blocks.json
 9d5b219c81ea711f6bdc2f74b352e4fde756f389 data\minecraft\tags\block\planks.json
 8f90bbbd0747dcebc620a450f8dd9602680d4259 data\minecraft\tags\block\standing_signs.json
-0514c6426d59db1c447df68d638ca50e5c24559d data\minecraft\tags\block\wooden_trapdoors.json
 33b028a20ce1b37aaa6f3fa6c498c0cb9ceb36cc data\minecraft\tags\block\wooden_pressure_plates.json
-0314cb1d5f5990e19a7f7862601582afc799e0ad data\minecraft\tags\block\mineable\hoe.json
+0514c6426d59db1c447df68d638ca50e5c24559d data\minecraft\tags\block\wooden_trapdoors.json
+90347a366d3a0ed1670b64a6e3c793caecffd476 data\minecraft\tags\block\mineable\hoe.json
 bfd54eb15d5fbfa0c6803425b06910a113e16a77 data\minecraft\tags\block\wooden_slabs.json
 1aa2e99a0036f263bfa5e4e16dc833e9728f53d5 data\minecraft\tags\block\ceiling_hanging_signs.json
-0314cb1d5f5990e19a7f7862601582afc799e0ad data\minecraft\tags\block\leaves.json
+90347a366d3a0ed1670b64a6e3c793caecffd476 data\minecraft\tags\block\leaves.json
 c691235943f501a4fd6027f7064148b9ddda1b1a data\minecraft\tags\block\saplings.json
 69f474f716ced84bcb655371f2dd1c085d1c4609 data\minecraft\tags\block\mineable\pickaxe.json
 eb7953265a24a84ad0d4d66ca9a7ce8625fa57da data\minecraft\tags\block\wall_hanging_signs.json

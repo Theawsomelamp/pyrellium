@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "tip=false": {
+      "model": "pyrellium:block/ghostly_vines"
+    },
+    "tip=true": {
+      "model": "pyrellium:block/ghostly_vines_tip"
+    }
+  }
+}

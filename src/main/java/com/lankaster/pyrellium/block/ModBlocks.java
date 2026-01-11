@@ -47,9 +47,6 @@ public class ModBlocks {
     public static final Block RED_SHELF_MUSHROOM = registerBlock("red_shelf_mushroom", new RedShelfMushroomBlock(AbstractBlock.Settings.copy(Blocks.RED_MUSHROOM)));
     public static final Block SPORES = registerBlock("spores", new SporesBlock(AbstractBlock.Settings.copy(Blocks.COBWEB).strength(-1.0F).sounds(BlockSoundGroup.FROGSPAWN)));
 
-    public static final Block DEAD_ROOTS = registerBlock("dead_roots", new RootsBlock(AbstractBlock.Settings.copy(Blocks.WARPED_ROOTS)));
-    public static final Block DEAD_SPROUTS = registerBlock("dead_sprouts", new SproutsBlock(AbstractBlock.Settings.copy(Blocks.NETHER_SPROUTS)));
-    public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", new Block(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
     public static final Block HEADSTONE = registerBlock("headstone", new HeadStoneBlock(WoodType.OAK, AbstractBlock.Settings.create().mapColor(Blocks.STONE.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().nonOpaque().strength(1.5F, 6.0F)));
     public static final Block BONE = registerBlockWithoutBlockItem("bone", new BoneItemBlock(AbstractBlock.Settings.copy(Blocks.BONE_BLOCK)));
     public static final Block BOMB_PLANT = registerBlock("bomb_plant", new BombPlantBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
@@ -58,7 +55,7 @@ public class ModBlocks {
 
     public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));
     public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new ModNyliumBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM)));
-    public static final Block BURNING_LEAVES = registerBlock("burning_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block BURNING_LEAVES = registerBlock("burning_leaves", new ModLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES), 7));
     public static final Block BURNING_SAPLING = registerBlock("burning_sapling", new SaplingBlock(new ModSaplingGenerator().BURNING, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
     public static final Block POTTED_BURNING_SAPLING = registerBlockWithoutBlockItem("potted_burning_sapling", new FlowerPotBlock(ModBlocks.BURNING_SAPLING, AbstractBlock.Settings.copy(Blocks.POTTED_OAK_SAPLING)));
     public static final Block BURNING_LOG = registerBlock("burning_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
@@ -92,6 +89,9 @@ public class ModBlocks {
 
     /// Back to the blocks
     public static final WoodType SHADEROOT = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "shaderoot"), new BlockSetType("shaderoot"));
+    public static final Block DRAINED_SOUL_SOIL = registerBlock("drained_soul_soil", new Block(AbstractBlock.Settings.copy(Blocks.SOUL_SOIL)));
+    public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", new ModLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES), 10));
+    public static final Block FLOWERING_GHOSTLY_LEAVES = registerBlock("flowering_ghostly_leaves", new ModLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).luminance((state) -> 4), 10));
     public static final Block SHADEROOT_LOG = registerBlock("shaderoot_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).sounds(BlockSoundGroup.WOOD)));
     public static final Block SHADEROOT_WOOD = registerBlock("shaderoot_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).sounds(BlockSoundGroup.WOOD)));
     public static final Block STRIPPED_SHADEROOT_LOG = registerBlock("stripped_shaderoot_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_STEM).sounds(BlockSoundGroup.WOOD)));
@@ -109,6 +109,9 @@ public class ModBlocks {
     public static final Block SHADEROOT_WALL_SIGN = registerBlockWithoutBlockItem("shaderoot_wall_sign", new WallSignBlock(SHADEROOT, AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).dropsLike(SHADEROOT_SIGN)));
     public static final Block SHADEROOT_HANGING_SIGN = registerBlockWithoutBlockItem("shaderoot_hanging_sign", new HangingSignBlock(SHADEROOT, AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F)));
     public static final Block SHADEROOT_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("shaderoot_wall_hanging_sign", new WallHangingSignBlock(SHADEROOT, AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).dropsLike(SHADEROOT_HANGING_SIGN)));
+    public static final Block DEAD_ROOTS = registerBlock("dead_roots", new RootsBlock(AbstractBlock.Settings.copy(Blocks.WARPED_ROOTS)));
+    public static final Block DEAD_SPROUTS = registerBlock("dead_sprouts", new SproutsBlock(AbstractBlock.Settings.copy(Blocks.NETHER_SPROUTS)));
+    public static final Block GHOSTLY_VINES = registerBlock("ghostly_vines", new HangingVinesBlock(AbstractBlock.Settings.copy(Blocks.TWISTING_VINES).luminance((state) -> 4)));
 
     /// More Items
     public static final Item SHADEROOT_SIGN_ITEM = ModItems.registerItem("shaderoot_sign", new SignItem((new Item.Settings().maxCount(16)), ModBlocks.SHADEROOT_SIGN, ModBlocks.SHADEROOT_WALL_SIGN));
