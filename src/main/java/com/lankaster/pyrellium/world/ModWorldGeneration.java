@@ -5,7 +5,9 @@ import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.ConfigCodec;
 import com.lankaster.pyrellium.config.ConfigHandler;
 import com.lankaster.pyrellium.world.tree.BurningTrunkPlacer;
+import com.lankaster.pyrellium.world.tree.WeepingFoliagePlacer;
 import com.lankaster.pyrellium.world.tree.WillowFoliagePlacer;
+import com.lankaster.pyrellium.world.tree.HangingTreeDecorator;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
@@ -160,5 +162,7 @@ public class ModWorldGeneration {
         generateBiomes();
         BurningTrunkPlacer.registerBurningTrunkPlacer();
         WillowFoliagePlacer.registerWillowFoliagePlacer();
+        WeepingFoliagePlacer.registerWeepingFoliagePlacer();
+        HangingTreeDecorator.registerHangingTreeDecorator();
     }
 }

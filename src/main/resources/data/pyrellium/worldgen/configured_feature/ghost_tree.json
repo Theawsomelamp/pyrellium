@@ -4,13 +4,13 @@
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:soul_soil"
+        "Name": "pyrellium:drained_soul_soil"
       }
     },
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:bone_block",
+        "Name": "pyrellium:shaderoot_log",
         "Properties": {
           "axis": "y"
         }
@@ -48,45 +48,59 @@
         },
         {
           "data": {
-            "Name": "minecraft:cobweb"
+            "Name": "pyrellium:flowering_ghostly_leaves"
           },
           "weight": 4
         }
       ]
     },
     "foliage_placer": {
-      "type": "pyrellium:willow_foliage_placer",
+      "type": "pyrellium:weeping_foliage_placer",
       "radius": 2,
       "offset": 1,
       "height": 3,
-      "chance": 0.5,
+      "chance": 1,
       "length": {
         "type": "minecraft:uniform",
         "value": {
-          "min_inclusive": 3,
-          "max_inclusive": 6
-        }
-      },
-      "provider": {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "pyrellium:hanging_silk",
-          "Properties": {
-            "tip": "false"
-          }
-        }
-      },
-      "tip_provider": {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "pyrellium:hanging_silk",
-          "Properties": {
-            "tip": "true"
-          }
+          "min_inclusive": 2,
+          "max_inclusive": 5
         }
       }
     },
-    "decorators": [],
+    "decorators": [
+      {
+        "type": "pyrellium:hanging_vines",
+        "chance": 0.7,
+        "minOffset": 0,
+        "maxOffset": 3,
+        "length": {
+          "type": "minecraft:uniform",
+          "value": {
+            "min_inclusive": 3,
+            "max_inclusive": 5
+          }
+        },
+        "provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "pyrellium:ghostly_vines",
+            "Properties": {
+              "tip": "false"
+            }
+          }
+        },
+        "tip_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "pyrellium:ghostly_vines",
+            "Properties": {
+              "tip": "true"
+            }
+          }
+        }
+      }
+    ],
     "minimum_size": {
       "type": "minecraft:two_layers_feature_size"
     }

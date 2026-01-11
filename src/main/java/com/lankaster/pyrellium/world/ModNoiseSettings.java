@@ -845,7 +845,7 @@ public class ModNoiseSettings {
                                           {
                                             "type": "minecraft:block",
                                             "result_state": {
-                                              "Name": "minecraft:soul_soil"
+                                              "Name": "pyrellium:drained_soul_soil"
                                             }
                                           }
                                         ]
@@ -906,7 +906,7 @@ public class ModNoiseSettings {
                                           {
                                             "type": "minecraft:block",
                                             "result_state": {
-                                              "Name": "minecraft:soul_soil"
+                                              "Name": "pyrellium:drained_soul_soil"
                                             }
                                           }
                                         ]

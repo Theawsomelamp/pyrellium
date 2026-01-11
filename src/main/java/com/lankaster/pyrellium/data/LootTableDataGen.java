@@ -78,5 +78,7 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SHADEROOT_BUTTON);
         addDrop(ModBlocks.SHADEROOT_SIGN);
         addDrop(ModBlocks.SHADEROOT_HANGING_SIGN);
+        addDrop(ModBlocks.GHOSTLY_VINES, dropsWithShears(ModBlocks.GHOSTLY_VINES));
+        addDrop(ModBlocks.FLOWERING_GHOSTLY_LEAVES, dropsWithShears(ModBlocks.FLOWERING_GHOSTLY_LEAVES));
     }
 }

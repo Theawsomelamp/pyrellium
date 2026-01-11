@@ -1,6 +1,7 @@
-// 1.20.1	2025-12-24T16:22:31.8468679	Pyrellium/Tags for minecraft:item
+// 1.20.1	2026-01-11T12:52:36.3785403	Pyrellium/Tags for minecraft:item
 82fcf10078bf7aaf374bdc6fb64840aa7415912b data\pyrellium\tags\items\burning_logs.json
 092a545743442d54ff2746df8a7be115061df3fe data\minecraft\tags\items\planks.json
 df86cbfb40732efe19bdedf90f8c4e1196aab8ea data\minecraft\tags\items\arrows.json
-e740b8e9c3c63572fc13b3cf73d9f4f193ed6673 data\minecraft\tags\items\wooden_slabs.json
 090a23965bd56453320ce1dfe56d7a60d57ff2b6 data\pyrellium\tags\items\shaderoot_logs.json
+e740b8e9c3c63572fc13b3cf73d9f4f193ed6673 data\minecraft\tags\items\wooden_slabs.json
+f9069a4700e14d6a9065bcb282138427b8519701 data\minecraft\tags\items\soul_fire_base_blocks.json

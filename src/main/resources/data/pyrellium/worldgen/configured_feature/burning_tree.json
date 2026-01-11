@@ -58,35 +58,41 @@
       "type": "pyrellium:willow_foliage_placer",
       "radius": 2,
       "offset": 1,
-      "height": 3,
-      "chance": 0.5,
-      "length": {
-        "type": "minecraft:uniform",
-        "value": {
-          "min_inclusive": 3,
-          "max_inclusive": 6
-        }
-      },
-      "provider": {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "pyrellium:burning_vines",
-          "Properties": {
-            "tip": "false"
+      "height": 3
+    },
+    "decorators": [
+      {
+        "type": "pyrellium:hanging_vines",
+        "chance": 0.2,
+        "minOffset": 1,
+        "maxOffset": 4,
+        "length": {
+          "type": "minecraft:uniform",
+          "value": {
+            "min_inclusive": 3,
+            "max_inclusive": 6
           }
-        }
-      },
-      "tip_provider": {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "pyrellium:burning_vines",
-          "Properties": {
-            "tip": "true"
+        },
+        "provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "pyrellium:burning_vines",
+            "Properties": {
+              "tip": "false"
+            }
+          }
+        },
+        "tip_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "pyrellium:burning_vines",
+            "Properties": {
+              "tip": "true"
+            }
           }
         }
       }
-    },
-    "decorators": [],
+    ],
     "minimum_size": {
       "type": "minecraft:two_layers_feature_size"
     }

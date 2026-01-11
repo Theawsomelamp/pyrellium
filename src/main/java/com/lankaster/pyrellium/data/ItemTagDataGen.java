@@ -36,6 +36,10 @@ public class ItemTagDataGen extends FabricTagProvider.ItemTagProvider{
                 ModBlocks.SHADEROOT_SLAB.asItem()
         );
 
+        getOrCreateTagBuilder(ItemTags.SOUL_FIRE_BASE_BLOCKS).add(
+                ModBlocks.DRAINED_SOUL_SOIL.asItem()
+        );
+
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
                 ModBlocks.BURNING_LOG.asItem(),
                 ModBlocks.BURNING_WOOD.asItem(),
