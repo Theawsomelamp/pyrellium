@@ -38,7 +38,10 @@
       "entries": [
         {
           "data": {
-            "Name": "pyrellium:burning_leaves"
+            "Name": "pyrellium:burning_leaves",
+            "Properties": {
+              "persistent": "false"
+            }
           },
           "weight": 9
         },

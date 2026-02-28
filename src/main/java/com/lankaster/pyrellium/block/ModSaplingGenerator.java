@@ -15,4 +15,11 @@ public class ModSaplingGenerator {
             Optional.of(RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "burning_tree"))),
             Optional.empty()
     );
+
+    SaplingGenerator SHADEROOT = new SaplingGenerator(
+            "shaderoot",
+            Optional.empty(),
+            Optional.of(RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "ghost_tree"))),
+            Optional.empty()
+    );
 }

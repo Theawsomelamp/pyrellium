@@ -92,6 +92,8 @@ public class ModBlocks {
     public static final Block DRAINED_SOUL_SOIL = registerBlock("drained_soul_soil", new Block(AbstractBlock.Settings.copy(Blocks.SOUL_SOIL)));
     public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", new ModLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES), 10));
     public static final Block FLOWERING_GHOSTLY_LEAVES = registerBlock("flowering_ghostly_leaves", new ModLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).luminance((state) -> 4), 10));
+    public static final Block SHADEROOT_SAPLING = registerBlock("shaderoot_sapling", new SaplingBlock(new ModSaplingGenerator().SHADEROOT, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
+    public static final Block POTTED_SHADEROOT_SAPLING = registerBlockWithoutBlockItem("potted_shaderoot_sapling", new FlowerPotBlock(ModBlocks.SHADEROOT_SAPLING, AbstractBlock.Settings.copy(Blocks.POTTED_OAK_SAPLING)));
     public static final Block SHADEROOT_LOG = registerBlock("shaderoot_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).sounds(BlockSoundGroup.WOOD)));
     public static final Block SHADEROOT_WOOD = registerBlock("shaderoot_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).sounds(BlockSoundGroup.WOOD)));
     public static final Block STRIPPED_SHADEROOT_LOG = registerBlock("stripped_shaderoot_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_STEM).sounds(BlockSoundGroup.WOOD)));

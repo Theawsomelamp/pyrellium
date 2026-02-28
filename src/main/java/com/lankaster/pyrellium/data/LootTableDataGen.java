@@ -38,7 +38,7 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.RED_SHELF_MUSHROOM, dropsWithSilkTouchOrShears(ModBlocks.RED_SHELF_MUSHROOM, addSurvivesExplosionCondition(Blocks.RED_MUSHROOM, ItemEntry.builder(Blocks.RED_MUSHROOM))));
         addDrop(ModBlocks.SPORES, dropsNothing());
         addDrop(ModBlocks.HANGING_SILK, dropsWithSilkTouchOrShears(ModBlocks.HANGING_SILK, addSurvivesExplosionCondition(Items.STRING, ItemEntry.builder(Items.STRING))));
-        addDrop(ModBlocks.GHOSTLY_LEAVES, dropsWithShears(ModBlocks.GHOSTLY_LEAVES));
+        addDrop(ModBlocks.GHOSTLY_LEAVES, leavesDrops(ModBlocks.GHOSTLY_LEAVES, ModBlocks.SHADEROOT_SAPLING, 0.05F, 0.0625F, 0.083F, 0.1F));
         addDrop(ModBlocks.QUARTZ_CRYSTAL);
         addDrop(ModBlocks.BLACKSTONE_ROCK);
         addDrop(ModBlocks.BURNING_NYLIUM, drops(ModBlocks.BURNING_NYLIUM, Blocks.NETHERRACK));
@@ -82,6 +82,8 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SHADEROOT_SIGN);
         addDrop(ModBlocks.SHADEROOT_HANGING_SIGN);
         addDrop(ModBlocks.GHOSTLY_VINES, dropsWithShears(ModBlocks.GHOSTLY_VINES));
-        addDrop(ModBlocks.FLOWERING_GHOSTLY_LEAVES, dropsWithShears(ModBlocks.FLOWERING_GHOSTLY_LEAVES));
+        addDrop(ModBlocks.FLOWERING_GHOSTLY_LEAVES, leavesDrops(ModBlocks.FLOWERING_GHOSTLY_LEAVES, ModBlocks.SHADEROOT_SAPLING, 0.05F, 0.0625F, 0.083F, 0.1F));
+        addDrop(ModBlocks.SHADEROOT_SAPLING);
+        addDrop(ModBlocks.POTTED_SHADEROOT_SAPLING, pottedPlantDrops(ModBlocks.SHADEROOT_SAPLING));
     }
 }

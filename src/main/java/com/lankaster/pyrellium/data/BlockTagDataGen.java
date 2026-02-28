@@ -53,7 +53,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
 
         getOrCreateTagBuilder(BlockTags.DIRT).add(
                 ModBlocks.NETHERRACK_MYCELIUM,
-                ModBlocks.BURNING_NYLIUM
+                ModBlocks.BURNING_NYLIUM,
+                ModBlocks.DRAINED_SOUL_SOIL
         );
 
         getOrCreateTagBuilder(BlockTags.LEAVES).add(
@@ -63,7 +64,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
         );
 
         getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
-                ModBlocks.BURNING_SAPLING
+                ModBlocks.BURNING_SAPLING,
+                ModBlocks.SHADEROOT_SAPLING
         );
 
         getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(
@@ -72,7 +74,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
 
         getOrCreateTagBuilder(BlockTags.FLOWER_POTS).add(
                 ModBlocks.POTTED_BURNING_SAPLING,
-                ModBlocks.POTTED_PYROLILY
+                ModBlocks.POTTED_PYROLILY,
+                ModBlocks.POTTED_SHADEROOT_SAPLING
         );
 
         getOrCreateTagBuilder(BlockTags.LOGS).add(
@@ -151,15 +154,7 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.SHADEROOT_WALL_HANGING_SIGN
         );
 
-        getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE).add(
-                ModBlocks.DRAINED_SOUL_SOIL
-        );
-
         getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(
-                ModBlocks.DRAINED_SOUL_SOIL
-        );
-
-        getOrCreateTagBuilder(BlockTags.NYLIUM).add(
                 ModBlocks.DRAINED_SOUL_SOIL
         );
 

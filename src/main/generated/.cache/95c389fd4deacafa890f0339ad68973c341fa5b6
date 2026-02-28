@@ -1,7 +1,7 @@
-// 1.21.1	2026-01-11T13:25:10.6225122	Pyrellium/Tags for minecraft:item
-d6b16621103fa81875363e19e5331d3703737e7a data\minecraft\tags\item\soul_fire_base_blocks.json
-9d5b219c81ea711f6bdc2f74b352e4fde756f389 data\minecraft\tags\item\planks.json
-bfd54eb15d5fbfa0c6803425b06910a113e16a77 data\minecraft\tags\item\wooden_slabs.json
-6189648a4212b48ddedaddd3a2da997ac8699d63 data\minecraft\tags\item\arrows.json
-d26f0d908e00b9fbc7cfcff1ee505c0a9680ed33 data\pyrellium\tags\item\burning_logs.json
-280d860ee9c6d0c0d4d59eda026075ad5fb97732 data\pyrellium\tags\item\shaderoot_logs.json
+// 1.21.1	2026-02-28T10:23:51.496647505	Pyrellium/Tags for minecraft:item
+bfd54eb15d5fbfa0c6803425b06910a113e16a77 data/minecraft/tags/item/wooden_slabs.json
+d6b16621103fa81875363e19e5331d3703737e7a data/minecraft/tags/item/soul_fire_base_blocks.json
+d26f0d908e00b9fbc7cfcff1ee505c0a9680ed33 data/pyrellium/tags/item/burning_logs.json
+9d5b219c81ea711f6bdc2f74b352e4fde756f389 data/minecraft/tags/item/planks.json
+280d860ee9c6d0c0d4d59eda026075ad5fb97732 data/pyrellium/tags/item/shaderoot_logs.json
+6189648a4212b48ddedaddd3a2da997ac8699d63 data/minecraft/tags/item/arrows.json
