@@ -42,13 +42,19 @@
       "entries": [
         {
           "data": {
-            "Name": "pyrellium:ghostly_leaves"
+            "Name": "pyrellium:ghostly_leaves",
+            "Properties": {
+              "persistent": "false"
+            }
           },
           "weight": 16
         },
         {
           "data": {
-            "Name": "pyrellium:flowering_ghostly_leaves"
+            "Name": "pyrellium:flowering_ghostly_leaves",
+            "Properties": {
+              "persistent": "false"
+            }
           },
           "weight": 4
         }

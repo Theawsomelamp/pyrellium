@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "pyrellium:block/shaderoot_sapling"
+  }
+}

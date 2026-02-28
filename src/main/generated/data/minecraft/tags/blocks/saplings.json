@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pyrellium:burning_sapling"
+    "pyrellium:burning_sapling",
+    "pyrellium:shaderoot_sapling"
   ]
 }
