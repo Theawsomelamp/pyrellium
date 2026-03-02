@@ -1,5 +1,7 @@
 package com.lankaster.pyrellium.block;
 
+import com.google.gson.JsonSyntaxException;
+import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -7,12 +9,13 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -20,11 +23,14 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+
+import java.util.Optional;
 
 public class SporesBlock extends Block {
     public static final BooleanProperty DISPERSED = BooleanProperty.of("dispersed");
@@ -54,7 +60,11 @@ public class SporesBlock extends Block {
         if (!state.get(DISPERSED)) {
             if (entity instanceof LivingEntity livingEntity) {
                 if (!livingEntity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
-                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100));
+                    Optional<StatusEffect> effect = Registries.STATUS_EFFECT.getOrEmpty(Identifier.tryParse(Config.instance().blocks.spores_effect));
+                    if(effect.isEmpty()) {
+                        throw new JsonSyntaxException("Error reading status effect: could not find status effect with id: " + Config.instance().blocks.spores_effect);
+                    }
+                    livingEntity.addStatusEffect(new StatusEffectInstance(Registries.STATUS_EFFECT.getEntry(effect.get()), Config.instance().blocks.spores_effect_time));
                 }
             }
             world.setBlockState(pos, state.cycle(DISPERSED), 2);

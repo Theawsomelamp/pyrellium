@@ -1,6 +1,6 @@
 package com.lankaster.pyrellium.block;
 
-import com.lankaster.pyrellium.config.ConfigHandler;
+import com.lankaster.pyrellium.config.Config;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -55,7 +55,7 @@ public class BombPlantBlock extends PlantBlock implements Fertilizable {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (state.get(AGE) > 0) {
-            world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, ConfigHandler.getConfig().blocksConfig().explodeStrength(), false, World.ExplosionSourceType.NONE);
+            world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Config.instance().blocks.bomb_plant_explosion_strength, false, World.ExplosionSourceType.NONE);
             world.setBlockState(pos, state.with(AGE, 0));
         }
     }
@@ -63,7 +63,7 @@ public class BombPlantBlock extends PlantBlock implements Fertilizable {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if ((!EnchantmentHelper.hasAnyEnchantmentsIn(player.getStackInHand(Hand.MAIN_HAND), EnchantmentTags.PREVENTS_DECORATED_POT_SHATTERING) && !player.getStackInHand(Hand.MAIN_HAND).isOf(Items.BONE_MEAL)) && state.get(AGE) > 0) {
-            world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, ConfigHandler.getConfig().blocksConfig().explodeStrength(), false, World.ExplosionSourceType.NONE);
+            world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Config.instance().blocks.bomb_plant_explosion_strength, false, World.ExplosionSourceType.NONE);
             world.setBlockState(pos, state.with(AGE, 0));
         }
         return super.onUse(state, world, pos, player, hit);
@@ -72,7 +72,7 @@ public class BombPlantBlock extends PlantBlock implements Fertilizable {
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!EnchantmentHelper.hasAnyEnchantmentsIn(player.getStackInHand(Hand.MAIN_HAND), EnchantmentTags.PREVENTS_DECORATED_POT_SHATTERING) && state.get(AGE) > 0) {
-            world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, ConfigHandler.getConfig().blocksConfig().explodeStrength(), false, World.ExplosionSourceType.NONE);
+            world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Config.instance().blocks.bomb_plant_explosion_strength, false, World.ExplosionSourceType.NONE);
             world.setBlockState(pos, state.with(AGE, 0));
         }
         super.onBreak(world, pos, state, player);

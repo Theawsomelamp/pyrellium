@@ -1,6 +1,6 @@
 package com.lankaster.pyrellium.entity;
 
-import com.lankaster.pyrellium.config.ConfigHandler;
+import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -30,7 +30,7 @@ public class BombFlowerEntity extends ThrownItemEntity {
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         if (!this.getWorld().isClient) {
-            this.getWorld().createExplosion(null, this.getX(), this.getY(), this.getZ(), ConfigHandler.getConfig().blocksConfig().explodeStrength(), false, World.ExplosionSourceType.NONE);
+            this.getWorld().createExplosion(null, this.getX(), this.getY(), this.getZ(), Config.instance().items.bomb_flower_explosion_strength, false, World.ExplosionSourceType.NONE);
             this.getWorld().sendEntityStatus(this, (byte)3);
             this.discard();
         }
