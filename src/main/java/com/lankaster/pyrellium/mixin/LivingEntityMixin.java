@@ -1,16 +1,21 @@
 package com.lankaster.pyrellium.mixin;
 
+import com.google.gson.JsonSyntaxException;
+import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+
+import java.util.Optional;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -21,11 +26,18 @@ public abstract class LivingEntityMixin {
 
         StatusEffect effect = original.getEffectType();
 
-        if (effect == StatusEffects.POISON && this.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
-            return new StatusEffectInstance(
-                    effect,
-                    original.getDuration() / 2
-            );
+        for (String id : Config.instance().items.mushroom_cap_effects) {
+            Optional<StatusEffect> blocked_effect = Registries.STATUS_EFFECT.getOrEmpty(Identifier.tryParse(id));
+            if(blocked_effect.isEmpty()) {
+                throw new JsonSyntaxException("Error reading status effect: could not find status effect with id: " + id);
+            }
+
+            if (effect == blocked_effect.get() && this.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
+                return new StatusEffectInstance(
+                        effect,
+                        (int) (original.getDuration() * Config.instance().items.mushroom_cap_effect_multiplier)
+                );
+            }
         }
 
         return original;

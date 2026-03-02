@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.entity;
 
 import com.google.common.base.Predicates;
+import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.ModNetworkingConstants;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
@@ -82,10 +83,11 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
             Entity entity = entityHitResult.getEntity();
             Vec3d pos = entity.getPos();
             World world = getWorld();
-            Box box = new Box(pos.add(2, 2, 2), pos.add(-2, -1, -2));
+            int range = Config.instance().items.crystal_arrow_shatter_radius;
+            Box box = new Box(pos.add(range, range, range), pos.add(-range, -range + 1, -range));
             for (Entity target : world.getEntitiesByClass(Entity.class, box, Predicates.alwaysTrue())) {
                 if (target instanceof LivingEntity) {
-                    target.damage(target.getDamageSources().arrow(this, getOwner()), 2);
+                    target.damage(target.getDamageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
                 }
             }
             world.playSound(null, pos.x ,pos.y, pos.z, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.HOSTILE, 1.0F, 1.0F);
@@ -98,10 +100,11 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
         if (!this.getWorld().isClient()) {
             BlockPos blockPos = blockHitResult.getBlockPos();
             World world = getWorld();
-            Box box = new Box(blockPos.add(2, 2, 2), blockPos.add(-2, -1, -2));
+            int range = Config.instance().items.crystal_arrow_shatter_radius;
+            Box box = new Box(blockPos.add(range, range, range), blockPos.add(-range, -range + 1, -range));
             for (Entity target : world.getEntitiesByClass(Entity.class, box, Predicates.alwaysTrue())) {
                 if (target instanceof LivingEntity) {
-                    target.damage(target.getDamageSources().arrow(this, getOwner()), 2);
+                    target.damage(target.getDamageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
                 }
             }
             world.playSound(null, blockPos, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.HOSTILE);

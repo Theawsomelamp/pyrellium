@@ -1,7 +1,7 @@
 package com.lankaster.pyrellium.block;
 
 import com.lankaster.pyrellium.Pyrellium;
-import com.lankaster.pyrellium.config.ConfigHandler;
+import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.entity.ModBoatEntity;
 import com.lankaster.pyrellium.entity.ModChestBoatEntity;
 import com.lankaster.pyrellium.item.ModBoatItem;
@@ -40,8 +40,8 @@ public class ModBlocks {
     public static final Block HANGING_SILK = registerBlock("hanging_silk", new HangingSilkBlock(FabricBlockSettings.create().ticksRandomly().noCollision().burnable().strength(0.75F).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", new ModNyliumBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_NYLIUM)));
-    public static final Block BROWN_BOUNCESHROOM = registerBlock("brown_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM_BLOCK), ConfigHandler.getConfig().blocksConfig().brownBounce()));
-    public static final Block RED_BOUNCESHROOM = registerBlock("red_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM_BLOCK), ConfigHandler.getConfig().blocksConfig().redBounce()));
+    public static final Block BROWN_BOUNCESHROOM = registerBlock("brown_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM_BLOCK), Config.instance().blocks.brown_bounceshroom_bounce));
+    public static final Block RED_BOUNCESHROOM = registerBlock("red_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM_BLOCK), Config.instance().blocks.red_bounceshroom_bounce));
     public static final Block BROWN_WALL_MUSHROOM = registerBlockWithoutBlockItem("brown_wall_mushroom", new WallMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM)));
     public static final Block RED_WALL_MUSHROOM = registerBlockWithoutBlockItem("red_wall_mushroom", new WallMushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM)));
     public static final Block BROWN_SHELF_MUSHROOM = registerBlock("brown_shelf_mushroom", new BrownShelfMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM)));

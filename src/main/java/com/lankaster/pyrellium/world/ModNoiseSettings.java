@@ -2,7 +2,7 @@ package com.lankaster.pyrellium.world;
 
 import blue.endless.jankson.annotation.Nullable;
 import com.google.gson.*;
-import com.lankaster.pyrellium.config.ConfigHandler;
+import com.lankaster.pyrellium.config.Config;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
@@ -63,9 +63,9 @@ public class ModNoiseSettings {
         JsonArray baseNoise = json.getAsJsonObject().get("generator").getAsJsonObject().get("biome_source").getAsJsonObject().get("biomes").getAsJsonArray();
         JsonArray sequence = new JsonArray();
 
-        for (Pair<Identifier, JsonElement> noise : ModWorldGeneration.getNoiseBiomes().stream().toList()) {
+        for (Pair<Identifier, String> noise : ModWorldGeneration.getNoiseBiomes().stream().toList()) {
             JsonObject biome = getJson("{\"biome\": \"" + noise.getLeft().toString() + "\"}").getAsJsonObject();
-            biome.add("parameters", noise.getRight());
+            biome.add("parameters", getJson(noise.getRight()));
             sequence.add(biome);
         }
         sequence.addAll(baseNoise);
@@ -81,7 +81,7 @@ public class ModNoiseSettings {
     }
 
     public static String changeNoiseRouter(JsonElement json) {
-        if (ConfigHandler.getConfig().globalFeatureConfig().doIncreasedHeight() && !detectModification(json)) {
+        if (Config.instance().globalFeatures.raised_nether_height && !detectModification(json)) {
             json.getAsJsonObject().asMap().replace("noise", getJson("""
                     { "min_y": 0, "height": 192, "size_horizontal": 1, "size_vertical": 2 }"""));
 
