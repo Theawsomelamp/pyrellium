@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/flowerbed_1",
+  "textures": {
+    "flowerbed": "pyrellium:block/wispbloom",
+    "stem": "pyrellium:block/wispbloom_stem"
+  }
+}

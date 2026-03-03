@@ -115,6 +115,7 @@ public class ModBlocks {
     public static final Block DEAD_ROOTS = registerBlock("dead_roots", new RootsBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS)));
     public static final Block DEAD_SPROUTS = registerBlock("dead_sprouts", new SproutsBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS)));
     public static final Block GHOSTLY_VINES = registerBlock("ghostly_vines", new HangingVinesBlock(FabricBlockSettings.copyOf(Blocks.TWISTING_VINES).luminance(4)));
+    public static final Block WISPBLOOM = registerBlock("wispbloom", new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS).luminance(4)));
 
     /// More Items
     public static final Item SHADEROOT_SIGN_ITEM = ModItems.registerItem("shaderoot_sign", new SignItem((new Item.Settings().maxCount(16)), ModBlocks.SHADEROOT_SIGN, ModBlocks.SHADEROOT_WALL_SIGN));

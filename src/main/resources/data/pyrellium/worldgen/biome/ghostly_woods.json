@@ -48,7 +48,6 @@
       "minecraft:patch_soul_fire",
       "minecraft:glowstone_extra",
       "minecraft:glowstone",
-      "minecraft:patch_crimson_roots",
       "minecraft:ore_magma",
       "minecraft:spring_closed",
       "minecraft:ore_soul_sand",
@@ -63,7 +62,8 @@
     [],
     [
       "minecraft:spring_lava",
-      "pyrellium:ghost_forest_vegetation"
+      "pyrellium:ghost_forest_vegetation",
+      "pyrellium:wispbloom_patch"
     ]
   ],
   "has_precipitation": false,

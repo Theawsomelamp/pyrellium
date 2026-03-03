@@ -13,7 +13,6 @@ public class ConfigHandler {
 
 
     public static String noiseToJson(Config.BiomeNoise noise) {
-        Pyrellium.LOGGER.info(gson.toJson(noise));
         return gson.toJson(noise);
     }
 
