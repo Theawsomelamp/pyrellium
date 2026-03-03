@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-28T10:23:51.495861878	Pyrellium/Tags for minecraft:block
+// 1.21.1	2026-03-03T19:11:51.018241968	Pyrellium/Tags for minecraft:block
 bfd54eb15d5fbfa0c6803425b06910a113e16a77 data/minecraft/tags/block/wooden_slabs.json
 849782080f70caa51070f533c3f2de734680506e data/minecraft/tags/block/logs.json
 1ce900f3685830f47dd558c1fef790de818c0283 data/minecraft/tags/block/wooden_fences.json
@@ -13,12 +13,12 @@ dec9ac3de37268fea09e14ac550c2401b1d617ae data/minecraft/tags/block/wooden_doors.
 8946f06b6aa051ff19510d2636d6dc0f8bf099d3 data/minecraft/tags/block/small_flowers.json
 33b028a20ce1b37aaa6f3fa6c498c0cb9ceb36cc data/minecraft/tags/block/wooden_pressure_plates.json
 1aa2e99a0036f263bfa5e4e16dc833e9728f53d5 data/minecraft/tags/block/ceiling_hanging_signs.json
-786540b8855f542d9abd3166f18b54c8d0bcec84 data/minecraft/tags/block/wall_signs.json
 0514c6426d59db1c447df68d638ca50e5c24559d data/minecraft/tags/block/wooden_trapdoors.json
+786540b8855f542d9abd3166f18b54c8d0bcec84 data/minecraft/tags/block/wall_signs.json
 2b9b6aee46cd000c9648dfe74495c2d7997e525a data/minecraft/tags/block/wooden_stairs.json
 f25a7e37613c6258983bec87d87ca14ec272a228 data/minecraft/tags/block/fence_gates.json
-f098062ce8ecd85e09e5813ff13ce7f8c6f96029 data/minecraft/tags/block/saplings.json
 90347a366d3a0ed1670b64a6e3c793caecffd476 data/minecraft/tags/block/mineable/hoe.json
+f098062ce8ecd85e09e5813ff13ce7f8c6f96029 data/minecraft/tags/block/saplings.json
 8bec4d0540e9cebd80377de26726fda4d2937cea data/minecraft/tags/block/wooden_buttons.json
 47c1ae65162602833d8ad7f1a7d4d33f8c30fcf3 data/minecraft/tags/block/sword_efficient.json
 d6b16621103fa81875363e19e5331d3703737e7a data/minecraft/tags/block/mineable/shovel.json
