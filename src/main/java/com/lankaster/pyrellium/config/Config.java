@@ -3,6 +3,7 @@ package com.lankaster.pyrellium.config;
 public class Config {
     protected static Config INSTANCE = new Config();
 
+    public String comment = "For help with the config, refer to https://github.com/Theawsomelamp/pyrellium#configuration";
     public Blocks blocks = new Blocks();
     public Items items = new Items();
     public GlobalFeatures globalFeatures = new GlobalFeatures();
