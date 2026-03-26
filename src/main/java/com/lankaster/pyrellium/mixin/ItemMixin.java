@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.mixin;
 
 import com.lankaster.pyrellium.block.ModBlocks;
+import com.lankaster.pyrellium.config.Config;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.*;
 import net.minecraft.server.world.ServerWorld;
@@ -23,26 +24,28 @@ public class ItemMixin {
 
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void placeableBones(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-        Direction direction = context.getSide();
-        if (direction == Direction.UP) {
-            World world = context.getWorld();
-            ItemPlacementContext itemPlacementContext = new ItemPlacementContext(context);
-            BlockPos blockPos = itemPlacementContext.getBlockPos();
-            BlockState blockStateUp = world.getBlockState(blockPos);
-            ItemStack itemStack = context.getStack();
-            BlockPos posBelow = blockPos.down();
-            BlockState blockState = world.getBlockState(posBelow);
-            if (((blockState.isSideSolidFullSquare(world, blockPos, direction) && blockStateUp.isAir()) || (blockState.isOf(ModBlocks.BONE)) && blockState.get(FLOWER_AMOUNT) < 4) && itemStack.isOf(Items.BONE)) {
-                if (world instanceof ServerWorld) {
-                    if (blockState.isOf(ModBlocks.BONE)) {
-                        world.setBlockState(posBelow, blockState.with(FLOWER_AMOUNT, Math.min(4, blockState.get(FLOWER_AMOUNT) + 1)));
-                    } else {
-                        world.setBlockState(blockPos, ModBlocks.BONE.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite()));
+        if (Config.instance().blocks.placeable_bones) {
+            Direction direction = context.getSide();
+            if (direction == Direction.UP) {
+                World world = context.getWorld();
+                ItemPlacementContext itemPlacementContext = new ItemPlacementContext(context);
+                BlockPos blockPos = itemPlacementContext.getBlockPos();
+                BlockState blockStateUp = world.getBlockState(blockPos);
+                ItemStack itemStack = context.getStack();
+                BlockPos posBelow = blockPos.down();
+                BlockState blockState = world.getBlockState(posBelow);
+                if (((blockState.isSideSolidFullSquare(world, blockPos, direction) && blockStateUp.isAir()) || (blockState.isOf(ModBlocks.BONE)) && blockState.get(FLOWER_AMOUNT) < 4) && itemStack.isOf(Items.BONE)) {
+                    if (world instanceof ServerWorld) {
+                        if (blockState.isOf(ModBlocks.BONE)) {
+                            world.setBlockState(posBelow, blockState.with(FLOWER_AMOUNT, Math.min(4, blockState.get(FLOWER_AMOUNT) + 1)));
+                        } else {
+                            world.setBlockState(blockPos, ModBlocks.BONE.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite()));
+                        }
+                        world.playSound(null, blockPos, SoundEvents.BLOCK_BONE_BLOCK_PLACE, SoundCategory.BLOCKS);
                     }
-                    world.playSound(null, blockPos, SoundEvents.BLOCK_BONE_BLOCK_PLACE, SoundCategory.BLOCKS);
+                    itemStack.decrement(1);
+                    cir.setReturnValue(ActionResult.SUCCESS);
                 }
-                itemStack.decrement(1);
-                cir.setReturnValue(ActionResult.SUCCESS);
             }
         }
     }

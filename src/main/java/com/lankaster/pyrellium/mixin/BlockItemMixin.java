@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.mixin;
 
 import com.lankaster.pyrellium.block.ModBlocks;
+import com.lankaster.pyrellium.config.Config;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -32,23 +33,25 @@ public class BlockItemMixin {
         BlockPos blockPos = itemPlacementContext.getBlockPos();
         BlockState blockStateInit = world.getBlockState(blockPos);
         ItemStack itemStack = context.getStack();
-        if (direction != Direction.DOWN && direction != Direction.UP){
-            BlockPos posSide = blockPos.offset(direction.getOpposite());
-            BlockState blockState = world.getBlockState(posSide);
-            BlockPos posDown = blockPos.offset(Direction.DOWN);
-            BlockState blockStateDown = world.getBlockState(posDown);
-            if ((blockState.isSideSolidFullSquare(world, blockPos, direction) && blockStateInit.isAir()) && !blockStateDown.isSideSolidFullSquare(world, blockPos, Direction.DOWN) ) {
-                if (world instanceof ServerWorld) {
-                    if (itemStack.isOf(Items.BROWN_MUSHROOM)) {
-                        world.setBlockState(blockPos, ModBlocks.BROWN_WALL_MUSHROOM.getDefaultState().with(FACING, direction.getOpposite()));
-                        world.playSound(null, blockPos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS);
-                        itemStack.decrement(1);
-                        cir.setReturnValue(ActionResult.SUCCESS);
-                    } else if (itemStack.isOf(Items.RED_MUSHROOM)) {
-                        world.setBlockState(blockPos, ModBlocks.RED_WALL_MUSHROOM.getDefaultState().with(FACING, direction.getOpposite()));
-                        world.playSound(null, blockPos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS);
-                        itemStack.decrement(1);
-                        cir.setReturnValue(ActionResult.SUCCESS);
+        if (Config.instance().blocks.placeable_wall_mushrooms) {
+            if (direction != Direction.DOWN && direction != Direction.UP) {
+                BlockPos posSide = blockPos.offset(direction.getOpposite());
+                BlockState blockState = world.getBlockState(posSide);
+                BlockPos posDown = blockPos.offset(Direction.DOWN);
+                BlockState blockStateDown = world.getBlockState(posDown);
+                if ((blockState.isSideSolidFullSquare(world, blockPos, direction) && blockStateInit.isAir()) && !blockStateDown.isSideSolidFullSquare(world, blockPos, Direction.DOWN)) {
+                    if (world instanceof ServerWorld) {
+                        if (itemStack.isOf(Items.BROWN_MUSHROOM)) {
+                            world.setBlockState(blockPos, ModBlocks.BROWN_WALL_MUSHROOM.getDefaultState().with(FACING, direction.getOpposite()));
+                            world.playSound(null, blockPos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS);
+                            itemStack.decrement(1);
+                            cir.setReturnValue(ActionResult.SUCCESS);
+                        } else if (itemStack.isOf(Items.RED_MUSHROOM)) {
+                            world.setBlockState(blockPos, ModBlocks.RED_WALL_MUSHROOM.getDefaultState().with(FACING, direction.getOpposite()));
+                            world.playSound(null, blockPos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS);
+                            itemStack.decrement(1);
+                            cir.setReturnValue(ActionResult.SUCCESS);
+                        }
                     }
                 }
             }
