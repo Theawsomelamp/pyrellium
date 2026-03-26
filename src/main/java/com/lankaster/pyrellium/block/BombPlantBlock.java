@@ -1,5 +1,6 @@
 package com.lankaster.pyrellium.block;
 
+import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.Config;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
@@ -7,12 +8,15 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.EnchantmentTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -54,6 +58,7 @@ public class BombPlantBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (entity.getType().isIn(TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "bomb_plant_safe")))) return;
         if (state.get(AGE) > 0) {
             world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Config.instance().blocks.bomb_plant_explosion_strength, false, World.ExplosionSourceType.NONE);
             world.setBlockState(pos, state.with(AGE, 0));
