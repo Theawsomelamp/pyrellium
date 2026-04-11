@@ -3,7 +3,7 @@ package com.lankaster.pyrellium.data;
 import com.lankaster.pyrellium.Pyrellium;
 import net.minecraft.registry.VersionedIdentifier;
 import net.minecraft.resource.*;
-import net.minecraft.resource.metadata.ResourceMetadataReader;
+import net.minecraft.resource.metadata.ResourceMetadataSerializer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -43,7 +43,7 @@ public class PyrelliumResourcePack implements ResourcePack {
     }
 
     @Override
-    public @Nullable <T> T parseMetadata(ResourceMetadataReader<T> metaReader) throws IOException {
+    public @Nullable <T> T parseMetadata(ResourceMetadataSerializer<T> metadataSerializer) throws IOException {
         return null;
     }
 

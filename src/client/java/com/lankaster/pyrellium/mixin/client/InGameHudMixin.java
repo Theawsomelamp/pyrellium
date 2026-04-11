@@ -7,6 +7,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.util.Identifier;
@@ -35,10 +36,10 @@ public abstract class InGameHudMixin {
     @Unique
     private static final Identifier BLACK_ICE_OUTLINE = Identifier.of(Pyrellium.MOD_ID,"textures/black_ice_outline.png");
 
-    @Inject(method = "renderSpyglassOverlay",at = @At(value = "INVOKE",target = "Lnet/minecraft/client/gui/DrawContext;drawTexture(Lnet/minecraft/util/Identifier;IIIFFIIII)V",ordinal = 0))
+    @Inject(method = "renderSpyglassOverlay",at = @At(value = "INVOKE",target = "Lnet/minecraft/client/gui/DrawContext;fill(Lcom/mojang/blaze3d/pipeline/RenderPipeline;IIIII)V", ordinal = 0))
     public void renderOpalSpyglass(DrawContext context, float scale, CallbackInfo ci, @Local(ordinal = 2) int k, @Local(ordinal = 3) int l, @Local(ordinal = 0) int i, @Local(ordinal = 1) int j){
         if (client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
-            context.drawTexture(OPAL_SPYGLASS_SCOPE, k, l, 0.0F, 0.0F, i, j, i, j);
+            context.drawTexture(RenderPipelines.GUI_TEXTURED, OPAL_SPYGLASS_SCOPE, k, l, 0.0F, 0.0F, i, j, i, j);
         }
     }
 

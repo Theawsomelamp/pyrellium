@@ -24,7 +24,7 @@ public class ReplaceWallFeature extends Feature<ReplaceBlobsFeatureConfig> {
         StructureWorldAccess structureWorldAccess = context.getWorld();
         Random random = context.getRandom();
         Block block = replaceBlobsFeatureConfig.target.getBlock();
-        BlockPos blockPos = moveDownToTarget(structureWorldAccess, context.getOrigin().mutableCopy().clamp(Direction.Axis.Y, structureWorldAccess.getBottomY() + 1, structureWorldAccess.getTopY() - 1), block);
+        BlockPos blockPos = moveDownToTarget(structureWorldAccess, context.getOrigin().mutableCopy().clamp(Direction.Axis.Y, structureWorldAccess.getBottomY() + 1, structureWorldAccess.getHeight() - 1), block);
         if (blockPos == null) {
             return false;
         } else {

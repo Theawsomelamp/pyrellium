@@ -1,18 +1,16 @@
 package com.lankaster.pyrellium.item;
 
-import com.lankaster.pyrellium.config.Config;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpyglassItem;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.util.function.Consumer;
 
-public class OpalSpyglassItem extends SpyglassItem {
-    public OpalSpyglassItem(Settings settings){
+public class DescriptiveItem extends Item {
+    public DescriptiveItem(Settings settings){
         super(settings);
     }
 
@@ -20,8 +18,8 @@ public class OpalSpyglassItem extends SpyglassItem {
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
         super.appendTooltip(stack, context, displayComponent, textConsumer, type);
 
-        textConsumer.accept(Text.keybind("key.attack").append(Text.translatable("item.pyrellium.opal_spyglass.desc.left_click")).formatted(Formatting.GRAY));
-        if (Config.instance().items.opal_spyglass_block_sharing)
-            textConsumer.accept(Text.keybind("key.pickItem").append(Text.translatable("item.pyrellium.opal_spyglass.desc.middle_click")).formatted(Formatting.GRAY));
+        String[] txt = Text.translatable(this.getTranslationKey() + ".desc").getString().split("\\n");
+        for (String t : txt)
+            textConsumer.accept(Text.literal(t).formatted(Formatting.GRAY));
     }
 }

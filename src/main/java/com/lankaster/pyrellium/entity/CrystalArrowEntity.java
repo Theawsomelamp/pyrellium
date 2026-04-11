@@ -12,11 +12,14 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.EffectParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -52,16 +55,16 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
 
     public void tick() {
         super.tick();
-        if (this.getWorld().isClient) {
-            if (!this.inGround) {
-                this.getWorld().addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), (double) 0.0F, (double) 0.0F, (double) 0.0F);
+        if (this.getEntityWorld().isClient()) {
+            if (!this.isInGround()) {
+                this.getEntityWorld().addParticleClient(EffectParticleEffect.of(ParticleTypes.INSTANT_EFFECT, -1, 1.0F), this.getX(), this.getY(), this.getZ(), (double) 0.0F, (double) 0.0F, (double) 0.0F);
             } else if (opal) {
                 for (int i = 0; i < 8; ++i) {
-                    this.getWorld().addParticle(ModParticleTypes.OPAL_SHARD, this.getX(), this.getY(), this.getZ(), MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F), 0.05F, MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F));
+                    this.getEntityWorld().addParticleClient(ModParticleTypes.OPAL_SHARD, this.getX(), this.getY(), this.getZ(), MathHelper.nextBetween(this.getEntityWorld().getRandom(), -1.0F, 1.0F), 0.05F, MathHelper.nextBetween(this.getEntityWorld().getRandom(), -1.0F, 1.0F));
                 }
             } else {
                 for (int i = 0; i < 8; ++i) {
-                    this.getWorld().addParticle(ModParticleTypes.AMETHYST_SHARD, this.getX(), this.getY(), this.getZ(), MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F), 0.05F, MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F));
+                    this.getEntityWorld().addParticleClient(ModParticleTypes.AMETHYST_SHARD, this.getX(), this.getY(), this.getZ(), MathHelper.nextBetween(this.getEntityWorld().getRandom(), -1.0F, 1.0F), 0.05F, MathHelper.nextBetween(this.getEntityWorld().getRandom(), -1.0F, 1.0F));
                 }
             }
         }
@@ -69,15 +72,17 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
 
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
-        if (!this.getWorld().isClient()) {
+        if (!this.getEntityWorld().isClient()) {
             Entity entity = entityHitResult.getEntity();
-            Vec3d pos = entity.getPos();
-            World world = getWorld();
+            Vec3d pos = entity.getEntityPos();
+            World world = getEntityWorld();
             int range = Config.instance().items.crystal_arrow_shatter_radius;
             Box box = new Box(pos.add(range, range, range), pos.add(-range, -range + 1, -range));
             for (Entity target : world.getEntitiesByClass(Entity.class, box, Predicates.alwaysTrue())) {
                 if (target instanceof LivingEntity) {
-                    target.damage(target.getDamageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
+                    if (world instanceof ServerWorld serverWorld) {
+                        target.damage(serverWorld, target.getDamageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
+                    }
                 }
             }
             world.playSound(null, pos.x ,pos.y, pos.z, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.HOSTILE, 1.0F, 1.0F);
@@ -87,14 +92,16 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
 
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
-        if (!this.getWorld().isClient()) {
+        if (!this.getEntityWorld().isClient()) {
             BlockPos blockPos = blockHitResult.getBlockPos();
-            World world = getWorld();
+            World world = getEntityWorld();
             int range = Config.instance().items.crystal_arrow_shatter_radius;
             Box box = new Box(blockPos.add(range, range, range).toCenterPos(), blockPos.add(-range, -range + 1, -range).toCenterPos());
             for (Entity target : world.getEntitiesByClass(Entity.class, box, Predicates.alwaysTrue())) {
                 if (target instanceof LivingEntity) {
-                    target.damage(target.getDamageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
+                    if (world instanceof ServerWorld serverWorld) {
+                        target.damage(serverWorld, target.getDamageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
+                    }
                 }
             }
             world.playSound(null, blockPos, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.HOSTILE);
@@ -102,14 +109,14 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
         super.onBlockHit(blockHitResult);
     }
 
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putBoolean("Opal", opal);
+    public void writeCustomData(WriteView view) {
+        super.writeCustomData(view);
+        view.putBoolean("Opal", opal);
     }
 
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        opal = nbt.getBoolean("Opal");
+    public void readCustomData(ReadView view) {
+        super.readCustomData(view);
+        opal = view.getBoolean("Opal", false);
     }
 
     @Override

@@ -9,6 +9,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -18,8 +19,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
+    protected void configure(RegistryWrapper.@NonNull WrapperLookup wrapperLookup) {
+        valueLookupBuilder(BlockTags.PICKAXE_MINEABLE).add(
                 ModBlocks.OPAL_BLOCK,
                 ModBlocks.SMALL_OPAL_BUD,
                 ModBlocks.MEDIUM_OPAL_BUD,
@@ -37,48 +38,48 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.HEADSTONE
         );
 
-        getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
+        valueLookupBuilder(BlockTags.SHOVEL_MINEABLE).add(
                 ModBlocks.DRAINED_SOUL_SOIL
         );
 
-        getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).add(
+        valueLookupBuilder(BlockTags.HOE_MINEABLE).add(
                 ModBlocks.BURNING_LEAVES,
                 ModBlocks.GHOSTLY_LEAVES,
                 ModBlocks.FLOWERING_GHOSTLY_LEAVES
         );
 
-        getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(
+        valueLookupBuilder(BlockTags.SWORD_EFFICIENT).add(
                 ModBlocks.HANGING_SILK
         );
 
-        getOrCreateTagBuilder(BlockTags.DIRT).add(
+        valueLookupBuilder(BlockTags.DIRT).add(
                 ModBlocks.NETHERRACK_MYCELIUM,
                 ModBlocks.BURNING_NYLIUM,
                 ModBlocks.DRAINED_SOUL_SOIL
         );
 
-        getOrCreateTagBuilder(BlockTags.LEAVES).add(
+        valueLookupBuilder(BlockTags.LEAVES).add(
                 ModBlocks.BURNING_LEAVES,
                 ModBlocks.GHOSTLY_LEAVES,
                 ModBlocks.FLOWERING_GHOSTLY_LEAVES
         );
 
-        getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
+        valueLookupBuilder(BlockTags.SAPLINGS).add(
                 ModBlocks.BURNING_SAPLING,
                 ModBlocks.SHADEROOT_SAPLING
         );
 
-        getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(
+        valueLookupBuilder(BlockTags.SMALL_FLOWERS).add(
                 ModBlocks.PYROLILY
         );
 
-        getOrCreateTagBuilder(BlockTags.FLOWER_POTS).add(
+        valueLookupBuilder(BlockTags.FLOWER_POTS).add(
                 ModBlocks.POTTED_BURNING_SAPLING,
                 ModBlocks.POTTED_PYROLILY,
                 ModBlocks.POTTED_SHADEROOT_SAPLING
         );
 
-        getOrCreateTagBuilder(BlockTags.LOGS).add(
+        valueLookupBuilder(BlockTags.LOGS).add(
                 ModBlocks.BURNING_LOG,
                 ModBlocks.BURNING_WOOD,
                 ModBlocks.STRIPPED_BURNING_LOG,
@@ -89,83 +90,83 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.STRIPPED_SHADEROOT_WOOD
         );
 
-        getOrCreateTagBuilder(BlockTags.PLANKS).add(
+        valueLookupBuilder(BlockTags.PLANKS).add(
                 ModBlocks.BURNING_PLANKS,
                 ModBlocks.SHADEROOT_PLANKS
         );
 
-        getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS).add(
+        valueLookupBuilder(BlockTags.WOODEN_STAIRS).add(
                 ModBlocks.BURNING_STAIRS,
                 ModBlocks.SHADEROOT_STAIRS
         );
 
-        getOrCreateTagBuilder(BlockTags.WOODEN_SLABS).add(
+        valueLookupBuilder(BlockTags.WOODEN_SLABS).add(
                 ModBlocks.BURNING_SLAB,
                 ModBlocks.SHADEROOT_SLAB
         );
 
-        getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(
+        valueLookupBuilder(BlockTags.WOODEN_FENCES).add(
                 ModBlocks.BURNING_FENCE,
                 ModBlocks.SHADEROOT_FENCE
         );
 
-        getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(
+        valueLookupBuilder(BlockTags.FENCE_GATES).add(
                 ModBlocks.BURNING_FENCE_GATE,
                 ModBlocks.SHADEROOT_FENCE_GATE
         );
 
-        getOrCreateTagBuilder(BlockTags.WOODEN_DOORS).add(
+        valueLookupBuilder(BlockTags.WOODEN_DOORS).add(
                 ModBlocks.BURNING_DOOR,
                 ModBlocks.SHADEROOT_DOOR
         );
 
-        getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS).add(
+        valueLookupBuilder(BlockTags.WOODEN_TRAPDOORS).add(
                 ModBlocks.BURNING_TRAPDOOR,
                 ModBlocks.SHADEROOT_TRAPDOOR
         );
 
-        getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES).add(
+        valueLookupBuilder(BlockTags.WOODEN_PRESSURE_PLATES).add(
                 ModBlocks.BURNING_PRESSURE_PLATE,
                 ModBlocks.SHADEROOT_PRESSURE_PLATE
         );
 
-        getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS).add(
+        valueLookupBuilder(BlockTags.WOODEN_BUTTONS).add(
                 ModBlocks.BURNING_BUTTON,
                 ModBlocks.SHADEROOT_BUTTON
         );
 
-        getOrCreateTagBuilder(BlockTags.STANDING_SIGNS).add(
+        valueLookupBuilder(BlockTags.STANDING_SIGNS).add(
                 ModBlocks.BURNING_SIGN,
                 ModBlocks.SHADEROOT_SIGN
         );
 
-        getOrCreateTagBuilder(BlockTags.WALL_SIGNS).add(
+        valueLookupBuilder(BlockTags.WALL_SIGNS).add(
                 ModBlocks.BURNING_WALL_SIGN,
                 ModBlocks.SHADEROOT_WALL_SIGN
         );
 
-        getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS).add(
+        valueLookupBuilder(BlockTags.CEILING_HANGING_SIGNS).add(
                 ModBlocks.BURNING_HANGING_SIGN,
                 ModBlocks.SHADEROOT_HANGING_SIGN
         );
 
-        getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS).add(
+        valueLookupBuilder(BlockTags.WALL_HANGING_SIGNS).add(
                 ModBlocks.BURNING_WALL_HANGING_SIGN,
                 ModBlocks.SHADEROOT_WALL_HANGING_SIGN
         );
 
-        getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(
+        valueLookupBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(
                 ModBlocks.DRAINED_SOUL_SOIL
         );
 
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
+        valueLookupBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
                 ModBlocks.BURNING_LOG,
                 ModBlocks.BURNING_WOOD,
                 ModBlocks.STRIPPED_BURNING_LOG,
                 ModBlocks.STRIPPED_BURNING_WOOD
         );
 
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "shaderoot_logs"))).add(
+        valueLookupBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "shaderoot_logs"))).add(
                 ModBlocks.SHADEROOT_LOG,
                 ModBlocks.SHADEROOT_WOOD,
                 ModBlocks.STRIPPED_SHADEROOT_LOG,

@@ -2,7 +2,7 @@ package com.lankaster.pyrellium.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.TintedParticleLeavesBlock;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -17,12 +17,12 @@ import net.minecraft.world.WorldAccess;
 
 import java.util.OptionalInt;
 
-public class ModLeavesBlock extends LeavesBlock {
+public class ModLeavesBlock extends TintedParticleLeavesBlock {
     public final int maxDistance;
     public static final IntProperty TRUE_DISTANCE = IntProperty.of("true_distance", 1, 24);
 
-    public ModLeavesBlock(Settings settings, int maxDistance){
-        super(settings);
+    public ModLeavesBlock(Settings settings, int maxDistance, float leafParticleChance) {
+        super(leafParticleChance, settings);
         this.maxDistance = maxDistance;
         this.setDefaultState(this.stateManager.getDefaultState().with(TRUE_DISTANCE, maxDistance));
     }

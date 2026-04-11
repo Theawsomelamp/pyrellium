@@ -3,18 +3,17 @@ package com.lankaster.pyrellium.util;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.MarkerPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
+import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext;
+import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.WorldRenderer;
+import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ColorHelper;
 
 import java.util.Objects;
 
@@ -26,17 +25,17 @@ public class BlockOutline {
         if (blockPos == null) {
             return;
         }
-        Camera camera = context.camera();
+        Camera camera = context.gameRenderer().getCamera();
 
-        MatrixStack matrixStack = context.matrixStack();
+        MatrixStack matrixStack = context.matrices();
 
-        VertexConsumer vertexConsumer = Objects.requireNonNull(context.consumers()).getBuffer(RenderLayer.LINES);
+        VertexConsumer vertexConsumer = Objects.requireNonNull(context.consumers()).getBuffer(RenderLayers.LINES);
 
-        double x = blockPos.getX() - camera.getPos().x;
-        double y = blockPos.getY() - camera.getPos().y;
-        double z = blockPos.getZ() - camera.getPos().z;
+        double x = blockPos.getX() - camera.getCameraPos().x;
+        double y = blockPos.getY() - camera.getCameraPos().y;
+        double z = blockPos.getZ() - camera.getCameraPos().z;
 
-        WorldRenderer.drawBox(matrixStack, vertexConsumer, x, y, z, x + 1, y + 1, z + 1, red, green, blue, 1.0f, red, green, blue);
+        VertexRendering.drawOutline(matrixStack, vertexConsumer, Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F), x, y, z, ColorHelper.fromFloats(1, red, green, blue), 1.0F);
     }
 
     public static BlockPos raycast() {
@@ -46,7 +45,7 @@ public class BlockOutline {
         boolean includeFluids = true; //Whether to detect fluids as block
 
         if (client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
-            HitResult hit = client.cameraEntity.raycast(maxReach, tickDelta, includeFluids);
+            HitResult hit = client.getCameraEntity().raycast(maxReach, tickDelta, includeFluids);
 
             return switch (hit.getType()) {
                 case MISS, ENTITY -> null;
@@ -65,7 +64,7 @@ public class BlockOutline {
         if (client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
             if (client.options.pickItemKey.wasPressed() && savedPos != null) {
                 MarkerPayload markerPayload = new MarkerPayload(savedPos);
-                client.world.playSound(client.player.getPos().x, client.player.getPos().y, client.player.getPos().z, SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, SoundCategory.PLAYERS, 1.0f, 1.0f, true);
+                client.world.playSound(client.player, client.player.getX(), client.player.getY(), client.player.getZ(), SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, SoundCategory.PLAYERS, 1.0f, 1.0f);
                 ClientPlayNetworking.send(markerPayload);
             } else if (client.options.attackKey.wasPressed()) {
                 savedPos = (client.options.sneakKey.isPressed() ? null : raycast());

@@ -6,6 +6,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
@@ -40,7 +41,7 @@ public class BombPlantBlock extends PlantBlock implements Fertilizable {
     }
 
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isOpaqueFullCube(world, pos);
+        return floor.isOpaqueFullCube();
     }
 
     public boolean hasRandomTicks(BlockState state) {
@@ -57,7 +58,7 @@ public class BombPlantBlock extends PlantBlock implements Fertilizable {
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler, boolean bl) {
         if (entity.getType().isIn(TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "bomb_plant_safe")))) return;
         if (state.get(AGE) > 0) {
             world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Config.instance().blocks.bomb_plant_explosion_strength, false, World.ExplosionSourceType.NONE);

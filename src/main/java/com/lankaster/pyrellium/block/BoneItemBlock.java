@@ -6,7 +6,6 @@ import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 
@@ -15,7 +14,7 @@ public class BoneItemBlock extends FlowerbedBlock {
         super(settings);
     }
 
-    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(Items.BONE);
     }
 
@@ -28,12 +27,7 @@ public class BoneItemBlock extends FlowerbedBlock {
         return Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 1.0F, 16.0F);
     }
 
-    @SuppressWarnings("deprecation")
-    public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
-        return VoxelShapes.empty();
-    }
-
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return false;
     }
 }

@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static net.minecraft.block.FlowerbedBlock.FACING;
+import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
 @Mixin(BlockItem.class)
 public class BlockItemMixin {

@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -24,7 +25,7 @@ public class BurningFlowerBlock extends FlowerBlock {
         this.setDefaultState(this.stateManager.getDefaultState().with(ACTIVE, true));
     }
 
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler, boolean bl) {
         if (state.get(ACTIVE)) {
             if (entity instanceof LivingEntity livingEntity) {
                 livingEntity.setOnFireFor(3);
@@ -32,7 +33,7 @@ public class BurningFlowerBlock extends FlowerBlock {
             world.setBlockState(pos, state.cycle(ACTIVE), 2);
             world.scheduleBlockTick(pos, this, 200);
             for (int i = 0; i < 10; ++i) {
-                world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, entity.getX(), pos.getY() + 1, entity.getZ(), MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F, 0.05F, MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F);
+                world.addParticleClient(ParticleTypes.SOUL_FIRE_FLAME, entity.getX(), pos.getY() + 1, entity.getZ(), MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F, 0.05F, MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F);
             }
         }
     }

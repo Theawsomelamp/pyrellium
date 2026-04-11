@@ -25,7 +25,7 @@ public class ModServerNetworking {
     public static void passAlong(MinecraftServer server, ServerPlayerEntity sender, BlockPos pos) {
         if (!Config.instance().items.opal_spyglass_block_sharing) return;
         MarkerPayload markerPayload = new MarkerPayload(pos);
-        for (ServerPlayerEntity player : PlayerLookup.tracking(server.getWorld(sender.getWorld().getRegistryKey()), pos)) {
+        for (ServerPlayerEntity player : PlayerLookup.tracking(server.getWorld(sender.getEntityWorld().getRegistryKey()), pos)) {
             ServerPlayNetworking.send(player, markerPayload);
         }
     }

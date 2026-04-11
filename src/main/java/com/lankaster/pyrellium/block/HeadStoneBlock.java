@@ -12,7 +12,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
@@ -29,7 +29,7 @@ import java.util.Map;
 public class HeadStoneBlock extends AbstractSignBlock {
     public static final MapCodec<HeadStoneBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(WoodType.CODEC.fieldOf("wood_type").forGetter(HeadStoneBlock::getWoodTypeButMoreStupid), createSettingsCodec()).apply(instance, HeadStoneBlock::new));
     private static final Map<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.createCuboidShape(0.0F, 0.0F, 13.0F, 16.0F, 16.0F, 16.0F), Direction.SOUTH, Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 3.0F), Direction.WEST, Block.createCuboidShape(13.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F), Direction.EAST, Block.createCuboidShape(0.0F, 0.0F, 0.0F, 3.0F, 16.0F, 16.0F)));
-    public static final DirectionProperty FACING;
+    public static final EnumProperty<Direction> FACING;
 
     protected HeadStoneBlock(WoodType type, Settings settings) {
         super(type, settings);

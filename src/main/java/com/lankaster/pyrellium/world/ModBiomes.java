@@ -4,9 +4,6 @@ import com.lankaster.pyrellium.Pyrellium;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.sound.MusicSound;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
@@ -54,12 +51,7 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .spawnSettings(spawnBuilder.build())
                 .effects(new BiomeEffects.Builder()
-                        .waterColor(4159204)
-                        .waterFogColor(329011)
-                        .skyColor(7254527)
-                        .fogColor(3344392)
-                        .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2))
-                        .music(new MusicSound(SoundEvents.MUSIC_NETHER_NETHER_WASTES, 12000, 24000, false)).build()
+                        .waterColor(4159204).build()
                 ).build();
     }
 }

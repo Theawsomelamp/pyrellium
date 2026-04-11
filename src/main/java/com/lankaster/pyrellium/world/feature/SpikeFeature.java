@@ -49,7 +49,7 @@ public class SpikeFeature extends Feature<SpikeFeatureConfig> {
                         world.setBlockState(blockPos2, tipState,2);
                     }
 
-                    if (blockPos2.getY() >= world.getTopY()) break;
+                    if (blockPos2.getY() >= world.getHeight()) break;
                 }
             }
         }

@@ -22,7 +22,7 @@ public class ModNyliumBlock extends NyliumBlock {
         BlockState blockState = world.getBlockState(pos);
         BlockPos blockPos = pos.up();
         ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
-        Registry<ConfiguredFeature<?, ?>> registry = world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE);
+        Registry<ConfiguredFeature<?, ?>> registry = world.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
         if (blockState.isOf(ModBlocks.BURNING_NYLIUM)) {
             this.generate(registry, RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "burning_grove_vegetation_bonemeal")), world, chunkGenerator, random, blockPos);
         } else if (blockState.isOf(ModBlocks.NETHERRACK_MYCELIUM)) {
@@ -31,6 +31,6 @@ public class ModNyliumBlock extends NyliumBlock {
     }
 
     private void generate(Registry<ConfiguredFeature<?, ?>> registry, RegistryKey<ConfiguredFeature<?, ?>> key, ServerWorld world, ChunkGenerator chunkGenerator, Random random, BlockPos pos) {
-        registry.getEntry(key).ifPresent((entry) -> (entry.value()).generate(world, chunkGenerator, random, pos));
+        registry.getOptional(key).ifPresent((entry) -> (entry.value()).generate(world, chunkGenerator, random, pos));
     }
 }

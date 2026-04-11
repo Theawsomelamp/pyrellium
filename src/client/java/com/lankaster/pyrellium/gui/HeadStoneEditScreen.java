@@ -1,8 +1,8 @@
 package com.lankaster.pyrellium.gui;
 
 import com.lankaster.pyrellium.Pyrellium;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.SignBlockEntity;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractSignEditScreen;
 import net.minecraft.text.Text;
@@ -22,17 +22,19 @@ public class HeadStoneEditScreen extends AbstractSignEditScreen {
         super.init();
     }
 
-    protected void translateForRender(DrawContext context, BlockState state) {
-        context.getMatrices().translate((float)this.width / 2.0F, 125.0F, 50.0F);
-    }
-
-    protected void renderSignBackground(DrawContext context, BlockState state) {
-        context.getMatrices().scale(6.0F, 6.0F, 1.0F);
-        context.drawTexture(this.texture, -8, -8, 0.0F, 0.0F, 16, 16, 16, 16);
+    @Override
+    protected void renderSignBackground(DrawContext context) {
+        context.getMatrices().scale(6.0F, 6.0F);
+        context.drawTexture(RenderPipelines.GUI_TEXTURED, this.texture, -8, -8, 0.0F, 0.0F, 16, 16, 16, 16);
     }
 
     @Override
     protected Vector3f getTextScale() {
         return TEXT_SCALE;
+    }
+
+    @Override
+    protected float getYOffset() {
+        return 90.0F;
     }
 }

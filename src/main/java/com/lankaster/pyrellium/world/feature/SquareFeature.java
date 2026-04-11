@@ -28,7 +28,7 @@ public class SquareFeature extends Feature<SquareFeatureConfig> {
                 world.setBlockState(blockPos2, blockState, 2);
                 blockPos2 = blockPos2.up();
 
-                if (blockPos2.getY() >= world.getTopY()) break;
+                if (blockPos2.getY() >= world.getHeight()) break;
             }
         }
 

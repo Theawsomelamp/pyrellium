@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.item;
 
 import com.lankaster.pyrellium.entity.CrystalArrowEntity;
+import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -15,7 +16,7 @@ import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class CrystalArrowItem extends ArrowItem {
     public CrystalArrowItem(Item.Settings settings) {
@@ -35,9 +36,10 @@ public class CrystalArrowItem extends ArrowItem {
         return arrowEntity;
     }
 
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        super.appendTooltip(stack, context, tooltip, type);
+    @SuppressWarnings("deprecation")
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
+        super.appendTooltip(stack, context, displayComponent, textConsumer, type);
 
-        tooltip.add(Text.translatable("item.pyrellium.crystal_arrow.desc").formatted(Formatting.GRAY));
+        textConsumer.accept(Text.translatable("item.pyrellium.crystal_arrow.desc").formatted(Formatting.GRAY));
     }
 }

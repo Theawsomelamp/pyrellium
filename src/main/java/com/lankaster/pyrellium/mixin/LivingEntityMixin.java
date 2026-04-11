@@ -29,12 +29,12 @@ public abstract class LivingEntityMixin {
         RegistryEntry<StatusEffect> effect = original.getEffectType();
 
         for (String id : Config.instance().items.mushroom_cap_effects) {
-            Optional<StatusEffect> blocked_effect = Registries.STATUS_EFFECT.getOrEmpty(Identifier.tryParse(id));
+            Optional<RegistryEntry.Reference<StatusEffect>> blocked_effect = Registries.STATUS_EFFECT.getEntry(Identifier.tryParse(id));
             if(blocked_effect.isEmpty()) {
                 throw new JsonSyntaxException("Error reading status effect: could not find status effect with id: " + id);
             }
 
-            if (Objects.equals(effect, Registries.STATUS_EFFECT.getEntry(blocked_effect.get())) && this.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
+            if (Objects.equals(effect, Registries.STATUS_EFFECT.getEntry(blocked_effect.get().value())) && this.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
                 return new StatusEffectInstance(
                         effect,
                         (int) (original.getDuration() * Config.instance().items.mushroom_cap_effect_multiplier)

@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -56,21 +58,21 @@ public class SporesBlock extends Block {
         return super.onUse(state, world, pos, player, hit);
     }
 
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler, boolean bl) {
         if (!state.get(DISPERSED)) {
             if (entity instanceof LivingEntity livingEntity) {
                 if (!livingEntity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
-                    Optional<StatusEffect> effect = Registries.STATUS_EFFECT.getOrEmpty(Identifier.tryParse(Config.instance().blocks.spores_effect));
+                    Optional<RegistryEntry.Reference<StatusEffect>> effect = Registries.STATUS_EFFECT.getEntry(Identifier.tryParse(Config.instance().blocks.spores_effect));
                     if(effect.isEmpty()) {
                         throw new JsonSyntaxException("Error reading status effect: could not find status effect with id: " + Config.instance().blocks.spores_effect);
                     }
-                    livingEntity.addStatusEffect(new StatusEffectInstance(Registries.STATUS_EFFECT.getEntry(effect.get()), Config.instance().blocks.spores_effect_time));
+                    livingEntity.addStatusEffect(new StatusEffectInstance(Registries.STATUS_EFFECT.getEntry(effect.get().value()), Config.instance().blocks.spores_effect_time));
                 }
             }
             world.setBlockState(pos, state.cycle(DISPERSED), 2);
             world.scheduleBlockTick(pos, this, 200);
             for (int i = 0; i < 20; ++i) {
-                world.addParticle(ParticleTypes.WARPED_SPORE, entity.getX(), pos.getY() + 1, entity.getZ(), MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F, 0.05F, MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F);
+                world.addParticleClient(ParticleTypes.WARPED_SPORE, entity.getX(), pos.getY() + 1, entity.getZ(), MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F, 0.05F, MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F);
             }
         }
     }

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static net.minecraft.block.FlowerbedBlock.FACING;
+import static net.minecraft.block.FlowerbedBlock.HORIZONTAL_FACING;
 import static net.minecraft.block.FlowerbedBlock.FLOWER_AMOUNT;
 
 @Mixin(Item.class)
@@ -39,7 +39,7 @@ public class ItemMixin {
                         if (blockState.isOf(ModBlocks.BONE)) {
                             world.setBlockState(posBelow, blockState.with(FLOWER_AMOUNT, Math.min(4, blockState.get(FLOWER_AMOUNT) + 1)));
                         } else {
-                            world.setBlockState(blockPos, ModBlocks.BONE.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite()));
+                            world.setBlockState(blockPos, ModBlocks.BONE.getDefaultState().with(HORIZONTAL_FACING, context.getHorizontalPlayerFacing().getOpposite()));
                         }
                         world.playSound(null, blockPos, SoundEvents.BLOCK_BONE_BLOCK_PLACE, SoundCategory.BLOCKS);
                     }
