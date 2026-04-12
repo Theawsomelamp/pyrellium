@@ -5,6 +5,8 @@ import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.render.MushroomCapRenderer;
 import com.lankaster.pyrellium.render.OpalTiaraRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
@@ -25,7 +27,7 @@ public class HatRender implements ArmorRenderer {
             matrices.push();
             contextModel.getHead().applyTransform(matrices);
             matrices.scale(1.19F, 1.19F, 1.19F);
-            orderedRenderCommandQueue.submitModel(opalTiara, bipedEntityRenderState, matrices, opalTiara.getLayer(Identifier.of(Pyrellium.MOD_ID, "textures/item/opal_tiara_model.png")), light, 0, -1, null);
+            orderedRenderCommandQueue.submitModel(opalTiara, bipedEntityRenderState, matrices, RenderLayers.armorCutoutNoCull(Identifier.of(Pyrellium.MOD_ID, "textures/item/opal_tiara_model.png")), light, OverlayTexture.DEFAULT_UV, -1, null, bipedEntityRenderState.outlineColor, null);
             matrices.pop();
         }
 
@@ -33,7 +35,7 @@ public class HatRender implements ArmorRenderer {
             matrices.push();
             contextModel.getHead().applyTransform(matrices);
             matrices.scale(1.19F, 1.19F, 1.19F);
-            orderedRenderCommandQueue.submitModel(mushroomCap, bipedEntityRenderState, matrices, mushroomCap.getLayer(Identifier.of(Pyrellium.MOD_ID, "textures/item/mushroom_cap_model.png")), light, 0, -1, null);
+            orderedRenderCommandQueue.submitModel(mushroomCap, bipedEntityRenderState, matrices, RenderLayers.armorCutoutNoCull(Identifier.of(Pyrellium.MOD_ID, "textures/item/mushroom_cap_model.png")), light, OverlayTexture.DEFAULT_UV, -1, null, bipedEntityRenderState.outlineColor, null);
             matrices.pop();
         }
     }

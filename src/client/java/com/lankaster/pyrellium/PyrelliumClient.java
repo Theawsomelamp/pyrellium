@@ -1,12 +1,9 @@
 package com.lankaster.pyrellium;
 
 import com.lankaster.pyrellium.block.ModBlocks;
-import com.lankaster.pyrellium.entity.CrystalArrowRenderer;
-import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.ModClientNetworking;
 import com.lankaster.pyrellium.particles.ModParticles;
-import com.lankaster.pyrellium.render.HeadStoneBlockEntityRenderer;
 import com.lankaster.pyrellium.render.ModBlockEntityRenderer;
 import com.lankaster.pyrellium.render.ModModelLayers;
 import com.lankaster.pyrellium.util.BlockOutline;
@@ -14,25 +11,18 @@ import com.lankaster.pyrellium.util.HatRender;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
 import net.minecraft.client.render.BlockRenderLayer;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 
 public class PyrelliumClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		WorldRenderEvents.AFTER_ENTITIES.register(BlockOutline::renderBoxOverlay);
 
-		ArmorRenderer.register(new HatRender(), ModItems.OPAL_TIARA);
-		ArmorRenderer.register(new HatRender(), ModItems.MUSHROOM_CAP);
+		ArmorRenderer.register(new HatRender(), ModItems.OPAL_TIARA, ModItems.MUSHROOM_CAP);
 
-		EntityRendererRegistry.register(ModEntities.CRYSTAL_ARROW, CrystalArrowRenderer::new);
-		EntityRendererRegistry.register(ModEntities.BOMB_FLOWER, FlyingItemEntityRenderer::new);
-
+		ModModelLayers.register();
 		ModBlockEntityRenderer.register();
-		EntityModelLayerRegistry.registerModelLayer(ModModelLayers.HEADSTONE, HeadStoneBlockEntityRenderer::getTexturedModelData);
 
 		ModParticles.registerParticle();
 

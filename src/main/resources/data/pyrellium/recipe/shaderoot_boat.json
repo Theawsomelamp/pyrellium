@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "boat",
   "key": {
-    "#": {
-      "item": "pyrellium:shaderoot_planks"
-    }
+    "#": "pyrellium:shaderoot_planks"
   },
   "pattern": [
     "# #",

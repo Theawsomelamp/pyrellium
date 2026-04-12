@@ -37,13 +37,13 @@ public class ModEntities {
     public static final EntityType<BombFlowerEntity> BOMB_FLOWER = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "bomb_flower"),
             EntityType.Builder.<BombFlowerEntity>create(BombFlowerEntity::new, SpawnGroup.MISC).dimensions(0.25F, 0.25F).build(BOMB_FLOWER_KEY));
     public static final EntityType<BoatEntity> BURNING_BOAT = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "burning_boat"),
-            EntityType.Builder.<BoatEntity>create(getBoatFactory(() -> ModBlocks.BURNING_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(BURNING_BOAT_KEY));
+            EntityType.Builder.create(getBoatFactory(() -> ModBlocks.BURNING_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(BURNING_BOAT_KEY));
     public static final EntityType<ChestBoatEntity> BURNING_CHEST_BOAT = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "burning_chest_boat"),
-            EntityType.Builder.<ChestBoatEntity>create(getChestBoatFactory(() -> ModBlocks.BURNING_CHEST_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(BURNING_CHEST_BOAT_KEY));
+            EntityType.Builder.create(getChestBoatFactory(() -> ModBlocks.BURNING_CHEST_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(BURNING_CHEST_BOAT_KEY));
     public static final EntityType<BoatEntity> SHADEROOT_BOAT = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "shaderoot_boat"),
-            EntityType.Builder.<BoatEntity>create(getBoatFactory(() -> ModBlocks.SHADEROOT_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(SHADEROOT_BOAT_KEY));
+            EntityType.Builder.create(getBoatFactory(() -> ModBlocks.SHADEROOT_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(SHADEROOT_BOAT_KEY));
     public static final EntityType<ChestBoatEntity> SHADEROOT_CHEST_BOAT = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "shaderoot_chest_boat"),
-            EntityType.Builder.<ChestBoatEntity>create(getChestBoatFactory(() -> ModBlocks.SHADEROOT_CHEST_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(SHADEROOT_CHEST_BOAT_KEY));
+            EntityType.Builder.create(getChestBoatFactory(() -> ModBlocks.SHADEROOT_CHEST_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(SHADEROOT_CHEST_BOAT_KEY));
 
     public static void registerEntities() {
 

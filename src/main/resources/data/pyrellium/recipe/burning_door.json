@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_door",
   "key": {
-    "#": {
-      "item": "pyrellium:burning_planks"
-    }
+    "#": "pyrellium:burning_planks"
   },
   "pattern": [
     "##",

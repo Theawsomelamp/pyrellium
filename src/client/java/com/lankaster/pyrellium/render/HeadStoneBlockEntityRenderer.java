@@ -40,7 +40,7 @@ public class HeadStoneBlockEntityRenderer extends AbstractSignBlockEntityRendere
     }
 
     protected float getTextScale() {
-        return 0.9F;
+        return 0.6666667F;
     }
 
     @Override
@@ -69,12 +69,6 @@ public class HeadStoneBlockEntityRenderer extends AbstractSignBlockEntityRendere
 
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-        modelPartData.addChild("sign", ModelPartBuilder.create().uv(0, 0).cuboid(-8.0F, -3.0F, -1.5F, 16.0F, 13.0F, 3.0F), ModelTransform.NONE);
-        modelPartData.addChild("top1", ModelPartBuilder.create().uv(0, 16).cuboid(-7.0F, 10.0F, -1.5F, 14.0F, 1.0F, 3.0F), ModelTransform.NONE);
-        modelPartData.addChild("top2", ModelPartBuilder.create().uv(0, 20).cuboid(-6.0F, 11.0F, -1.5F, 12.0F, 1.0F, 3.0F), ModelTransform.NONE);
-        modelPartData.addChild("top3", ModelPartBuilder.create().uv(0, 24).cuboid(-5.0F, 12.0F, -1.5F, 10.0F, 1.0F, 3.0F), ModelTransform.NONE);
-        modelPartData.addChild("stick", ModelPartBuilder.create().uv(0, 14).cuboid(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), ModelTransform.NONE);
         return TexturedModelData.of(modelData, 64, 32);
     }
 }

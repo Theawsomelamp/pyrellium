@@ -35,7 +35,7 @@ public class BlockOutline {
         double y = blockPos.getY() - camera.getCameraPos().y;
         double z = blockPos.getZ() - camera.getCameraPos().z;
 
-        VertexRendering.drawOutline(matrixStack, vertexConsumer, Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F), x, y, z, ColorHelper.fromFloats(1, red, green, blue), 1.0F);
+        VertexRendering.drawOutline(matrixStack, vertexConsumer, Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F), x, y, z, ColorHelper.fromFloats(1, red, green, blue), 4.0F);
     }
 
     public static BlockPos raycast() {

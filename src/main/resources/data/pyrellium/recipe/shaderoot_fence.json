@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_fence",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "pyrellium:shaderoot_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "pyrellium:shaderoot_planks"
   },
   "pattern": [
     "W#W",

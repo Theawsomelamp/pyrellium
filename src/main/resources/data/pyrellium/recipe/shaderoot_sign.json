@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_sign",
   "key": {
-    "#": {
-      "item": "pyrellium:shaderoot_planks"
-    },
-    "X": {
-      "item": "minecraft:stick"
-    }
+    "#": "pyrellium:shaderoot_planks",
+    "X": "minecraft:stick"
   },
   "pattern": [
     "###",

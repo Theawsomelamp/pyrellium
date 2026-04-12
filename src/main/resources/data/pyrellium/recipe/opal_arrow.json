@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "pyrellium:opal"
-    },
-    "Y": {
-      "item": "minecraft:feather"
-    }
+    "#": "minecraft:stick",
+    "X": "pyrellium:opal",
+    "Y": "minecraft:feather"
   },
   "pattern": [
     "X",

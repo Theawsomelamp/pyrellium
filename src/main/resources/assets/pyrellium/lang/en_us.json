@@ -29,11 +29,13 @@
   "item.pyrellium.crystal_arrow.desc": "Shatters on impact, dealing a small amount of splash damage",
   "item.pyrellium.bomb_flower": "Bomb Flower",
   "item.pyrellium.burning_sign": "Burning Sign",
+  "item.pyrellium.burning_hanging_sign": "Burning Hanging Sign",
   "item.pyrellium.burning_boat": "Burning Boat",
   "item.pyrellium.burning_chest_boat": "Burning Boat with Chest",
   "item.pyrellium.mushroom_cap": "Mushroom Cap",
   "item.pyrellium.mushroom_cap.desc": "While worn, ignores negative effects from spores,\nand halves the duration of poison applied to you.",
   "item.pyrellium.shaderoot_sign": "Shaderoot Sign",
+  "item.pyrellium.shaderoot_hanging_sign": "Burning Hanging Sign",
   "item.pyrellium.shaderoot_boat": "Shaderoot Boat",
   "item.pyrellium.shaderoot_chest_boat": "Shaderoot Boat with Chest",
 

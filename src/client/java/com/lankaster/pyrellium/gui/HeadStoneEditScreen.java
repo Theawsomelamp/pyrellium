@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import org.joml.Vector3f;
 
 public class HeadStoneEditScreen extends AbstractSignEditScreen {
-    private static final Vector3f TEXT_SCALE = new Vector3f(0.9765628F, 0.9765628F, 0.9765628F);
+    private static final Vector3f TEXT_SCALE = new Vector3f(0.8765628F, 0.8765628F, 089765628F);
     private final Identifier texture;
 
     public HeadStoneEditScreen(SignBlockEntity sign, boolean filtered, boolean bl) {
@@ -24,7 +24,7 @@ public class HeadStoneEditScreen extends AbstractSignEditScreen {
 
     @Override
     protected void renderSignBackground(DrawContext context) {
-        context.getMatrices().scale(6.0F, 6.0F);
+        context.getMatrices().scale(5.0F, 5.0F);
         context.drawTexture(RenderPipelines.GUI_TEXTURED, this.texture, -8, -8, 0.0F, 0.0F, 16, 16, 16, 16);
     }
 

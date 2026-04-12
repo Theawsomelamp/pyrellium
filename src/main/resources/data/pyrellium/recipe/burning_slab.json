@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_slab",
   "key": {
-    "#": {
-      "item": "pyrellium:burning_planks"
-    }
+    "#": "pyrellium:burning_planks"
   },
   "pattern": [
     "###"

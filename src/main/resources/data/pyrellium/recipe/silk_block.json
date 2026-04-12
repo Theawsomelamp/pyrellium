@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "X": {
-      "item": "minecraft:spider_eye"
-    },
-    "#": {
-      "item": "minecraft:string"
-    }
+    "X": "minecraft:spider_eye",
+    "#": "minecraft:string"
   },
   "pattern": [
     " # ",

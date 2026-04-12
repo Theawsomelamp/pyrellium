@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "pyrellium:silk_block"
-    }
+    "#": "pyrellium:silk_block"
   },
   "pattern": [
     "##"

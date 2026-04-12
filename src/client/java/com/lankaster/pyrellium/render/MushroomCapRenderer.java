@@ -23,7 +23,7 @@ public class MushroomCapRenderer extends EntityModel<EntityRenderState> {
         ModelPartData hat = partdefinition.addChild("hat", ModelPartBuilder.create().uv(0, 0).cuboid(-9.0F, 0.0F, -8.0F, 18.0F, 3.0F, 18.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, -8.0F, 0.0F, -0.2174F, -0.01887F, 0.08521F));
         ModelPartData hat2 = hat.addChild("hat2", ModelPartBuilder.create().uv(0, 21).cuboid(-9.0F, 0.0F, -8.0F, 18.0F, 3.0F, 18.0F, new Dilation(0.2F)), ModelTransform.NONE);
         ModelPartData hat3 = hat.addChild("hat3", ModelPartBuilder.create().uv(0, 42).cuboid(-6.0F, 0.0F, -5.0F, 12.0F, 5.0F, 12.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, -3.0F, 0.0F, -0.2181F, 0.0F, 0.0F));
-        ModelPartData hat4 = hat3.addChild("hat4", ModelPartBuilder.create().uv(0, 59).cuboid(-3.0F, 0.0F, -3.75F, 7.0F, 3.0F, 9.0F, new Dilation(0.0F)), ModelTransform.rotation(0.0F, -3.0F, 0.0F));
+        ModelPartData hat4 = hat3.addChild("hat4", ModelPartBuilder.create().uv(0, 59).cuboid(-3.0F, 0.0F, -3.75F, 7.0F, 3.0F, 9.0F, new Dilation(0.0F)), ModelTransform.origin(0.0F, -3.0F, 0.0F));
 
         return TexturedModelData.of(meshdefinition, 128, 128);
     }

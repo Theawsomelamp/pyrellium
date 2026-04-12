@@ -12,6 +12,7 @@ import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -24,10 +25,10 @@ import java.util.function.Function;
 
 public class ModBlocks {
     public static final Block OPAL_BLOCK = registerBlock("opal_block", Block::new, AbstractBlock.Settings.copy(Blocks.AMETHYST_BLOCK));
-    public static final Block SMALL_OPAL_BUD = registerBlock("small_opal_bud", properties -> new AmethystClusterBlock(5, 3, properties), AbstractBlock.Settings.copy(Blocks.SMALL_AMETHYST_BUD));
-    public static final Block MEDIUM_OPAL_BUD = registerBlock("medium_opal_bud", properties -> new AmethystClusterBlock(4, 3, properties), AbstractBlock.Settings.copy(Blocks.MEDIUM_AMETHYST_BUD));
-    public static final Block LARGE_OPAL_BUD = registerBlock("large_opal_bud", properties -> new AmethystClusterBlock(3, 4, properties), AbstractBlock.Settings.copy(Blocks.LARGE_AMETHYST_BUD));
-    public static final Block OPAL_CLUSTER = registerBlock("opal_cluster", properties -> new AmethystClusterBlock(7, 3, properties), AbstractBlock.Settings.copy(Blocks.AMETHYST_CLUSTER));
+    public static final Block SMALL_OPAL_BUD = registerBlock("small_opal_bud", properties -> new AmethystClusterBlock(3.0F, 8.0F, properties), AbstractBlock.Settings.copy(Blocks.SMALL_AMETHYST_BUD));
+    public static final Block MEDIUM_OPAL_BUD = registerBlock("medium_opal_bud", properties -> new AmethystClusterBlock(4.0F, 10.0F, properties), AbstractBlock.Settings.copy(Blocks.MEDIUM_AMETHYST_BUD));
+    public static final Block LARGE_OPAL_BUD = registerBlock("large_opal_bud", properties -> new AmethystClusterBlock(5.0F, 10.0F, properties), AbstractBlock.Settings.copy(Blocks.LARGE_AMETHYST_BUD));
+    public static final Block OPAL_CLUSTER = registerBlock("opal_cluster", properties -> new AmethystClusterBlock(7.0F, 10.0F, properties), AbstractBlock.Settings.copy(Blocks.AMETHYST_CLUSTER));
     public static final Block BUDDING_OPAL = registerBlock("budding_opal", properties -> new BuddingBlock(properties, SMALL_OPAL_BUD, MEDIUM_OPAL_BUD, LARGE_OPAL_BUD, OPAL_CLUSTER), AbstractBlock.Settings.copy(Blocks.BUDDING_AMETHYST));
 
     public static final Block CLEAR_AMETHYST_BLOCK = registerBlock("clear_amethyst_block", TransparentBlock::new, AbstractBlock.Settings.copy(Blocks.AMETHYST_BLOCK).nonOpaque());
@@ -48,14 +49,14 @@ public class ModBlocks {
     public static final Block SPORES = registerBlock("spores", SporesBlock::new, AbstractBlock.Settings.copy(Blocks.COBWEB).strength(-1.0F).sounds(BlockSoundGroup.FROGSPAWN));
 
     public static final Block HEADSTONE = registerBlock("headstone", properties -> new HeadStoneBlock(WoodType.OAK, properties), AbstractBlock.Settings.create().mapColor(Blocks.STONE.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().nonOpaque().strength(1.5F, 6.0F));
-    public static final Block BONE = registerBlockWithoutBlockItem("bone", BoneItemBlock::new, AbstractBlock.Settings.copy(Blocks.BONE_BLOCK));
+    public static final Block BONE = registerBlockWithoutBlockItem("bone", BoneItemBlock::new, AbstractBlock.Settings.copy(Blocks.BONE_BLOCK).nonOpaque());
     public static final Block BOMB_PLANT = registerBlock("bomb_plant", BombPlantBlock::new, AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY));
-    public static final Block QUARTZ_CRYSTAL = registerBlock("quartz_crystal", properties -> new AmethystClusterBlock(7, 3, properties), AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
+    public static final Block QUARTZ_CRYSTAL = registerBlock("quartz_crystal", properties -> new AmethystClusterBlock(7.0F, 10.0F, properties), AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
     public static final Block BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", CarpetBlock::new, AbstractBlock.Settings.copy(Blocks.BLACKSTONE).nonOpaque());
 
     public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));
     public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", ModNyliumBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM));
-    public static final Block BURNING_LEAVES = registerBlock("burning_leaves", properties -> new ModLeavesBlock(properties, 7, 0.1F), AbstractBlock.Settings.copy(Blocks.OAK_LEAVES));
+    public static final Block BURNING_LEAVES = registerBlock("burning_leaves", properties -> new ModLeavesBlock(properties, 7, 0.0F, ParticleTypes.CHERRY_LEAVES), AbstractBlock.Settings.copy(Blocks.OAK_LEAVES));
     public static final Block BURNING_SAPLING = registerBlock("burning_sapling", properties -> new SaplingBlock(new ModSaplingGenerator().BURNING, properties), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING));
     public static final Block POTTED_BURNING_SAPLING = registerBlockWithoutBlockItem("potted_burning_sapling", properties -> new FlowerPotBlock(ModBlocks.BURNING_SAPLING, properties), AbstractBlock.Settings.copy(Blocks.POTTED_OAK_SAPLING));
     public static final Block BURNING_LOG = registerBlock("burning_log", PillarBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD));
@@ -90,8 +91,8 @@ public class ModBlocks {
     /// Back to the blocks
     public static final WoodType SHADEROOT = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "shaderoot"), new BlockSetType("shaderoot"));
     public static final Block DRAINED_SOUL_SOIL = registerBlock("drained_soul_soil", Block::new, AbstractBlock.Settings.copy(Blocks.SOUL_SOIL));
-    public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", properties -> new ModLeavesBlock(properties, 10, 0.1F), AbstractBlock.Settings.copy(Blocks.OAK_LEAVES));
-    public static final Block FLOWERING_GHOSTLY_LEAVES = registerBlock("flowering_ghostly_leaves", properties -> new ModLeavesBlock(properties, 10, 0.1F), AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).luminance((state) -> 4));
+    public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", properties -> new ModLeavesBlock(properties, 10, 0.0F, ParticleTypes.CHERRY_LEAVES), AbstractBlock.Settings.copy(Blocks.OAK_LEAVES));
+    public static final Block FLOWERING_GHOSTLY_LEAVES = registerBlock("flowering_ghostly_leaves", properties -> new ModLeavesBlock(properties, 10, 0.0F, ParticleTypes.CHERRY_LEAVES), AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).luminance((state) -> 4));
     public static final Block SHADEROOT_SAPLING = registerBlock("shaderoot_sapling", properties -> new SaplingBlock(new ModSaplingGenerator().SHADEROOT, properties), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING));
     public static final Block POTTED_SHADEROOT_SAPLING = registerBlockWithoutBlockItem("potted_shaderoot_sapling", properties -> new FlowerPotBlock(ModBlocks.SHADEROOT_SAPLING, properties), AbstractBlock.Settings.copy(Blocks.POTTED_OAK_SAPLING));
     public static final Block SHADEROOT_LOG = registerBlock("shaderoot_log", PillarBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_STEM).sounds(BlockSoundGroup.WOOD));
@@ -134,9 +135,10 @@ public class ModBlocks {
     }
 
     private static void registerBlockItem(String name, Block block) {
-        Registry.register(Registries.ITEM, Identifier.of(Pyrellium.MOD_ID, name),
+        Item item = Registry.register(Registries.ITEM, Identifier.of(Pyrellium.MOD_ID, name),
                 new BlockItem(block, new Item.Settings().useBlockPrefixedTranslationKey()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, name)))));
+        ModItems.addToItemGroup(item);
     }
 
     private static Block registerPlaceableOnWaterBlock(String name, Function<AbstractBlock.Settings, Block> function, AbstractBlock.Settings settings) {

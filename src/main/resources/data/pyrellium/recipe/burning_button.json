@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_button",
   "ingredients": [
-    {
-      "item": "pyrellium:burning_planks"
-    }
+    "pyrellium:burning_planks"
   ],
   "result": {
     "id": "pyrellium:burning_button"

@@ -1,35 +1,40 @@
 {
+  "attributes": {
+    "minecraft:audio/ambient_sounds": {
+      "additions": {
+        "sound": "minecraft:ambient.basalt_deltas.additions",
+        "tick_chance": 0.0111
+      },
+      "loop": "minecraft:ambient.basalt_deltas.loop",
+      "mood": {
+        "block_search_extent": 8,
+        "offset": 2,
+        "sound": "minecraft:ambient.basalt_deltas.mood",
+        "tick_delay": 6000
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "max_delay": 24000,
+        "min_delay": 12000,
+        "sound": "minecraft:music.nether.basalt_deltas"
+      }
+    },
+    "minecraft:visual/ambient_particles": [
+      {
+        "particle": {
+          "type": "minecraft:white_ash"
+        },
+        "probability": 0.118093334
+      }
+    ],
+    "minecraft:visual/fog_color": "#685f70"
+  },
   "temperature": 2,
   "downfall": 0,
   "has_precipitation": false,
   "effects": {
-    "sky_color": 7254527,
-    "fog_color": 4735820,
-    "water_color": 4159204,
-    "water_fog_color": 329011,
-    "ambient_sound": "minecraft:ambient.basalt_deltas.loop",
-    "mood_sound": {
-      "sound": "minecraft:ambient.basalt_deltas.mood",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2
-    },
-    "additions_sound": {
-      "sound": "minecraft:ambient.basalt_deltas.additions",
-      "tick_chance": 0.0111
-    },
-    "music": {
-      "sound": "minecraft:music.nether.basalt_deltas",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": false
-    },
-    "particle": {
-      "options": {
-        "type": "minecraft:white_ash"
-      },
-      "probability": 0.118093334
-    }
+    "water_color": 4159204
   },
   "spawners": {
     "ambient": [],
@@ -68,9 +73,7 @@
     "water_creature": []
   },
   "spawn_costs": {},
-  "carvers": {
-    "air": "minecraft:nether_cave"
-  },
+  "carvers": "minecraft:nether_cave",
   "features": [
     [],
     [],

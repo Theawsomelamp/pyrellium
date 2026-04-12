@@ -1,0 +1,21 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "pyrellium:item/mushroom_cap_model"
+        },
+        "when": [
+          "head"
+        ]
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "pyrellium:item/mushroom_cap"
+    },
+    "property": "minecraft:display_context"
+  }
+}

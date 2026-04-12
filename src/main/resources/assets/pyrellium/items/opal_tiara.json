@@ -1,0 +1,21 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "pyrellium:item/opal_tiara_model"
+        },
+        "when": [
+          "head"
+        ]
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "pyrellium:item/opal_tiara"
+    },
+    "property": "minecraft:display_context"
+  }
+}

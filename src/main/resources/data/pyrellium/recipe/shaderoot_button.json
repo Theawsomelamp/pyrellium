@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_button",
   "ingredients": [
-    {
-      "item": "pyrellium:shaderoot_planks"
-    }
+    "pyrellium:shaderoot_planks"
   ],
   "result": {
     "id": "pyrellium:shaderoot_button"

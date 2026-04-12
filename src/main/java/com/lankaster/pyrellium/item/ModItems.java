@@ -24,11 +24,12 @@ public class ModItems {
 
 
     public static Item registerItem(String name, Function<Item.Settings, Item> function) {
-        return Registry.register(Registries.ITEM, Identifier.of(Pyrellium.MOD_ID, name),
-                function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, name)))));
+        Item item = function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, name))));
+        addToItemGroup(item);
+        return Registry.register(Registries.ITEM, Identifier.of(Pyrellium.MOD_ID, name), item);
     }
 
-    private static void addToItemGroup(Item item) {
+    public static void addToItemGroup(Item item) {
         ItemGroupEvents.modifyEntriesEvent(ModItemGroups.PYRELLIUM).register(entries -> entries.add(item));
     }
 

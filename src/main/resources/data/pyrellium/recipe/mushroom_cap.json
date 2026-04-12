@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "minecraft:red_mushroom_block"
-    },
-    "X": {
-      "item": "minecraft:leather_helmet"
-    },
-    "Y": {
-      "item": "minecraft:red_mushroom"
-    }
+    "#": "minecraft:red_mushroom_block",
+    "X": "minecraft:leather_helmet",
+    "Y": "minecraft:red_mushroom"
   },
   "pattern": [
     " # ",

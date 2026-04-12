@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "pyrellium:opal"
-    },
-    "X": {
-      "item": "minecraft:copper_ingot"
-    }
+    "#": "pyrellium:opal",
+    "X": "minecraft:copper_ingot"
   },
   "pattern": [
     " # ",

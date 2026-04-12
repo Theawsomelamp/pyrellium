@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_sign",
   "key": {
-    "#": {
-      "item": "pyrellium:burning_planks"
-    },
-    "X": {
-      "item": "minecraft:stick"
-    }
+    "#": "pyrellium:burning_planks",
+    "X": "minecraft:stick"
   },
   "pattern": [
     "###",

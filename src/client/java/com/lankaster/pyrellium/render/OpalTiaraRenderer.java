@@ -20,7 +20,7 @@ public class OpalTiaraRenderer extends EntityModel<EntityRenderState> {
         ModelData meshdefinition = new ModelData();
         ModelPartData partdefinition = meshdefinition.getRoot();
 
-        ModelPartData hat = partdefinition.addChild("hat", ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -32.5F, -4.0F, 8.0F, 5.0F, 8.0F, new Dilation(0.0F)), ModelTransform.rotation(0.0F, 24.0F, 0.0F));
+        ModelPartData hat = partdefinition.addChild("hat", ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -32.5F, -4.0F, 8.0F, 5.0F, 8.0F, new Dilation(0.0F)), ModelTransform.origin(0.0F, 24.0F, 0.0F));
 
         return TexturedModelData.of(meshdefinition, 32, 32);
     }

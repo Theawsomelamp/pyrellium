@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_trapdoor",
   "key": {
-    "#": {
-      "item": "pyrellium:shaderoot_planks"
-    }
+    "#": "pyrellium:shaderoot_planks"
   },
   "pattern": [
     "###",
