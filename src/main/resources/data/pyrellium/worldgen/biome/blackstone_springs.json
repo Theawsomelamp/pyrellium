@@ -74,7 +74,9 @@
   "features": [
     [],
     [],
-    [],
+    [
+      "pyrellium:magma_cracks_wall"
+    ],
     [],
     [
       "pyrellium:blackstone_delta"

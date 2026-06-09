@@ -36,6 +36,7 @@ public class Config {
         public boolean raised_nether_height = true;
         public boolean thicker_bedrock_ceiling = true;
         public boolean opal_geodes = true;
+        public boolean basalt_iron_ore = true;
         public boolean lava_lake_additions = true;
         public boolean nether_forest_fallen_logs = true;
         public boolean gilded_blackstone_patches = true;

@@ -66,6 +66,8 @@ The configuration file can be found at `/config/pyrellium.json`
     "thicker_bedrock_ceiling": true,
     // Whether to generate opal geodes across all nether biomes
     "opal_geodes": true,
+    // Whether to generate patches of basalt iron ore in basalt all across the nether
+    "basalt_iron_ore": true,
     // Whether to add magma blocks and blackstone rocks to 'colder' nether biomes
     "lava_lake_additions": true,
     // Whether to add fallen logs to crimson and warped forests
