@@ -1,0 +1,37 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/carpet",
+	"ambientocclusion": false,
+	"texture_size": [32, 32],
+	"textures": {
+		"2": "pyrellium:block/chain_fence",
+		"particle": "pyrellium:block/chain_fence"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 7],
+			"to": [8, 16, 9],
+			"faces": {
+				"east": {"uv": [8, 0, 9, 8], "texture": "#2"},
+				"west": {"uv": [1, 8, 2, 16], "texture": "#2"}
+			}
+		},
+		{
+			"from": [7, 0, 8],
+			"to": [9, 16, 8],
+			"faces": {
+				"north": {"uv": [2, 8, 3, 16], "texture": "#2"},
+				"south": {"uv": [3, 8, 4, 16], "texture": "#2"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "chain_fence_post",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

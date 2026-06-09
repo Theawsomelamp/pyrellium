@@ -1,0 +1,54 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/carpet",
+	"ambientocclusion": false,
+	"textures": {
+		"2": "pyrellium:block/chain_fence",
+		"particle": "pyrellium:block/chain_fence"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 8],
+			"to": [8, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 11]},
+			"faces": {
+				"east": {"uv": [4, 0, 8, 8], "texture": "#2"},
+				"west": {"uv": [0, 0, 4, 8], "texture": "#2"}
+			}
+		},
+		{
+			"from": [7, 0, 9],
+			"to": [9, 16, 16],
+			"faces": {
+				"south": {"uv": [0, 8, 1, 16], "texture": "#2", "cullface": "south"}
+			}
+		},
+		{
+			"from": [7, 0.001, 9],
+			"to": [9, 0.001, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 11]},
+			"faces": {
+				"up": {"uv": [10.5, 3.5, 9.5, 0], "texture": "#2"},
+				"down": {"uv": [10.5, 3.5, 9.5, 7], "texture": "#2"}
+			}
+		},
+		{
+			"from": [7, 15.999, 9],
+			"to": [9, 15.999, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 11]},
+			"faces": {
+				"up": {"uv": [10.5, 10.5, 9.5, 7], "texture": "#2"},
+				"down": {"uv": [11.5, 0, 10.5, 3.5], "texture": "#2"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "chain_fence_side_alt",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}

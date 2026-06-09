@@ -49,6 +49,7 @@ public class ModBlocks {
     public static final Block SPORES = registerBlock("spores", new SporesBlock(FabricBlockSettings.copyOf(Blocks.COBWEB).strength(-1.0F).sounds(BlockSoundGroup.FROGSPAWN)));
 
     public static final Block HEADSTONE = registerBlock("headstone", new HeadStoneBlock(FabricBlockSettings.create().mapColor(Blocks.STONE.getDefaultMapColor()).instrument(Instrument.BASS).solid().nonOpaque().strength(1.5F, 6.0F), WoodType.OAK));
+    public static final Block CHAIN_FENCE = registerBlock("chain_fence", new ChainFenceBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS)));
     public static final Block BONE = registerBlockWithoutBlockItem("bone", new BoneItemBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)));
     public static final Block BOMB_PLANT = registerBlock("bomb_plant", new BombPlantBlock(FabricBlockSettings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block QUARTZ_CRYSTAL = registerBlock("quartz_crystal", new AmethystClusterBlock(7, 3, FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
