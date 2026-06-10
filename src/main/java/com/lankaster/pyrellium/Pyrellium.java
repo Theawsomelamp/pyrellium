@@ -2,6 +2,7 @@ package com.lankaster.pyrellium;
 
 import com.lankaster.pyrellium.config.ConfigHandler;
 import com.lankaster.pyrellium.data.PyrelliumReloadListener;
+import com.lankaster.pyrellium.enchant.ModEnchants;
 import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.ModServerNetworking;
@@ -41,6 +42,7 @@ public class Pyrellium implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerBlockEntities();
 		ModItems.registerModItems();
+		ModEnchants.registerEnchants();
 
 		ModServerNetworking.registerPacketReceivers();
 
