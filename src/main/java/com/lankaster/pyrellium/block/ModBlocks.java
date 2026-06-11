@@ -106,7 +106,7 @@ public class ModBlocks {
     public static final Block SHADEROOT_SLAB = registerBlock("shaderoot_slab", new SlabBlock(FabricBlockSettings.copyOf(SHADEROOT_PLANKS)));
     public static final Block SHADEROOT_FENCE = registerBlock("shaderoot_fence", new FenceBlock(FabricBlockSettings.copyOf(SHADEROOT_PLANKS)));
     public static final Block SHADEROOT_FENCE_GATE = registerBlock("shaderoot_fence_gate", new FenceGateBlock(FabricBlockSettings.copyOf(SHADEROOT_PLANKS), SHADEROOT));
-    public static final Block SHADEROOT_DOOR = registerBlock("shaderoot_door", new DoorBlock(FabricBlockSettings.copyOf(SHADEROOT_PLANKS), SHADEROOT.setType()));
+    public static final Block SHADEROOT_DOOR = registerBlock("shaderoot_door", new DoorBlock(FabricBlockSettings.copyOf(SHADEROOT_PLANKS).nonOpaque(), SHADEROOT.setType()));
     public static final Block SHADEROOT_TRAPDOOR = registerBlock("shaderoot_trapdoor", new TrapdoorBlock(FabricBlockSettings.copyOf(SHADEROOT_PLANKS).nonOpaque(), SHADEROOT.setType()));
     public static final Block SHADEROOT_PRESSURE_PLATE = registerBlock("shaderoot_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(SHADEROOT_PLANKS), SHADEROOT.setType()));
     public static final Block SHADEROOT_BUTTON = registerBlock("shaderoot_button", new ButtonBlock(FabricBlockSettings.copyOf(SHADEROOT_PLANKS).noCollision().pistonBehavior(PistonBehavior.DESTROY), SHADEROOT.setType(), 30, true));
