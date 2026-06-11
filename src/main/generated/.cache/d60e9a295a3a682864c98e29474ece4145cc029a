@@ -1,0 +1,4 @@
+// 1.21.1	2026-06-11T16:49:34.93320575	Pyrellium/Tags for minecraft:enchantment
+0f6063757f7b9ddf31dc6e483c798befc7ac8eb6 data/minecraft/tags/enchantment/on_traded_equipment.json
+0f6063757f7b9ddf31dc6e483c798befc7ac8eb6 data/minecraft/tags/enchantment/on_random_loot.json
+d89f53047cba4406e70fb2ccdbfb07227ab1d06f data/pyrellium/tags/enchantment/exclusive_set/rebound.json

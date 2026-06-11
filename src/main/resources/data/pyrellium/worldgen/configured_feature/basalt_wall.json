@@ -2,14 +2,20 @@
   "type": "pyrellium:replace_wall",
   "config": {
     "radius": 12,
-    "state": {
-      "Name": "minecraft:basalt",
-      "Properties": {
-        "axis": "y"
+    "provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:basalt",
+        "Properties": {
+          "axis": "y"
+        }
       }
     },
     "target": {
-      "Name": "minecraft:netherrack"
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:netherrack"
+      }
     }
   }
 }

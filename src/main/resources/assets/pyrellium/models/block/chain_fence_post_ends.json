@@ -1,0 +1,28 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/carpet",
+	"ambientocclusion": false,
+	"textures": {
+		"2": "pyrellium:block/chain_fence",
+		"particle": "pyrellium:block/chain_fence"
+	},
+	"elements": [
+		{
+			"from": [7, 0.001, 7],
+			"to": [9, 0.001, 9],
+			"faces": {
+				"up": {"uv": [10.5, 11.5, 9.5, 10.5], "texture": "#2"},
+				"down": {"uv": [11.5, 9.5, 10.5, 10.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [7, 15.999, 7],
+			"to": [9, 15.999, 9],
+			"faces": {
+				"up": {"uv": [11.5, 11.5, 10.5, 10.5], "texture": "#2"},
+				"down": {"uv": [12.5, 0, 11.5, 1], "texture": "#2"}
+			}
+		}
+	]
+}

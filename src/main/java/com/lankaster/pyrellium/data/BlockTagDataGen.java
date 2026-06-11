@@ -34,7 +34,9 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.QUARTZ_CRYSTAL,
                 ModBlocks.BLACKSTONE_ROCK,
                 ModBlocks.BURNING_NYLIUM,
-                ModBlocks.HEADSTONE
+                ModBlocks.HEADSTONE,
+                ModBlocks.CHAIN_FENCE,
+                ModBlocks.BASALT_IRON_ORE
         );
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(

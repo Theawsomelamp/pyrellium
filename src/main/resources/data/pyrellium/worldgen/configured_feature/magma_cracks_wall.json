@@ -1,0 +1,32 @@
+{
+  "type": "pyrellium:replace_wall",
+  "config": {
+    "radius": 12,
+    "provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 9,
+          "data": {
+            "Name": "minecraft:basalt",
+            "Properties": {
+              "axis": "y"
+            }
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "minecraft:magma_block"
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:netherrack"
+      }
+    }
+  }
+}

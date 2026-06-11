@@ -1,0 +1,146 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_post_ends"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_post_tip"
+      },
+      "when": {
+        "top": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_post"
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_cap"
+      },
+      "when": {
+        "east": "false",
+        "north": "true",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_cap",
+        "y": 90
+      },
+      "when": {
+        "east": "true",
+        "north": "false",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_cap_alt"
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "true",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_cap_alt",
+        "y": 90
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_side"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_side",
+        "y": 90
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_side_alt"
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_side_alt",
+        "y": 90
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_side_tip"
+      },
+      "when": {
+        "north": "true",
+        "top": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_side_tip",
+        "y": 90
+      },
+      "when": {
+        "east": "true",
+        "top": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_side_alt_tip"
+      },
+      "when": {
+        "south": "true",
+        "top": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "pyrellium:block/chain_fence_side_alt_tip",
+        "y": 90
+      },
+      "when": {
+        "west": "true",
+        "top": "true"
+      }
+    }
+  ]
+}
