@@ -32,19 +32,9 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:gold_nugget",
+          "name": "minecraft:skeleton_skull",
           "weight": 15,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 4,
-                "max": 24
-              },
-              "add": false
-            }
-          ]
+          "functions": []
         },
         {
           "type": "minecraft:item",
@@ -69,15 +59,15 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:gold_block",
+          "name": "minecraft:chain",
           "weight": 20,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 1,
-                "max": 2
+                "min": 2,
+                "max": 8
               },
               "add": false
             }
@@ -85,8 +75,8 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:packed_ice",
-          "weight": 40,
+          "name": "pyrellium:ghostly_vines",
+          "weight": 30,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -101,7 +91,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:fire_charge",
+          "name": "minecraft:soul_torch",
           "weight": 40,
           "functions": [
             {
@@ -133,7 +123,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:bone_block",
-          "weight": 40,
+          "weight": 10,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -142,6 +132,20 @@
                 "max": 12
               },
               "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:soul_lantern",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 8
+              }
             }
           ]
         }
@@ -178,7 +182,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond_sword",
+          "name": "minecraft:diamond_shovel",
           "weight": 5,
           "conditions": [],
           "functions": [
@@ -194,7 +198,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bow",
+          "name": "minecraft:golden_shovel",
           "weight": 10,
           "functions": [
             {
@@ -209,5 +213,5 @@
       ]
     }
   ],
-  "random_sequence": "pyrellium:chests/dragon"
+  "random_sequence": "pyrellium:chests/ghostly_graveyard"
 }
