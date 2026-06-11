@@ -86,5 +86,7 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SHADEROOT_SAPLING);
         addDrop(ModBlocks.POTTED_SHADEROOT_SAPLING, pottedPlantDrops(ModBlocks.SHADEROOT_SAPLING));
         addDrop(ModBlocks.WISPBLOOM, segmentedDrops(ModBlocks.WISPBLOOM));
+        addDrop(ModBlocks.DRAINED_SOUL_SOIL);
+        addDrop(ModBlocks.CHAIN_FENCE);
     }
 }

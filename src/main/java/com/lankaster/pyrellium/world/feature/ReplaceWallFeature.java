@@ -9,28 +9,28 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.ReplaceBlobsFeatureConfig;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import org.jetbrains.annotations.Nullable;
 
-public class ReplaceWallFeature extends Feature<ReplaceBlobsFeatureConfig> {
-    public ReplaceWallFeature(Codec<ReplaceBlobsFeatureConfig> configCodec){
+public class ReplaceWallFeature extends Feature<ReplaceWallFeatureConfig> {
+    public ReplaceWallFeature(Codec<ReplaceWallFeatureConfig> configCodec){
         super(configCodec);
     }
 
     @Override
-    public boolean generate(FeatureContext<ReplaceBlobsFeatureConfig> context){
-        ReplaceBlobsFeatureConfig replaceBlobsFeatureConfig = context.getConfig();
+    public boolean generate(FeatureContext<ReplaceWallFeatureConfig> context){
+        ReplaceWallFeatureConfig replaceWallFeatureConfig = context.getConfig();
         StructureWorldAccess structureWorldAccess = context.getWorld();
+        BlockPos origin = context.getOrigin();
         Random random = context.getRandom();
-        Block block = replaceBlobsFeatureConfig.target.getBlock();
+        Block block = replaceWallFeatureConfig.target().get(random, origin).getBlock();
         BlockPos blockPos = moveDownToTarget(structureWorldAccess, context.getOrigin().mutableCopy().clamp(Direction.Axis.Y, structureWorldAccess.getBottomY() + 1, structureWorldAccess.getHeight() - 1), block);
         if (blockPos == null) {
             return false;
         } else {
-            int i = replaceBlobsFeatureConfig.getRadius().get(random);
-            int j = replaceBlobsFeatureConfig.getRadius().get(random);
-            int k = replaceBlobsFeatureConfig.getRadius().get(random);
+            int i = replaceWallFeatureConfig.radius().get(random);
+            int j = replaceWallFeatureConfig.radius().get(random);
+            int k = replaceWallFeatureConfig.radius().get(random);
             int l = Math.max(i, Math.max(j, k));
             boolean bl = false;
 
@@ -44,7 +44,7 @@ public class ReplaceWallFeature extends Feature<ReplaceBlobsFeatureConfig> {
                     for (Direction direction : Direction.Type.HORIZONTAL.getShuffled(Random.create())) {
                         BlockPos blockPos3 = blockPos2.offset(direction);
                         if (structureWorldAccess.getBlockState(blockPos3).isReplaceable()) {
-                            this.setBlockState(structureWorldAccess, blockPos2, replaceBlobsFeatureConfig.state);
+                            this.setBlockState(structureWorldAccess, blockPos2, replaceWallFeatureConfig.provider().get(random, blockPos2));
                             bl = true;
                         }
                     }

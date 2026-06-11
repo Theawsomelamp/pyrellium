@@ -64,5 +64,6 @@ public class PyrelliumClient implements ClientModInitializer {
 		BlockRenderLayerMap.putBlock(ModBlocks.SHADEROOT_SAPLING, BlockRenderLayer.CUTOUT);
 		BlockRenderLayerMap.putBlock(ModBlocks.POTTED_SHADEROOT_SAPLING, BlockRenderLayer.CUTOUT);
 		BlockRenderLayerMap.putBlock(ModBlocks.WISPBLOOM, BlockRenderLayer.CUTOUT);
+		BlockRenderLayerMap.putBlock(ModBlocks.CHAIN_FENCE, BlockRenderLayer.CUTOUT);
 	}
 }

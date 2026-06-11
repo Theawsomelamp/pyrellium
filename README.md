@@ -56,6 +56,29 @@ The configuration file can be found at `/config/pyrellium.json`
     // The damage the amethyst and opal arrow deal when shattering.
     "crystal_arrow_shatter_damage": 2
   },
+  // Configuration options applying to enchants
+  "enchants": {
+    "rebound": {
+      // Maximum level of the enchantment
+      "max_level": 3,
+      // Configuration options determining where the enchantment can be found
+      // Setting these all to false means the enchantment can't be obtained in survival
+      "distribution": {
+        // Whether the enchantment can appear as an option on the enchanting table
+        "enchant_table_roll": false,
+        // Whether the enchantment can be offered on enchanted books sold by librarians
+        "librarian_book_trade": true,
+        // Whether the enchantment can be found on items or books found in chests/from fishing
+        "found_on_enchanted_loot": true
+      },
+      // The amount of velocity each level of the enchantment adds to the redirected entity
+      "added_velocity_per_level": 0.2,
+      // The range in blocks that you can redirect entities from
+      // Due to fast movement and still needing to hit the hitbox,
+      // this number can feel a lot lower than it actually is.
+      "rebound_range": 6.0
+    }
+  },
   // World generation features that apply to multiple biomes
   "globalFeatures": {
     // Raises the nether height to 192
@@ -66,6 +89,8 @@ The configuration file can be found at `/config/pyrellium.json`
     "thicker_bedrock_ceiling": true,
     // Whether to generate opal geodes across all nether biomes
     "opal_geodes": true,
+    // Whether to generate patches of basalt iron ore in basalt all across the nether
+    "basalt_iron_ore": true,
     // Whether to add magma blocks and blackstone rocks to 'colder' nether biomes
     "lava_lake_additions": true,
     // Whether to add fallen logs to crimson and warped forests

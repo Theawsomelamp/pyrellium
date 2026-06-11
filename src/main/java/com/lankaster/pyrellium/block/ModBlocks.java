@@ -48,7 +48,9 @@ public class ModBlocks {
     public static final Block RED_SHELF_MUSHROOM = registerBlock("red_shelf_mushroom", RedShelfMushroomBlock::new, AbstractBlock.Settings.copy(Blocks.RED_MUSHROOM));
     public static final Block SPORES = registerBlock("spores", SporesBlock::new, AbstractBlock.Settings.copy(Blocks.COBWEB).strength(-1.0F).sounds(BlockSoundGroup.FROGSPAWN));
 
+    public static final Block BASALT_IRON_ORE = registerBlock("basalt_iron_ore", PillarBlock::new, AbstractBlock.Settings.copy(Blocks.BASALT));
     public static final Block HEADSTONE = registerBlock("headstone", properties -> new HeadStoneBlock(WoodType.OAK, properties), AbstractBlock.Settings.create().mapColor(Blocks.STONE.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().nonOpaque().strength(1.5F, 6.0F));
+    public static final Block CHAIN_FENCE = registerBlock("chain_fence", ChainFenceBlock::new, AbstractBlock.Settings.copy(Blocks.IRON_BARS));
     public static final Block BONE = registerBlockWithoutBlockItem("bone", BoneItemBlock::new, AbstractBlock.Settings.copy(Blocks.BONE_BLOCK).nonOpaque());
     public static final Block BOMB_PLANT = registerBlock("bomb_plant", BombPlantBlock::new, AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY));
     public static final Block QUARTZ_CRYSTAL = registerBlock("quartz_crystal", properties -> new AmethystClusterBlock(7.0F, 10.0F, properties), AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
@@ -104,7 +106,7 @@ public class ModBlocks {
     public static final Block SHADEROOT_SLAB = registerBlock("shaderoot_slab", SlabBlock::new, AbstractBlock.Settings.copy(SHADEROOT_PLANKS));
     public static final Block SHADEROOT_FENCE = registerBlock("shaderoot_fence", FenceBlock::new, AbstractBlock.Settings.copy(SHADEROOT_PLANKS));
     public static final Block SHADEROOT_FENCE_GATE = registerBlock("shaderoot_fence_gate", properties -> new FenceGateBlock(SHADEROOT, properties), AbstractBlock.Settings.copy(SHADEROOT_PLANKS));
-    public static final Block SHADEROOT_DOOR = registerBlock("shaderoot_door", properties -> new DoorBlock(SHADEROOT.setType(), properties), AbstractBlock.Settings.copy(SHADEROOT_PLANKS));
+    public static final Block SHADEROOT_DOOR = registerBlock("shaderoot_door", properties -> new DoorBlock(SHADEROOT.setType(), properties), AbstractBlock.Settings.copy(SHADEROOT_PLANKS).nonOpaque());
     public static final Block SHADEROOT_TRAPDOOR = registerBlock("shaderoot_trapdoor", properties -> new TrapdoorBlock(SHADEROOT.setType(), properties), AbstractBlock.Settings.copy(SHADEROOT_PLANKS).nonOpaque());
     public static final Block SHADEROOT_PRESSURE_PLATE = registerBlock("shaderoot_pressure_plate", properties -> new PressurePlateBlock(SHADEROOT.setType(), properties), AbstractBlock.Settings.copy(SHADEROOT_PLANKS));
     public static final Block SHADEROOT_BUTTON = registerBlock("shaderoot_button", properties -> new ButtonBlock(SHADEROOT.setType(), 30, properties), AbstractBlock.Settings.copy(SHADEROOT_PLANKS).noCollision().pistonBehavior(PistonBehavior.DESTROY));

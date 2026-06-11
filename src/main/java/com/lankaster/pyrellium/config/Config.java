@@ -6,6 +6,7 @@ public class Config {
     public String comment = "For help with the config, refer to https://github.com/Theawsomelamp/pyrellium#configuration";
     public Blocks blocks = new Blocks();
     public Items items = new Items();
+    public Enchants enchants = new Enchants();
     public GlobalFeatures globalFeatures = new GlobalFeatures();
     public Biomes biomes = new Biomes();
 
@@ -32,10 +33,25 @@ public class Config {
         public int crystal_arrow_shatter_damage = 2;
     }
 
+    public record EnchantDistribution(boolean enchant_table_roll, boolean librarian_book_trade, boolean found_on_enchanted_loot) {
+    }
+
+    public static class Enchants {
+        public Rebound rebound = new Rebound();
+    }
+
+    public static class Rebound {
+        public int max_level = 3;
+        public EnchantDistribution distribution = new EnchantDistribution(false, true, true);
+        public float added_velocity_per_level = 0.2F;
+        public float rebound_range = 6.0F;
+    }
+
     public static class GlobalFeatures {
         public boolean raised_nether_height = true;
         public boolean thicker_bedrock_ceiling = true;
         public boolean opal_geodes = true;
+        public boolean basalt_iron_ore = true;
         public boolean lava_lake_additions = true;
         public boolean nether_forest_fallen_logs = true;
         public boolean gilded_blackstone_patches = true;
