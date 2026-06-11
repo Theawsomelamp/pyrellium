@@ -44,6 +44,7 @@ public class Config {
         public int max_level = 3;
         public EnchantDistribution distribution = new EnchantDistribution(false, true, true);
         public float added_velocity_per_level = 0.2F;
+        public float rebound_range = 6.0F;
     }
 
     public static class GlobalFeatures {

@@ -60,11 +60,12 @@ public abstract class LivingEntityMixin {
         if (EnchantmentHelper.getEquipmentLevel(ModEnchants.REBOUND, entity) >= 1) {
             int level = (EnchantmentHelper.getEquipmentLevel(ModEnchants.REBOUND, entity));
             float velocityPerLevel = Config.instance().enchants.rebound.added_velocity_per_level;
+            float range = Config.instance().enchants.rebound.rebound_range;
             Vec3d min = entity.getCameraPosVec(1.0f);
             Vec3d vec3d = entity.getRotationVec(1.0F);
-            Vec3d max = min.add(vec3d.multiply(6.0f));
-            Box box = entity.getBoundingBox().stretch(vec3d.multiply(6.0f)).expand(1.0F);
-            EntityHitResult hitResult = ProjectileUtil.raycast(entity, min, max, box, (entityx) -> !(entityx instanceof LivingEntity), 6.0f);
+            Vec3d max = min.add(vec3d.multiply(range));
+            Box box = entity.getBoundingBox().stretch(vec3d.multiply(range)).expand(1.0F);
+            EntityHitResult hitResult = ProjectileUtil.raycast(entity, min, max, box, (entityx) -> !(entityx instanceof LivingEntity), range);
             if (hitResult != null) {
                 Entity target = hitResult.getEntity();
                 Vec3d velocity = target.getVelocity();
