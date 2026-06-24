@@ -83,6 +83,7 @@ public class ModBlocks {
     public static final Block BURNING_VINES = registerBlock("burning_vines", HangingVinesBlock::new, AbstractBlock.Settings.copy(Blocks.TWISTING_VINES));
     public static final Block PYROLILY = registerBlock("pyrolily", properties -> new BurningFlowerBlock(StatusEffects.FIRE_RESISTANCE, 5, properties), AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 9));
     public static final Block POTTED_PYROLILY = registerBlockWithoutBlockItem("potted_pyrolily", properties -> new FlowerPotBlock(ModBlocks.PYROLILY, properties), AbstractBlock.Settings.copy(Blocks.POTTED_POPPY).luminance((state) -> 7));
+    public static final Block BURNING_SHELF = registerBlock("burning_shelf", ShelfBlock::new, AbstractBlock.Settings.copy(BURNING_PLANKS));
 
     /// Registry order being an ass
     public static final Item BURNING_SIGN_ITEM = ModItems.registerItem("burning_sign", settings -> new SignItem(ModBlocks.BURNING_SIGN, ModBlocks.BURNING_WALL_SIGN, (settings.maxCount(16))));
@@ -118,6 +119,7 @@ public class ModBlocks {
     public static final Block DEAD_SPROUTS = registerBlock("dead_sprouts", SproutsBlock::new, AbstractBlock.Settings.copy(Blocks.NETHER_SPROUTS));
     public static final Block GHOSTLY_VINES = registerBlock("ghostly_vines", HangingVinesBlock::new, AbstractBlock.Settings.copy(Blocks.TWISTING_VINES).luminance((state) -> 4));
     public static final Block WISPBLOOM = registerBlock("wispbloom", FlowerbedBlock::new, AbstractBlock.Settings.copy(Blocks.PINK_PETALS).luminance((state) -> 4));
+    public static final Block SHADEROOT_SHELF = registerBlock("shaderoot_shelf", ShelfBlock::new, AbstractBlock.Settings.copy(SHADEROOT_PLANKS));
 
     /// More Items
     public static final Item SHADEROOT_SIGN_ITEM = ModItems.registerItem("shaderoot_sign", settings -> new SignItem(ModBlocks.SHADEROOT_SIGN, ModBlocks.SHADEROOT_WALL_SIGN, (settings.maxCount(16))));

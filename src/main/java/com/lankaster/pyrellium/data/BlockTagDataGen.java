@@ -137,6 +137,11 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.SHADEROOT_BUTTON
         );
 
+        valueLookupBuilder(BlockTags.WOODEN_SHELVES).add(
+                ModBlocks.BURNING_SHELF,
+                ModBlocks.SHADEROOT_SHELF
+        );
+
         valueLookupBuilder(BlockTags.STANDING_SIGNS).add(
                 ModBlocks.BURNING_SIGN,
                 ModBlocks.SHADEROOT_SIGN

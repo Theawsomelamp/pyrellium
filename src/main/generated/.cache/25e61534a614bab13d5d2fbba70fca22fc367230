@@ -20,6 +20,7 @@ eb7953265a24a84ad0d4d66ca9a7ce8625fa57da data/minecraft/tags/block/wall_hanging_
 dec9ac3de37268fea09e14ac550c2401b1d617ae data/minecraft/tags/block/wooden_doors.json
 1ce900f3685830f47dd558c1fef790de818c0283 data/minecraft/tags/block/wooden_fences.json
 33b028a20ce1b37aaa6f3fa6c498c0cb9ceb36cc data/minecraft/tags/block/wooden_pressure_plates.json
+78e220861ba3cb78e01c8a333363a62b143e365d data/minecraft/tags/block/wooden_shelves.json
 bfd54eb15d5fbfa0c6803425b06910a113e16a77 data/minecraft/tags/block/wooden_slabs.json
 2b9b6aee46cd000c9648dfe74495c2d7997e525a data/minecraft/tags/block/wooden_stairs.json
 0514c6426d59db1c447df68d638ca50e5c24559d data/minecraft/tags/block/wooden_trapdoors.json

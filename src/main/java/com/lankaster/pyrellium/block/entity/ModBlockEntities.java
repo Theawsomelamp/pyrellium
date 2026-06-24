@@ -12,5 +12,7 @@ public interface ModBlockEntities {
     BlockEntityType<HeadStoneBlockEntity> HEADSTONE = Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "headstone"), FabricBlockEntityTypeBuilder.create(HeadStoneBlockEntity::new, ModBlocks.HEADSTONE).build());
 
     static void registerBlockEntities() {
+        BlockEntityType.SHELF.addSupportedBlock(ModBlocks.BURNING_SHELF);
+        BlockEntityType.SHELF.addSupportedBlock(ModBlocks.SHADEROOT_SHELF);
     }
 }

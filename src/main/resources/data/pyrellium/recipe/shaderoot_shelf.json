@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "shelf",
   "key": {
-    "#": "minecraft:iron_chain"
+    "#": "pyrellium:stripped_shaderoot_log"
   },
   "pattern": [
     "###",
+    "   ",
     "###"
   ],
   "result": {
-    "count": 16,
-    "id": "pyrellium:chain_fence"
-  },
-  "show_notification": true
+    "count": 6,
+    "id": "pyrellium:shaderoot_shelf"
+  }
 }

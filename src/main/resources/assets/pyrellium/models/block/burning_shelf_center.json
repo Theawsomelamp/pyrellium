@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_center",
+  "textures": {
+    "all": "pyrellium:block/burning_shelf",
+    "particle": "pyrellium:block/stripped_burning_log_side"
+  }
+}

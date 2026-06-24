@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_inventory",
+  "textures": {
+    "all": "pyrellium:block/shaderoot_shelf",
+    "particle": "pyrellium:block/stripped_shaderoot_log_side"
+  }
+}
