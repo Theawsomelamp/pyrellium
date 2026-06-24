@@ -11,6 +11,7 @@
     "ItemMixin",
     "LifecycledResourceManagerImplMixin",
     "LivingEntityMixin",
+    "PersistentProjectileEntityAccessor",
     "StraySpawningMixin",
     "WarningSuppressor"
   ],

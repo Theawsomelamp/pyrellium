@@ -10,6 +10,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -72,7 +73,7 @@ public abstract class LivingEntityMixin {
             if (hitResult != null) {
                 Entity target = hitResult.getEntity();
                 Vec3d velocity = target.getVelocity();
-                if (velocity.horizontalLength() >= 0.1F) {
+                if (!(target instanceof PersistentProjectileEntity) || (target instanceof PersistentProjectileEntity projectileEntity && !((PersistentProjectileEntityAccessor) projectileEntity).getInGround())) {
                     target.setVelocity(-MathHelper.sin(entity.getYaw() * ((float) Math.PI / 180F)) * (1 + (level * velocityPerLevel)) * velocity.horizontalLength(), (velocityPerLevel / 2) * level, MathHelper.cos(entity.getYaw() * ((float) Math.PI / 180F)) * (1 + (level * velocityPerLevel)) * velocity.horizontalLength());
                     target.getEntityWorld().addParticle(ParticleTypes.SWEEP_ATTACK, target.getX(), target.getY(), target.getZ(), 0.0F, 0.0F, 0.0F);
                     target.getEntityWorld().playSound(null, target.getBlockPos(), SoundEvents.ITEM_TRIDENT_HIT, SoundCategory.PLAYERS, 0.8F, 0.5F);
