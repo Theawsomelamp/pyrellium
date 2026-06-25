@@ -2,10 +2,12 @@ package com.lankaster.pyrellium.block;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.Config;
+import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -62,8 +64,11 @@ public class BombPlantBlock extends PlantBlock implements Fertilizable {
     @Override
     @SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if ((!EnchantmentHelper.hasSilkTouch(player.getStackInHand(hand)) && !player.getStackInHand(hand).isOf(Items.BONE_MEAL)) && state.get(AGE) > 0) {
+        if ((!EnchantmentHelper.hasSilkTouch(player.getStackInHand(hand)) && !player.getStackInHand(hand).isOf(Items.SHEARS) && !player.getStackInHand(hand).isOf(Items.BONE_MEAL)) && state.get(AGE) > 0) {
             world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Config.instance().blocks.bomb_plant_explosion_strength, false, World.ExplosionSourceType.NONE);
+            world.setBlockState(pos, state.with(AGE, 0));
+        } else if (state.get(AGE) == 3) {
+            dropStack(world, pos, new ItemStack(ModItems.BOMB_FLOWER, 1));
             world.setBlockState(pos, state.with(AGE, 0));
         }
         return super.onUse(state, world, pos, player, hand, hit);
@@ -71,7 +76,7 @@ public class BombPlantBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!EnchantmentHelper.hasSilkTouch(player.getStackInHand(Hand.MAIN_HAND)) && state.get(AGE) > 0) {
+        if (!EnchantmentHelper.hasSilkTouch(player.getStackInHand(Hand.MAIN_HAND)) && !player.getStackInHand(Hand.MAIN_HAND).isOf(Items.SHEARS) && state.get(AGE) > 0) {
             world.createExplosion(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Config.instance().blocks.bomb_plant_explosion_strength, false, World.ExplosionSourceType.NONE);
             world.setBlockState(pos, state.with(AGE, 0));
         }
