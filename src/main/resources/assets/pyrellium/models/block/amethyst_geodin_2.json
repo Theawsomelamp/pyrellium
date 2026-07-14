@@ -1,0 +1,12 @@
+{
+  "parent": "pyrellium:block/geodin",
+  "textures": {
+    "down": "minecraft:block/smooth_basalt",
+    "up": "pyrellium:block/amethyst_geodin_top",
+    "north": "pyrellium:block/amethyst_geodin_side",
+    "south": "pyrellium:block/amethyst_geodin_side",
+    "west": "pyrellium:block/amethyst_geodin_side",
+    "east": "pyrellium:block/amethyst_geodin_side",
+    "cross": "minecraft:block/medium_amethyst_bud"
+  }
+}

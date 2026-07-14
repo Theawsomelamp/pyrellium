@@ -1,0 +1,12 @@
+{
+  "parent": "pyrellium:block/geodin",
+  "textures": {
+    "down": "minecraft:block/smooth_basalt",
+    "up": "pyrellium:block/opal_geodin_top",
+    "north": "pyrellium:block/opal_geodin_side",
+    "south": "pyrellium:block/opal_geodin_side",
+    "west": "pyrellium:block/opal_geodin_side",
+    "east": "pyrellium:block/opal_geodin_side",
+    "cross": "pyrellium:block/opal_cluster"
+  }
+}
