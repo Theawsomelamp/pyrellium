@@ -2,6 +2,8 @@ package com.lankaster.pyrellium;
 
 import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.entity.CrystalArrowRenderer;
+import com.lankaster.pyrellium.entity.GeodinModel;
+import com.lankaster.pyrellium.entity.GeodinRenderer;
 import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.ModClientNetworking;
@@ -33,9 +35,11 @@ public class PyrelliumClient implements ClientModInitializer {
 		EntityRendererRegistry.register(ModEntities.BOMB_FLOWER, FlyingItemEntityRenderer::new);
 		EntityRendererRegistry.register(ModEntities.BURNING_BOAT, (context) -> new BoatEntityRenderer(context, false));
 		EntityRendererRegistry.register(ModEntities.BURNING_CHEST_BOAT, (context) -> new BoatEntityRenderer(context, true));
+		EntityRendererRegistry.register(ModEntities.GEODIN, GeodinRenderer::new);
 
 		ModBlockEntityRenderer.register();
 		EntityModelLayerRegistry.registerModelLayer(ModModelLayers.HEADSTONE, HeadStoneBlockEntityRenderer::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ModModelLayers.GEODIN, GeodinModel::getTexturedModelData);
 
 		ModParticles.registerParticle();
 

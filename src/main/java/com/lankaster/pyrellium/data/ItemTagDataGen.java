@@ -5,6 +5,7 @@ import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
@@ -52,6 +53,12 @@ public class ItemTagDataGen extends FabricTagProvider.ItemTagProvider{
                 ModBlocks.SHADEROOT_WOOD.asItem(),
                 ModBlocks.STRIPPED_SHADEROOT_LOG.asItem(),
                 ModBlocks.STRIPPED_SHADEROOT_WOOD.asItem()
+        );
+
+        getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "crystals"))).add(
+                Items.AMETHYST_SHARD,
+                ModItems.OPAL,
+                Items.QUARTZ
         );
     }
 }

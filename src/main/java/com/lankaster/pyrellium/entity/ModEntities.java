@@ -1,10 +1,12 @@
 package com.lankaster.pyrellium.entity;
 
 import com.lankaster.pyrellium.Pyrellium;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -19,7 +21,12 @@ public class ModEntities {
     public static final EntityType<ModChestBoatEntity> BURNING_CHEST_BOAT = Registry.register(Registries.ENTITY_TYPE, new Identifier(Pyrellium.MOD_ID, "burning_chest_boat"),
             FabricEntityTypeBuilder.<ModChestBoatEntity>create(SpawnGroup.MISC, ModChestBoatEntity::new).dimensions(EntityDimensions.fixed(1.375F, 0.5625F)).build());
 
-    public static void registerEntities() {
+    public static final EntityType<GeodinEntity> GEODIN = Registry.register(Registries.ENTITY_TYPE, new Identifier(Pyrellium.MOD_ID, "geodin"),
+            FabricEntityTypeBuilder.<GeodinEntity>create(SpawnGroup.CREATURE, GeodinEntity::new).dimensions(EntityDimensions.fixed(0.95F, 1.15F)).build());
 
+    public static void registerEntities() {
+        FabricDefaultAttributeRegistry.register(ModEntities.GEODIN, GeodinEntity.createGeodinAttributes());
+
+        TrackedDataHandlerRegistry.register(GeodinEntity.GEODIN_VARIANT_IDENTIFIER);
     }
 }

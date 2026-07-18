@@ -17,6 +17,7 @@
   "entity.pyrellium.burning_chest_boat": "Boat with Chest",
   "entity.pyrellium.shaderoot_boat": "Boat",
   "entity.pyrellium.shaderoot_chest_boat": "Boat with Chest",
+  "entity.pyrellium.geodin": "Geodin",
 
   "enchantment.pyrellium.rebound": "Rebound",
   "enchantment.pyrellium.rebound.desc": "Allows users to redirect projectiles by hitting them, higher levels increase the velocity it is sent back at.",
@@ -40,6 +41,7 @@
   "item.pyrellium.shaderoot_sign": "Shaderoot Sign",
   "item.pyrellium.shaderoot_boat": "Shaderoot Boat",
   "item.pyrellium.shaderoot_chest_boat": "Shaderoot Boat with Chest",
+  "item.pyrellium.geodin_spawn_egg": "Geodin Spawn Egg",
 
   "block.pyrellium.opal_block": "Opal Block",
   "block.pyrellium.budding_opal": "Budding Opal",
