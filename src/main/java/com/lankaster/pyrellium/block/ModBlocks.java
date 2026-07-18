@@ -33,8 +33,8 @@ public class ModBlocks {
 
     public static final Block CLEAR_AMETHYST_BLOCK = registerBlock("clear_amethyst_block", new GlassBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).nonOpaque()));
     public static final Block CLEAR_OPAL_BLOCK = registerBlock("clear_opal_block", new GlassBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).nonOpaque()));
-    public static final Block SLEEPING_AMETHYST_GEODIN = registerBlockWithoutBlockItem("sleeping_amethyst_geodin", new GeodinBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT), Blocks.SMALL_AMETHYST_BUD, Blocks.MEDIUM_AMETHYST_BUD, Blocks.LARGE_AMETHYST_BUD, Blocks.AMETHYST_CLUSTER));
-    public static final Block SLEEPING_OPAL_GEODIN = registerBlockWithoutBlockItem("sleeping_opal_geodin", new GeodinBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT), SMALL_OPAL_BUD, MEDIUM_OPAL_BUD, LARGE_OPAL_BUD, OPAL_CLUSTER));
+    public static final Block SLEEPING_AMETHYST_GEODIN = registerBlockWithoutBlockItem("sleeping_amethyst_geodin", new GeodinBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT), Blocks.SMALL_AMETHYST_BUD, Blocks.MEDIUM_AMETHYST_BUD, Blocks.LARGE_AMETHYST_BUD, Blocks.AMETHYST_CLUSTER, new Identifier("minecraft", "amethyst")));
+    public static final Block SLEEPING_OPAL_GEODIN = registerBlockWithoutBlockItem("sleeping_opal_geodin", new GeodinBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT), SMALL_OPAL_BUD, MEDIUM_OPAL_BUD, LARGE_OPAL_BUD, OPAL_CLUSTER, new Identifier(Pyrellium.MOD_ID, "opal")));
 
     public static final Block FREEZING_ICE = registerBlock("freezing_ice", new FreezingIceBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE).nonOpaque()));
     public static final Block SILK_BLOCK = registerBlock("silk_block", new Block(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));

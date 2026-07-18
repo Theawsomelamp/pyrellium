@@ -1,9 +1,10 @@
 package com.lankaster.pyrellium.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
+import com.lankaster.pyrellium.block.entity.GeodinBlockEntity;
+import com.lankaster.pyrellium.entity.GeodinEntity;
+import com.lankaster.pyrellium.entity.ModEntities;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
@@ -13,6 +14,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -21,21 +23,23 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-public class GeodinBlock extends Block {
+public class GeodinBlock extends Block implements BlockEntityProvider {
     protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 8.0F, 16.0F);
     public static final IntProperty AGE = IntProperty.of("age", 0, 4);
     private final Block smallBud;
     private final Block mediumBud;
     private final Block largeBud;
     private final Block cluster;
+    private final Identifier variant;
 
 
-    public GeodinBlock(Settings settings, Block smallBud, Block mediumBud, Block largeBud, Block cluster) {
+    public GeodinBlock(Settings settings, Block smallBud, Block mediumBud, Block largeBud, Block cluster, Identifier variant) {
         super(settings);
         this.smallBud = smallBud;
         this.mediumBud = mediumBud;
         this.largeBud = largeBud;
         this.cluster = cluster;
+        this.variant = variant;
     }
 
     @SuppressWarnings("deprecation")
@@ -73,6 +77,18 @@ public class GeodinBlock extends Block {
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         int age = state.get(AGE);
         dropStacks(getBlockFromAge(age).getDefaultState(), world, pos, null, null, player.getStackInHand(Hand.MAIN_HAND));
+
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof GeodinBlockEntity geodinBlockEntity) {
+            GeodinEntity geodin = ModEntities.GEODIN.create(world);
+            geodin.setVariant(GeodinEntity.Variant.get(variant));
+            geodin.setPosition(pos.toCenterPos());
+            if (geodinBlockEntity.hasCustomName()) {
+                geodin.setCustomName(geodinBlockEntity.getCustomName());
+            }
+            geodin.setPersistent();
+            world.spawnEntity(geodin);
+        }
     }
 
     private Block getBlockFromAge(int age) {
@@ -83,6 +99,11 @@ public class GeodinBlock extends Block {
             case 4 -> cluster;
             default -> Blocks.AIR;
         };
+    }
+
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new GeodinBlockEntity(pos, state);
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

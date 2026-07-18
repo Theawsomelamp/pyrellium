@@ -1,9 +1,15 @@
 package com.lankaster.pyrellium.entity;
 
 import com.lankaster.pyrellium.Pyrellium;
+import com.lankaster.pyrellium.block.GeodinBlock;
+import com.lankaster.pyrellium.block.entity.GeodinBlockEntity;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.VariantHolder;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -19,7 +25,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundCategory;
@@ -27,8 +35,14 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +53,7 @@ public class GeodinEntity extends PathAwareEntity implements VariantHolder<Geodi
     private static final TrackedData<Integer> CRYSTAL_AGE = DataTracker.registerData(GeodinEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     private int ticksSinceGrowth;
+    private int stuckTicks;
 
     public GeodinEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
         super(entityType, world);
@@ -99,12 +114,39 @@ public class GeodinEntity extends PathAwareEntity implements VariantHolder<Geodi
         return this.getDataTracker().get(CRYSTAL_AGE);
     }
 
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+        RegistryEntry<Biome> registryEntry = world.getBiome(this.getBlockPos());
+        if (registryEntry.matchesKey(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "crystal_forest")))) {
+            this.setVariant(Math.random() >= 0.5 ? Variant.AMETHYST : Variant.OPAL);
+        } else {
+            this.setVariant(Variant.AMETHYST);
+        }
+
+        return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    }
+
     protected void mobTick() {
         if (this.getCrystalAge() < 4) {
             ++this.ticksSinceGrowth;
-            if (this.ticksSinceGrowth % 5 == 0 && this.random.nextInt(MathHelper.clamp(1200 - this.ticksSinceGrowth, 1, 1200)) == 0) {
+            if (this.ticksSinceGrowth % 5 == 0 && this.random.nextInt(MathHelper.clamp(6000 - this.ticksSinceGrowth, 1, 6000)) == 0) {
                 this.setCrystalAge(getCrystalAge() + 1);
                 this.ticksSinceGrowth = 0;
+            }
+        }
+
+        ++this.stuckTicks;
+        if (this.stuckTicks % 100 == 0) {
+            if (canTravel()) {
+                this.stuckTicks = 0;
+            }
+
+            if (this.stuckTicks >= 1200 && !isBlockAtPosSolid(this.getBlockPos())) {
+                this.getWorld().setBlockState(this.getBlockPos(), getBlockForm());
+                BlockEntity blockEntity = this.getWorld().getBlockEntity(this.getBlockPos());
+                if (blockEntity instanceof GeodinBlockEntity geodinBlockEntity) {
+                    geodinBlockEntity.setCustomName(this.getCustomName());
+                }
+                this.damage(this.getDamageSources().generic(), this.getHealth());
             }
         }
     }
@@ -130,6 +172,31 @@ public class GeodinEntity extends PathAwareEntity implements VariantHolder<Geodi
             case 4 -> variant.cluster;
             default -> Blocks.AIR;
         };
+    }
+
+    public BlockState getBlockForm() {
+        Variant variant = getVariant();
+        GeodinBlock block = (GeodinBlock) Registries.BLOCK.get(new Identifier(Pyrellium.MOD_ID, "sleeping_" + variant.id.getPath() + "_geodin"));
+        return block.getDefaultState().with(GeodinBlock.AGE, getCrystalAge());
+    }
+
+    private boolean canTravel() {
+        BlockPos origin = this.getBlockPos();
+        BlockPos.Mutable mutable = origin.mutableCopy();
+        mutable.move(Direction.UP);
+
+        for (Direction direction : Direction.Type.HORIZONTAL) {
+            BlockPos blockPos = mutable.offset(direction);
+            if (isBlockAtPosSolid(blockPos)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isBlockAtPosSolid(BlockPos pos) {
+        return this.getWorld().getBlockState(pos).hasSolidTopSurface(this.getWorld().getChunkAsView(pos.getX(), pos.getY()), pos, this);
     }
 
     public static class Variant {
