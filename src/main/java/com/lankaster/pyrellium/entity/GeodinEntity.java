@@ -2,6 +2,7 @@ package com.lankaster.pyrellium.entity;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.block.GeodinBlock;
+import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.block.entity.GeodinBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -118,6 +119,8 @@ public class GeodinEntity extends PathAwareEntity implements VariantHolder<Geodi
         RegistryEntry<Biome> registryEntry = world.getBiome(this.getBlockPos());
         if (registryEntry.matchesKey(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "crystal_forest")))) {
             this.setVariant(Math.random() >= 0.5 ? Variant.AMETHYST : Variant.OPAL);
+        } else if (registryEntry.matchesKey(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "quartz_caverns")))) {
+            this.setVariant(Variant.QUARTZ);
         } else {
             this.setVariant(Variant.AMETHYST);
         }
@@ -211,6 +214,7 @@ public class GeodinEntity extends PathAwareEntity implements VariantHolder<Geodi
 
         public static final Variant AMETHYST = registerSimple(new Identifier("minecraft", "amethyst"));
         public static final Variant OPAL = registerSimple(new Identifier(Pyrellium.MOD_ID, "opal"));
+        public static final Variant QUARTZ = register(new Identifier(Pyrellium.MOD_ID, "quartz"), ModBlocks.SMALL_QUARTZ_BUD, ModBlocks.MEDIUM_QUARTZ_BUD, ModBlocks.LARGE_QUARTZ_BUD, ModBlocks.QUARTZ_CRYSTAL, new Identifier(Pyrellium.MOD_ID, "textures/entity/geodin/quartz.png"));
 
         protected Variant(Identifier id, Block smallBud, Block mediumBud, Block largeBud, Block cluster, Identifier texture) {
             this.id = id;

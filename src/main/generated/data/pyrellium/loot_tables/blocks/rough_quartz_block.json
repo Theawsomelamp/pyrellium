@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pyrellium:quartz_crystal"
+          "name": "pyrellium:rough_quartz_block"
         }
       ],
       "rolls": 1.0

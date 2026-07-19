@@ -19,6 +19,12 @@
     "pyrellium:chain_fence",
     "pyrellium:basalt_iron_ore",
     "pyrellium:sleeping_amethyst_geodin",
-    "pyrellium:sleeping_opal_geodin"
+    "pyrellium:sleeping_opal_geodin",
+    "pyrellium:small_quartz_bud",
+    "pyrellium:medium_quartz_bud",
+    "pyrellium:large_quartz_bud",
+    "pyrellium:budding_quartz",
+    "pyrellium:rough_quartz_block",
+    "pyrellium:sleeping_quartz_geodin"
   ]
 }

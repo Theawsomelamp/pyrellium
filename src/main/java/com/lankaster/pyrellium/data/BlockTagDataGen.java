@@ -38,7 +38,13 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.CHAIN_FENCE,
                 ModBlocks.BASALT_IRON_ORE,
                 ModBlocks.SLEEPING_AMETHYST_GEODIN,
-                ModBlocks.SLEEPING_OPAL_GEODIN
+                ModBlocks.SLEEPING_OPAL_GEODIN,
+                ModBlocks.SMALL_QUARTZ_BUD,
+                ModBlocks.MEDIUM_QUARTZ_BUD,
+                ModBlocks.LARGE_QUARTZ_BUD,
+                ModBlocks.BUDDING_QUARTZ,
+                ModBlocks.ROUGH_QUARTZ_BLOCK,
+                ModBlocks.SLEEPING_QUARTZ_GEODIN
         );
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
