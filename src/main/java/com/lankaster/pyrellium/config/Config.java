@@ -70,62 +70,50 @@ public class Config {
         public QuartzCaverns quartz_caverns = new QuartzCaverns();
     }
 
-    public record BiomeNoise(float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness, float offset) {
-    }
-
     public static class BlackstoneSprings {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(-0.25f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.15f);
         public boolean generate_blackstone_rocks = true;
     }
 
     public static class BurningGrove {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         public boolean generate_pyrolily = true;
     }
 
     public static class CrystalForest {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.0f, 0.75f, 0.0f, 0.0f, 0.0f, 0.0f, 0.325f);
         public boolean generate_floor_crystals = true;
     }
 
     public static class FrostburnValley {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.0f, -0.75f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     }
 
     public static class GhostlyWoods {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         public boolean generate_headstones = true;
     }
 
     public static class InfestedValley {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.325f);
         public boolean generate_floor_decorations = true;
         public boolean generate_hanging_silk = true;
     }
 
     public static class MonolithPlains{
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.75f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         public boolean generate_bomb_flowers = true;
         public boolean generate_monolith = true;
     }
 
     public static class MushroomWastes {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f);
         public boolean generate_spores = true;
         public boolean generate_wall_mushrooms = true;
     }
 
     public static class QuartzCaverns {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.25f, 0.25f, 0.0f, 0.0f, 0.0f, 0.0f, 0.25f);
         public boolean generate_quartz_spikes = true;
         public boolean generate_quartz_cracks = true;
     }

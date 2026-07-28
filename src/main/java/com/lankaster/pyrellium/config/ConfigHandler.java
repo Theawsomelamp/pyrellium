@@ -11,9 +11,8 @@ import java.nio.file.Path;
 public class ConfigHandler {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-
-    public static String noiseToJson(Config.BiomeNoise noise) {
-        return gson.toJson(noise);
+    public static String biomesToJson(Config.Biomes biomes) {
+        return gson.toJson(biomes);
     }
 
     public static void load(Path path) {

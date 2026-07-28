@@ -45,6 +45,14 @@ public class LifecycledResourceManagerImplMixin {
 
     @ModifyReturnValue(method = "findResources", at = @At("RETURN"))
     public Map<Identifier, Resource> findConfiguredResources(Map<Identifier, Resource> original, String startingPath, Predicate<Identifier> allowedPathPredicate) {
+        for (PyrelliumCustomData data : PyrelliumCustomData.INSTANCES) {
+            if (data.enabled.get() && data.target.getPath().startsWith(startingPath + "/") && allowedPathPredicate.test(data.target)) {
+                if (!original.containsKey(data.target)) {
+                    original.put(data.target, readAndApply(Optional.empty(), data));
+                }
+            }
+        }
+
         List<Identifier> ids = new ArrayList<>(original.keySet());
         for (Identifier id : ids) {
             PyrelliumCustomData data = PyrelliumCustomData.get(id);

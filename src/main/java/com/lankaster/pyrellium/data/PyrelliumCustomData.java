@@ -4,7 +4,7 @@ import blue.endless.jankson.annotation.Nullable;
 import com.google.gson.*;
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.Config;
-import com.lankaster.pyrellium.world.ModWorldGeneration;
+import com.lankaster.pyrellium.config.ConfigHandler;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
@@ -36,6 +36,7 @@ public class PyrelliumCustomData {
 
     public static List<PyrelliumCustomData> INSTANCES = new LinkedList<>();
     private static final List<Pair<Identifier, JsonObject>> SURFACE_RULES = new ArrayList<>();
+    private static final List<Pair<Identifier, JsonObject>> BIOMES_NOISE = new ArrayList<>();
 
     public static @Nullable PyrelliumCustomData get(Identifier id) {
         for (PyrelliumCustomData data : INSTANCES) {
@@ -50,6 +51,14 @@ public class PyrelliumCustomData {
 
     public static void clearSurfaceRules() {
         SURFACE_RULES.clear();
+    }
+
+    public static List<Pair<Identifier, JsonObject>> getBiomesNoise() {
+        return BIOMES_NOISE;
+    }
+
+    public static void clearBiomeNoise() {
+        BIOMES_NOISE.clear();
     }
 
     protected static void register(Identifier target, Supplier<Boolean> enabled, Function<JsonElement, String> provider) {
@@ -82,11 +91,32 @@ public class PyrelliumCustomData {
                 Pyrellium.LOGGER.warn("Could not read data file {}", entry.getKey());
             }
         }
+
+        for (Map.Entry<Identifier, Resource> entry : manager.findResources("worldgen/biome_noise",
+                path -> path.toString().endsWith(".json")).entrySet()) {
+
+            try {
+                String content = new String(entry.getValue().getInputStream().readAllBytes());
+                JsonElement json = gson.fromJson(content, JsonElement.class);
+
+                if (json == null || !json.isJsonObject()) continue;
+
+                addBiomeNoise(json.getAsJsonObject());
+            }
+            catch (Throwable e) {
+                Pyrellium.LOGGER.warn("Could not read data file {}", entry.getKey());
+            }
+        }
     }
 
     public static void addSurfaceRules(JsonObject json) {
         if (!json.has("dimension") || !json.has("surface_rule")) return;
         SURFACE_RULES.add(new Pair<>(new Identifier(json.get("dimension").getAsString()), json.get("surface_rule").getAsJsonObject()));
+    }
+
+    public static void addBiomeNoise(JsonObject json) {
+        if (!json.has("biome") || !json.has("parameters")) return;
+        BIOMES_NOISE.add(new Pair<>(new Identifier(json.get("biome").getAsString()), json.get("parameters").getAsJsonObject()));
     }
 
     public static boolean detectModification(JsonElement json) {
@@ -98,13 +128,92 @@ public class PyrelliumCustomData {
     }
 
     public static String changeBiomeNoise(JsonElement json) {
+        if (json == null) {
+            json = getJson("""
+                    {
+                      "type": "minecraft:the_nether",
+                      "generator": {
+                        "type": "minecraft:noise",
+                        "biome_source": {
+                          "biomes": [
+                            {
+                              "biome": "minecraft:nether_wastes",
+                              "parameters": {
+                                "continentalness": 0,
+                                "depth": 0,
+                                "erosion": 0,
+                                "humidity": 0,
+                                "offset": 0,
+                                "temperature": 0,
+                                "weirdness": 0
+                              }
+                            },
+                            {
+                              "biome": "minecraft:soul_sand_valley",
+                              "parameters": {
+                                "continentalness": 0,
+                                "depth": 0,
+                                "erosion": 0,
+                                "humidity": -0.5,
+                                "offset": 0,
+                                "temperature": 0,
+                                "weirdness": 0
+                              }
+                            },
+                            {
+                              "biome": "minecraft:crimson_forest",
+                              "parameters": {
+                                "continentalness": 0,
+                                "depth": 0,
+                                "erosion": 0,
+                                "humidity": 0,
+                                "offset": 0,
+                                "temperature": 0.4,
+                                "weirdness": 0
+                              }
+                            },
+                            {
+                              "biome": "minecraft:warped_forest",
+                              "parameters": {
+                                "continentalness": 0,
+                                "depth": 0,
+                                "erosion": 0,
+                                "humidity": 0.5,
+                                "offset": 0.375,
+                                "temperature": 0,
+                                "weirdness": 0
+                              }
+                            },
+                            {
+                              "biome": "minecraft:basalt_deltas",
+                              "parameters": {
+                                "continentalness": 0,
+                                "depth": 0,
+                                "erosion": 0,
+                                "humidity": 0,
+                                "offset": 0.175,
+                                "temperature": -0.5,
+                                "weirdness": 0
+                              }
+                            }
+                          ],
+                          "type": "minecraft:multi_noise"
+                        },
+                        "settings": "minecraft:nether"
+                      }
+                    }""");
+        }
+
         JsonArray baseNoise = json.getAsJsonObject().get("generator").getAsJsonObject().get("biome_source").getAsJsonObject().get("biomes").getAsJsonArray();
         JsonArray sequence = new JsonArray();
 
-        for (Pair<Identifier, String> noise : ModWorldGeneration.getNoiseBiomes().stream().toList()) {
-            JsonObject biome = getJson("{\"biome\": \"" + noise.getLeft().toString() + "\"}").getAsJsonObject();
-            biome.add("parameters", getJson(noise.getRight()));
-            sequence.add(biome);
+        for (Pair<Identifier, JsonObject> noise : getBiomesNoise()) {
+            String config = ConfigHandler.biomesToJson(Config.instance().biomes);
+            if (getJson(config).getAsJsonObject().get(noise.getLeft().getPath()).getAsJsonObject().get("enable_biome").getAsBoolean()) {
+                JsonObject biome = getJson("{\"biome\": \"" + noise.getLeft().toString() + "\"}").getAsJsonObject();
+                biome.add("parameters", noise.getRight());
+                sequence.add(biome);
+            }
         }
         sequence.addAll(baseNoise);
 

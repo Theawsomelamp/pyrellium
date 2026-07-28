@@ -10,6 +10,7 @@ public class PyrelliumReloadListener implements SimpleSynchronousResourceReloadL
 
     public void preload(ResourceManager manager) {
         PyrelliumCustomData.clearSurfaceRules();
+        PyrelliumCustomData.clearBiomeNoise();
 
         PyrelliumCustomData.read(manager);
     }
