@@ -127,5 +127,6 @@ public class Config {
         public boolean enable_biome = true;
         public BiomeNoise biome_noise = new BiomeNoise(0.25f, 0.25f, 0.0f, 0.0f, 0.0f, 0.0f, 0.25f);
         public boolean generate_quartz_spikes = true;
+        public boolean generate_quartz_cracks = true;
     }
 }

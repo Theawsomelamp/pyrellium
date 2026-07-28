@@ -503,6 +503,31 @@
                     }
                   },
                   {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:stone_depth",
+                      "offset": 0,
+                      "surface_type": "floor",
+                      "add_surface_depth": true,
+                      "secondary_depth_range": 0
+                    },
+                    "then_run": {
+                      "type": "minecraft:condition",
+                      "if_true": {
+                        "type": "minecraft:noise_threshold",
+                        "noise": "minecraft:nether_state_selector",
+                        "min_threshold": -0.075,
+                        "max_threshold": 0.075
+                      },
+                      "then_run": {
+                        "type": "minecraft:block",
+                        "result_state": {
+                          "Name": "minecraft:smooth_quartz"
+                        }
+                      }
+                    }
+                  },
+                  {
                     "type": "minecraft:block",
                     "result_state": {
                       "Name": "minecraft:smooth_basalt"

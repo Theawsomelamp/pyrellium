@@ -60,6 +60,7 @@ public class GeodinEntity extends PathAwareEntity implements VariantHolder<Geodi
         super(entityType, world);
     }
 
+
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new EscapeDangerGoal(this, 1.25D));

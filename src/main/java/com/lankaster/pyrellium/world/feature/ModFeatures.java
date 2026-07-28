@@ -14,6 +14,7 @@ public class ModFeatures {
     public static final Feature PILLAR = registerFeature("pillar", new PillarFeature(PillarFeatureConfig.CODEC));
     public static final Feature SQUARE = registerFeature("square", new SquareFeature(SquareFeatureConfig.CODEC));
     public static final Feature REPLACE_WALL_FEATURE = registerFeature("replace_wall", new ReplaceWallFeature(ReplaceWallFeatureConfig.CODEC));
+    public static final Feature CRACK = registerFeature("crack", new CrackFeature(CrackFeatureConfig.CODEC));
 
     private static Feature registerFeature(String name, Feature feature) {
         return Registry.register(Registries.FEATURE, new Identifier(Pyrellium.MOD_ID, name), feature);
