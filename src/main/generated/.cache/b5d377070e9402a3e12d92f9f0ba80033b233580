@@ -1,4 +1,4 @@
-// 1.20.1	2026-07-19T08:59:04.372734138	Pyrellium/Block Loot Tables
+// 1.20.1	2026-07-30T17:02:03.380183347	Pyrellium/Block Loot Tables
 0685d038fe215716f8dff51351c28e82f6758297 data/pyrellium/loot_tables/blocks/rough_quartz_block.json
 1e6045dbdf191e27be1641f83b356d403e9ac809 data/pyrellium/loot_tables/blocks/silk_carpet.json
 9d9a8ed24c31f34b4a662809e5e1df89c60ab91c data/pyrellium/loot_tables/blocks/burning_sprouts.json
@@ -62,7 +62,6 @@ d0e54798d23931c287fa53d4f5d69aa564a915bf data/pyrellium/loot_tables/blocks/burni
 1d4929d7d6176f60e5ea991a577527ed251ef375 data/pyrellium/loot_tables/blocks/sleeping_amethyst_geodin.json
 505caf7fa81ec89ee6c5327a85e53c7dc99645c5 data/pyrellium/loot_tables/blocks/shaderoot_fence.json
 0f1d7d6f71f5ecc88482b20bc8e95b46f2866c4a data/pyrellium/loot_tables/blocks/shaderoot_trapdoor.json
-494531509ad7658c2962b0f7a3cef0f6212b7f09 data/pyrellium/loot_tables/blocks/quartz_crystal.json
 b99f83709663f4cdb16aa51a5de27daf4be03e81 data/pyrellium/loot_tables/blocks/shaderoot_slab.json
 1d4929d7d6176f60e5ea991a577527ed251ef375 data/pyrellium/loot_tables/blocks/sleeping_quartz_geodin.json
 34fc83dd0be33d4ed70bc8376c7029aa4d9d5d0e data/pyrellium/loot_tables/blocks/stripped_burning_wood.json

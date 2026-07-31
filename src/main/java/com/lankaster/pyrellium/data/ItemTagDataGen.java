@@ -5,6 +5,7 @@ import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -59,6 +60,29 @@ public class ItemTagDataGen extends FabricTagProvider.ItemTagProvider{
                 Items.AMETHYST_SHARD,
                 ModItems.OPAL,
                 Items.QUARTZ
+        );
+
+        getOrCreateTagBuilder(ConventionalItemTags.BUDDING_BLOCKS).add(
+                ModBlocks.BUDDING_OPAL.asItem(),
+                ModBlocks.BUDDING_QUARTZ.asItem()
+        );
+
+        getOrCreateTagBuilder(ConventionalItemTags.BUDS).add(
+                ModBlocks.SMALL_OPAL_BUD.asItem(),
+                ModBlocks.MEDIUM_OPAL_BUD.asItem(),
+                ModBlocks.LARGE_OPAL_BUD.asItem(),
+                ModBlocks.SMALL_QUARTZ_BUD.asItem(),
+                ModBlocks.MEDIUM_QUARTZ_BUD.asItem(),
+                ModBlocks.LARGE_QUARTZ_BUD.asItem()
+        );
+
+        getOrCreateTagBuilder(ConventionalItemTags.CLUSTERS).add(
+                ModBlocks.OPAL_CLUSTER.asItem(),
+                ModBlocks.QUARTZ_CRYSTAL.asItem()
+        );
+
+        getOrCreateTagBuilder(ConventionalItemTags.GEMS).add(
+                ModItems.OPAL
         );
     }
 }

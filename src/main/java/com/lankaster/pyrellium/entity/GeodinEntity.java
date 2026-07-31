@@ -20,7 +20,8 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandler;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PathAwareEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -29,8 +30,10 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -39,16 +42,15 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.*;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class GeodinEntity extends PathAwareEntity implements VariantHolder<GeodinEntity.Variant> {
+public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEntity.Variant> {
     public static final TrackedDataHandler<Identifier> GEODIN_VARIANT_IDENTIFIER = TrackedDataHandler.of(PacketByteBuf::writeIdentifier, PacketByteBuf::readIdentifier);
     private static final TrackedData<Identifier> VARIANT = DataTracker.registerData(GeodinEntity.class, GEODIN_VARIANT_IDENTIFIER);
     private static final TrackedData<Integer> CRYSTAL_AGE = DataTracker.registerData(GeodinEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -56,7 +58,7 @@ public class GeodinEntity extends PathAwareEntity implements VariantHolder<Geodi
     private int ticksSinceGrowth;
     private int stuckTicks;
 
-    public GeodinEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
+    public GeodinEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -116,6 +118,15 @@ public class GeodinEntity extends PathAwareEntity implements VariantHolder<Geodi
         return this.getDataTracker().get(CRYSTAL_AGE);
     }
 
+    public static boolean isValidNaturalSpawn(EntityType<? extends AnimalEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        return world.getBlockState(pos.down()).isIn(BlockTags.SCULK_REPLACEABLE);
+    }
+
+    @Override
+    public float getPathfindingFavor(BlockPos pos, WorldView world) {
+        return world.getBlockState(pos.down()).isIn(BlockTags.SCULK_REPLACEABLE) ? 10.0F : -1.0F;
+    }
+
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
         RegistryEntry<Biome> registryEntry = world.getBiome(this.getBlockPos());
         if (registryEntry.matchesKey(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "crystal_forest")))) {
@@ -127,6 +138,11 @@ public class GeodinEntity extends PathAwareEntity implements VariantHolder<Geodi
         }
 
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    }
+
+    @Override
+    public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+        return ModEntities.GEODIN.create(world);
     }
 
     protected void mobTick() {

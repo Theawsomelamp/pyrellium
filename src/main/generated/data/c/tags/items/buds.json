@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "pyrellium:small_opal_bud",
+    "pyrellium:medium_opal_bud",
+    "pyrellium:large_opal_bud",
+    "pyrellium:small_quartz_bud",
+    "pyrellium:medium_quartz_bud",
+    "pyrellium:large_quartz_bud"
+  ]
+}
