@@ -1,19 +1,19 @@
 {
   "type": "pyrellium:spike",
   "config": {
-    "direction": "up",
+    "direction": "down",
     "height": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 8,
-        "max_inclusive": 10
+        "min_inclusive": 12,
+        "max_inclusive": 16
       }
     },
     "radius": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 2,
-        "max_inclusive": 2
+        "min_inclusive": 3,
+        "max_inclusive": 4
       }
     },
     "provider": {
@@ -30,7 +30,7 @@
           "data": {
             "Name": "pyrellium:small_quartz_bud",
             "Properties": {
-              "facing": "up",
+              "facing": "down",
               "waterlogged": "false"
             }
           }
@@ -40,7 +40,7 @@
           "data": {
             "Name": "pyrellium:medium_quartz_bud",
             "Properties": {
-              "facing": "up",
+              "facing": "down",
               "waterlogged": "false"
             }
           }
@@ -50,7 +50,7 @@
           "data": {
             "Name": "pyrellium:large_quartz_bud",
             "Properties": {
-              "facing": "up",
+              "facing": "down",
               "waterlogged": "false"
             }
           }
@@ -60,7 +60,7 @@
           "data": {
             "Name": "pyrellium:quartz_crystal",
             "Properties": {
-              "facing": "up",
+              "facing": "down",
               "waterlogged": "false"
             }
           }

@@ -1,14 +1,33 @@
 {
-  "feature": "pyrellium:quartz_spike",
+  "feature": "pyrellium:quartz_spike_down",
   "placement": [
     {
-      "type": "minecraft:count_on_every_layer",
-      "count": 3
+      "type": "minecraft:count",
+      "count": 48
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "below_top": 0
+        },
+        "min_inclusive": {
+          "above_bottom": 31
+        }
+      }
     },
     {
       "type": "minecraft:environment_scan",
-      "direction_of_search": "down",
-      "max_steps": 1,
+      "allowed_search_condition": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "minecraft:air"
+      },
+      "direction_of_search": "up",
+      "max_steps": 8,
       "target_condition": {
         "type": "minecraft:all_of",
         "predicates": [
@@ -58,7 +77,7 @@
     {
       "type": "minecraft:random_offset",
       "xz_spread": 0,
-      "y_spread": 1
+      "y_spread": -1
     },
     {
       "type": "minecraft:biome"

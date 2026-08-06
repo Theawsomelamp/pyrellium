@@ -1,7 +1,7 @@
 {
   "type": "pyrellium:spike",
   "config": {
-    "direction": "up",
+    "direction": "down",
     "height": {
       "type": "minecraft:uniform",
       "value": {
@@ -30,7 +30,7 @@
           "data": {
             "Name": "pyrellium:small_quartz_bud",
             "Properties": {
-              "facing": "up",
+              "facing": "down",
               "waterlogged": "false"
             }
           }
@@ -40,7 +40,7 @@
           "data": {
             "Name": "pyrellium:medium_quartz_bud",
             "Properties": {
-              "facing": "up",
+              "facing": "down",
               "waterlogged": "false"
             }
           }
@@ -50,7 +50,7 @@
           "data": {
             "Name": "pyrellium:large_quartz_bud",
             "Properties": {
-              "facing": "up",
+              "facing": "down",
               "waterlogged": "false"
             }
           }
@@ -60,7 +60,7 @@
           "data": {
             "Name": "pyrellium:quartz_crystal",
             "Properties": {
-              "facing": "up",
+              "facing": "down",
               "waterlogged": "false"
             }
           }

@@ -1,0 +1,30 @@
+{
+  "type": "pyrellium:pair",
+  "config": {
+    "first_feature": {
+      "feature": {
+        "config": {
+          "features": [
+            {
+              "chance": 0.2,
+              "feature": {
+                "feature": "pyrellium:spike_down_big",
+                "placement": []
+              }
+            }
+          ],
+          "default": {
+            "feature": "pyrellium:spike_down",
+            "placement": []
+          }
+        },
+        "type": "minecraft:random_selector"
+      },
+      "placement": []
+    },
+    "second_feature": {
+      "feature": "pyrellium:spike_floor",
+      "placement": []
+    }
+  }
+}
