@@ -2,12 +2,14 @@ package com.lankaster.pyrellium.world;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.Config;
+import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.world.tree.BurningTrunkPlacer;
 import com.lankaster.pyrellium.world.tree.WeepingFoliagePlacer;
 import com.lankaster.pyrellium.world.tree.WillowFoliagePlacer;
 import com.lankaster.pyrellium.world.tree.HangingTreeDecorator;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
@@ -87,6 +89,11 @@ public class ModWorldGeneration {
             BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.GHOSTLY_WOODS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "headstones")));
 
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.NETHER_WASTES), GenerationStep.Feature.UNDERGROUND_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "quartz_crystals_rare")));
+
+        if (Config.instance().entities.geodin.spawn_weight > 0) {
+            BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.CRYSTAL_FOREST), SpawnGroup.CREATURE, ModEntities.GEODIN, Config.instance().entities.geodin.spawn_weight, 2, 4);
+            BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.QUARTZ_CAVERNS), SpawnGroup.CREATURE, ModEntities.GEODIN, Config.instance().entities.geodin.spawn_weight, 2, 4);
+        }
     }
 
     public static void register() {

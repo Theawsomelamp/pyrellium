@@ -6,6 +6,7 @@ public class Config {
     public String comment = "For help with the config, refer to https://github.com/Theawsomelamp/pyrellium#configuration";
     public Blocks blocks = new Blocks();
     public Items items = new Items();
+    public Entities entities = new Entities();
     public Enchants enchants = new Enchants();
     public GlobalFeatures globalFeatures = new GlobalFeatures();
     public Biomes biomes = new Biomes();
@@ -31,6 +32,19 @@ public class Config {
         public String[] mushroom_cap_effects = {"minecraft:poison"};
         public int crystal_arrow_shatter_radius = 2;
         public int crystal_arrow_shatter_damage = 2;
+    }
+
+    public static class Entities {
+        public Geodin geodin = new Geodin();
+    }
+
+    public record EntityAttributes(float max_health, float armor, float movement_speed, float attack_damage) {
+    }
+
+    public static class Geodin {
+        public int spawn_weight = 80;
+        public EntityAttributes attributes = new EntityAttributes(16.0f, 4.0f, 0.2f, 0.0f);
+        public int conversion_time = 1200;
     }
 
     public record EnchantDistribution(boolean enchant_table_roll, boolean librarian_book_trade, boolean found_on_enchanted_loot) {

@@ -36,12 +36,6 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "pyrellium:geodin",
-        "weight": 80,
-        "minCount": 2,
-        "maxCount": 4
-      },
-      {
         "type": "minecraft:strider",
         "weight": 20,
         "minCount": 1,

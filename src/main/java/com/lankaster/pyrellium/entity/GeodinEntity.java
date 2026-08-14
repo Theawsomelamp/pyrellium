@@ -4,6 +4,7 @@ import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.block.GeodinBlock;
 import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.block.entity.GeodinBlockEntity;
+import com.lankaster.pyrellium.config.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -39,6 +40,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -48,6 +50,7 @@ import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEntity.Variant> {
@@ -74,9 +77,9 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
 
     public static DefaultAttributeContainer.Builder createGeodinAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0f)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f)
-                .add(EntityAttributes.GENERIC_ARMOR, 4.0f);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, Config.instance().entities.geodin.attributes.max_health())
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, Config.instance().entities.geodin.attributes.movement_speed())
+                .add(EntityAttributes.GENERIC_ARMOR, Config.instance().entities.geodin.attributes.armor());
     }
 
     @Override
@@ -118,6 +121,10 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
         return this.getDataTracker().get(CRYSTAL_AGE);
     }
 
+    public boolean canBreatheInWater() {
+        return true;
+    }
+
     public static boolean isValidNaturalSpawn(EntityType<? extends AnimalEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
         return world.getBlockState(pos.down()).isIn(BlockTags.SCULK_REPLACEABLE);
     }
@@ -134,7 +141,7 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
         } else if (registryEntry.matchesKey(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "quartz_caverns")))) {
             this.setVariant(Variant.QUARTZ);
         } else {
-            this.setVariant(Variant.AMETHYST);
+            this.setVariant(Util.getRandomOrEmpty(Variant.getAll(), world.getRandom()).orElse(Variant.AMETHYST));
         }
 
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
@@ -160,7 +167,7 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
                 this.stuckTicks = 0;
             }
 
-            if (this.stuckTicks >= 1200 && !isBlockAtPosSolid(this.getBlockPos())) {
+            if (this.stuckTicks >= Config.instance().entities.geodin.conversion_time && !isBlockAtPosSolid(this.getBlockPos())) {
                 this.getWorld().setBlockState(this.getBlockPos(), getBlockForm());
                 BlockEntity blockEntity = this.getWorld().getBlockEntity(this.getBlockPos());
                 if (blockEntity instanceof GeodinBlockEntity geodinBlockEntity) {
@@ -266,6 +273,10 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
 
         public static Variant get(Identifier id) {
             return instances.getOrDefault(id, AMETHYST);
+        }
+
+        public static List<Variant> getAll() {
+            return instances.values().stream().toList();
         }
     }
 }

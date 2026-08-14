@@ -4,7 +4,7 @@
   "has_precipitation": false,
   "effects": {
     "sky_color": 7254527,
-    "fog_color": 3344392,
+    "fog_color": 9471108,
     "water_color": 4159204,
     "water_fog_color": 329011,
     "ambient_sound": "minecraft:ambient.nether_wastes.loop",
@@ -35,12 +35,6 @@
     "ambient": [],
     "axolotls": [],
     "creature": [
-      {
-        "type": "pyrellium:geodin",
-        "weight": 80,
-        "minCount": 2,
-        "maxCount": 4
-      },
       {
         "type": "minecraft:strider",
         "weight": 20,

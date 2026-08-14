@@ -56,6 +56,26 @@ The configuration file can be found at `/config/pyrellium.json`
     // The damage the amethyst and opal arrow deal when shattering.
     "crystal_arrow_shatter_damage": 2
   },
+  // Configuration options applying to entities
+  "entities": {
+    "geodin": {
+      // The likelihood of an entity to spawn
+      // Higher numbers mean more likely, though is also dependent on spawn group
+      // Setting this to 0 will prevent the entity from spawning at all
+      "spawn_weight": 80,
+      // The attributes of the mob
+      // See https://minecraft.wiki/w/Attribute if you need more information
+      "attributes": {
+        "max_health": 16.0,
+        "armor": 4.0,
+        "movement_speed": 0.2,
+        // As the geodin cannot deal damage, this value won't be relevant for this mob
+        "attack_damage": 0.0
+      },
+      // The time in ticks a geodin needs to be stuck for to convert into block form
+      "conversion_time": 1200
+    }
+  },
   // Configuration options applying to enchants
   "enchants": {
     "rebound": {
@@ -106,87 +126,30 @@ The configuration file can be found at `/config/pyrellium.json`
     "blackstone_springs": {
       // Whether to generate the biome in the world
       "enable_biome": true,
-      // Where the biome is placed according to minecraft's noise placement.
-      // Vanilla nether biomes only use temperature, humidity, and offset.
-      // See https://minecraft.wiki/w/World_generation#Biomes for more information.
-      "biome_noise": {
-        "temperature": -0.25,
-        "humidity": 0.0,
-        "continentalness": 0.0,
-        "erosion": 0.0,
-        "depth": 0.0,
-        "weirdness": 0.0,
-        "offset": 0.15
-      },
       // Whether to generate blackstone rocks in the deltas
       "generate_blackstone_rocks": true
     },
     "burning_grove": {
       "enable_biome": true,
-      "biome_noise": {
-        "temperature": -0.5,
-        "humidity": -0.5,
-        "continentalness": 0.0,
-        "erosion": 0.0,
-        "depth": 0.0,
-        "weirdness": 0.0,
-        "offset": 0.0
-      },
       // Whether to generate patches of pyrolillies on the floor
       // Does not affect the ability for pyrolilies to spawn from bone mealing amber nylium
       "generate_pyrolily": true
     },
     "crystal_forest": {
       "enable_biome": true,
-      "biome_noise": {
-        "temperature": 0.0,
-        "humidity": 0.75,
-        "continentalness": 0.0,
-        "erosion": 0.0,
-        "depth": 0.0,
-        "weirdness": 0.0,
-        "offset": 0.325
-      },
       // Whether to generate patches of amethyst and opal buds on the floor
       "generate_floor_crystals": true
     },
     "frostburn_valley": {
       "enable_biome": true,
-      "biome_noise": {
-        "temperature": 0.0,
-        "humidity": -0.75,
-        "continentalness": 0.0,
-        "erosion": 0.0,
-        "depth": 0.0,
-        "weirdness": 0.0,
-        "offset": 0.0
-      }
     },
     "ghostly_woods": {
       "enable_biome": true,
-      "biome_noise": {
-        "temperature": 0.5,
-        "humidity": -0.5,
-        "continentalness": 0.0,
-        "erosion": 0.0,
-        "depth": 0.0,
-        "weirdness": 0.0,
-        "offset": 0.0
-      },
       // Whether to generate headstones on the floor. Can cause lag.
       "generate_headstones": true
     },
     "infested_valley": {
       "enable_biome": true,
-      "biome_noise": {
-        "temperature": 0.5,
-        "humidity": 0.5,
-        "continentalness": 0.0,
-        "erosion": 0.0,
-        "depth": 0.0,
-        "weirdness": 0.0,
-        "offset": 0.325
-      },
       // Whether to generate cobwebs and silk carpets on the floor.
       "generate_floor_decorations": true,
       // Whether to generate hanging silk from the ceiling.
@@ -194,15 +157,6 @@ The configuration file can be found at `/config/pyrellium.json`
     },
     "monolith_plains": {
       "enable_biome": true,
-      "biome_noise": {
-        "temperature": 0.75,
-        "humidity": 0.0,
-        "continentalness": 0.0,
-        "erosion": 0.0,
-        "depth": 0.0,
-        "weirdness": 0.0,
-        "offset": 0.0
-      },
       // Whether to generate bomb plants across the floor.
       "generate_bomb_flowers": true,
       // Whether to generate the obsidian pillars
@@ -210,15 +164,6 @@ The configuration file can be found at `/config/pyrellium.json`
     },
     "mushroom_wastes": {
       "enable_biome": true,
-      "biome_noise": {
-        "temperature": -0.5,
-        "humidity": 0.5,
-        "continentalness": 0.0,
-        "erosion": 0.0,
-        "depth": 0.0,
-        "weirdness": 0.0,
-        "offset": 0.2
-      },
       // Whether to generate spores in the air.
       "generate_spores": true,
       // Whether to generate any of the wall mushrooms
@@ -226,17 +171,10 @@ The configuration file can be found at `/config/pyrellium.json`
     },
     "quartz_caverns": {
       "enable_biome": true,
-      "biome_noise": {
-        "temperature": 0.25,
-        "humidity": 0.25,
-        "continentalness": 0.0,
-        "erosion": 0.0,
-        "depth": 0.0,
-        "weirdness": 0.0,
-        "offset": 0.25
-      },
       // Whether to generate the smooth quartz spikes across the biome.
-      "generate_quartz_spikes": true
+      "generate_quartz_spikes": true,
+      // Whether to generate cracks of rough and budding quartz.
+      "generate_quartz_cracks": true
     }
   }
 }
