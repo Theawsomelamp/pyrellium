@@ -174,7 +174,7 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
                 if (blockEntity instanceof GeodinBlockEntity geodinBlockEntity) {
                     geodinBlockEntity.setCustomName(this.getCustomName());
                 }
-                this.damage(this.getDamageSources().generic(), this.getHealth());
+                this.discard();
             }
         }
     }
