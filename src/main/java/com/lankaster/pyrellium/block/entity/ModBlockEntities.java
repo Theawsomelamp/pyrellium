@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 
 public interface ModBlockEntities {
     BlockEntityType<HeadStoneBlockEntity> HEADSTONE = Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "headstone"), BlockEntityType.Builder.create(HeadStoneBlockEntity::new, ModBlocks.HEADSTONE).build());
+    BlockEntityType<GeodinBlockEntity> GEODIN = Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "geodin"), BlockEntityType.Builder.create(GeodinBlockEntity::new, ModBlocks.SLEEPING_AMETHYST_GEODIN, ModBlocks.SLEEPING_OPAL_GEODIN, ModBlocks.SLEEPING_QUARTZ_GEODIN).build());
 
     static void registerBlockEntities() {
     }

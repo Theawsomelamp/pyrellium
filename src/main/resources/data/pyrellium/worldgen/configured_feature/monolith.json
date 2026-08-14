@@ -1,0 +1,13 @@
+{
+  "type": "pyrellium:pair",
+  "config": {
+    "first_feature": {
+      "feature": "pyrellium:obsidian_monolith",
+      "placement": []
+    },
+    "second_feature": {
+      "feature": "pyrellium:monolith_floor",
+      "placement": []
+    }
+  }
+}

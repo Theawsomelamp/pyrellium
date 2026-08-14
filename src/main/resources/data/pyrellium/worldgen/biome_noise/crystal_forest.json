@@ -1,0 +1,12 @@
+{
+  "biome": "pyrellium:crystal_forest",
+  "parameters": {
+    "temperature": 0.0,
+    "humidity": 0.75,
+    "continentalness": 0.0,
+    "erosion": 0.0,
+    "depth": 0.0,
+    "weirdness": 0.0,
+    "offset": 0.325
+  }
+}

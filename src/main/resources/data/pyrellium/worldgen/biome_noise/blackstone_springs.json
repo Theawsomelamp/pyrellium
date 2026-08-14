@@ -1,0 +1,12 @@
+{
+  "biome": "pyrellium:blackstone_springs",
+  "parameters": {
+    "temperature": -0.25,
+    "humidity": 0,
+    "continentalness": 0,
+    "erosion": 0,
+    "weirdness": 0,
+    "depth": 0,
+    "offset": 0.15
+  }
+}

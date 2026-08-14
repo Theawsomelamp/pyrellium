@@ -7,4 +7,6 @@ import net.minecraft.util.Identifier;
 public class ModModelLayers {
     public static EntityModelLayer HEADSTONE =
             new EntityModelLayer(Identifier.of(Pyrellium.MOD_ID, "sign/headstone"), "main");
+    public static EntityModelLayer GEODIN =
+            new EntityModelLayer(Identifier.of(Pyrellium.MOD_ID, "geodin"), "main");
 }

@@ -39,7 +39,6 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SPORES, dropsNothing());
         addDrop(ModBlocks.HANGING_SILK, dropsWithSilkTouchOrShears(ModBlocks.HANGING_SILK, addSurvivesExplosionCondition(Items.STRING, ItemEntry.builder(Items.STRING))));
         addDrop(ModBlocks.GHOSTLY_LEAVES, leavesDrops(ModBlocks.GHOSTLY_LEAVES, ModBlocks.SHADEROOT_SAPLING, 0.05F, 0.0625F, 0.083F, 0.1F));
-        addDrop(ModBlocks.QUARTZ_CRYSTAL);
         addDrop(ModBlocks.BLACKSTONE_ROCK);
         addDrop(ModBlocks.BURNING_NYLIUM, drops(ModBlocks.BURNING_NYLIUM, Blocks.NETHERRACK));
         addDrop(ModBlocks.BURNING_LOG);
@@ -88,5 +87,13 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WISPBLOOM, flowerbedDrops(ModBlocks.WISPBLOOM));
         addDrop(ModBlocks.DRAINED_SOUL_SOIL);
         addDrop(ModBlocks.CHAIN_FENCE);
+        addDrop(ModBlocks.SLEEPING_AMETHYST_GEODIN, dropsNothing());
+        addDrop(ModBlocks.SLEEPING_OPAL_GEODIN, dropsNothing());
+        addDropWithSilkTouch(ModBlocks.SMALL_QUARTZ_BUD);
+        addDropWithSilkTouch(ModBlocks.MEDIUM_QUARTZ_BUD);
+        addDropWithSilkTouch(ModBlocks.LARGE_QUARTZ_BUD);
+        addDrop(ModBlocks.BUDDING_QUARTZ, dropsNothing());
+        addDrop(ModBlocks.ROUGH_QUARTZ_BLOCK);
+        addDrop(ModBlocks.SLEEPING_QUARTZ_GEODIN, dropsNothing());
     }
 }

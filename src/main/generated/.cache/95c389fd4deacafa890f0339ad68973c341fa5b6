@@ -1,7 +1,12 @@
-// 1.21.1	2026-06-11T16:49:34.932193907	Pyrellium/Tags for minecraft:item
+// 1.21.1	2026-08-14T08:57:11.835158535	Pyrellium/Tags for minecraft:item
+84b0936eb511d838f959b02bdb9c7b438272f465 data/pyrellium/tags/item/crystals.json
+ef92889edf7f6982a736cdd5ff5dc845ff772045 data/c/tags/item/budding_blocks.json
+5df467dfd4e50361b10b7b659bd057822ec72666 data/c/tags/item/gems.json
 bfd54eb15d5fbfa0c6803425b06910a113e16a77 data/minecraft/tags/item/wooden_slabs.json
 d6b16621103fa81875363e19e5331d3703737e7a data/minecraft/tags/item/soul_fire_base_blocks.json
+d60a482d150d7ae71ccb55ea74b89857def3472a data/c/tags/item/buds.json
 d26f0d908e00b9fbc7cfcff1ee505c0a9680ed33 data/pyrellium/tags/item/burning_logs.json
+33bd446541f3430c57a0f02fc8d1b30b9919f4ea data/c/tags/item/clusters.json
 9d5b219c81ea711f6bdc2f74b352e4fde756f389 data/minecraft/tags/item/planks.json
 280d860ee9c6d0c0d4d59eda026075ad5fb97732 data/pyrellium/tags/item/shaderoot_logs.json
 6189648a4212b48ddedaddd3a2da997ac8699d63 data/minecraft/tags/item/arrows.json

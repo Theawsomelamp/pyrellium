@@ -1,5 +1,5 @@
 {
-  "feature": "pyrellium:obsidian_monolith",
+  "feature": "pyrellium:monolith",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",

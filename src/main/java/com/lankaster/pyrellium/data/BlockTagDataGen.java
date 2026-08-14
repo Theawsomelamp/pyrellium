@@ -4,6 +4,7 @@ import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -36,7 +37,15 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.BURNING_NYLIUM,
                 ModBlocks.HEADSTONE,
                 ModBlocks.CHAIN_FENCE,
-                ModBlocks.BASALT_IRON_ORE
+                ModBlocks.BASALT_IRON_ORE,
+                ModBlocks.SLEEPING_AMETHYST_GEODIN,
+                ModBlocks.SLEEPING_OPAL_GEODIN,
+                ModBlocks.SMALL_QUARTZ_BUD,
+                ModBlocks.MEDIUM_QUARTZ_BUD,
+                ModBlocks.LARGE_QUARTZ_BUD,
+                ModBlocks.BUDDING_QUARTZ,
+                ModBlocks.ROUGH_QUARTZ_BLOCK,
+                ModBlocks.SLEEPING_QUARTZ_GEODIN
         );
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
@@ -160,6 +169,17 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.DRAINED_SOUL_SOIL
         );
 
+        getOrCreateTagBuilder(BlockTags.CRYSTAL_SOUND_BLOCKS).add(
+                ModBlocks.CLEAR_AMETHYST_BLOCK,
+                ModBlocks.OPAL_BLOCK,
+                ModBlocks.BUDDING_OPAL,
+                ModBlocks.CLEAR_OPAL_BLOCK
+        );
+
+        getOrCreateTagBuilder(BlockTags.IRON_ORES).add(
+                ModBlocks.BASALT_IRON_ORE
+        );
+
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
                 ModBlocks.BURNING_LOG,
                 ModBlocks.BURNING_WOOD,
@@ -172,6 +192,25 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.SHADEROOT_WOOD,
                 ModBlocks.STRIPPED_SHADEROOT_LOG,
                 ModBlocks.STRIPPED_SHADEROOT_WOOD
+        );
+
+        getOrCreateTagBuilder(ConventionalBlockTags.BUDDING_BLOCKS).add(
+                ModBlocks.BUDDING_OPAL,
+                ModBlocks.BUDDING_QUARTZ
+        );
+
+        getOrCreateTagBuilder(ConventionalBlockTags.BUDS).add(
+                ModBlocks.SMALL_OPAL_BUD,
+                ModBlocks.MEDIUM_OPAL_BUD,
+                ModBlocks.LARGE_OPAL_BUD,
+                ModBlocks.SMALL_QUARTZ_BUD,
+                ModBlocks.MEDIUM_QUARTZ_BUD,
+                ModBlocks.LARGE_QUARTZ_BUD
+        );
+
+        getOrCreateTagBuilder(ConventionalBlockTags.CLUSTERS).add(
+                ModBlocks.OPAL_CLUSTER,
+                ModBlocks.QUARTZ_CRYSTAL
         );
     }
 }

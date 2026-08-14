@@ -6,6 +6,7 @@ public class Config {
     public String comment = "For help with the config, refer to https://github.com/Theawsomelamp/pyrellium#configuration";
     public Blocks blocks = new Blocks();
     public Items items = new Items();
+    public Entities entities = new Entities();
     public Enchants enchants = new Enchants();
     public GlobalFeatures globalFeatures = new GlobalFeatures();
     public Biomes biomes = new Biomes();
@@ -31,6 +32,19 @@ public class Config {
         public String[] mushroom_cap_effects = {"minecraft:poison"};
         public int crystal_arrow_shatter_radius = 2;
         public int crystal_arrow_shatter_damage = 2;
+    }
+
+    public static class Entities {
+        public Geodin geodin = new Geodin();
+    }
+
+    public record EntityAttributes(float max_health, float armor, float movement_speed, float attack_damage) {
+    }
+
+    public static class Geodin {
+        public int spawn_weight = 80;
+        public EntityAttributes attributes = new EntityAttributes(16.0f, 4.0f, 0.2f, 0.0f);
+        public int conversion_time = 1200;
     }
 
     public record EnchantDistribution(boolean enchant_table_roll, boolean librarian_book_trade, boolean found_on_enchanted_loot) {
@@ -70,62 +84,51 @@ public class Config {
         public QuartzCaverns quartz_caverns = new QuartzCaverns();
     }
 
-    public record BiomeNoise(float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness, float offset) {
-    }
-
     public static class BlackstoneSprings {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(-0.25f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.15f);
         public boolean generate_blackstone_rocks = true;
     }
 
     public static class BurningGrove {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         public boolean generate_pyrolily = true;
     }
 
     public static class CrystalForest {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.0f, 0.75f, 0.0f, 0.0f, 0.0f, 0.0f, 0.325f);
         public boolean generate_floor_crystals = true;
     }
 
     public static class FrostburnValley {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.0f, -0.75f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     }
 
     public static class GhostlyWoods {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         public boolean generate_headstones = true;
     }
 
     public static class InfestedValley {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.325f);
         public boolean generate_floor_decorations = true;
         public boolean generate_hanging_silk = true;
     }
 
     public static class MonolithPlains{
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.75f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         public boolean generate_bomb_flowers = true;
         public boolean generate_monolith = true;
     }
 
     public static class MushroomWastes {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f);
         public boolean generate_spores = true;
         public boolean generate_wall_mushrooms = true;
     }
 
     public static class QuartzCaverns {
         public boolean enable_biome = true;
-        public BiomeNoise biome_noise = new BiomeNoise(0.25f, 0.25f, 0.0f, 0.0f, 0.0f, 0.0f, 0.25f);
         public boolean generate_quartz_spikes = true;
+        public boolean generate_quartz_cracks = true;
     }
 }

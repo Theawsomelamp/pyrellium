@@ -2,6 +2,8 @@ package com.lankaster.pyrellium;
 
 import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.entity.CrystalArrowRenderer;
+import com.lankaster.pyrellium.entity.GeodinModel;
+import com.lankaster.pyrellium.entity.GeodinRenderer;
 import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.ModClientNetworking;
@@ -33,9 +35,11 @@ public class PyrelliumClient implements ClientModInitializer {
 		EntityRendererRegistry.register(ModEntities.BOMB_FLOWER, FlyingItemEntityRenderer::new);
 		EntityRendererRegistry.register(ModEntities.BURNING_BOAT, (context) -> new BoatEntityRenderer(context, false));
 		EntityRendererRegistry.register(ModEntities.BURNING_CHEST_BOAT, (context) -> new BoatEntityRenderer(context, true));
+		EntityRendererRegistry.register(ModEntities.GEODIN, GeodinRenderer::new);
 
 		ModBlockEntityRenderer.register();
 		EntityModelLayerRegistry.registerModelLayer(ModModelLayers.HEADSTONE, HeadStoneBlockEntityRenderer::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ModModelLayers.GEODIN, GeodinModel::getTexturedModelData);
 
 		ModParticles.registerParticle();
 
@@ -78,5 +82,11 @@ public class PyrelliumClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_SHADEROOT_SAPLING, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WISPBLOOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CHAIN_FENCE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLEEPING_AMETHYST_GEODIN, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLEEPING_OPAL_GEODIN, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SMALL_QUARTZ_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MEDIUM_QUARTZ_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LARGE_QUARTZ_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLEEPING_QUARTZ_GEODIN, RenderLayer.getCutout());
 	}
 }
