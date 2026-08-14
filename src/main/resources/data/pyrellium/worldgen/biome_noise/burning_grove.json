@@ -1,0 +1,12 @@
+{
+  "biome": "pyrellium:burning_grove",
+  "parameters": {
+    "temperature": -0.5,
+    "humidity": -0.5,
+    "continentalness": 0,
+    "erosion": 0,
+    "weirdness": 0,
+    "depth": 0,
+    "offset": 0
+  }
+}

@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
@@ -21,7 +22,12 @@ public class SpikeFeature extends Feature<SpikeFeatureConfig> {
         Random random = context.getRandom();
         SpikeFeatureConfig config = context.getConfig();
 
-        int number = config.height().get(random);
+        Direction direction = config.direction();
+
+        if (!direction.getAxis().isVertical()) return false;
+
+        int maxHeight = config.height().get(random);
+        int radius = config.radius().get(random);
         int height;
         BlockStateProvider state = config.state();
         BlockStateProvider tip = config.tip();
@@ -29,22 +35,16 @@ public class SpikeFeature extends Feature<SpikeFeatureConfig> {
         BlockState blockState = state.get(random, origin);
         BlockState tipState = tip.get(random, origin);
 
-        for(BlockPos blockPos2 : BlockPos.iterate(origin.add(-2, 0, -2), origin.add(2, 0, 2))) {
-            int m = blockPos2.getX() - origin.getX();
-            int n = blockPos2.getZ() - origin.getZ();
+        for(BlockPos blockPos2 : BlockPos.iterate(origin.add(-radius, 0, -radius), origin.add(radius, 0, radius))) {
+            int distance = blockPos2.getManhattanDistance(origin);
 
-            if (world.getBlockState(blockPos2.up()).isOf(Blocks.AIR) && (m * m + n * n <= 2 * 2)) {
-                if (m * m + n * n >= 2) {
-                    height = number / 3;
-                } else if (m * m + n * n == 1) {
-                    height = number * 2 / 3;
-                } else {
-                    height = number;
-                }
+
+            if (world.getBlockState(blockPos2.offset(direction)).isOf(Blocks.AIR) && (distance <= radius)) {
+                height = (int) (maxHeight *  ((float) (radius - distance + 1) / (float) (radius + 1)));
 
                 for (int i = 0; i < (height - random.nextInt(2)); i++) {
                     world.setBlockState(blockPos2, blockState, 2);
-                    blockPos2 = blockPos2.up();
+                    blockPos2 = blockPos2.offset(direction);
                     if (random.nextFloat() < config.chance()) {
                         world.setBlockState(blockPos2, tipState,2);
                     }
@@ -58,4 +58,3 @@ public class SpikeFeature extends Feature<SpikeFeatureConfig> {
         return false;
     }
 }
-

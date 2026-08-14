@@ -1,12 +1,17 @@
 // 1.21.11	-999999999-01-01T00:00:00	Pyrellium/Tags for minecraft:block
+ef92889edf7f6982a736cdd5ff5dc845ff772045 data/c/tags/block/budding_blocks.json
+d60a482d150d7ae71ccb55ea74b89857def3472a data/c/tags/block/buds.json
+33bd446541f3430c57a0f02fc8d1b30b9919f4ea data/c/tags/block/clusters.json
 1aa2e99a0036f263bfa5e4e16dc833e9728f53d5 data/minecraft/tags/block/ceiling_hanging_signs.json
+e03f08d0844ead006244b63b2cf00be5d6e01902 data/minecraft/tags/block/crystal_sound_blocks.json
 9e77377ae09d6303dd3df92adcd39d90eee63a6f data/minecraft/tags/block/dirt.json
 f25a7e37613c6258983bec87d87ca14ec272a228 data/minecraft/tags/block/fence_gates.json
 bcd5865f65fa18892175824220a395e159981583 data/minecraft/tags/block/flower_pots.json
+354530c48295151fec1581fafebf6a6341abb918 data/minecraft/tags/block/iron_ores.json
 90347a366d3a0ed1670b64a6e3c793caecffd476 data/minecraft/tags/block/leaves.json
 849782080f70caa51070f533c3f2de734680506e data/minecraft/tags/block/logs.json
 90347a366d3a0ed1670b64a6e3c793caecffd476 data/minecraft/tags/block/mineable/hoe.json
-c3a8c89407210b1d0cb8b8534c2bce126c7e27c4 data/minecraft/tags/block/mineable/pickaxe.json
+a303aa238ee90213acd29b93e31cb50281893bee data/minecraft/tags/block/mineable/pickaxe.json
 d6b16621103fa81875363e19e5331d3703737e7a data/minecraft/tags/block/mineable/shovel.json
 9d5b219c81ea711f6bdc2f74b352e4fde756f389 data/minecraft/tags/block/planks.json
 f098062ce8ecd85e09e5813ff13ce7f8c6f96029 data/minecraft/tags/block/saplings.json

@@ -2,6 +2,8 @@ package com.lankaster.pyrellium.render;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.entity.CrystalArrowRenderer;
+import com.lankaster.pyrellium.entity.GeodinModel;
+import com.lankaster.pyrellium.entity.GeodinRenderer;
 import com.lankaster.pyrellium.entity.ModEntities;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.render.entity.BoatEntityRenderer;
@@ -22,6 +24,8 @@ public class ModModelLayers {
             new EntityModelLayer(Identifier.of(Pyrellium.MOD_ID, "boat/shaderoot"), "main");
     public static final EntityModelLayer SHADEROOT_CHEST_BOAT =
             new EntityModelLayer(Identifier.of(Pyrellium.MOD_ID, "chest_boat/shaderoot"), "main");
+    public static final EntityModelLayer GEODIN =
+            new EntityModelLayer(Identifier.of(Pyrellium.MOD_ID, "geodin"), "main");
 
     public static void register() {
         EntityModelLayerRegistry.registerModelLayer(HEADSTONE, HeadStoneBlockEntityRenderer::getTexturedModelData);
@@ -29,6 +33,7 @@ public class ModModelLayers {
         EntityModelLayerRegistry.registerModelLayer(BURNING_CHEST_BOAT, BoatEntityModel::getChestTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(SHADEROOT_BOAT, BoatEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(SHADEROOT_CHEST_BOAT, BoatEntityModel::getChestTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.GEODIN, GeodinModel::getTexturedModelData);
 
         EntityRendererFactories.register(ModEntities.CRYSTAL_ARROW, CrystalArrowRenderer::new);
         EntityRendererFactories.register(ModEntities.BOMB_FLOWER, FlyingItemEntityRenderer::new);
@@ -36,5 +41,6 @@ public class ModModelLayers {
         EntityRendererFactories.register(ModEntities.BURNING_CHEST_BOAT, (context) -> new BoatEntityRenderer(context, BURNING_CHEST_BOAT));
         EntityRendererFactories.register(ModEntities.SHADEROOT_BOAT, (context) -> new BoatEntityRenderer(context, SHADEROOT_BOAT));
         EntityRendererFactories.register(ModEntities.SHADEROOT_CHEST_BOAT, (context) -> new BoatEntityRenderer(context, SHADEROOT_CHEST_BOAT));
+        EntityRendererFactories.register(ModEntities.GEODIN, GeodinRenderer::new);
     }
 }

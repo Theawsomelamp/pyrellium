@@ -2,6 +2,8 @@ package com.lankaster.pyrellium.entity;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.block.ModBlocks;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricTrackedDataRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.vehicle.BoatEntity;
@@ -22,6 +24,7 @@ public class ModEntities {
     private static final RegistryKey<EntityType<?>> BURNING_CHEST_BOAT_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "burning_chest_boat"));
     private static final RegistryKey<EntityType<?>> SHADEROOT_BOAT_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "shaderoot_boat"));
     private static final RegistryKey<EntityType<?>> SHADEROOT_CHEST_BOAT_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "shaderoot_chest_boat"));
+    private static final RegistryKey<EntityType<?>> GEODIN_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "geodin"));
 
 
     private static EntityType.EntityFactory<BoatEntity> getBoatFactory(Supplier<Item> itemSupplier) {
@@ -44,8 +47,12 @@ public class ModEntities {
             EntityType.Builder.create(getBoatFactory(() -> ModBlocks.SHADEROOT_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(SHADEROOT_BOAT_KEY));
     public static final EntityType<ChestBoatEntity> SHADEROOT_CHEST_BOAT = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "shaderoot_chest_boat"),
             EntityType.Builder.create(getChestBoatFactory(() -> ModBlocks.SHADEROOT_CHEST_BOAT), SpawnGroup.MISC).dimensions(1.375F, 0.5625F).build(SHADEROOT_CHEST_BOAT_KEY));
+    public static final EntityType<GeodinEntity> GEODIN = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Pyrellium.MOD_ID, "geodin"),
+            EntityType.Builder.create(GeodinEntity::new, SpawnGroup.CREATURE).dimensions(0.95F, 1.15F).build(GEODIN_KEY));
 
     public static void registerEntities() {
+        FabricDefaultAttributeRegistry.register(ModEntities.GEODIN, GeodinEntity.createGeodinAttributes());
 
+        FabricTrackedDataRegistry.register(Identifier.of(Pyrellium.MOD_ID, "geodin_variant_identifier"), GeodinEntity.GEODIN_VARIANT_IDENTIFIER);
     }
 }

@@ -6,14 +6,49 @@
         "type": "minecraft:simple_block",
         "config": {
           "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "pyrellium:quartz_crystal",
-              "Properties": {
-                "facing": "up",
-                "waterlogged": "false"
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "weight": 4,
+                "data": {
+                  "Name": "pyrellium:small_quartz_bud",
+                  "Properties": {
+                    "facing": "up",
+                    "waterlogged": "false"
+                  }
+                }
+              },
+              {
+                "weight": 3,
+                "data": {
+                  "Name": "pyrellium:medium_quartz_bud",
+                  "Properties": {
+                    "facing": "up",
+                    "waterlogged": "false"
+                  }
+                }
+              },
+              {
+                "weight": 2,
+                "data": {
+                  "Name": "pyrellium:large_quartz_bud",
+                  "Properties": {
+                    "facing": "up",
+                    "waterlogged": "false"
+                  }
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "pyrellium:quartz_crystal",
+                  "Properties": {
+                    "facing": "up",
+                    "waterlogged": "false"
+                  }
+                }
               }
-            }
+            ]
           }
         }
       },

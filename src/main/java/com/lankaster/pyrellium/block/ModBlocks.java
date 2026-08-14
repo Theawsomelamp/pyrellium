@@ -33,6 +33,16 @@ public class ModBlocks {
 
     public static final Block CLEAR_AMETHYST_BLOCK = registerBlock("clear_amethyst_block", TransparentBlock::new, AbstractBlock.Settings.copy(Blocks.AMETHYST_BLOCK).nonOpaque());
     public static final Block CLEAR_OPAL_BLOCK = registerBlock("clear_opal_block", TransparentBlock::new, AbstractBlock.Settings.copy(Blocks.AMETHYST_BLOCK).nonOpaque());
+    public static final Block SLEEPING_AMETHYST_GEODIN = registerBlockWithoutBlockItem("sleeping_amethyst_geodin", properties -> new GeodinBlock(properties, Blocks.SMALL_AMETHYST_BUD, Blocks.MEDIUM_AMETHYST_BUD, Blocks.LARGE_AMETHYST_BUD, Blocks.AMETHYST_CLUSTER, Identifier.of("minecraft", "amethyst")), AbstractBlock.Settings.copy(Blocks.SMOOTH_BASALT));
+    public static final Block SLEEPING_OPAL_GEODIN = registerBlockWithoutBlockItem("sleeping_opal_geodin", properties -> new GeodinBlock(properties, SMALL_OPAL_BUD, MEDIUM_OPAL_BUD, LARGE_OPAL_BUD, OPAL_CLUSTER, Identifier.of(Pyrellium.MOD_ID, "opal")), AbstractBlock.Settings.copy(Blocks.SMOOTH_BASALT));
+
+    public static final Block ROUGH_QUARTZ_BLOCK = registerBlock("rough_quartz_block", Block::new, AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
+    public static final Block SMALL_QUARTZ_BUD = registerBlock("small_quartz_bud", properties -> new AmethystClusterBlock(3.0F, 8.0F, properties), AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
+    public static final Block MEDIUM_QUARTZ_BUD = registerBlock("medium_quartz_bud", properties -> new AmethystClusterBlock(4.0F, 10.0F, properties), AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
+    public static final Block LARGE_QUARTZ_BUD = registerBlock("large_quartz_bud", properties -> new AmethystClusterBlock(5.0F, 10.0F, properties), AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
+    public static final Block QUARTZ_CRYSTAL = registerBlock("quartz_crystal", properties -> new AmethystClusterBlock(7.0F, 10.0F, properties), AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
+    public static final Block BUDDING_QUARTZ = registerBlock("budding_quartz", properties -> new BuddingBlock(properties, SMALL_QUARTZ_BUD, MEDIUM_QUARTZ_BUD, LARGE_QUARTZ_BUD, QUARTZ_CRYSTAL), AbstractBlock.Settings.copy(Blocks.BUDDING_AMETHYST));
+    public static final Block SLEEPING_QUARTZ_GEODIN = registerBlockWithoutBlockItem("sleeping_quartz_geodin", properties -> new GeodinBlock(properties, SMALL_QUARTZ_BUD, MEDIUM_QUARTZ_BUD, LARGE_QUARTZ_BUD, QUARTZ_CRYSTAL, Identifier.of(Pyrellium.MOD_ID, "quartz")), AbstractBlock.Settings.copy(Blocks.SMOOTH_BASALT));
 
     public static final Block FREEZING_ICE = registerBlock("freezing_ice", FreezingIceBlock::new, AbstractBlock.Settings.copy(Blocks.PACKED_ICE).nonOpaque());
     public static final Block SILK_BLOCK = registerBlock("silk_block", Block::new, AbstractBlock.Settings.copy(Blocks.WHITE_WOOL));
@@ -53,7 +63,6 @@ public class ModBlocks {
     public static final Block CHAIN_FENCE = registerBlock("chain_fence", ChainFenceBlock::new, AbstractBlock.Settings.copy(Blocks.IRON_BARS));
     public static final Block BONE = registerBlockWithoutBlockItem("bone", BoneItemBlock::new, AbstractBlock.Settings.copy(Blocks.BONE_BLOCK).nonOpaque());
     public static final Block BOMB_PLANT = registerBlock("bomb_plant", BombPlantBlock::new, AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY));
-    public static final Block QUARTZ_CRYSTAL = registerBlock("quartz_crystal", properties -> new AmethystClusterBlock(7.0F, 10.0F, properties), AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
     public static final Block BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", CarpetBlock::new, AbstractBlock.Settings.copy(Blocks.BLACKSTONE).nonOpaque());
 
     public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));

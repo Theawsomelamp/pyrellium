@@ -1,9 +1,11 @@
 package com.lankaster.pyrellium.item;
 
 import com.lankaster.pyrellium.Pyrellium;
+import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.armor.ModArmorMaterials;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -21,6 +23,7 @@ public class ModItems {
     public static final Item OPAL_ARROW = registerItem("opal_arrow", CrystalArrowItem::new);
     public static final Item BOMB_FLOWER = registerItem("bomb_flower", setting -> new BombFlowerItem((setting.maxCount(16))));
     public static final Item MUSHROOM_CAP = registerItem("mushroom_cap", setting -> new DescriptiveItem(setting.armor(ModArmorMaterials.MUSHROOM_ARMOR_MATERIAL, EquipmentType.HELMET)));
+    public static final Item GEODIN_SPAWN_EGG = registerItem("geodin_spawn_egg", setting -> new SpawnEggItem(setting.spawnEgg(ModEntities.GEODIN)));
 
 
     public static Item registerItem(String name, Function<Item.Settings, Item> function) {
