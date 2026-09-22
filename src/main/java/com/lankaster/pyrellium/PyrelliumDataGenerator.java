@@ -5,8 +5,8 @@ import com.lankaster.pyrellium.enchant.ModEnchants;
 import com.lankaster.pyrellium.world.ModBiomes;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.registry.RegistryBuilder;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
 
 public class PyrelliumDataGenerator implements DataGeneratorEntrypoint {
     @Override
@@ -21,8 +21,8 @@ public class PyrelliumDataGenerator implements DataGeneratorEntrypoint {
     }
 
     @Override
-    public void buildRegistry(RegistryBuilder builder) {
-        builder.addRegistry(RegistryKeys.BIOME, ModBiomes::bootstrap);
-        builder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchants::bootstrap);
+    public void buildRegistry(RegistrySetBuilder builder) {
+        builder.add(Registries.BIOME, ModBiomes::bootstrap);
+        builder.add(Registries.ENCHANTMENT, ModEnchants::bootstrap);
     }
 }

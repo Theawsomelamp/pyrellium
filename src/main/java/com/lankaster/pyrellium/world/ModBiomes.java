@@ -1,35 +1,33 @@
 package com.lankaster.pyrellium.world;
 
 import com.lankaster.pyrellium.Pyrellium;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.sound.MusicSound;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeEffects;
-import net.minecraft.world.biome.GenerationSettings;
-import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.biome.AmbientMoodSettings;
+import net.minecraft.sounds.Music;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 
 public class ModBiomes {
 
-    public static final RegistryKey<Biome> BLACKSTONE_SPRINGS = registerBiome("blackstone_springs");
-    public static final RegistryKey<Biome> BURNING_GROVE = registerBiome("burning_grove");
-    public static final RegistryKey<Biome> CRYSTAL_FOREST = registerBiome("crystal_forest");
-    public static final RegistryKey<Biome> FROSTBURN_VALLEY = registerBiome("frostburn_valley");
-    public static final RegistryKey<Biome> GHOSTLY_WOODS = registerBiome("ghostly_woods");
-    public static final RegistryKey<Biome> INFESTED_VALLEY = registerBiome("infested_valley");
-    public static final RegistryKey<Biome> MONOLITH_PLAINS = registerBiome("monolith_plains");
-    public static final RegistryKey<Biome> MUSHROOM_WASTES = registerBiome("mushroom_wastes");
-    public static final RegistryKey<Biome> QUARTZ_CAVERNS = registerBiome("quartz_caverns");
+    public static final ResourceKey<Biome> BLACKSTONE_SPRINGS = registerBiome("blackstone_springs");
+    public static final ResourceKey<Biome> BURNING_GROVE = registerBiome("burning_grove");
+    public static final ResourceKey<Biome> CRYSTAL_FOREST = registerBiome("crystal_forest");
+    public static final ResourceKey<Biome> FROSTBURN_VALLEY = registerBiome("frostburn_valley");
+    public static final ResourceKey<Biome> GHOSTLY_WOODS = registerBiome("ghostly_woods");
+    public static final ResourceKey<Biome> INFESTED_VALLEY = registerBiome("infested_valley");
+    public static final ResourceKey<Biome> MONOLITH_PLAINS = registerBiome("monolith_plains");
+    public static final ResourceKey<Biome> MUSHROOM_WASTES = registerBiome("mushroom_wastes");
+    public static final ResourceKey<Biome> QUARTZ_CAVERNS = registerBiome("quartz_caverns");
 
-    private static RegistryKey<Biome> registerBiome(String name) {
-        return RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, name));
+    private static ResourceKey<Biome> registerBiome(String name) {
+        return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, name));
     }
 
-    public static void bootstrap(Registerable<Biome> context) {
+    public static void bootstrap(BootstrapContext<Biome> context) {
         context.register(BLACKSTONE_SPRINGS, defaultBiome(context));
         context.register(BURNING_GROVE, defaultBiome(context));
         context.register(CRYSTAL_FOREST, defaultBiome(context));
@@ -41,25 +39,25 @@ public class ModBiomes {
         context.register(QUARTZ_CAVERNS, defaultBiome(context));
     }
 
-    public static Biome defaultBiome(Registerable<Biome> context) {
-        SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-        GenerationSettings.LookupBackedBuilder biomeBuilder =
-                new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
-                        context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
+    public static Biome defaultBiome(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+        net.minecraft.world.level.biome.BiomeGenerationSettings.Builder biomeBuilder =
+                new net.minecraft.world.level.biome.BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE),
+                        context.lookup(Registries.CONFIGURED_CARVER));
 
-        return new Biome.Builder()
-                .precipitation(false)
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(false)
                 .downfall(0.0f)
                 .temperature(2.0f)
                 .generationSettings(biomeBuilder.build())
-                .spawnSettings(spawnBuilder.build())
-                .effects(new BiomeEffects.Builder()
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects(new net.minecraft.world.level.biome.BiomeSpecialEffects.Builder()
                         .waterColor(4159204)
                         .waterFogColor(329011)
                         .skyColor(7254527)
                         .fogColor(3344392)
-                        .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2))
-                        .music(new MusicSound(SoundEvents.MUSIC_NETHER_NETHER_WASTES, 12000, 24000, false)).build()
+                        .ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2))
+                        .backgroundMusic(new Music(SoundEvents.MUSIC_BIOME_NETHER_WASTES, 12000, 24000, false)).build()
                 ).build();
     }
 }

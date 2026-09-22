@@ -5,158 +5,167 @@ import com.lankaster.pyrellium.block.GeodinBlock;
 import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.block.entity.GeodinBlockEntity;
 import com.lankaster.pyrellium.config.Config;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.VariantHolder;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandler;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.VariantHolder;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializer;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Holder;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEntity.Variant> {
-    public static final TrackedDataHandler<Identifier> GEODIN_VARIANT_IDENTIFIER = TrackedDataHandler.create(Identifier.PACKET_CODEC);
-    private static final TrackedData<Identifier> VARIANT = DataTracker.registerData(GeodinEntity.class, GEODIN_VARIANT_IDENTIFIER);
-    private static final TrackedData<Integer> CRYSTAL_AGE = DataTracker.registerData(GeodinEntity.class, TrackedDataHandlerRegistry.INTEGER);
+public class GeodinEntity extends Animal implements VariantHolder<GeodinEntity.Variant> {
+    public static final EntityDataSerializer<ResourceLocation> GEODIN_VARIANT_IDENTIFIER = EntityDataSerializer.forValueType(ResourceLocation.STREAM_CODEC);
+    private static final EntityDataAccessor<ResourceLocation> VARIANT = SynchedEntityData.defineId(GeodinEntity.class, GEODIN_VARIANT_IDENTIFIER);
+    private static final EntityDataAccessor<Integer> CRYSTAL_AGE = SynchedEntityData.defineId(GeodinEntity.class, EntityDataSerializers.INT);
 
     private int ticksSinceGrowth;
     private int stuckTicks;
 
-    public GeodinEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+    public GeodinEntity(EntityType<? extends Animal> entityType, Level world) {
         super(entityType, world);
     }
 
 
     @Override
-    protected void initGoals() {
-        this.goalSelector.add(0, new EscapeDangerGoal(this, 1.25D));
-        this.goalSelector.add(1, new TemptGoal(this, 1.25D, Ingredient.fromTag(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "crystals"))), false));
-        this.goalSelector.add(2, new WanderAroundFarGoal(this, 1D));
-        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 4f));
-        this.goalSelector.add(4, new LookAroundGoal(this));
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "crystals"))), false));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1D));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 4f));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }
 
-    public static DefaultAttributeContainer.Builder createGeodinAttributes() {
-        return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, Config.instance().entities.geodin.attributes.max_health())
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, Config.instance().entities.geodin.attributes.movement_speed())
-                .add(EntityAttributes.GENERIC_ARMOR, Config.instance().entities.geodin.attributes.armor());
-    }
-
-    @Override
-    protected void initDataTracker(DataTracker.Builder builder) {
-        super.initDataTracker(builder);
-        builder.add(CRYSTAL_AGE, 0);
-        builder.add(VARIANT, Variant.AMETHYST.id);
+    public static AttributeSupplier.Builder createGeodinAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, Config.instance().entities.geodin.attributes.max_health())
+                .add(Attributes.MOVEMENT_SPEED, Config.instance().entities.geodin.attributes.movement_speed())
+                .add(Attributes.ARMOR, Config.instance().entities.geodin.attributes.armor());
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
+    protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CRYSTAL_AGE, 0);
+        builder.define(VARIANT, Variant.AMETHYST.id);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
         nbt.putInt("CrystalAge", getCrystalAge());
         nbt.putString("Variant", this.getVariant().id.toString());
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
         this.setCrystalAge(nbt.getInt("CrystalAge"));
-        this.setVariant(Variant.get(Identifier.of(nbt.getString("Variant"))));
+        this.setVariant(Variant.get(ResourceLocation.parse(nbt.getString("Variant"))));
     }
 
     @Override
     public void setVariant(Variant variant) {
-        this.getDataTracker().set(VARIANT, variant.id);
+        this.getEntityData().set(VARIANT, variant.id);
     }
 
     @Override
     public Variant getVariant() {
-        return Variant.get(this.getDataTracker().get(VARIANT));
+        return Variant.get(this.getEntityData().get(VARIANT));
     }
 
     public void setCrystalAge(int age) {
-        this.getDataTracker().set(CRYSTAL_AGE, age);
+        this.getEntityData().set(CRYSTAL_AGE, age);
     }
 
     public int getCrystalAge() {
-        return this.getDataTracker().get(CRYSTAL_AGE);
+        return this.getEntityData().get(CRYSTAL_AGE);
     }
 
-    public static boolean isValidNaturalSpawn(EntityType<? extends AnimalEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).isIn(BlockTags.SCULK_REPLACEABLE);
+    public static boolean isValidNaturalSpawn(EntityType<? extends Animal> type, LevelAccessor world, MobSpawnType spawnReason, BlockPos pos, RandomSource random) {
+        return world.getBlockState(pos.below()).is(BlockTags.SCULK_REPLACEABLE);
     }
 
     @Override
-    public float getPathfindingFavor(BlockPos pos, WorldView world) {
-        return world.getBlockState(pos.down()).isIn(BlockTags.SCULK_REPLACEABLE) ? 10.0F : -1.0F;
+    public float getWalkTargetValue(BlockPos pos, LevelReader world) {
+        return world.getBlockState(pos.below()).is(BlockTags.SCULK_REPLACEABLE) ? 10.0F : -1.0F;
     }
 
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        RegistryEntry<Biome> registryEntry = world.getBiome(this.getBlockPos());
-        if (registryEntry.matchesKey(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "crystal_forest")))) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
+        Holder<Biome> registryEntry = world.getBiome(this.blockPosition());
+        if (registryEntry.is(ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "crystal_forest")))) {
             this.setVariant(Math.random() >= 0.5 ? Variant.AMETHYST : Variant.OPAL);
-        } else if (registryEntry.matchesKey(RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, "quartz_caverns")))) {
+        } else if (registryEntry.is(ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "quartz_caverns")))) {
             this.setVariant(Variant.QUARTZ);
         } else {
-            this.setVariant(Util.getRandomOrEmpty(Variant.getAll(), world.getRandom()).orElse(Variant.AMETHYST));
+            this.setVariant(Util.getRandomSafe(Variant.getAll(), world.getRandom()).orElse(Variant.AMETHYST));
         }
 
-        return super.initialize(world, difficulty, spawnReason, entityData);
+        return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
     }
 
     @Override
-    public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+    public @Nullable AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return ModEntities.GEODIN.create(world);
     }
 
     @Override
-    public boolean isBreedingItem(ItemStack stack) {
+    public boolean isFood(ItemStack stack) {
         return false;
     }
 
-    protected void mobTick() {
+    protected void customServerAiStep() {
         if (this.getCrystalAge() < 4) {
             ++this.ticksSinceGrowth;
-            if (this.ticksSinceGrowth % 5 == 0 && this.random.nextInt(MathHelper.clamp(6000 - this.ticksSinceGrowth, 1, 6000)) == 0) {
+            if (this.ticksSinceGrowth % 5 == 0 && this.random.nextInt(Mth.clamp(6000 - this.ticksSinceGrowth, 1, 6000)) == 0) {
                 this.setCrystalAge(getCrystalAge() + 1);
                 this.ticksSinceGrowth = 0;
             }
@@ -168,9 +177,9 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
                 this.stuckTicks = 0;
             }
 
-            if (this.stuckTicks >= Config.instance().entities.geodin.conversion_time && !isBlockAtPosSolid(this.getBlockPos())) {
-                this.getWorld().setBlockState(this.getBlockPos(), getBlockForm());
-                BlockEntity blockEntity = this.getWorld().getBlockEntity(this.getBlockPos());
+            if (this.stuckTicks >= Config.instance().entities.geodin.conversion_time && !isBlockAtPosSolid(this.blockPosition())) {
+                this.level().setBlockAndUpdate(this.blockPosition(), getBlockForm());
+                BlockEntity blockEntity = this.level().getBlockEntity(this.blockPosition());
                 if (blockEntity instanceof GeodinBlockEntity geodinBlockEntity) {
                     geodinBlockEntity.setCustomName(this.getCustomName());
                 }
@@ -179,16 +188,16 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
         }
     }
 
-    public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        if (player.getStackInHand(hand).isIn(ItemTags.PICKAXES)) {
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (player.getItemInHand(hand).is(ItemTags.PICKAXES)) {
             if (getCrystalAge() >= 1) {
-                Block.dropStacks(getBlockFromAge(getCrystalAge()).getDefaultState(), player.getWorld(), this.getBlockPos(), null, null, player.getStackInHand(hand));
-                player.getWorld().playSound(null, this.getBlockPos(), SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.BLOCKS);
+                Block.dropResources(getBlockFromAge(getCrystalAge()).defaultBlockState(), player.level(), this.blockPosition(), null, null, player.getItemInHand(hand));
+                player.level().playSound(null, this.blockPosition(), SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS);
                 this.setCrystalAge(0);
-                return ActionResult.success(player.getWorld().isClient);
+                return InteractionResult.sidedSuccess(player.level().isClientSide);
             }
         }
-        return ActionResult.PASS;
+        return InteractionResult.PASS;
     }
 
     public Block getBlockFromAge(int age) {
@@ -204,17 +213,17 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
 
     public BlockState getBlockForm() {
         Variant variant = getVariant();
-        GeodinBlock block = (GeodinBlock) Registries.BLOCK.get(Identifier.of(Pyrellium.MOD_ID, "sleeping_" + variant.id.getPath() + "_geodin"));
-        return block.getDefaultState().with(GeodinBlock.AGE, getCrystalAge());
+        GeodinBlock block = (GeodinBlock) BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "sleeping_" + variant.id.getPath() + "_geodin"));
+        return block.defaultBlockState().setValue(GeodinBlock.AGE, getCrystalAge());
     }
 
     private boolean canTravel() {
-        BlockPos origin = this.getBlockPos();
-        BlockPos.Mutable mutable = origin.mutableCopy();
+        BlockPos origin = this.blockPosition();
+        BlockPos.MutableBlockPos mutable = origin.mutable();
         mutable.move(Direction.UP);
 
-        for (Direction direction : Direction.Type.HORIZONTAL) {
-            BlockPos blockPos = mutable.offset(direction);
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            BlockPos blockPos = mutable.relative(direction);
             if (isBlockAtPosSolid(blockPos)) {
                 return false;
             }
@@ -224,24 +233,24 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
     }
 
     private boolean isBlockAtPosSolid(BlockPos pos) {
-        return this.getWorld().getBlockState(pos).hasSolidTopSurface(this.getWorld().getChunkAsView(pos.getX(), pos.getY()), pos, this);
+        return this.level().getBlockState(pos).entityCanStandOn(this.level().getChunkForCollisions(pos.getX(), pos.getY()), pos, this);
     }
 
     public static class Variant {
-        private static final Map<Identifier, Variant> instances = new HashMap<>();
+        private static final Map<ResourceLocation, Variant> instances = new HashMap<>();
 
-        public final Identifier id;
+        public final ResourceLocation id;
         public final Block smallBud;
         public final Block mediumBud;
         public final Block largeBud;
         public final Block cluster;
-        public final Identifier texture;
+        public final ResourceLocation texture;
 
-        public static final Variant AMETHYST = registerSimple(Identifier.of("minecraft", "amethyst"));
-        public static final Variant OPAL = registerSimple(Identifier.of(Pyrellium.MOD_ID, "opal"));
-        public static final Variant QUARTZ = register(Identifier.of(Pyrellium.MOD_ID, "quartz"), ModBlocks.SMALL_QUARTZ_BUD, ModBlocks.MEDIUM_QUARTZ_BUD, ModBlocks.LARGE_QUARTZ_BUD, ModBlocks.QUARTZ_CRYSTAL, Identifier.of(Pyrellium.MOD_ID, "textures/entity/geodin/quartz.png"));
+        public static final Variant AMETHYST = registerSimple(ResourceLocation.fromNamespaceAndPath("minecraft", "amethyst"));
+        public static final Variant OPAL = registerSimple(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "opal"));
+        public static final Variant QUARTZ = register(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "quartz"), ModBlocks.SMALL_QUARTZ_BUD, ModBlocks.MEDIUM_QUARTZ_BUD, ModBlocks.LARGE_QUARTZ_BUD, ModBlocks.QUARTZ_CRYSTAL, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/entity/geodin/quartz.png"));
 
-        protected Variant(Identifier id, Block smallBud, Block mediumBud, Block largeBud, Block cluster, Identifier texture) {
+        protected Variant(ResourceLocation id, Block smallBud, Block mediumBud, Block largeBud, Block cluster, ResourceLocation texture) {
             this.id = id;
             this.smallBud = smallBud;
             this.mediumBud = mediumBud;
@@ -250,19 +259,19 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
             this.texture = texture;
         }
 
-        public static Variant registerSimple(Identifier id) {
+        public static Variant registerSimple(ResourceLocation id) {
             String blockName = id.getPath();
             Variant variant = new Variant(id,
-                    Registries.BLOCK.get(Identifier.of(id.getNamespace(), "small_" + blockName + "_bud")),
-                    Registries.BLOCK.get(Identifier.of(id.getNamespace(), "medium_" + blockName + "_bud")),
-                    Registries.BLOCK.get(Identifier.of(id.getNamespace(), "large_" + blockName + "_bud")),
-                    Registries.BLOCK.get(Identifier.of(id.getNamespace(), blockName + "_cluster")),
-                    Identifier.of(Pyrellium.MOD_ID, "textures/entity/geodin/" + blockName + ".png"));
+                    BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "small_" + blockName + "_bud")),
+                    BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "medium_" + blockName + "_bud")),
+                    BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "large_" + blockName + "_bud")),
+                    BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), blockName + "_cluster")),
+                    ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/entity/geodin/" + blockName + ".png"));
             instances.put(id, variant);
             return variant;
         }
 
-        public static Variant register(Identifier id, Block smallBud, Block mediumBud, Block largeBud, Block cluster, Identifier texture) {
+        public static Variant register(ResourceLocation id, Block smallBud, Block mediumBud, Block largeBud, Block cluster, ResourceLocation texture) {
             Variant variant = new Variant(id, smallBud, mediumBud, largeBud, cluster, texture);
             instances.put(id, variant);
             return variant;
@@ -272,7 +281,7 @@ public class GeodinEntity extends AnimalEntity implements VariantHolder<GeodinEn
             instances.clear();
         }
 
-        public static Variant get(Identifier id) {
+        public static Variant get(ResourceLocation id) {
             return instances.getOrDefault(id, AMETHYST);
         }
 

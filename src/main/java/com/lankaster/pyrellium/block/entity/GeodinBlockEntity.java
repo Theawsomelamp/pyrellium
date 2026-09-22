@@ -1,34 +1,34 @@
 package com.lankaster.pyrellium.block.entity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Nameable;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.Nameable;
+import net.minecraft.core.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
 public class GeodinBlockEntity extends BlockEntity implements Nameable {
     @Nullable
-    private Text customName;
+    private Component customName;
 
     public GeodinBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GEODIN, pos, state);
     }
 
-    public void setCustomName(@Nullable Text customName) {
+    public void setCustomName(@Nullable Component customName) {
         this.customName = customName;
     }
 
-    public Text getName() {
-        return this.customName != null ? this.customName : Text.of("Geodin");
+    public Component getName() {
+        return this.customName != null ? this.customName : Component.nullToEmpty("Geodin");
     }
 
-    public Text getDisplayName() {
+    public Component getDisplayName() {
         return this.getName();
     }
 
     @Nullable
-    public Text getCustomName() {
+    public Component getCustomName() {
         return this.customName;
     }
 }

@@ -1,25 +1,25 @@
 package com.lankaster.pyrellium.item;
 
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
 
 import java.util.List;
 
 public class DescriptiveArmorItem extends ArmorItem {
-    public DescriptiveArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings){
+    public DescriptiveArmorItem(Holder<ArmorMaterial> material, Type type, Properties settings){
         super(material, type, settings);
     }
 
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        super.appendTooltip(stack, context, tooltip, type);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+        super.appendHoverText(stack, context, tooltip, type);
 
-        String[] txt = Text.translatable(this.getOrCreateTranslationKey() + ".desc").getString().split("\\n");
+        String[] txt = Component.translatable(this.getOrCreateDescriptionId() + ".desc").getString().split("\\n");
         for (String t : txt)
-            tooltip.add(Text.literal(t).formatted(Formatting.GRAY));
+            tooltip.add(Component.literal(t).withStyle(ChatFormatting.GRAY));
     }
 }

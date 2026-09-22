@@ -2,49 +2,54 @@ package com.lankaster.pyrellium.mixin;
 
 import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.config.Config;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.*;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.*;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static net.minecraft.block.FlowerbedBlock.FACING;
-import static net.minecraft.block.FlowerbedBlock.FLOWER_AMOUNT;
+import static net.minecraft.world.level.block.PinkPetalsBlock.FACING;
+import static net.minecraft.world.level.block.PinkPetalsBlock.AMOUNT;
 
 @Mixin(Item.class)
 public class ItemMixin {
 
 
-    @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
-    private void placeableBones(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
+    @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
+    private void placeableBones(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
         if (Config.instance().blocks.placeable_bones) {
-            Direction direction = context.getSide();
+            Direction direction = context.getClickedFace();
             if (direction == Direction.UP) {
-                World world = context.getWorld();
-                ItemPlacementContext itemPlacementContext = new ItemPlacementContext(context);
-                BlockPos blockPos = itemPlacementContext.getBlockPos();
+                Level world = context.getLevel();
+                BlockPlaceContext itemPlacementContext = new BlockPlaceContext(context);
+                BlockPos blockPos = itemPlacementContext.getClickedPos();
                 BlockState blockStateUp = world.getBlockState(blockPos);
-                ItemStack itemStack = context.getStack();
-                BlockPos posBelow = blockPos.down();
+                ItemStack itemStack = context.getItemInHand();
+                BlockPos posBelow = blockPos.below();
                 BlockState blockState = world.getBlockState(posBelow);
-                if (((blockState.isSideSolidFullSquare(world, blockPos, direction) && blockStateUp.isAir()) || (blockState.isOf(ModBlocks.BONE)) && blockState.get(FLOWER_AMOUNT) < 4) && itemStack.isOf(Items.BONE)) {
-                    if (world instanceof ServerWorld) {
-                        if (blockState.isOf(ModBlocks.BONE)) {
-                            world.setBlockState(posBelow, blockState.with(FLOWER_AMOUNT, Math.min(4, blockState.get(FLOWER_AMOUNT) + 1)));
+                if (((blockState.isFaceSturdy(world, blockPos, direction) && blockStateUp.isAir()) || (blockState.is(ModBlocks.BONE)) && blockState.getValue(AMOUNT) < 4) && itemStack.is(Items.BONE)) {
+                    if (world instanceof ServerLevel) {
+                        if (blockState.is(ModBlocks.BONE)) {
+                            world.setBlockAndUpdate(posBelow, blockState.setValue(AMOUNT, Math.min(4, blockState.getValue(AMOUNT) + 1)));
                         } else {
-                            world.setBlockState(blockPos, ModBlocks.BONE.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite()));
+                            world.setBlockAndUpdate(blockPos, ModBlocks.BONE.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()));
                         }
-                        world.playSound(null, blockPos, SoundEvents.BLOCK_BONE_BLOCK_PLACE, SoundCategory.BLOCKS);
+                        world.playSound(null, blockPos, SoundEvents.BONE_BLOCK_PLACE, SoundSource.BLOCKS);
                     }
-                    itemStack.decrement(1);
-                    cir.setReturnValue(ActionResult.SUCCESS);
+                    itemStack.shrink(1);
+                    cir.setReturnValue(InteractionResult.SUCCESS);
                 }
             }
         }

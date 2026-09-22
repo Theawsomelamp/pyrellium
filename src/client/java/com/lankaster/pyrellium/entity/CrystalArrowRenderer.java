@@ -1,17 +1,17 @@
 package com.lankaster.pyrellium.entity;
 
 import com.lankaster.pyrellium.Pyrellium;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.ProjectileEntityRenderer;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.ArrowRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-public class CrystalArrowRenderer extends ProjectileEntityRenderer<CrystalArrowEntity> {
-    public CrystalArrowRenderer(EntityRendererFactory.Context context) {
+public class CrystalArrowRenderer extends ArrowRenderer<CrystalArrowEntity> {
+    public CrystalArrowRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
     @Override
-    public Identifier getTexture(CrystalArrowEntity entity) {
-        return CrystalArrowEntity.opal ? Identifier.of(Pyrellium.MOD_ID, "textures/entity/opal_arrow.png") : Identifier.of(Pyrellium.MOD_ID, "textures/entity/amethyst_arrow.png");
+    public ResourceLocation getTextureLocation(CrystalArrowEntity entity) {
+        return CrystalArrowEntity.opal ? ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/entity/opal_arrow.png") : ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/entity/amethyst_arrow.png");
     }
 }

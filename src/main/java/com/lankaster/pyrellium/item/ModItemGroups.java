@@ -3,21 +3,21 @@ package com.lankaster.pyrellium.item;
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.block.ModBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 
 public class ModItemGroups {
-    public static final RegistryKey<ItemGroup> PYRELLIUM = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Pyrellium.MOD_ID, "pyrellium"));
+    public static final ResourceKey<CreativeModeTab> PYRELLIUM = ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "pyrellium"));
 
     public static void registerItemGroups() {
-        Registry.register(Registries.ITEM_GROUP, PYRELLIUM, FabricItemGroup.builder()
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, PYRELLIUM, FabricItemGroup.builder()
                 .icon(() -> new ItemStack(ModBlocks.OPAL_BLOCK))
-                .displayName(Text.translatable("itemgroup.pyrellium")).build());
+                .title(Component.translatable("itemgroup.pyrellium")).build());
     }
 }

@@ -6,23 +6,23 @@ import com.lankaster.pyrellium.entity.ModChestBoatEntity;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.render.entity.BoatEntityRenderer;
-import net.minecraft.client.render.entity.model.CompositeEntityModel;
-import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.entity.vehicle.ChestBoatEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.BoatRenderer;
+import net.minecraft.client.model.ListModel;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.ChestBoat;
+import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(BoatEntityRenderer.class)
+@Mixin(BoatRenderer.class)
 public class BoatEntityRenderMixin {
-    @WrapOperation(method = "render(Lnet/minecraft/entity/vehicle/BoatEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At(value = "INVOKE", target = "Lcom/mojang/datafixers/util/Pair;getFirst()Ljava/lang/Object;"))
-    private Object addCustomTexture(Pair<Identifier, CompositeEntityModel<BoatEntity>> instance, Operation<Identifier> original, BoatEntity boatEntity) {
+    @WrapOperation(method = "render(Lnet/minecraft/world/entity/vehicle/Boat;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At(value = "INVOKE", target = "Lcom/mojang/datafixers/util/Pair;getFirst()Ljava/lang/Object;"))
+    private Object addCustomTexture(Pair<ResourceLocation, ListModel<Boat>> instance, Operation<ResourceLocation> original, Boat boatEntity) {
         if (boatEntity instanceof ModBoatEntity modBoatEntity) {
-            return Identifier.of(Pyrellium.MOD_ID, "textures/entity/boat/" + modBoatEntity.getCustomVariant().asString() + ".png");
-        } else if (boatEntity instanceof ChestBoatEntity chestBoatEntity) {
+            return ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/entity/boat/" + modBoatEntity.getCustomVariant().getSerializedName() + ".png");
+        } else if (boatEntity instanceof ChestBoat chestBoatEntity) {
             if (chestBoatEntity instanceof ModChestBoatEntity modChestBoatEntity) {
-                return Identifier.of(Pyrellium.MOD_ID, "textures/entity/chest_boat/" + modChestBoatEntity.getCustomVariant().asString() + ".png");
+                return ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/entity/chest_boat/" + modChestBoatEntity.getCustomVariant().getSerializedName() + ".png");
             }
         }
         return instance.getFirst();

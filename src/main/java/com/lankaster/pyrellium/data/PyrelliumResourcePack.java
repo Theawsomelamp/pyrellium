@@ -1,11 +1,15 @@
 package com.lankaster.pyrellium.data;
 
 import com.lankaster.pyrellium.Pyrellium;
-import net.minecraft.registry.VersionedIdentifier;
-import net.minecraft.resource.*;
-import net.minecraft.resource.metadata.ResourceMetadataReader;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.server.packs.PackLocationInfo;
+import net.minecraft.server.packs.PackResources;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.KnownPack;
+import net.minecraft.server.packs.metadata.MetadataSectionSerializer;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.server.packs.resources.IoSupplier;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
@@ -13,53 +17,53 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.Set;
 
-public class PyrelliumResourcePack implements ResourcePack {
-    public static final PyrelliumResourcePack INSTANCE = new PyrelliumResourcePack(new ResourcePackInfo(Pyrellium.MOD_ID + "_resources", Text.literal("Pyrellium Resources"), ResourcePackSource.BUILTIN, Optional.empty()));
+public class PyrelliumResourcePack implements PackResources {
+    public static final PyrelliumResourcePack INSTANCE = new PyrelliumResourcePack(new PackLocationInfo(Pyrellium.MOD_ID + "_resources", Component.literal("Pyrellium Resources"), PackSource.BUILT_IN, Optional.empty()));
 
-    private final ResourcePackInfo info;
+    private final PackLocationInfo info;
 
-    public PyrelliumResourcePack(ResourcePackInfo info) {
+    public PyrelliumResourcePack(PackLocationInfo info) {
         this.info = info;
     }
 
     @Override
-    public @Nullable InputSupplier<InputStream> openRoot(String... segments) {
+    public @Nullable IoSupplier<InputStream> getRootResource(String... segments) {
         return null;
     }
 
     @Override
-    public @Nullable InputSupplier<InputStream> open(ResourceType type, Identifier id) {
+    public @Nullable IoSupplier<InputStream> getResource(PackType type, ResourceLocation id) {
         return null;
     }
 
     @Override
-    public void findResources(ResourceType type, String namespace, String prefix, ResultConsumer consumer) {
+    public void listResources(PackType type, String namespace, String prefix, ResourceOutput consumer) {
 
     }
 
     @Override
-    public Set<String> getNamespaces(ResourceType type) {
+    public Set<String> getNamespaces(PackType type) {
         return Set.of();
     }
 
     @Override
-    public @Nullable <T> T parseMetadata(ResourceMetadataReader<T> metaReader) throws IOException {
+    public @Nullable <T> T getMetadataSection(MetadataSectionSerializer<T> metaReader) throws IOException {
         return null;
     }
 
     @Override
-    public ResourcePackInfo getInfo() {
+    public PackLocationInfo location() {
         return info;
     }
 
     @Override
-    public String getId() {
-        return ResourcePack.super.getId();
+    public String packId() {
+        return PackResources.super.packId();
     }
 
     @Override
-    public Optional<VersionedIdentifier> getKnownPackInfo() {
-        return ResourcePack.super.getKnownPackInfo();
+    public Optional<KnownPack> knownPackInfo() {
+        return PackResources.super.knownPackInfo();
     }
 
     @Override

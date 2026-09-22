@@ -6,23 +6,23 @@ import com.lankaster.pyrellium.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.concurrent.CompletableFuture;
 
 public class ItemTagDataGen extends FabricTagProvider.ItemTagProvider{
 
-    public ItemTagDataGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+    public ItemTagDataGen(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+    protected void addTags(HolderLookup.Provider wrapperLookup) {
         getOrCreateTagBuilder(ItemTags.ARROWS).add(
                 ModItems.AMETHYST_ARROW,
                 ModItems.OPAL_ARROW
@@ -42,21 +42,21 @@ public class ItemTagDataGen extends FabricTagProvider.ItemTagProvider{
                 ModBlocks.DRAINED_SOUL_SOIL.asItem()
         );
 
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
+        getOrCreateTagBuilder(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "burning_logs"))).add(
                 ModBlocks.BURNING_LOG.asItem(),
                 ModBlocks.BURNING_WOOD.asItem(),
                 ModBlocks.STRIPPED_BURNING_LOG.asItem(),
                 ModBlocks.STRIPPED_BURNING_WOOD.asItem()
         );
 
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "shaderoot_logs"))).add(
+        getOrCreateTagBuilder(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "shaderoot_logs"))).add(
                 ModBlocks.SHADEROOT_LOG.asItem(),
                 ModBlocks.SHADEROOT_WOOD.asItem(),
                 ModBlocks.STRIPPED_SHADEROOT_LOG.asItem(),
                 ModBlocks.STRIPPED_SHADEROOT_WOOD.asItem()
         );
 
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "crystals"))).add(
+        getOrCreateTagBuilder(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "crystals"))).add(
                 Items.AMETHYST_SHARD,
                 ModItems.OPAL,
                 Items.QUARTZ

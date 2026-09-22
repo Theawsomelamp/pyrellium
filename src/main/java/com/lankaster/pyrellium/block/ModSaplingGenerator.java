@@ -1,25 +1,25 @@
 package com.lankaster.pyrellium.block;
 
 import com.lankaster.pyrellium.Pyrellium;
-import net.minecraft.block.SaplingGenerator;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.level.block.grower.TreeGrower;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.Optional;
 
 public class ModSaplingGenerator {
-    SaplingGenerator BURNING = new SaplingGenerator(
+    TreeGrower BURNING = new TreeGrower(
             "burning",
             Optional.empty(),
-            Optional.of(RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "burning_tree"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "burning_tree"))),
             Optional.empty()
     );
 
-    SaplingGenerator SHADEROOT = new SaplingGenerator(
+    TreeGrower SHADEROOT = new TreeGrower(
             "shaderoot",
             Optional.empty(),
-            Optional.of(RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "ghost_tree"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "ghost_tree"))),
             Optional.empty()
     );
 }

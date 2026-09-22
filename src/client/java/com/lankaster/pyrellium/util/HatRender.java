@@ -3,41 +3,41 @@ package com.lankaster.pyrellium.util;
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.item.ModItems;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
 
 public class HatRender implements ArmorRenderer {
-    private static final OpalTiaraRenderer<?> opalTiara = new OpalTiaraRenderer<>(OpalTiaraRenderer.getTexturedModelData().createModel());
-    private static final MushroomCapRenderer<?> mushroomCap = new MushroomCapRenderer<>(MushroomCapRenderer.getTexturedModelData().createModel());
+    private static final OpalTiaraRenderer<?> opalTiara = new OpalTiaraRenderer<>(OpalTiaraRenderer.getTexturedModelData().bakeRoot());
+    private static final MushroomCapRenderer<?> mushroomCap = new MushroomCapRenderer<>(MushroomCapRenderer.getTexturedModelData().bakeRoot());
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, ItemStack stack, LivingEntity entity,
-                       EquipmentSlot slot, int light, BipedEntityModel<LivingEntity> contextModel) {
+    public void render(PoseStack matrices, MultiBufferSource vertexConsumers, ItemStack stack, LivingEntity entity,
+                       EquipmentSlot slot, int light, HumanoidModel<LivingEntity> contextModel) {
 
-        if (!stack.isEmpty() && stack.isOf(ModItems.OPAL_TIARA)) {
-            matrices.push();
-            contextModel.getHead().rotate(matrices);
+        if (!stack.isEmpty() && stack.is(ModItems.OPAL_TIARA)) {
+            matrices.pushPose();
+            contextModel.getHead().translateAndRotate(matrices);
             matrices.scale(1.19F, 1.19F, 1.19F);
-            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, opalTiara.getLayer(Identifier.of(Pyrellium.MOD_ID, "textures/item/opal_tiara_model.png")), false);
-            opalTiara.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, -1);
-            matrices.pop();
+            VertexConsumer vertexConsumer = ItemRenderer.getArmorFoilBuffer(vertexConsumers, opalTiara.renderType(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/item/opal_tiara_model.png")), false);
+            opalTiara.renderToBuffer(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY, -1);
+            matrices.popPose();
         }
 
-        if (!stack.isEmpty() && stack.isOf(ModItems.MUSHROOM_CAP)) {
-            matrices.push();
-            contextModel.getHead().rotate(matrices);
+        if (!stack.isEmpty() && stack.is(ModItems.MUSHROOM_CAP)) {
+            matrices.pushPose();
+            contextModel.getHead().translateAndRotate(matrices);
             matrices.scale(1.19F, 1.19F, 1.19F);
-            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, mushroomCap.getLayer(Identifier.of(Pyrellium.MOD_ID, "textures/item/mushroom_cap_model.png")), false);
-            mushroomCap.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, -1);
-            matrices.pop();
+            VertexConsumer vertexConsumer = ItemRenderer.getArmorFoilBuffer(vertexConsumers, mushroomCap.renderType(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/item/mushroom_cap_model.png")), false);
+            mushroomCap.renderToBuffer(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY, -1);
+            matrices.popPose();
         }
     }
 }

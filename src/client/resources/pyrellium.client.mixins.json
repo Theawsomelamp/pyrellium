@@ -5,9 +5,9 @@
   "client": [
     "BoatEntityRenderMixin",
     "HeadStoneEditScreenMixin",
-    "InGameHudMixin",
+    "GuiMixin",
     "ItemRendererMixin",
-    "ModelLoaderMixin",
+    "ModelBakeryMixin",
     "PlayerFeatureRendererMixin"
   ],
   "injectors": {

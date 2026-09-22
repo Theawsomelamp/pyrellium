@@ -2,66 +2,70 @@ package com.lankaster.pyrellium.mixin;
 
 import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.config.Config;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static net.minecraft.block.FlowerbedBlock.FACING;
+import static net.minecraft.world.level.block.PinkPetalsBlock.FACING;
 
 @Mixin(BlockItem.class)
 public class BlockItemMixin {
 
-    @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
-    private void wallMushrooms(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-        Direction direction = context.getSide();
-        World world = context.getWorld();
-        PlayerEntity player = context.getPlayer();
-        Hand hand = context.getHand();
-        ItemPlacementContext itemPlacementContext = new ItemPlacementContext(context);
-        BlockPos blockPos = itemPlacementContext.getBlockPos();
+    @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
+    private void wallMushrooms(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
+        Direction direction = context.getClickedFace();
+        Level world = context.getLevel();
+        Player player = context.getPlayer();
+        InteractionHand hand = context.getHand();
+        BlockPlaceContext itemPlacementContext = new BlockPlaceContext(context);
+        BlockPos blockPos = itemPlacementContext.getClickedPos();
         BlockState blockStateInit = world.getBlockState(blockPos);
-        ItemStack itemStack = context.getStack();
+        ItemStack itemStack = context.getItemInHand();
         if (Config.instance().blocks.placeable_wall_mushrooms) {
             if (direction != Direction.DOWN && direction != Direction.UP) {
-                BlockPos posSide = blockPos.offset(direction.getOpposite());
+                BlockPos posSide = blockPos.relative(direction.getOpposite());
                 BlockState blockState = world.getBlockState(posSide);
-                BlockPos posDown = blockPos.offset(Direction.DOWN);
+                BlockPos posDown = blockPos.relative(Direction.DOWN);
                 BlockState blockStateDown = world.getBlockState(posDown);
-                if ((blockState.isSideSolidFullSquare(world, blockPos, direction) && blockStateInit.isAir()) && !blockStateDown.isSideSolidFullSquare(world, blockPos, Direction.DOWN)) {
-                    if (world instanceof ServerWorld) {
-                        if (itemStack.isOf(Items.BROWN_MUSHROOM)) {
-                            world.setBlockState(blockPos, ModBlocks.BROWN_WALL_MUSHROOM.getDefaultState().with(FACING, direction.getOpposite()));
-                            world.playSound(null, blockPos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS);
-                            itemStack.decrement(1);
-                            cir.setReturnValue(ActionResult.SUCCESS);
-                        } else if (itemStack.isOf(Items.RED_MUSHROOM)) {
-                            world.setBlockState(blockPos, ModBlocks.RED_WALL_MUSHROOM.getDefaultState().with(FACING, direction.getOpposite()));
-                            world.playSound(null, blockPos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS);
-                            itemStack.decrement(1);
-                            cir.setReturnValue(ActionResult.SUCCESS);
+                if ((blockState.isFaceSturdy(world, blockPos, direction) && blockStateInit.isAir()) && !blockStateDown.isFaceSturdy(world, blockPos, Direction.DOWN)) {
+                    if (world instanceof ServerLevel) {
+                        if (itemStack.is(Items.BROWN_MUSHROOM)) {
+                            world.setBlockAndUpdate(blockPos, ModBlocks.BROWN_WALL_MUSHROOM.defaultBlockState().setValue(FACING, direction.getOpposite()));
+                            world.playSound(null, blockPos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS);
+                            itemStack.shrink(1);
+                            cir.setReturnValue(InteractionResult.SUCCESS);
+                        } else if (itemStack.is(Items.RED_MUSHROOM)) {
+                            world.setBlockAndUpdate(blockPos, ModBlocks.RED_WALL_MUSHROOM.defaultBlockState().setValue(FACING, direction.getOpposite()));
+                            world.playSound(null, blockPos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS);
+                            itemStack.shrink(1);
+                            cir.setReturnValue(InteractionResult.SUCCESS);
                         }
                     }
                 }
             }
         }
 
-        if (itemStack.isOf(ModBlocks.SPORES.asItem())) {
+        if (itemStack.is(ModBlocks.SPORES.asItem())) {
             if (itemStack.isEmpty()) {
-                player.setStackInHand(hand, new ItemStack(Items.GLASS_BOTTLE));
-            } else if (!player.getInventory().insertStack(new ItemStack(Items.GLASS_BOTTLE))) {
-                player.dropItem(new ItemStack(Items.GLASS_BOTTLE), false);
+                player.setItemInHand(hand, new ItemStack(Items.GLASS_BOTTLE));
+            } else if (!player.getInventory().add(new ItemStack(Items.GLASS_BOTTLE))) {
+                player.drop(new ItemStack(Items.GLASS_BOTTLE), false);
             }
         }
     }

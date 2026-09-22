@@ -2,23 +2,23 @@ package com.lankaster.pyrellium.entity;
 
 import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.item.ModItems;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
-import net.minecraft.item.Item;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.Level;
 
-public class BombFlowerEntity extends ThrownItemEntity {
-    public BombFlowerEntity(EntityType<? extends BombFlowerEntity> entityType, World world) {
+public class BombFlowerEntity extends ThrowableItemProjectile {
+    public BombFlowerEntity(EntityType<? extends BombFlowerEntity> entityType, Level world) {
         super(entityType, world);
     }
 
-    public BombFlowerEntity(World world, LivingEntity owner) {
+    public BombFlowerEntity(Level world, LivingEntity owner) {
         super(ModEntities.BOMB_FLOWER, owner, world);
     }
 
-    public BombFlowerEntity(World world, double x, double y, double z) {
+    public BombFlowerEntity(Level world, double x, double y, double z) {
         super(ModEntities.BOMB_FLOWER, x, y, z, world);
     }
 
@@ -27,11 +27,11 @@ public class BombFlowerEntity extends ThrownItemEntity {
         return ModItems.BOMB_FLOWER;
     }
 
-    protected void onCollision(HitResult hitResult) {
-        super.onCollision(hitResult);
-        if (!this.getWorld().isClient) {
-            this.getWorld().createExplosion(null, this.getX(), this.getY(), this.getZ(), Config.instance().items.bomb_flower_explosion_strength, false, World.ExplosionSourceType.NONE);
-            this.getWorld().sendEntityStatus(this, (byte)3);
+    protected void onHit(HitResult hitResult) {
+        super.onHit(hitResult);
+        if (!this.level().isClientSide) {
+            this.level().explode(null, this.getX(), this.getY(), this.getZ(), Config.instance().items.bomb_flower_explosion_strength, false, Level.ExplosionInteraction.NONE);
+            this.level().broadcastEntityEvent(this, (byte)3);
             this.discard();
         }
     }

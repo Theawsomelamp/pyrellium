@@ -3,85 +3,85 @@ package com.lankaster.pyrellium.block;
 import com.google.gson.JsonSyntaxException;
 import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.item.ModItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 
 import java.util.Optional;
 
 public class SporesBlock extends Block {
-    public static final BooleanProperty DISPERSED = BooleanProperty.of("dispersed");
+    public static final BooleanProperty DISPERSED = BooleanProperty.create("dispersed");
 
-    public SporesBlock(Settings settings) {
+    public SporesBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(DISPERSED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(DISPERSED, false));
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(Hand.MAIN_HAND);
-        if (itemStack.isOf(Items.GLASS_BOTTLE)) {
-            itemStack.decrement(1);
+    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
+        if (itemStack.is(Items.GLASS_BOTTLE)) {
+            itemStack.shrink(1);
             if (itemStack.isEmpty()) {
-                player.setStackInHand(Hand.MAIN_HAND, new ItemStack(ModBlocks.SPORES));
-            } else if (!player.getInventory().insertStack(new ItemStack(ModBlocks.SPORES))) {
-                player.dropItem(new ItemStack(ModBlocks.SPORES), false);
+                player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModBlocks.SPORES));
+            } else if (!player.getInventory().add(new ItemStack(ModBlocks.SPORES))) {
+                player.drop(new ItemStack(ModBlocks.SPORES), false);
             }
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            world.playSound(null, pos, SoundEvents.BLOCK_FROGSPAWN_BREAK, SoundCategory.BLOCKS);
+            world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+            world.playSound(null, pos, SoundEvents.FROGSPAWN_BREAK, SoundSource.BLOCKS);
         }
-        return super.onUse(state, world, pos, player, hit);
+        return super.useWithoutItem(state, world, pos, player, hit);
     }
 
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (!state.get(DISPERSED)) {
+    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+        if (!state.getValue(DISPERSED)) {
             if (entity instanceof LivingEntity livingEntity) {
-                if (!livingEntity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
-                    Optional<StatusEffect> effect = Registries.STATUS_EFFECT.getOrEmpty(Identifier.tryParse(Config.instance().blocks.spores_effect));
+                if (!livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.MUSHROOM_CAP)) {
+                    Optional<MobEffect> effect = BuiltInRegistries.MOB_EFFECT.getOptional(ResourceLocation.tryParse(Config.instance().blocks.spores_effect));
                     if(effect.isEmpty()) {
                         throw new JsonSyntaxException("Error reading status effect: could not find status effect with id: " + Config.instance().blocks.spores_effect);
                     }
-                    livingEntity.addStatusEffect(new StatusEffectInstance(Registries.STATUS_EFFECT.getEntry(effect.get()), Config.instance().blocks.spores_effect_time));
+                    livingEntity.addEffect(new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect.get()), Config.instance().blocks.spores_effect_time));
                 }
             }
-            world.setBlockState(pos, state.cycle(DISPERSED), 2);
-            world.scheduleBlockTick(pos, this, 200);
+            world.setBlock(pos, state.cycle(DISPERSED), 2);
+            world.scheduleTick(pos, this, 200);
             for (int i = 0; i < 20; ++i) {
-                world.addParticle(ParticleTypes.WARPED_SPORE, entity.getX(), pos.getY() + 1, entity.getZ(), MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F, 0.05F, MathHelper.nextBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F);
+                world.addParticle(ParticleTypes.WARPED_SPORE, entity.getX(), pos.getY() + 1, entity.getZ(), Mth.randomBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F, 0.05F, Mth.randomBetween(world.getRandom(), -1.0F, 1.0F) * 0.083333336F);
             }
         }
     }
 
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (state.get(DISPERSED)) {
-            world.setBlockState(pos, state.cycle(DISPERSED), 2);
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (state.getValue(DISPERSED)) {
+            world.setBlock(pos, state.cycle(DISPERSED), 2);
         }
     }
 
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(DISPERSED);
     }
 }

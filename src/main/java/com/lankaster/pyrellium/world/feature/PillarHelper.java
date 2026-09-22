@@ -1,11 +1,11 @@
 package com.lankaster.pyrellium.world.feature;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.LevelAccessor;
 
 public class PillarHelper {
     public PillarHelper() {
@@ -25,16 +25,16 @@ public class PillarHelper {
         return i / 0.384 * scale;
     }
 
-    protected static boolean canGenerateBase(StructureWorldAccess world, BlockPos pos, int height) {
+    protected static boolean canGenerateBase(WorldGenLevel world, BlockPos pos, int height) {
         if (canGenerateOrLava(world, pos)) {
             return false;
         } else {
             float g = 6.0F / (float)height;
 
             for(float h = 0.0F; h < ((float)Math.PI * 2F); h += g) {
-                int i = (int)(MathHelper.cos(h) * (float)height);
-                int j = (int)(MathHelper.sin(h) * (float)height);
-                if (canGenerateOrLava(world, pos.add(i, 0, j))) {
+                int i = (int)(Mth.cos(h) * (float)height);
+                int j = (int)(Mth.sin(h) * (float)height);
+                if (canGenerateOrLava(world, pos.offset(i, 0, j))) {
                     return false;
                 }
             }
@@ -43,16 +43,16 @@ public class PillarHelper {
         }
     }
 
-    protected static boolean canGenerate(WorldAccess world, BlockPos pos) {
-        return world.testBlockState(pos, PillarHelper::canGenerate);
+    protected static boolean canGenerate(LevelAccessor world, BlockPos pos) {
+        return world.isStateAtPosition(pos, PillarHelper::canGenerate);
     }
 
-    protected static boolean canGenerateOrLava(WorldAccess world, BlockPos pos) {
-        return world.testBlockState(pos, PillarHelper::canGenerateOrLava);
+    protected static boolean canGenerateOrLava(LevelAccessor world, BlockPos pos) {
+        return world.isStateAtPosition(pos, PillarHelper::canGenerateOrLava);
     }
 
     public static boolean canReplaceOrLava(BlockState state) {
-        return canReplace(state) || state.isOf(Blocks.LAVA);
+        return canReplace(state) || state.is(Blocks.LAVA);
     }
 
     //TODO: add tag to check for certain block
@@ -61,10 +61,10 @@ public class PillarHelper {
     }
 
     public static boolean canGenerate(BlockState state) {
-        return state.isAir() || state.isOf(Blocks.WATER);
+        return state.isAir() || state.is(Blocks.WATER);
     }
 
     public static boolean canGenerateOrLava(BlockState state) {
-        return state.isAir() || state.isOf(Blocks.WATER) || state.isOf(Blocks.LAVA);
+        return state.isAir() || state.is(Blocks.WATER) || state.is(Blocks.LAVA);
     }
 }

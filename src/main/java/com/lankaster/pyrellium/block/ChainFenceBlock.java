@@ -1,31 +1,31 @@
 package com.lankaster.pyrellium.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.PaneBlock;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.LevelAccessor;
 
-public class ChainFenceBlock extends PaneBlock {
-    public static final BooleanProperty TOP = BooleanProperty.of("top");
+public class ChainFenceBlock extends IronBarsBlock {
+    public static final BooleanProperty TOP = BooleanProperty.create("top");
 
-    public ChainFenceBlock(Settings settings) {
+    public ChainFenceBlock(Properties settings) {
         super(settings);
-        this.setDefaultState((this.stateManager.getDefaultState()).with(TOP, true));
+        this.registerDefaultState((this.stateDefinition.any()).setValue(TOP, true));
     }
 
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (direction == Direction.UP && !state.canPlaceAt(world, pos)) {
-            world.scheduleBlockTick(pos, this, 1);
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (direction == Direction.UP && !state.canSurvive(world, pos)) {
+            world.scheduleTick(pos, this, 1);
         }
 
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos).with(TOP, world.getBlockState(pos.up()).isAir());
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos).setValue(TOP, world.getBlockState(pos.above()).isAir());
     }
 
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TOP, NORTH, EAST, WEST, SOUTH, WATERLOGGED);
     }
 }

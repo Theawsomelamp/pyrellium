@@ -4,17 +4,17 @@ import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.MarkerPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.WorldRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.Camera;
+import net.minecraft.client.renderer.RenderType;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.LevelRenderer;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.core.BlockPos;
 
 import java.util.Objects;
 
@@ -28,25 +28,25 @@ public class BlockOutline {
         }
         Camera camera = context.camera();
 
-        MatrixStack matrixStack = context.matrixStack();
+        PoseStack matrixStack = context.matrixStack();
 
-        VertexConsumer vertexConsumer = Objects.requireNonNull(context.consumers()).getBuffer(RenderLayer.LINES);
+        VertexConsumer vertexConsumer = Objects.requireNonNull(context.consumers()).getBuffer(RenderType.LINES);
 
-        double x = blockPos.getX() - camera.getPos().x;
-        double y = blockPos.getY() - camera.getPos().y;
-        double z = blockPos.getZ() - camera.getPos().z;
+        double x = blockPos.getX() - camera.getPosition().x;
+        double y = blockPos.getY() - camera.getPosition().y;
+        double z = blockPos.getZ() - camera.getPosition().z;
 
-        WorldRenderer.drawBox(matrixStack, vertexConsumer, x, y, z, x + 1, y + 1, z + 1, red, green, blue, 1.0f, red, green, blue);
+        LevelRenderer.renderLineBox(matrixStack, vertexConsumer, x, y, z, x + 1, y + 1, z + 1, red, green, blue, 1.0f, red, green, blue);
     }
 
     public static BlockPos raycast() {
-        MinecraftClient client = MinecraftClient.getInstance();
+        Minecraft client = Minecraft.getInstance();
         double maxReach = 1000; //The farthest target the cameraEntity can detect
         float tickDelta = 1.0F; //Used for tracking animation progress; no tracking is 1.0F
         boolean includeFluids = true; //Whether to detect fluids as block
 
-        if (client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
-            HitResult hit = client.cameraEntity.raycast(maxReach, tickDelta, includeFluids);
+        if (client.player.getUseItem().getItem() == ModItems.OPAL_SPYGLASS) {
+            HitResult hit = client.cameraEntity.pick(maxReach, tickDelta, includeFluids);
 
             return switch (hit.getType()) {
                 case MISS, ENTITY -> null;
@@ -60,20 +60,20 @@ public class BlockOutline {
     }
 
     public static BlockPos saveBlock() {
-        MinecraftClient client = MinecraftClient.getInstance();
+        Minecraft client = Minecraft.getInstance();
 
-        if (client.player.getActiveItem().getItem() == ModItems.OPAL_SPYGLASS) {
-            if (client.options.pickItemKey.wasPressed() && savedPos != null) {
+        if (client.player.getUseItem().getItem() == ModItems.OPAL_SPYGLASS) {
+            if (client.options.keyPickItem.consumeClick() && savedPos != null) {
                 MarkerPayload markerPayload = new MarkerPayload(savedPos);
-                client.world.playSound(client.player.getPos().x, client.player.getPos().y, client.player.getPos().z, SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, SoundCategory.PLAYERS, 1.0f, 1.0f, true);
+                client.level.playLocalSound(client.player.position().x, client.player.position().y, client.player.position().z, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.PLAYERS, 1.0f, 1.0f, true);
                 ClientPlayNetworking.send(markerPayload);
-            } else if (client.options.attackKey.wasPressed()) {
-                savedPos = (client.options.sneakKey.isPressed() ? null : raycast());
-                sharedPos = (client.options.sneakKey.isPressed() ? null : sharedPos);
+            } else if (client.options.keyAttack.consumeClick()) {
+                savedPos = (client.options.keyShift.isDown() ? null : raycast());
+                sharedPos = (client.options.keyShift.isDown() ? null : sharedPos);
             }
         }
 
-        if (savedPos != null && client.world.isChunkLoaded(savedPos.getX(), savedPos.getZ())) {
+        if (savedPos != null && client.level.hasChunk(savedPos.getX(), savedPos.getZ())) {
             return savedPos;
         }
         return null;

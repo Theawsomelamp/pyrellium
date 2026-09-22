@@ -1,80 +1,80 @@
 package com.lankaster.pyrellium.entity;
 
 import com.lankaster.pyrellium.block.ModBlocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.entity.vehicle.ChestBoatEntity;
-import net.minecraft.item.Item;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.function.ValueLists;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.ChestBoat;
+import net.minecraft.world.item.Item;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.util.ByIdMap;
+import net.minecraft.world.level.Level;
 
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
-public class ModChestBoatEntity extends ChestBoatEntity {
+public class ModChestBoatEntity extends ChestBoat {
 
-    private static final TrackedData<? super Integer> BOAT_TYPE = DataTracker.registerData(ModChestBoatEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final EntityDataAccessor<? super Integer> BOAT_TYPE = SynchedEntityData.defineId(ModChestBoatEntity.class, EntityDataSerializers.INT);
 
-    public ModChestBoatEntity(EntityType<? extends BoatEntity> entityType, World world) {
+    public ModChestBoatEntity(EntityType<? extends Boat> entityType, Level world) {
         super(entityType, world);
     }
 
-    public ModChestBoatEntity(World world, double x, double y, double z) {
+    public ModChestBoatEntity(Level world, double x, double y, double z) {
         this(ModEntities.BURNING_CHEST_BOAT, world);
-        this.setPosition(x, y, z);
-        this.prevX = x;
-        this.prevY = y;
-        this.prevZ = z;
+        this.setPos(x, y, z);
+        this.xo = x;
+        this.yo = y;
+        this.zo = z;
     }
 
-    protected void initDataTracker(DataTracker.Builder builder) {
-        super.initDataTracker(builder);
-        builder.add(BOAT_TYPE, Type.BURNING.ordinal());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(BOAT_TYPE, Type.BURNING.ordinal());
     }
 
-    protected void writeCustomDataToNbt(NbtCompound nbt) {
-        nbt.putString("Type", this.getCustomVariant().asString());
+    protected void addAdditionalSaveData(CompoundTag nbt) {
+        nbt.putString("Type", this.getCustomVariant().getSerializedName());
     }
 
-    protected void readCustomDataFromNbt(NbtCompound nbt) {
+    protected void readAdditionalSaveData(CompoundTag nbt) {
         if (nbt.contains("Type", 8)) {
             this.setVariant(ModChestBoatEntity.Type.getType(nbt.getString("Type")));
         }
     }
 
     public void setVariant(Type type) {
-        this.dataTracker.set(BOAT_TYPE, type.ordinal());
+        this.entityData.set(BOAT_TYPE, type.ordinal());
     }
 
     public ModChestBoatEntity.Type getCustomVariant() {
-        return ModChestBoatEntity.Type.getType((int) this.dataTracker.get(BOAT_TYPE));
+        return ModChestBoatEntity.Type.getType((int) this.entityData.get(BOAT_TYPE));
     }
 
-    public Item asItem() {
+    public Item getDropItem() {
         return getCustomVariant().getBaseItem();
     }
 
 
-    public enum Type implements StringIdentifiable {
+    public enum Type implements StringRepresentable {
         BURNING(() -> ModBlocks.BURNING_CHEST_BOAT, "burning"),
         SHADEROOT(() -> ModBlocks.SHADEROOT_CHEST_BOAT, "shaderoot");
 
         private final String name;
         private final Supplier<Item> baseItem;
-        public static final StringIdentifiable.EnumCodec<Type> CODEC = StringIdentifiable.createCodec(ModChestBoatEntity.Type::values);
-        private static final IntFunction<Type> BY_ID = ValueLists.createIdToValueFunction(Enum::ordinal, values(), BURNING);
+        public static final StringRepresentable.EnumCodec<Type> CODEC = StringRepresentable.fromEnum(ModChestBoatEntity.Type::values);
+        private static final IntFunction<Type> BY_ID = ByIdMap.sparse(Enum::ordinal, values(), BURNING);
 
         Type(Supplier<Item> baseItem, String string) {
             this.name = string;
             this.baseItem = baseItem;
         }
 
-        public String asString() {
+        public String getSerializedName() {
             return this.name;
         }
 
@@ -87,7 +87,7 @@ public class ModChestBoatEntity extends ChestBoatEntity {
         }
 
         public static ModChestBoatEntity.Type getType(String id) {
-            return CODEC.byId(id, BURNING);
+            return CODEC.byName(id, BURNING);
         }
     }
 }

@@ -16,7 +16,7 @@ import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.world.feature.ModFeatures;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.resource.ResourceType;
+import net.minecraft.server.packs.PackType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +28,7 @@ public class Pyrellium implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ConfigHandler.load(FabricLoader.getInstance().getConfigDir().resolve("pyrellium.json"));
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new PyrelliumReloadListener());
+		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new PyrelliumReloadListener());
 		PyrelliumCustomData.register();
 
 		ModItemGroups.registerItemGroups();

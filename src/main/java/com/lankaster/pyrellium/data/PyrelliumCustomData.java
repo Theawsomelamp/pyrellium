@@ -4,10 +4,10 @@ import com.google.gson.*;
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.config.ConfigHandler;
-import net.minecraft.resource.Resource;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Tuple;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -20,11 +20,11 @@ import java.util.function.Supplier;
 public class PyrelliumCustomData {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public final Identifier target;
+    public final ResourceLocation target;
     public Function<JsonElement, String> provider;
     public final Supplier<Boolean> enabled;
 
-    public PyrelliumCustomData(Identifier target, Supplier<Boolean> enabled, Function<JsonElement, String> provider) {
+    public PyrelliumCustomData(ResourceLocation target, Supplier<Boolean> enabled, Function<JsonElement, String> provider) {
         this.target = target;
         this.provider = provider;
         this.enabled = enabled;
@@ -35,17 +35,17 @@ public class PyrelliumCustomData {
     }
 
     public static List<PyrelliumCustomData> INSTANCES = new LinkedList<>();
-    private static final List<Pair<Identifier, JsonObject>> SURFACE_RULES = new ArrayList<>();
-    private static final List<Pair<Identifier, JsonObject>> BIOMES_NOISE = new ArrayList<>();
+    private static final List<Tuple<ResourceLocation, JsonObject>> SURFACE_RULES = new ArrayList<>();
+    private static final List<Tuple<ResourceLocation, JsonObject>> BIOMES_NOISE = new ArrayList<>();
 
-    public static @Nullable PyrelliumCustomData get(Identifier id) {
+    public static @Nullable PyrelliumCustomData get(ResourceLocation id) {
         for (PyrelliumCustomData data : INSTANCES) {
             if (data.target.equals(id)) return data;
         }
         return null;
     }
 
-    public static List<Pair<Identifier, JsonObject>> getSurfaceRules() {
+    public static List<Tuple<ResourceLocation, JsonObject>> getSurfaceRules() {
         return SURFACE_RULES;
     }
 
@@ -53,7 +53,7 @@ public class PyrelliumCustomData {
         SURFACE_RULES.clear();
     }
 
-    public static List<Pair<Identifier, JsonObject>> getBiomesNoise() {
+    public static List<Tuple<ResourceLocation, JsonObject>> getBiomesNoise() {
         return BIOMES_NOISE;
     }
 
@@ -61,14 +61,14 @@ public class PyrelliumCustomData {
         BIOMES_NOISE.clear();
     }
 
-    protected static void register(Identifier target, Supplier<Boolean> enabled, Function<JsonElement, String> provider) {
+    protected static void register(ResourceLocation target, Supplier<Boolean> enabled, Function<JsonElement, String> provider) {
         INSTANCES.add(new PyrelliumCustomData(target, enabled, provider));
     }
 
     public static void register() {
-        register(Identifier.of("minecraft", "worldgen/noise_settings/nether.json"), () -> true, PyrelliumCustomData::changeNoiseRouter);
+        register(ResourceLocation.fromNamespaceAndPath("minecraft", "worldgen/noise_settings/nether.json"), () -> true, PyrelliumCustomData::changeNoiseRouter);
 
-        register(Identifier.of("minecraft", "dimension/the_nether.json"), () -> true, PyrelliumCustomData::changeBiomeNoise);
+        register(ResourceLocation.fromNamespaceAndPath("minecraft", "dimension/the_nether.json"), () -> true, PyrelliumCustomData::changeBiomeNoise);
     }
 
     private static JsonElement getJson(String string) {
@@ -76,11 +76,11 @@ public class PyrelliumCustomData {
     }
 
     public static void read(ResourceManager manager) {
-        for (Map.Entry<Identifier, Resource> entry : manager.findResources("worldgen/surface_rules",
+        for (Map.Entry<ResourceLocation, Resource> entry : manager.listResources("worldgen/surface_rules",
                 path -> path.toString().endsWith(".json")).entrySet()) {
 
             try {
-                String content = new String(entry.getValue().getInputStream().readAllBytes());
+                String content = new String(entry.getValue().open().readAllBytes());
                 JsonElement json = gson.fromJson(content, JsonElement.class);
 
                 if (json == null || !json.isJsonObject()) continue;
@@ -92,11 +92,11 @@ public class PyrelliumCustomData {
             }
         }
 
-        for (Map.Entry<Identifier, Resource> entry : manager.findResources("worldgen/biome_noise",
+        for (Map.Entry<ResourceLocation, Resource> entry : manager.listResources("worldgen/biome_noise",
                 path -> path.toString().endsWith(".json")).entrySet()) {
 
             try {
-                String content = new String(entry.getValue().getInputStream().readAllBytes());
+                String content = new String(entry.getValue().open().readAllBytes());
                 JsonElement json = gson.fromJson(content, JsonElement.class);
 
                 if (json == null || !json.isJsonObject()) continue;
@@ -111,12 +111,12 @@ public class PyrelliumCustomData {
 
     public static void addSurfaceRules(JsonObject json) {
         if (!json.has("dimension") || !json.has("surface_rule")) return;
-        SURFACE_RULES.add(new Pair<>(Identifier.of(json.get("dimension").getAsString()), json.get("surface_rule").getAsJsonObject()));
+        SURFACE_RULES.add(new Tuple<>(ResourceLocation.parse(json.get("dimension").getAsString()), json.get("surface_rule").getAsJsonObject()));
     }
 
     public static void addBiomeNoise(JsonObject json) {
         if (!json.has("biome") || !json.has("parameters")) return;
-        BIOMES_NOISE.add(new Pair<>(Identifier.of(json.get("biome").getAsString()), json.get("parameters").getAsJsonObject()));
+        BIOMES_NOISE.add(new Tuple<>(ResourceLocation.parse(json.get("biome").getAsString()), json.get("parameters").getAsJsonObject()));
     }
 
     public static boolean detectModification(JsonElement json) {
@@ -207,11 +207,11 @@ public class PyrelliumCustomData {
         JsonArray baseNoise = json.getAsJsonObject().get("generator").getAsJsonObject().get("biome_source").getAsJsonObject().get("biomes").getAsJsonArray();
         JsonArray sequence = new JsonArray();
 
-        for (Pair<Identifier, JsonObject> noise : getBiomesNoise()) {
+        for (Tuple<ResourceLocation, JsonObject> noise : getBiomesNoise()) {
             String config = ConfigHandler.biomesToJson(Config.instance().biomes);
-            if (getJson(config).getAsJsonObject().get(noise.getLeft().getPath()).getAsJsonObject().get("enable_biome").getAsBoolean()) {
-                JsonObject biome = getJson("{\"biome\": \"" + noise.getLeft().toString() + "\"}").getAsJsonObject();
-                biome.add("parameters", noise.getRight());
+            if (getJson(config).getAsJsonObject().get(noise.getA().getPath()).getAsJsonObject().get("enable_biome").getAsBoolean()) {
+                JsonObject biome = getJson("{\"biome\": \"" + noise.getA().toString() + "\"}").getAsJsonObject();
+                biome.add("parameters", noise.getB());
                 sequence.add(biome);
             }
         }
@@ -237,9 +237,9 @@ public class PyrelliumCustomData {
 
         JsonObject baseRules = json.getAsJsonObject().get("surface_rule").getAsJsonObject();
         JsonArray sequence = new JsonArray();
-        for (Pair<Identifier, JsonObject> surfaceRule : getSurfaceRules()) {
+        for (Tuple<ResourceLocation, JsonObject> surfaceRule : getSurfaceRules()) {
             //TODO: Actually check for dimension
-            sequence.add(surfaceRule.getRight().getAsJsonObject());
+            sequence.add(surfaceRule.getB().getAsJsonObject());
         }
         sequence.add(baseRules);
         JsonObject rules = getJson("""

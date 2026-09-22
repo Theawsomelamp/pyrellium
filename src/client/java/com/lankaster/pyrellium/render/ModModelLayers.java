@@ -1,12 +1,12 @@
 package com.lankaster.pyrellium.render;
 
 import com.lankaster.pyrellium.Pyrellium;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class ModModelLayers {
-    public static EntityModelLayer HEADSTONE =
-            new EntityModelLayer(Identifier.of(Pyrellium.MOD_ID, "sign/headstone"), "main");
-    public static EntityModelLayer GEODIN =
-            new EntityModelLayer(Identifier.of(Pyrellium.MOD_ID, "geodin"), "main");
+    public static ModelLayerLocation HEADSTONE =
+            new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "sign/headstone"), "main");
+    public static ModelLayerLocation GEODIN =
+            new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "geodin"), "main");
 }

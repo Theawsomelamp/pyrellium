@@ -3,37 +3,41 @@ package com.lankaster.pyrellium.block;
 import com.lankaster.pyrellium.block.entity.GeodinBlockEntity;
 import com.lankaster.pyrellium.entity.GeodinEntity;
 import com.lankaster.pyrellium.entity.ModEntities;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 
-public class GeodinBlock extends Block implements BlockEntityProvider {
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 8.0F, 16.0F);
-    public static final IntProperty AGE = IntProperty.of("age", 0, 4);
+public class GeodinBlock extends Block implements EntityBlock {
+    protected static final VoxelShape SHAPE = Block.box(0.0F, 0.0F, 0.0F, 16.0F, 8.0F, 16.0F);
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
     private final Block smallBud;
     private final Block mediumBud;
     private final Block largeBud;
     private final Block cluster;
-    private final Identifier variant;
+    private final ResourceLocation variant;
 
 
-    public GeodinBlock(Settings settings, Block smallBud, Block mediumBud, Block largeBud, Block cluster, Identifier variant) {
+    public GeodinBlock(Properties settings, Block smallBud, Block mediumBud, Block largeBud, Block cluster, ResourceLocation variant) {
         super(settings);
         this.smallBud = smallBud;
         this.mediumBud = mediumBud;
@@ -42,52 +46,52 @@ public class GeodinBlock extends Block implements BlockEntityProvider {
         this.variant = variant;
     }
 
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
-    public boolean hasRandomTicks(BlockState state) {
-        return state.get(AGE) < 4;
+    public boolean isRandomlyTicking(BlockState state) {
+        return state.getValue(AGE) < 4;
     }
 
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int i = state.get(AGE);
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        int i = state.getValue(AGE);
         if (i < 4 && random.nextInt(5) == 0) {
-            BlockState blockState = state.with(AGE, i + 1);
-            world.setBlockState(pos, blockState, 2);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(blockState));
+            BlockState blockState = state.setValue(AGE, i + 1);
+            world.setBlock(pos, blockState, 2);
+            world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
         }
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (player.getStackInHand(Hand.MAIN_HAND).isIn(ItemTags.PICKAXES)) {
-            int age = state.get(AGE);
+    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        if (player.getItemInHand(InteractionHand.MAIN_HAND).is(ItemTags.PICKAXES)) {
+            int age = state.getValue(AGE);
             if (age >= 1) {
-                dropStacks(getBlockFromAge(age).getDefaultState(), world, pos, null, null, player.getStackInHand(Hand.MAIN_HAND));
-                world.playSound(null, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.BLOCKS);
-                world.setBlockState(pos, state.with(AGE, 0));
+                dropResources(getBlockFromAge(age).defaultBlockState(), world, pos, null, null, player.getItemInHand(InteractionHand.MAIN_HAND));
+                world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS);
+                world.setBlockAndUpdate(pos, state.setValue(AGE, 0));
             }
         }
-        return super.onUse(state, world, pos, player, hit);
+        return super.useWithoutItem(state, world, pos, player, hit);
     }
 
-    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        int age = state.get(AGE);
-        dropStacks(getBlockFromAge(age).getDefaultState(), world, pos, null, null, player.getStackInHand(Hand.MAIN_HAND));
+    public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+        int age = state.getValue(AGE);
+        dropResources(getBlockFromAge(age).defaultBlockState(), world, pos, null, null, player.getItemInHand(InteractionHand.MAIN_HAND));
 
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof GeodinBlockEntity geodinBlockEntity) {
             GeodinEntity geodin = ModEntities.GEODIN.create(world);
             geodin.setVariant(GeodinEntity.Variant.get(variant));
-            geodin.setPosition(pos.toCenterPos());
+            geodin.setPos(pos.getCenter());
             if (geodinBlockEntity.hasCustomName()) {
                 geodin.setCustomName(geodinBlockEntity.getCustomName());
             }
-            geodin.setPersistent();
-            world.spawnEntity(geodin);
+            geodin.setPersistenceRequired();
+            world.addFreshEntity(geodin);
         }
-        super.onBreak(world, pos, state, player);
+        super.playerWillDestroy(world, pos, state, player);
         return state;
     }
 
@@ -102,11 +106,11 @@ public class GeodinBlock extends Block implements BlockEntityProvider {
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new GeodinBlockEntity(pos, state);
     }
 
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
 }

@@ -1,35 +1,35 @@
 package com.lankaster.pyrellium.world.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.SimpleBlockFeatureConfig;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
-import static net.minecraft.block.HorizontalFacingBlock.FACING;
+import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 
-public class WallGrowthBlockFeature extends Feature<SimpleBlockFeatureConfig> {
+public class WallGrowthBlockFeature extends Feature<SimpleBlockConfiguration> {
 
-    public WallGrowthBlockFeature(Codec<SimpleBlockFeatureConfig> configCodec) {
+    public WallGrowthBlockFeature(Codec<SimpleBlockConfiguration> configCodec) {
         super(configCodec);
     }
 
     @Override
-    public boolean generate(FeatureContext<SimpleBlockFeatureConfig> context) {
-        SimpleBlockFeatureConfig simpleBlockFeatureConfig = context.getConfig();
-        StructureWorldAccess structureWorldAccess = context.getWorld();
-        BlockPos blockPos = context.getOrigin();
-        BlockState blockState = simpleBlockFeatureConfig.toPlace().get(context.getRandom(), blockPos);
-        if (blockState.canPlaceAt(structureWorldAccess, blockPos)) {
-            for (Direction direction : Direction.Type.HORIZONTAL.getShuffled(Random.create())){
-                BlockPos blockPos1 = blockPos.offset(direction);
+    public boolean place(FeaturePlaceContext<SimpleBlockConfiguration> context) {
+        SimpleBlockConfiguration simpleBlockFeatureConfig = context.config();
+        WorldGenLevel structureWorldAccess = context.level();
+        BlockPos blockPos = context.origin();
+        BlockState blockState = simpleBlockFeatureConfig.toPlace().getState(context.random(), blockPos);
+        if (blockState.canSurvive(structureWorldAccess, blockPos)) {
+            for (Direction direction : Direction.Plane.HORIZONTAL.shuffledCopy(RandomSource.create())){
+                BlockPos blockPos1 = blockPos.relative(direction);
                 BlockState blockState1 = structureWorldAccess.getBlockState(blockPos1);
-                if (blockState1.isReplaceable()) {
-                    structureWorldAccess.setBlockState(blockPos1, simpleBlockFeatureConfig.toPlace().get(context.getRandom(), blockPos1).with(FACING, direction.getOpposite()), 3);
+                if (blockState1.canBeReplaced()) {
+                    structureWorldAccess.setBlock(blockPos1, simpleBlockFeatureConfig.toPlace().getState(context.random(), blockPos1).setValue(FACING, direction.getOpposite()), 3);
                 }
                 return true;
             }

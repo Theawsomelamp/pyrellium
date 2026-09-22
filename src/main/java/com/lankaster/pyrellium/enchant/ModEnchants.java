@@ -2,34 +2,34 @@ package com.lankaster.pyrellium.enchant;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.Config;
-import net.minecraft.component.type.AttributeModifierSlot;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.resources.ResourceLocation;
 
 public class ModEnchants {
-    public static final RegistryKey<Enchantment> REBOUND = RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(Pyrellium.MOD_ID, "rebound"));
+    public static final ResourceKey<Enchantment> REBOUND = ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "rebound"));
 
-    public static void bootstrap(Registerable<Enchantment> registerable) {
-        var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
-        var items = registerable.getRegistryLookup(RegistryKeys.ITEM);
+    public static void bootstrap(BootstrapContext<Enchantment> registerable) {
+        var enchantments = registerable.lookup(Registries.ENCHANTMENT);
+        var items = registerable.lookup(Registries.ITEM);
 
-        register(registerable, REBOUND, Enchantment.builder(Enchantment.definition(
+        register(registerable, REBOUND, Enchantment.enchantment(Enchantment.definition(
                         items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
                         5,
                         Config.instance().enchants.rebound.max_level,
-                        Enchantment.leveledCost(5, 7),
-                        Enchantment.leveledCost(25, 9),
+                        Enchantment.dynamicCost(5, 7),
+                        Enchantment.dynamicCost(25, 9),
                         4,
-                        AttributeModifierSlot.MAINHAND))
-                .exclusiveSet(enchantments.getOrThrow(TagKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(Pyrellium.MOD_ID, "exclusive_set/rebound")))));
+                        EquipmentSlotGroup.MAINHAND))
+                .exclusiveWith(enchantments.getOrThrow(TagKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "exclusive_set/rebound")))));
     }
 
-    private static void register(Registerable<Enchantment> registry, RegistryKey<Enchantment> key, Enchantment.Builder builder) {
-        registry.register(key, builder.build(key.getValue()));
+    private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
+        registry.register(key, builder.build(key.location()));
     }
 }

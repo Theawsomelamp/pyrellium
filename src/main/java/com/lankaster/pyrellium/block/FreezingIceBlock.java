@@ -1,24 +1,24 @@
 package com.lankaster.pyrellium.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.TransparentBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.TransparentBlock;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class FreezingIceBlock extends TransparentBlock {
 
-    public FreezingIceBlock(Settings settings) {
+    public FreezingIceBlock(Properties settings) {
         super(settings);
     }
 
-    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+    public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
         if (entity instanceof LivingEntity) {
-            entity.setInPowderSnow(true);
+            entity.setIsInPowderSnow(true);
         }
 
 
-        super.onSteppedOn(world, pos, state, entity);
+        super.stepOn(world, pos, state, entity);
     }
 }

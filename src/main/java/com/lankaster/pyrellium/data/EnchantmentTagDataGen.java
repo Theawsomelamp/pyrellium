@@ -5,23 +5,23 @@ import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.enchant.ModEnchants;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.EnchantmentTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.concurrent.CompletableFuture;
 
 public class EnchantmentTagDataGen extends FabricTagProvider.EnchantmentTagProvider {
-    public EnchantmentTagDataGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+    public EnchantmentTagDataGen(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(Pyrellium.MOD_ID, "exclusive_set/rebound"))).add(
+    protected void addTags(HolderLookup.Provider wrapperLookup) {
+        getOrCreateTagBuilder(TagKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "exclusive_set/rebound"))).add(
                 ModEnchants.REBOUND,
                 Enchantments.KNOCKBACK
         );

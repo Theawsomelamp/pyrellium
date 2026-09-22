@@ -3,13 +3,13 @@ package com.lankaster.pyrellium.mixin.client;
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.item.ModItems;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.client.render.item.ItemModels;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.ModelIdentifier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.ItemModelShaper;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,21 +21,21 @@ public abstract class ItemRendererMixin {
 
     @Shadow
     @Final
-    private ItemModels models;
+    private ItemModelShaper itemModelShaper;
 
     @Shadow
-    public abstract ItemModels getModels();
+    public abstract ItemModelShaper getItemModelShaper();
 
     @ModifyVariable(
-            method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V",
+            method = "render(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IILnet/minecraft/client/resources/model/BakedModel;)V",
             at = @At(value = "HEAD"),
             argsOnly = true
     )
-    public BakedModel renderItem(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) ModelTransformationMode renderMode) {
-        if (stack.isOf(ModItems.OPAL_TIARA) && renderMode == ModelTransformationMode.HEAD) {
-            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Pyrellium.MOD_ID, "opal_tiara_model")));
-        } else if (stack.getItem() == ModItems.OPAL_SPYGLASS && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
-            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Pyrellium.MOD_ID, "opal_spyglass")));
+    public BakedModel renderItem(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) ItemDisplayContext renderMode) {
+        if (stack.is(ModItems.OPAL_TIARA) && renderMode == ItemDisplayContext.HEAD) {
+            return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "opal_tiara_model")));
+        } else if (stack.getItem() == ModItems.OPAL_SPYGLASS && (renderMode == ItemDisplayContext.GUI || renderMode == ItemDisplayContext.GROUND || renderMode == ItemDisplayContext.FIXED)) {
+            return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "opal_spyglass")));
         }
 
         return bakedModel;
@@ -48,7 +48,7 @@ public abstract class ItemRendererMixin {
     )
     public BakedModel getHeldItemModelMixin(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack) {
         if (stack.getItem() == ModItems.OPAL_SPYGLASS) {
-            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Pyrellium.MOD_ID, "opal_spyglass_model")));
+            return this.itemModelShaper.getModelManager().getModel(ModelResourceLocation.inventory(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "opal_spyglass_model")));
         }
 
         return bakedModel;

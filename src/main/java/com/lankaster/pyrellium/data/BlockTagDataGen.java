@@ -5,22 +5,22 @@ import com.lankaster.pyrellium.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.concurrent.CompletableFuture;
 
 public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
-    public BlockTagDataGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public BlockTagDataGen(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
+    protected void addTags(HolderLookup.Provider wrapperLookup) {
+        getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 ModBlocks.OPAL_BLOCK,
                 ModBlocks.SMALL_OPAL_BUD,
                 ModBlocks.MEDIUM_OPAL_BUD,
@@ -48,11 +48,11 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.SLEEPING_QUARTZ_GEODIN
         );
 
-        getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
+        getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 ModBlocks.DRAINED_SOUL_SOIL
         );
 
-        getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).add(
+        getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_HOE).add(
                 ModBlocks.BURNING_LEAVES,
                 ModBlocks.GHOSTLY_LEAVES,
                 ModBlocks.FLOWERING_GHOSTLY_LEAVES
@@ -180,14 +180,14 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.BASALT_IRON_ORE
         );
 
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
+        getOrCreateTagBuilder(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "burning_logs"))).add(
                 ModBlocks.BURNING_LOG,
                 ModBlocks.BURNING_WOOD,
                 ModBlocks.STRIPPED_BURNING_LOG,
                 ModBlocks.STRIPPED_BURNING_WOOD
         );
 
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "shaderoot_logs"))).add(
+        getOrCreateTagBuilder(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "shaderoot_logs"))).add(
                 ModBlocks.SHADEROOT_LOG,
                 ModBlocks.SHADEROOT_WOOD,
                 ModBlocks.STRIPPED_SHADEROOT_LOG,

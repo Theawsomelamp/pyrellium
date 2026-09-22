@@ -4,30 +4,30 @@ import com.lankaster.pyrellium.Pyrellium;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.BlockState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.intprovider.IntProvider;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.TestableWorld;
-import net.minecraft.world.gen.feature.TreeFeature;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.treedecorator.TreeDecorator;
-import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
 import java.util.List;
 
 
 public class HangingTreeDecorator extends TreeDecorator {
-    public static final MapCodec<HangingTreeDecorator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(Codec.floatRange(0.0F, 1.0F).fieldOf("chance").forGetter((treeDecorator) -> treeDecorator.chance), IntProvider.createValidatingCodec(0, 16).fieldOf("length").forGetter((treeDecorator) -> treeDecorator.length), BlockStateProvider.TYPE_CODEC.fieldOf("provider").forGetter((treeDecorator) -> treeDecorator.provider), BlockStateProvider.TYPE_CODEC.fieldOf("tip_provider").forGetter((treeDecorator) -> treeDecorator.tipProvider), IntProvider.createValidatingCodec(0, 16).fieldOf("minOffset").forGetter((treeDecorator) -> treeDecorator.minOffset), IntProvider.createValidatingCodec(0, 24).fieldOf("maxOffset").forGetter((treeDecorator) -> treeDecorator.maxOffset)).apply(instance, HangingTreeDecorator::new));
-    public static final TreeDecoratorType<HangingTreeDecorator> HANGING_TREE_DECORATOR = Registry.register(Registries.TREE_DECORATOR_TYPE, Identifier.of(Pyrellium.MOD_ID, "hanging_vines"), new TreeDecoratorType<>(HangingTreeDecorator.CODEC));
+    public static final MapCodec<HangingTreeDecorator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(Codec.floatRange(0.0F, 1.0F).fieldOf("chance").forGetter((treeDecorator) -> treeDecorator.chance), IntProvider.codec(0, 16).fieldOf("length").forGetter((treeDecorator) -> treeDecorator.length), BlockStateProvider.CODEC.fieldOf("provider").forGetter((treeDecorator) -> treeDecorator.provider), BlockStateProvider.CODEC.fieldOf("tip_provider").forGetter((treeDecorator) -> treeDecorator.tipProvider), IntProvider.codec(0, 16).fieldOf("minOffset").forGetter((treeDecorator) -> treeDecorator.minOffset), IntProvider.codec(0, 24).fieldOf("maxOffset").forGetter((treeDecorator) -> treeDecorator.maxOffset)).apply(instance, HangingTreeDecorator::new));
+    public static final TreeDecoratorType<HangingTreeDecorator> HANGING_TREE_DECORATOR = Registry.register(BuiltInRegistries.TREE_DECORATOR_TYPE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "hanging_vines"), new TreeDecoratorType<>(HangingTreeDecorator.CODEC));
     private final float chance;
     private final IntProvider length;
     private final BlockStateProvider provider;
@@ -45,33 +45,33 @@ public class HangingTreeDecorator extends TreeDecorator {
     }
 
     @Override
-    protected TreeDecoratorType<?> getType(){
+    protected TreeDecoratorType<?> type(){
         return HANGING_TREE_DECORATOR;
     }
 
     @Override
-    public void generate(Generator generator){
-        TestableWorld world = generator.getWorld();
-        Random random = generator.getRandom();
-        List<BlockPos> leaves = Util.copyShuffled(generator.getLeavesPositions(), random);
-        int minY = generator.getLeavesPositions().get(0).getY() -1;
+    public void place(Context generator){
+        LevelSimulatedReader world = generator.level();
+        RandomSource random = generator.random();
+        List<BlockPos> leaves = Util.shuffledCopy(generator.leaves(), random);
+        int minY = generator.leaves().get(0).getY() -1;
 
         for(BlockPos pos : leaves) {
-            BlockPos.Mutable mutable = pos.mutableCopy().move(Direction.DOWN);
-            boolean valid = !leaves.contains(mutable) && (mutable.getY() >= minY + minOffset.get(random) && mutable.getY() <= minY + maxOffset.get(random)) && world.testBlockState(pos, (blockState) -> blockState.isFullCube((BlockView) world, pos));
+            BlockPos.MutableBlockPos mutable = pos.mutable().move(Direction.DOWN);
+            boolean valid = !leaves.contains(mutable) && (mutable.getY() >= minY + minOffset.sample(random) && mutable.getY() <= minY + maxOffset.sample(random)) && world.isStateAtPosition(pos, (blockState) -> blockState.isCollisionShapeFullBlock((BlockGetter) world, pos));
             if (random.nextFloat() < chance && valid) {
-                for (int i = 0; i < length.get(random) -1; ++i) {
-                    BlockState blockState = provider.get(random, mutable);
-                    if (blockState.contains(Properties.WATERLOGGED)) {
-                        blockState = blockState.with(Properties.WATERLOGGED, world.testFluidState(mutable, (fluidState) -> fluidState.isEqualAndStill(Fluids.WATER)));
+                for (int i = 0; i < length.sample(random) -1; ++i) {
+                    BlockState blockState = provider.getState(random, mutable);
+                    if (blockState.hasProperty(BlockStateProperties.WATERLOGGED)) {
+                        blockState = blockState.setValue(BlockStateProperties.WATERLOGGED, world.isFluidAtPosition(mutable, (fluidState) -> fluidState.isSourceOfType(Fluids.WATER)));
                     }
 
-                    if (TreeFeature.canReplace(world, mutable.down())){
-                        generator.replace(mutable, blockState);
+                    if (TreeFeature.validTreePos(world, mutable.below())){
+                        generator.setBlock(mutable, blockState);
                         mutable.move(Direction.DOWN);
                     }
                 }
-                generator.replace(mutable, tipProvider.get(random, mutable));
+                generator.setBlock(mutable, tipProvider.getState(random, mutable));
             }
         }
     }

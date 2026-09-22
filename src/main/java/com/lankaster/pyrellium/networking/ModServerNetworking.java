@@ -6,8 +6,8 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.core.BlockPos;
 
 public class ModServerNetworking {
 
@@ -22,10 +22,10 @@ public class ModServerNetworking {
         ServerPlayNetworking.registerGlobalReceiver(MarkerPayload.ID, (markerPayload, context) -> context.server().execute(() -> passAlong(context.server(), context.player(), markerPayload.marker())));
     }
 
-    public static void passAlong(MinecraftServer server, ServerPlayerEntity sender, BlockPos pos) {
+    public static void passAlong(MinecraftServer server, ServerPlayer sender, BlockPos pos) {
         if (!Config.instance().items.opal_spyglass_block_sharing) return;
         MarkerPayload markerPayload = new MarkerPayload(pos);
-        for (ServerPlayerEntity player : PlayerLookup.tracking(server.getWorld(sender.getWorld().getRegistryKey()), pos)) {
+        for (ServerPlayer player : PlayerLookup.tracking(server.getLevel(sender.level().dimension()), pos)) {
             ServerPlayNetworking.send(player, markerPayload);
         }
     }

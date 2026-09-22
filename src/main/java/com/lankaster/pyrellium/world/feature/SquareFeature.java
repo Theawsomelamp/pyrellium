@@ -1,34 +1,34 @@
 package com.lankaster.pyrellium.world.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 public class SquareFeature extends Feature<SquareFeatureConfig> {
     public SquareFeature(Codec<SquareFeatureConfig> configCodec) {
         super(configCodec);
     }
 
-    public boolean generate(FeatureContext<SquareFeatureConfig> context) {
-        StructureWorldAccess world = context.getWorld();
-        BlockPos origin = context.getOrigin();
-        Random random = context.getRandom();
-        SquareFeatureConfig config = context.getConfig();
+    public boolean place(FeaturePlaceContext<SquareFeatureConfig> context) {
+        WorldGenLevel world = context.level();
+        BlockPos origin = context.origin();
+        RandomSource random = context.random();
+        SquareFeatureConfig config = context.config();
 
         BlockStateProvider state = config.state();
-        BlockState blockState = state.get(random, origin);
+        BlockState blockState = state.getState(random, origin);
 
-        for(BlockPos blockPos2 : BlockPos.iterate(origin.add(0, 0, 0), origin.add(config.width(), 0, config.width()))) {
+        for(BlockPos blockPos2 : BlockPos.betweenClosed(origin.offset(0, 0, 0), origin.offset(config.width(), 0, config.width()))) {
             for (int i = 0; i < (config.height()); i++) {
-                world.setBlockState(blockPos2, blockState, 2);
-                blockPos2 = blockPos2.up();
+                world.setBlock(blockPos2, blockState, 2);
+                blockPos2 = blockPos2.above();
 
-                if (blockPos2.getY() >= world.getTopY()) break;
+                if (blockPos2.getY() >= world.getMaxBuildHeight()) break;
             }
         }
 

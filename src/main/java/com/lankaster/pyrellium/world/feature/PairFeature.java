@@ -1,11 +1,11 @@
 package com.lankaster.pyrellium.world.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 public class PairFeature extends Feature<PairFeatureConfig> {
     public PairFeature(Codec<PairFeatureConfig> configCodec) {
@@ -13,14 +13,14 @@ public class PairFeature extends Feature<PairFeatureConfig> {
     }
 
     @Override
-    public boolean generate(FeatureContext<PairFeatureConfig> context) {
-        StructureWorldAccess world = context.getWorld();
-        BlockPos origin = context.getOrigin();
-        Random random = context.getRandom();
-        PairFeatureConfig config = context.getConfig();
+    public boolean place(FeaturePlaceContext<PairFeatureConfig> context) {
+        WorldGenLevel world = context.level();
+        BlockPos origin = context.origin();
+        RandomSource random = context.random();
+        PairFeatureConfig config = context.config();
 
-        config.firstFeature().value().generate(world, context.getGenerator(), random, origin);
-        config.secondFeature().value().generate(world, context.getGenerator(), random, origin);
+        config.firstFeature().value().placeWithBiomeCheck(world, context.chunkGenerator(), random, origin);
+        config.secondFeature().value().placeWithBiomeCheck(world, context.chunkGenerator(), random, origin);
 
         return true;
     }

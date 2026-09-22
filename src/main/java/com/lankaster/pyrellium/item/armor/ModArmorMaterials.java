@@ -2,39 +2,39 @@ package com.lankaster.pyrellium.item.armor;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.item.ModItems;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
+import net.minecraft.core.Holder;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.Util;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.function.Supplier;
 
 public class ModArmorMaterials {
-    public static final RegistryEntry<ArmorMaterial> OPAL_ARMOR_MATERIAL = registerArmorMaterial("opal", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+    public static final Holder<ArmorMaterial> OPAL_ARMOR_MATERIAL = registerArmorMaterial("opal", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
         map.put(ArmorItem.Type.BOOTS, 1);
         map.put(ArmorItem.Type.LEGGINGS, 2);
         map.put(ArmorItem.Type.CHESTPLATE, 3);
         map.put(ArmorItem.Type.HELMET, 1);
         map.put(ArmorItem.Type.BODY, 2);
-    }), 24, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, () -> Ingredient.ofItems(ModItems.OPAL), List.of(new ArmorMaterial.Layer(Identifier.of(Pyrellium.MOD_ID, "opal"))), 0, 0));
+    }), 24, SoundEvents.ARMOR_EQUIP_GOLD, () -> Ingredient.of(ModItems.OPAL), List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "opal"))), 0, 0));
 
-    public static final RegistryEntry<ArmorMaterial> MUSHROOM_ARMOR_MATERIAL = registerArmorMaterial("mushroom", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+    public static final Holder<ArmorMaterial> MUSHROOM_ARMOR_MATERIAL = registerArmorMaterial("mushroom", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
         map.put(ArmorItem.Type.BOOTS, 1);
         map.put(ArmorItem.Type.LEGGINGS, 2);
         map.put(ArmorItem.Type.CHESTPLATE, 3);
         map.put(ArmorItem.Type.HELMET, 1);
         map.put(ArmorItem.Type.BODY, 2);
-    }), 16, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, () -> Ingredient.ofItems(Items.RED_MUSHROOM), List.of(new ArmorMaterial.Layer(Identifier.of(Pyrellium.MOD_ID, "mushroom"))), 0, 0));
+    }), 16, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(Items.RED_MUSHROOM), List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "mushroom"))), 0, 0));
 
-    public static RegistryEntry<ArmorMaterial> registerArmorMaterial(String name, Supplier<ArmorMaterial> material) {
-        return Registry.registerReference(Registries.ARMOR_MATERIAL, Identifier.of(Pyrellium.MOD_ID, name), material.get());
+    public static Holder<ArmorMaterial> registerArmorMaterial(String name, Supplier<ArmorMaterial> material) {
+        return Registry.registerForHolder(BuiltInRegistries.ARMOR_MATERIAL, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, name), material.get());
     }
 }

@@ -7,113 +7,113 @@ import com.lankaster.pyrellium.networking.OpalPayload;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-public class CrystalArrowEntity extends PersistentProjectileEntity {
+public class CrystalArrowEntity extends AbstractArrow {
     public static boolean opal;
 
-    public CrystalArrowEntity(EntityType<? extends CrystalArrowEntity> type, World world) {
+    public CrystalArrowEntity(EntityType<? extends CrystalArrowEntity> type, Level world) {
         super(type, world);
     }
 
-    public CrystalArrowEntity(World world, LivingEntity shooter, ItemStack itemStack, @Nullable ItemStack shotFrom) {
+    public CrystalArrowEntity(Level world, LivingEntity shooter, ItemStack itemStack, @Nullable ItemStack shotFrom) {
         super(ModEntities.CRYSTAL_ARROW, shooter, world, itemStack, shotFrom);
     }
 
-    public CrystalArrowEntity(World world, double x, double y, double z, ItemStack stack, @Nullable ItemStack shotFrom) {
+    public CrystalArrowEntity(Level world, double x, double y, double z, ItemStack stack, @Nullable ItemStack shotFrom) {
         super(ModEntities.CRYSTAL_ARROW, x, y, z, world, stack, shotFrom);
     }
 
     public void initFromStack(ItemStack stack) {
-        opal = !stack.isOf(ModItems.AMETHYST_ARROW);
+        opal = !stack.is(ModItems.AMETHYST_ARROW);
         OpalPayload payload = new OpalPayload(opal);
 
-        for (ServerPlayerEntity player : PlayerLookup.tracking(this)) {
+        for (ServerPlayer player : PlayerLookup.tracking(this)) {
             ServerPlayNetworking.send(player, payload);
         }
     }
 
     public void tick() {
         super.tick();
-        if (this.getWorld().isClient) {
+        if (this.level().isClientSide) {
             if (!this.inGround) {
-                this.getWorld().addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), (double) 0.0F, (double) 0.0F, (double) 0.0F);
+                this.level().addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), (double) 0.0F, (double) 0.0F, (double) 0.0F);
             } else if (opal) {
                 for (int i = 0; i < 8; ++i) {
-                    this.getWorld().addParticle(ModParticleTypes.OPAL_SHARD, this.getX(), this.getY(), this.getZ(), MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F), 0.05F, MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F));
+                    this.level().addParticle(ModParticleTypes.OPAL_SHARD, this.getX(), this.getY(), this.getZ(), Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F), 0.05F, Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F));
                 }
             } else {
                 for (int i = 0; i < 8; ++i) {
-                    this.getWorld().addParticle(ModParticleTypes.AMETHYST_SHARD, this.getX(), this.getY(), this.getZ(), MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F), 0.05F, MathHelper.nextBetween(this.getWorld().getRandom(), -1.0F, 1.0F));
+                    this.level().addParticle(ModParticleTypes.AMETHYST_SHARD, this.getX(), this.getY(), this.getZ(), Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F), 0.05F, Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F));
                 }
             }
         }
     }
 
     @Override
-    protected void onEntityHit(EntityHitResult entityHitResult) {
-        if (!this.getWorld().isClient()) {
+    protected void onHitEntity(EntityHitResult entityHitResult) {
+        if (!this.level().isClientSide()) {
             Entity entity = entityHitResult.getEntity();
-            Vec3d pos = entity.getPos();
-            World world = getWorld();
+            Vec3 pos = entity.position();
+            Level world = level();
             int range = Config.instance().items.crystal_arrow_shatter_radius;
-            Box box = new Box(pos.add(range, range, range), pos.add(-range, -range + 1, -range));
-            for (Entity target : world.getEntitiesByClass(Entity.class, box, Predicates.alwaysTrue())) {
+            AABB box = new AABB(pos.add(range, range, range), pos.add(-range, -range + 1, -range));
+            for (Entity target : world.getEntitiesOfClass(Entity.class, box, Predicates.alwaysTrue())) {
                 if (target instanceof LivingEntity) {
-                    target.damage(target.getDamageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
+                    target.hurt(target.damageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
                 }
             }
-            world.playSound(null, pos.x ,pos.y, pos.z, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.HOSTILE, 1.0F, 1.0F);
+            world.playSound(null, pos.x ,pos.y, pos.z, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.HOSTILE, 1.0F, 1.0F);
         }
-        super.onEntityHit(entityHitResult);
+        super.onHitEntity(entityHitResult);
     }
 
     @Override
-    protected void onBlockHit(BlockHitResult blockHitResult) {
-        if (!this.getWorld().isClient()) {
+    protected void onHitBlock(BlockHitResult blockHitResult) {
+        if (!this.level().isClientSide()) {
             BlockPos blockPos = blockHitResult.getBlockPos();
-            World world = getWorld();
+            Level world = level();
             int range = Config.instance().items.crystal_arrow_shatter_radius;
-            Box box = new Box(blockPos.add(range, range, range).toCenterPos(), blockPos.add(-range, -range + 1, -range).toCenterPos());
-            for (Entity target : world.getEntitiesByClass(Entity.class, box, Predicates.alwaysTrue())) {
+            AABB box = new AABB(blockPos.offset(range, range, range).getCenter(), blockPos.offset(-range, -range + 1, -range).getCenter());
+            for (Entity target : world.getEntitiesOfClass(Entity.class, box, Predicates.alwaysTrue())) {
                 if (target instanceof LivingEntity) {
-                    target.damage(target.getDamageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
+                    target.hurt(target.damageSources().arrow(this, getOwner()), Config.instance().items.crystal_arrow_shatter_damage);
                 }
             }
-            world.playSound(null, blockPos, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.HOSTILE);
+            world.playSound(null, blockPos, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.HOSTILE);
         }
-        super.onBlockHit(blockHitResult);
+        super.onHitBlock(blockHitResult);
     }
 
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
         nbt.putBoolean("Opal", opal);
     }
 
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
         opal = nbt.getBoolean("Opal");
     }
 
     @Override
-    protected void age() {
+    protected void tickDespawn() {
         ++this.inGroundTime;
         if (this.inGroundTime >= 2) {
             this.discard();
@@ -121,7 +121,7 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
     }
 
     @Override
-    protected ItemStack asItemStack() {
+    protected ItemStack getPickupItem() {
         if (opal) {
             return new ItemStack(ModItems.OPAL_ARROW);
         } else {
@@ -130,7 +130,7 @@ public class CrystalArrowEntity extends PersistentProjectileEntity {
     }
 
     @Override
-    protected ItemStack getDefaultItemStack() {
+    protected ItemStack getDefaultPickupItem() {
         if (opal) {
             return new ItemStack(ModItems.OPAL_ARROW);
         } else {

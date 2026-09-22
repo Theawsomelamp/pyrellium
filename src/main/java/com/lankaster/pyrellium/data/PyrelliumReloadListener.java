@@ -2,8 +2,8 @@ package com.lankaster.pyrellium.data;
 
 import com.lankaster.pyrellium.Pyrellium;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.util.Identifier;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.resources.ResourceLocation;
 
 public class PyrelliumReloadListener implements SimpleSynchronousResourceReloadListener {
     public static final PyrelliumReloadListener INSTANCE = new PyrelliumReloadListener();
@@ -16,13 +16,13 @@ public class PyrelliumReloadListener implements SimpleSynchronousResourceReloadL
     }
 
     @Override
-    public void reload(ResourceManager manager) {
+    public void onResourceManagerReload(ResourceManager manager) {
 
     }
 
     @Override
-    public Identifier getFabricId() {
-        return Identifier.of(Pyrellium.MOD_ID, "reload_listener");
+    public ResourceLocation getFabricId() {
+        return ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "reload_listener");
     }
 
 }
