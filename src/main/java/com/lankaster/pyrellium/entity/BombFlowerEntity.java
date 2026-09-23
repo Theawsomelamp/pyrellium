@@ -15,16 +15,16 @@ public class BombFlowerEntity extends ThrowableItemProjectile {
     }
 
     public BombFlowerEntity(Level world, LivingEntity owner) {
-        super(ModEntities.BOMB_FLOWER, owner, world);
+        super(ModEntities.BOMB_FLOWER.get(), owner, world);
     }
 
     public BombFlowerEntity(Level world, double x, double y, double z) {
-        super(ModEntities.BOMB_FLOWER, x, y, z, world);
+        super(ModEntities.BOMB_FLOWER.get(), x, y, z, world);
     }
 
     @Override
     protected Item getDefaultItem() {
-        return ModItems.BOMB_FLOWER;
+        return ModItems.BOMB_FLOWER.get();
     }
 
     protected void onHit(HitResult hitResult) {

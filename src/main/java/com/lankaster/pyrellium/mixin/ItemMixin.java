@@ -44,7 +44,7 @@ public class ItemMixin {
                         if (blockState.is(ModBlocks.BONE)) {
                             world.setBlockAndUpdate(posBelow, blockState.setValue(AMOUNT, Math.min(4, blockState.getValue(AMOUNT) + 1)));
                         } else {
-                            world.setBlockAndUpdate(blockPos, ModBlocks.BONE.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()));
+                            world.setBlockAndUpdate(blockPos, ModBlocks.BONE.get().defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()));
                         }
                         world.playSound(null, blockPos, SoundEvents.BONE_BLOCK_PLACE, SoundSource.BLOCKS);
                     }

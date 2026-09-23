@@ -5,8 +5,6 @@ import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.OpalPayload;
 import com.lankaster.pyrellium.particles.ModParticleTypes;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,7 +12,6 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.phys.BlockHitResult;
@@ -24,6 +21,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
 public class CrystalArrowEntity extends AbstractArrow {
@@ -34,20 +32,18 @@ public class CrystalArrowEntity extends AbstractArrow {
     }
 
     public CrystalArrowEntity(Level world, LivingEntity shooter, ItemStack itemStack, @Nullable ItemStack shotFrom) {
-        super(ModEntities.CRYSTAL_ARROW, shooter, world, itemStack, shotFrom);
+        super(ModEntities.CRYSTAL_ARROW.get(), shooter, world, itemStack, shotFrom);
     }
 
     public CrystalArrowEntity(Level world, double x, double y, double z, ItemStack stack, @Nullable ItemStack shotFrom) {
-        super(ModEntities.CRYSTAL_ARROW, x, y, z, world, stack, shotFrom);
+        super(ModEntities.CRYSTAL_ARROW.get(), x, y, z, world, stack, shotFrom);
     }
 
     public void initFromStack(ItemStack stack) {
-        opal = !stack.is(ModItems.AMETHYST_ARROW);
+        opal = !stack.is(ModItems.AMETHYST_ARROW.get());
         OpalPayload payload = new OpalPayload(opal);
 
-        for (ServerPlayer player : PlayerLookup.tracking(this)) {
-            ServerPlayNetworking.send(player, payload);
-        }
+        PacketDistributor.sendToPlayersTrackingEntity(this, payload);
     }
 
     public void tick() {
@@ -57,11 +53,11 @@ public class CrystalArrowEntity extends AbstractArrow {
                 this.level().addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), (double) 0.0F, (double) 0.0F, (double) 0.0F);
             } else if (opal) {
                 for (int i = 0; i < 8; ++i) {
-                    this.level().addParticle(ModParticleTypes.OPAL_SHARD, this.getX(), this.getY(), this.getZ(), Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F), 0.05F, Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F));
+                    this.level().addParticle(ModParticleTypes.OPAL_SHARD.get(), this.getX(), this.getY(), this.getZ(), Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F), 0.05F, Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F));
                 }
             } else {
                 for (int i = 0; i < 8; ++i) {
-                    this.level().addParticle(ModParticleTypes.AMETHYST_SHARD, this.getX(), this.getY(), this.getZ(), Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F), 0.05F, Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F));
+                    this.level().addParticle(ModParticleTypes.AMETHYST_SHARD.get(), this.getX(), this.getY(), this.getZ(), Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F), 0.05F, Mth.randomBetween(this.level().getRandom(), -1.0F, 1.0F));
                 }
             }
         }
@@ -123,18 +119,18 @@ public class CrystalArrowEntity extends AbstractArrow {
     @Override
     protected ItemStack getPickupItem() {
         if (opal) {
-            return new ItemStack(ModItems.OPAL_ARROW);
+            return new ItemStack(ModItems.OPAL_ARROW.get());
         } else {
-            return new ItemStack(ModItems.AMETHYST_ARROW);
+            return new ItemStack(ModItems.AMETHYST_ARROW.get());
         }
     }
 
     @Override
     protected ItemStack getDefaultPickupItem() {
         if (opal) {
-            return new ItemStack(ModItems.OPAL_ARROW);
+            return new ItemStack(ModItems.OPAL_ARROW.get());
         } else {
-            return new ItemStack(ModItems.AMETHYST_ARROW);
+            return new ItemStack(ModItems.AMETHYST_ARROW.get());
         }
     }
 }

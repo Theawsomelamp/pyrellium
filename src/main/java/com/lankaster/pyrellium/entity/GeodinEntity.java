@@ -154,7 +154,7 @@ public class GeodinEntity extends Animal implements VariantHolder<GeodinEntity.V
 
     @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
-        return ModEntities.GEODIN.create(world);
+        return ModEntities.GEODIN.get().create(world);
     }
 
     @Override
@@ -248,7 +248,7 @@ public class GeodinEntity extends Animal implements VariantHolder<GeodinEntity.V
 
         public static final Variant AMETHYST = registerSimple(ResourceLocation.fromNamespaceAndPath("minecraft", "amethyst"));
         public static final Variant OPAL = registerSimple(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "opal"));
-        public static final Variant QUARTZ = register(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "quartz"), ModBlocks.SMALL_QUARTZ_BUD, ModBlocks.MEDIUM_QUARTZ_BUD, ModBlocks.LARGE_QUARTZ_BUD, ModBlocks.QUARTZ_CRYSTAL, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/entity/geodin/quartz.png"));
+        public static final Variant QUARTZ = register(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "quartz"), ModBlocks.SMALL_QUARTZ_BUD.get(), ModBlocks.MEDIUM_QUARTZ_BUD.get(), ModBlocks.LARGE_QUARTZ_BUD.get(), ModBlocks.QUARTZ_CRYSTAL.get(), ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/entity/geodin/quartz.png"));
 
         protected Variant(ResourceLocation id, Block smallBud, Block mediumBud, Block largeBud, Block cluster, ResourceLocation texture) {
             this.id = id;

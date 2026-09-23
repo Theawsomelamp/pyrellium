@@ -82,7 +82,7 @@ public class GeodinBlock extends Block implements EntityBlock {
 
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof GeodinBlockEntity geodinBlockEntity) {
-            GeodinEntity geodin = ModEntities.GEODIN.create(world);
+            GeodinEntity geodin = ModEntities.GEODIN.get().create(world);
             geodin.setVariant(GeodinEntity.Variant.get(variant));
             geodin.setPos(pos.getCenter());
             if (geodinBlockEntity.hasCustomName()) {

@@ -1,14 +1,11 @@
 package com.lankaster.pyrellium.world.tree;
 
 import com.google.common.collect.Lists;
-import com.lankaster.pyrellium.Pyrellium;
+import com.lankaster.pyrellium.world.ModWorldGeneration;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -24,7 +21,6 @@ import java.util.function.BiConsumer;
 
 public class BurningTrunkPlacer extends TrunkPlacer {
     public static final MapCodec<BurningTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> trunkPlacerParts(instance).and(instance.group(IntProvider.codec(1, 32).fieldOf("fork_height").forGetter((trunkPlacer) -> trunkPlacer.forkHeight), IntProvider.codec(1, 4).fieldOf("branch_count").forGetter((trunkPlacer) -> trunkPlacer.branchCount), Codec.floatRange(0, 1).fieldOf("bend_chance").forGetter((trunkPlacer) -> trunkPlacer.bendChance))).apply(instance, BurningTrunkPlacer::new));
-    public static final TrunkPlacerType<BurningTrunkPlacer> BURNING_TRUNK_PLACER = Registry.register(BuiltInRegistries.TRUNK_PLACER_TYPE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "burning_trunk_placer"), new TrunkPlacerType<>(BurningTrunkPlacer.CODEC));
     private final IntProvider forkHeight;
     private final IntProvider branchCount;
     private final float bendChance;
@@ -38,7 +34,7 @@ public class BurningTrunkPlacer extends TrunkPlacer {
 
     @Override
     protected TrunkPlacerType<?> type() {
-        return BURNING_TRUNK_PLACER;
+        return ModWorldGeneration.BURNING_TRUNK_PLACER.get();
     }
 
     @Override
@@ -95,8 +91,5 @@ public class BurningTrunkPlacer extends TrunkPlacer {
 
             pos.set(startPos);
         }
-    }
-
-    public static void registerBurningTrunkPlacer() {
     }
 }

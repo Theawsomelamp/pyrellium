@@ -25,7 +25,7 @@ public class ModChestBoatEntity extends ChestBoat {
     }
 
     public ModChestBoatEntity(Level world, double x, double y, double z) {
-        this(ModEntities.BURNING_CHEST_BOAT, world);
+        this(ModEntities.BURNING_CHEST_BOAT.get(), world);
         this.setPos(x, y, z);
         this.xo = x;
         this.yo = y;
@@ -61,8 +61,8 @@ public class ModChestBoatEntity extends ChestBoat {
 
 
     public enum Type implements StringRepresentable {
-        BURNING(() -> ModBlocks.BURNING_CHEST_BOAT, "burning"),
-        SHADEROOT(() -> ModBlocks.SHADEROOT_CHEST_BOAT, "shaderoot");
+        BURNING(ModBlocks.BURNING_CHEST_BOAT, "burning"),
+        SHADEROOT(ModBlocks.SHADEROOT_CHEST_BOAT, "shaderoot");
 
         private final String name;
         private final Supplier<Item> baseItem;

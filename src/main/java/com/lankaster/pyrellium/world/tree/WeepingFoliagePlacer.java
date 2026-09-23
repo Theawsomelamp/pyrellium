@@ -1,15 +1,12 @@
 package com.lankaster.pyrellium.world.tree;
 
-import com.lankaster.pyrellium.Pyrellium;
+import com.lankaster.pyrellium.world.ModWorldGeneration;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -23,7 +20,6 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 
 public class WeepingFoliagePlacer extends BlobFoliagePlacer {
     public static final MapCodec<WeepingFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> blobParts(instance).and(instance.group(Codec.floatRange(0, 1).fieldOf("chance").forGetter((foliagePlacer) -> foliagePlacer.chance), IntProvider.codec(0, 16).fieldOf("length").forGetter((foliagePlacer) -> foliagePlacer.length))).apply(instance, WeepingFoliagePlacer::new));
-    public static final FoliagePlacerType<WeepingFoliagePlacer> WEEPING_FOLIAGE_PLACER = Registry.register(BuiltInRegistries.FOLIAGE_PLACER_TYPE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "weeping_foliage_placer"), new FoliagePlacerType<>(WeepingFoliagePlacer.CODEC));
     private final float chance;
     private final IntProvider length;
 
@@ -34,7 +30,7 @@ public class WeepingFoliagePlacer extends BlobFoliagePlacer {
     }
 
     protected FoliagePlacerType<?> type() {
-        return WEEPING_FOLIAGE_PLACER;
+        return ModWorldGeneration.WEEPING_FOLIAGE_PLACER.get();
     }
 
     protected void createFoliage(LevelSimulatedReader world, FoliagePlacer.FoliageSetter placer, RandomSource random, TreeConfiguration config, int trunkHeight, FoliagePlacer.FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
@@ -76,8 +72,5 @@ public class WeepingFoliagePlacer extends BlobFoliagePlacer {
             }
             return true;
         }
-    }
-
-    public static void registerWeepingFoliagePlacer() {
     }
 }

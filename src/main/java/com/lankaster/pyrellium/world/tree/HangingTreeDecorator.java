@@ -1,15 +1,12 @@
 package com.lankaster.pyrellium.world.tree;
 
-import com.lankaster.pyrellium.Pyrellium;
+import com.lankaster.pyrellium.world.ModWorldGeneration;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,7 +24,6 @@ import java.util.List;
 
 public class HangingTreeDecorator extends TreeDecorator {
     public static final MapCodec<HangingTreeDecorator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(Codec.floatRange(0.0F, 1.0F).fieldOf("chance").forGetter((treeDecorator) -> treeDecorator.chance), IntProvider.codec(0, 16).fieldOf("length").forGetter((treeDecorator) -> treeDecorator.length), BlockStateProvider.CODEC.fieldOf("provider").forGetter((treeDecorator) -> treeDecorator.provider), BlockStateProvider.CODEC.fieldOf("tip_provider").forGetter((treeDecorator) -> treeDecorator.tipProvider), IntProvider.codec(0, 16).fieldOf("minOffset").forGetter((treeDecorator) -> treeDecorator.minOffset), IntProvider.codec(0, 24).fieldOf("maxOffset").forGetter((treeDecorator) -> treeDecorator.maxOffset)).apply(instance, HangingTreeDecorator::new));
-    public static final TreeDecoratorType<HangingTreeDecorator> HANGING_TREE_DECORATOR = Registry.register(BuiltInRegistries.TREE_DECORATOR_TYPE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "hanging_vines"), new TreeDecoratorType<>(HangingTreeDecorator.CODEC));
     private final float chance;
     private final IntProvider length;
     private final BlockStateProvider provider;
@@ -46,7 +42,7 @@ public class HangingTreeDecorator extends TreeDecorator {
 
     @Override
     protected TreeDecoratorType<?> type(){
-        return HANGING_TREE_DECORATOR;
+        return ModWorldGeneration.HANGING_TREE_DECORATOR.get();
     }
 
     @Override
@@ -74,8 +70,5 @@ public class HangingTreeDecorator extends TreeDecorator {
                 generator.setBlock(mutable, tipProvider.getState(random, mutable));
             }
         }
-    }
-
-    public static void registerHangingTreeDecorator() {
     }
 }

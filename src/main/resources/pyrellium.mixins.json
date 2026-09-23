@@ -1,12 +1,10 @@
 {
   "required": true,
   "package": "com.lankaster.pyrellium.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "NearestAttackableTargetGoalAccessor",
     "BlockItemMixin",
-    "DispenseItemBehaviorMixin",
-    "ExtendSpyglass",
     "GhastMixin",
     "ItemMixin",
     "MultiPackResourceManagerMixin",
@@ -14,6 +12,16 @@
     "AbstractArrowAccessor",
     "StraySpawningMixin",
     "WarningSuppressor"
+  ],
+  "client": [
+    "BoatEntityRenderMixin",
+    "HeadStoneEditScreenMixin",
+    "GuiMixin",
+    "ItemRendererMixin",
+    "ModelBakeryMixin"
+  ],
+  "server": [
+    "DispenseItemBehaviorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

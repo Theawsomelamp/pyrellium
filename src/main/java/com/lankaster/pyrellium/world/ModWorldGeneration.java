@@ -1,106 +1,34 @@
 package com.lankaster.pyrellium.world;
 
 import com.lankaster.pyrellium.Pyrellium;
-import com.lankaster.pyrellium.config.Config;
-import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.world.tree.BurningTrunkPlacer;
+import com.lankaster.pyrellium.world.tree.HangingTreeDecorator;
 import com.lankaster.pyrellium.world.tree.WeepingFoliagePlacer;
 import com.lankaster.pyrellium.world.tree.WillowFoliagePlacer;
-import com.lankaster.pyrellium.world.tree.HangingTreeDecorator;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 
 public class ModWorldGeneration {
+    public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(BuiltInRegistries.TRUNK_PLACER_TYPE, Pyrellium.MOD_ID);
+    public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(BuiltInRegistries.FOLIAGE_PLACER_TYPE, Pyrellium.MOD_ID);
+    public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATORS = DeferredRegister.create(BuiltInRegistries.TREE_DECORATOR_TYPE, Pyrellium.MOD_ID);
 
-    private static void generateFeatures() {
-        if (Config.instance().globalFeatures.thicker_bedrock_ceiling) {
-            BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Decoration.LOCAL_MODIFICATIONS, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "thick_bedrock_ceiling")));
-            BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Decoration.LOCAL_MODIFICATIONS, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "bedrock_gradient")));
-        }
+    public static final Supplier<TrunkPlacerType<BurningTrunkPlacer>> BURNING_TRUNK_PLACER = TRUNK_PLACERS.register("burning_trunk_placer", () -> new TrunkPlacerType<>(BurningTrunkPlacer.CODEC));
+    public static final Supplier<TreeDecoratorType<HangingTreeDecorator>> HANGING_TREE_DECORATOR = TREE_DECORATORS.register("hanging_vines", () -> new TreeDecoratorType<>(HangingTreeDecorator.CODEC));
+    public static final Supplier<FoliagePlacerType<WeepingFoliagePlacer>> WEEPING_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("weeping_foliage_placer", () -> new FoliagePlacerType<>(WeepingFoliagePlacer.CODEC));
+    public static final Supplier<FoliagePlacerType<WillowFoliagePlacer>> WILLOW_FOLIAGE_PLACER = ModWorldGeneration.FOLIAGE_PLACERS.register("willow_foliage_placer", () -> new FoliagePlacerType<>(WillowFoliagePlacer.CODEC));
 
-        if (Config.instance().globalFeatures.opal_geodes)
-            BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Decoration.LOCAL_MODIFICATIONS, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "opal_geode")));
 
-        if (Config.instance().globalFeatures.basalt_iron_ore)
-            BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "basalt_iron_ore")));
-
-        if (Config.instance().globalFeatures.lava_lake_additions) {
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.SOUL_SAND_VALLEY), GenerationStep.Decoration.LOCAL_MODIFICATIONS, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "cool_lava_lake")));
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.GHOSTLY_WOODS), GenerationStep.Decoration.LOCAL_MODIFICATIONS, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "cool_lava_lake")));
-        }
-
-        if (Config.instance().globalFeatures.soul_sand_valley_bones)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.SOUL_SAND_VALLEY), GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "bones")));
-
-        if (Config.instance().globalFeatures.nether_forest_fallen_logs) {
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.CRIMSON_FOREST), GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "crimson_stems")));
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.WARPED_FOREST), GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "warped_stems")));
-        }
-
-        if (Config.instance().biomes.mushroom_wastes.generate_spores)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.MUSHROOM_WASTES), GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "spores")));
-
-        if (Config.instance().biomes.mushroom_wastes.generate_wall_mushrooms)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.MUSHROOM_WASTES), GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "wall_mushrooms")));
-
-        if (Config.instance().biomes.monolith_plains.generate_bomb_flowers)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.MONOLITH_PLAINS), GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "bomb_plants")));
-
-        if (Config.instance().biomes.monolith_plains.generate_monolith) {
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.MONOLITH_PLAINS), GenerationStep.Decoration.LOCAL_MODIFICATIONS, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "obsidian_monolith")));
-        }
-
-        if (Config.instance().globalFeatures.gilded_blackstone_patches) {
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.BLACKSTONE_SPRINGS), GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "gilded_patch")));
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.BURNING_GROVE), GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "gilded_patch")));
-        }
-
-        if (Config.instance().biomes.blackstone_springs.generate_blackstone_rocks)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.BLACKSTONE_SPRINGS), GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "blackstone_rock_patch")));
-
-        if (Config.instance().biomes.crystal_forest.generate_floor_crystals)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.CRYSTAL_FOREST), GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "crystal_vegetation")));
-
-        if (Config.instance().biomes.infested_valley.generate_floor_decorations)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.INFESTED_VALLEY), GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "cobwebs")));
-
-        if (Config.instance().biomes.infested_valley.generate_hanging_silk)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.INFESTED_VALLEY), GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "hanging_silk")));
-
-        if (Config.instance().biomes.quartz_caverns.generate_quartz_spikes) {
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.QUARTZ_CAVERNS), GenerationStep.Decoration.LOCAL_MODIFICATIONS, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "spike")));
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.QUARTZ_CAVERNS), GenerationStep.Decoration.LOCAL_MODIFICATIONS, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "spike_down")));
-        }
-
-        if (Config.instance().biomes.quartz_caverns.generate_quartz_cracks)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.QUARTZ_CAVERNS), GenerationStep.Decoration.LOCAL_MODIFICATIONS, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "quartz_crack")));
-
-        if (Config.instance().biomes.burning_grove.generate_pyrolily)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.BURNING_GROVE), GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "pyrolily_patch")));
-
-        if (Config.instance().biomes.ghostly_woods.generate_headstones)
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.GHOSTLY_WOODS), GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "headstones")));
-
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.NETHER_WASTES), GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "quartz_crystals_rare")));
-
-        if (Config.instance().entities.geodin.spawn_weight > 0) {
-            BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.CRYSTAL_FOREST), MobCategory.CREATURE, ModEntities.GEODIN, Config.instance().entities.geodin.spawn_weight, 2, 4);
-            BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModBiomes.QUARTZ_CAVERNS), MobCategory.CREATURE, ModEntities.GEODIN, Config.instance().entities.geodin.spawn_weight, 2, 4);
-        }
-    }
-
-    public static void register() {
-        generateFeatures();
-        BurningTrunkPlacer.registerBurningTrunkPlacer();
-        WillowFoliagePlacer.registerWillowFoliagePlacer();
-        WeepingFoliagePlacer.registerWeepingFoliagePlacer();
-        HangingTreeDecorator.registerHangingTreeDecorator();
+    public static void register(IEventBus eventBus) {
+        TRUNK_PLACERS.register(eventBus);
+        FOLIAGE_PLACERS.register(eventBus);
+        TREE_DECORATORS.register(eventBus);
     }
 }

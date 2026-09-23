@@ -92,7 +92,7 @@ public class HeadStoneBlock extends SignBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, ModBlockEntities.HEADSTONE, HeadStoneBlockEntity::tick);
+        return createTickerHelper(type, ModBlockEntities.HEADSTONE.get(), HeadStoneBlockEntity::tick);
     }
 
     public WoodType getWoodTypeButMoreStupid() {

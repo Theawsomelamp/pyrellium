@@ -46,12 +46,12 @@ public class BlockItemMixin {
                 if ((blockState.isFaceSturdy(world, blockPos, direction) && blockStateInit.isAir()) && !blockStateDown.isFaceSturdy(world, blockPos, Direction.DOWN)) {
                     if (world instanceof ServerLevel) {
                         if (itemStack.is(Items.BROWN_MUSHROOM)) {
-                            world.setBlockAndUpdate(blockPos, ModBlocks.BROWN_WALL_MUSHROOM.defaultBlockState().setValue(FACING, direction.getOpposite()));
+                            world.setBlockAndUpdate(blockPos, ModBlocks.BROWN_WALL_MUSHROOM.get().defaultBlockState().setValue(FACING, direction.getOpposite()));
                             world.playSound(null, blockPos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS);
                             itemStack.shrink(1);
                             cir.setReturnValue(InteractionResult.SUCCESS);
                         } else if (itemStack.is(Items.RED_MUSHROOM)) {
-                            world.setBlockAndUpdate(blockPos, ModBlocks.RED_WALL_MUSHROOM.defaultBlockState().setValue(FACING, direction.getOpposite()));
+                            world.setBlockAndUpdate(blockPos, ModBlocks.RED_WALL_MUSHROOM.get().defaultBlockState().setValue(FACING, direction.getOpposite()));
                             world.playSound(null, blockPos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS);
                             itemStack.shrink(1);
                             cir.setReturnValue(InteractionResult.SUCCESS);

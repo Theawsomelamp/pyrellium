@@ -7,11 +7,11 @@ import net.minecraft.core.BlockPos;
 
 public class HeadStoneBlockEntity extends SignBlockEntity {
     public HeadStoneBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.HEADSTONE, pos, state);
+        super(ModBlockEntities.HEADSTONE.get(), pos, state);
     }
 
     @Override
     public BlockEntityType<?> getType() {
-        return ModBlockEntities.HEADSTONE;
+        return ModBlockEntities.HEADSTONE.get();
     }
 }

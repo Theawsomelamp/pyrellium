@@ -12,7 +12,7 @@ public class GeodinBlockEntity extends BlockEntity implements Nameable {
     private Component customName;
 
     public GeodinBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.GEODIN, pos, state);
+        super(ModBlockEntities.GEODIN.get(), pos, state);
     }
 
     public void setCustomName(@Nullable Component customName) {

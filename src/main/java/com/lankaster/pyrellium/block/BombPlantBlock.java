@@ -76,7 +76,7 @@ public class BombPlantBlock extends BushBlock implements BonemealableBlock {
             world.explode(null, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Config.instance().blocks.bomb_plant_explosion_strength, false, Level.ExplosionInteraction.NONE);
             world.setBlockAndUpdate(pos, state.setValue(AGE, 0));
         } else if (state.getValue(AGE) == 3) {
-            popResource(world, pos, new ItemStack(ModItems.BOMB_FLOWER, 1));
+            popResource(world, pos, new ItemStack(ModItems.BOMB_FLOWER.get(), 1));
             world.setBlockAndUpdate(pos, state.setValue(AGE, 0));
         }
         return super.useWithoutItem(state, world, pos, player, hit);
