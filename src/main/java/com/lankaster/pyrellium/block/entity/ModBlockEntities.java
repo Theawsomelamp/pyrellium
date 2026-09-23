@@ -5,8 +5,6 @@ import com.lankaster.pyrellium.block.ModBlocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
