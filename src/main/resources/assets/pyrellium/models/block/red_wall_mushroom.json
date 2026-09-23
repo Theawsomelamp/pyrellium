@@ -2,5 +2,6 @@
   "parent": "pyrellium:block/wall_mushroom",
   "textures": {
     "mushroom": "pyrellium:block/red_wall_mushroom"
-  }
+  },
+  "render_type": "cutout"
 }

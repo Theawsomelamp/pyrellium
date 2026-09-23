@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "pyrellium:crystal_forest",
+  "spawners": {
+    "type": "pyrellium:geodin",
+    "maxCount": 4,
+    "minCount": 2,
+    "weight": 80
+  }
+}

@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "pyrellium:block/opal_cluster"
-  }
+  },
+  "render_type": "cutout"
 }

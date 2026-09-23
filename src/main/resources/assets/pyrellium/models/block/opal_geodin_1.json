@@ -8,5 +8,6 @@
     "west": "pyrellium:block/opal_geodin_side",
     "east": "pyrellium:block/opal_geodin_side",
     "cross": "pyrellium:block/small_opal_bud"
-  }
+  },
+  "render_type": "cutout"
 }

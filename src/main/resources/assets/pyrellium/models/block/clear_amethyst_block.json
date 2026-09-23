@@ -2,5 +2,6 @@
   "parent": "block/cube_all",
   "textures": {
     "all": "pyrellium:block/clear_amethyst_block"
-  }
+  },
+  "render_type": "transparent"
 }

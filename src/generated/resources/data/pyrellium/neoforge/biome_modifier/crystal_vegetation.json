@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "pyrellium:crystal_forest",
+  "features": "pyrellium:crystal_vegetation",
+  "step": "vegetal_decoration"
+}

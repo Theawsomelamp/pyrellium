@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:soul_sand_valley",
+  "features": "pyrellium:bones",
+  "step": "underground_decoration"
+}

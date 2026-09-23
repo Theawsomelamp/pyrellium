@@ -26,9 +26,11 @@ import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 public class PyrelliumClient {
 	@SubscribeEvent
 	public static void renderBoxOverlay(RenderLevelStageEvent worldRenderContext) {
-		BlockOutline.renderBoxOverlay(worldRenderContext, BlockOutline.raycast(), 0.76f, 0.85f, 0.98f);
-		BlockOutline.renderBoxOverlay(worldRenderContext, BlockOutline.saveBlock(), 0.76f, 0.85f, 0.98f);
-		BlockOutline.renderBoxOverlay(worldRenderContext, BlockOutline.sharedPos, 0.60f, 0.36f, 0.78f);
+		if (worldRenderContext.getStage()  == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
+			BlockOutline.renderBoxOverlay(worldRenderContext, BlockOutline.raycast(), 0.76f, 0.85f, 0.98f);
+			BlockOutline.renderBoxOverlay(worldRenderContext, BlockOutline.saveBlock(), 0.76f, 0.85f, 0.98f);
+			BlockOutline.renderBoxOverlay(worldRenderContext, BlockOutline.sharedPos, 0.60f, 0.36f, 0.78f);
+		}
 	}
 
 	@SubscribeEvent

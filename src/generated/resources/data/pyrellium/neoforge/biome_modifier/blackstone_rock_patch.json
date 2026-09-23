@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "pyrellium:blackstone_springs",
+  "features": "pyrellium:blackstone_rock_patch",
+  "step": "underground_decoration"
+}

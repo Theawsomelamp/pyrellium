@@ -2,5 +2,6 @@
   "parent": "pyrellium:block/bone",
   "textures": {
     "flowerbed": "pyrellium:block/bone_2"
-  }
+  },
+  "render_type": "cutout"
 }

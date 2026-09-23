@@ -8,5 +8,6 @@
     "west": "pyrellium:block/quartz_geodin_side",
     "east": "pyrellium:block/quartz_geodin_side",
     "cross": "pyrellium:block/quartz_crystal"
-  }
+  },
+  "render_type": "cutout"
 }

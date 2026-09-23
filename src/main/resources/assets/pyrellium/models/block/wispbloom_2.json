@@ -3,5 +3,6 @@
   "textures": {
     "flowerbed": "pyrellium:block/wispbloom",
     "stem": "pyrellium:block/wispbloom_stem"
-  }
+  },
+  "render_type": "cutout"
 }

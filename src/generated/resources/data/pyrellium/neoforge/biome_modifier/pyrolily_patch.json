@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "pyrellium:burning_grove",
+  "features": "pyrellium:pyrolily_patch",
+  "step": "vegetal_decoration"
+}

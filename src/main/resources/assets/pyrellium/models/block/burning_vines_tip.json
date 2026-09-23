@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "pyrellium:block/burning_vines_tip"
-  }
+  },
+  "render_type": "cutout"
 }

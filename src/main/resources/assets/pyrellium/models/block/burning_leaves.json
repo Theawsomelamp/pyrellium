@@ -2,5 +2,6 @@
   "parent": "block/cube_all",
   "textures": {
     "all": "pyrellium:block/burning_leaves"
-  }
+  },
+  "render_type": "cutout"
 }

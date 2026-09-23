@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "pyrellium:block/quartz_crystal"
-  }
+  },
+  "render_type": "cutout"
 }

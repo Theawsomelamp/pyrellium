@@ -8,5 +8,6 @@
     "west": "pyrellium:block/amethyst_geodin_side",
     "east": "pyrellium:block/amethyst_geodin_side",
     "cross": "minecraft:block/large_amethyst_bud"
-  }
+  },
+  "render_type": "cutout"
 }

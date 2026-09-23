@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "pyrellium:mushroom_wastes",
+  "features": "pyrellium:wall_mushrooms",
+  "step": "vegetal_decoration"
+}

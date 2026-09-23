@@ -6,8 +6,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
@@ -27,11 +25,6 @@ public class ModEntities {
             EntityType.Builder.<ModChestBoatEntity>of(ModChestBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).build("burning_chest_boat"));
     public static final Supplier<EntityType<GeodinEntity>> GEODIN = ENTITY_TYPES.register("geodin", () ->
             EntityType.Builder.<GeodinEntity>of(GeodinEntity::new, MobCategory.CREATURE).sized(0.95F, 1.15F).build("geodin"));
-
-    @SubscribeEvent
-    public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.GEODIN.get(), GeodinEntity.createGeodinAttributes().build());
-    }
 
     public static void registerEntities(IEventBus eventBus) {
         ENTITY_DATA_SERIALIZERS.register("geodin_variant_identifier", () -> GeodinEntity.GEODIN_VARIANT_IDENTIFIER);

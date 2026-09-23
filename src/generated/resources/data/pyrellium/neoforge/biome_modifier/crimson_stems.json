@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:crimson_forest",
+  "features": "pyrellium:crimson_stems",
+  "step": "local_modifications"
+}

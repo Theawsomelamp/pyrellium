@@ -2,5 +2,6 @@
   "parent": "minecraft:block/carpet",
   "textures": {
     "wool": "pyrellium:block/blackstone_rock"
-  }
+  },
+  "render_type": "cutout"
 }

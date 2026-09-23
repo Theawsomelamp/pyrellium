@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "pyrellium:monolith_plains",
+  "features": "pyrellium:obsidian_monolith",
+  "step": "local_modifications"
+}

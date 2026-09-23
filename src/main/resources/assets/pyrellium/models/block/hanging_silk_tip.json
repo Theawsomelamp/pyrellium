@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "pyrellium:block/hanging_silk_tip"
-  }
+  },
+  "render_type": "cutout"
 }

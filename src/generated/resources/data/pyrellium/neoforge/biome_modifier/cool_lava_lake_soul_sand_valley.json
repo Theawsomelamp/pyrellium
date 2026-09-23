@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:soul_sand_valley",
+  "features": "pyrellium:cool_lava_lake",
+  "step": "local_modifications"
+}

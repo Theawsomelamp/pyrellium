@@ -2,5 +2,6 @@
   "parent": "block/cube_all",
   "textures": {
     "all": "pyrellium:block/clear_opal_block"
-  }
+  },
+  "render_type": "transparent"
 }

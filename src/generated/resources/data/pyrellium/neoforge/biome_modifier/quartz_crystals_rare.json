@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:nether_wastes",
+  "features": "pyrellium:quartz_crystals_rare",
+  "step": "underground_decoration"
+}

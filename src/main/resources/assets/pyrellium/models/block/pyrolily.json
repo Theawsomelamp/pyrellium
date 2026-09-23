@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "pyrellium:block/pyrolily"
-  }
+  },
+  "render_type": "cutout"
 }

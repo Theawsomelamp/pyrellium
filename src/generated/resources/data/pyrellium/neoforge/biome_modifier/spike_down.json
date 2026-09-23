@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "pyrellium:quartz_caverns",
+  "features": "pyrellium:spike_down",
+  "step": "local_modifications"
+}

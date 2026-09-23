@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "pyrellium:infested_valley",
+  "features": "pyrellium:cobwebs",
+  "step": "underground_decoration"
+}

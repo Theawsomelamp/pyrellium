@@ -17,12 +17,6 @@ public interface ModBlockEntities {
     Supplier<BlockEntityType<HeadStoneBlockEntity>> HEADSTONE = BLOCK_ENTITIES.register("headstone", () -> BlockEntityType.Builder.of(HeadStoneBlockEntity::new, ModBlocks.HEADSTONE.get()).build(null));
     Supplier<BlockEntityType<GeodinBlockEntity>> GEODIN = BLOCK_ENTITIES.register("geodin", () -> BlockEntityType.Builder.of(GeodinBlockEntity::new, ModBlocks.SLEEPING_AMETHYST_GEODIN.get(), ModBlocks.SLEEPING_OPAL_GEODIN.get(), ModBlocks.SLEEPING_QUARTZ_GEODIN.get()).build(null));
 
-    @SubscribeEvent
-    static void setupBlockEntities(BlockEntityTypeAddBlocksEvent event) {
-        event.modify(BlockEntityType.SIGN, ModBlocks.BURNING_SIGN.get(), ModBlocks.BURNING_WALL_SIGN.get(), ModBlocks.SHADEROOT_SIGN.get(), ModBlocks.SHADEROOT_WALL_SIGN.get());
-        event.modify(BlockEntityType.HANGING_SIGN, ModBlocks.BURNING_HANGING_SIGN.get(), ModBlocks.BURNING_WALL_HANGING_SIGN.get(), ModBlocks.SHADEROOT_HANGING_SIGN.get(), ModBlocks.SHADEROOT_WALL_HANGING_SIGN.get());
-    }
-
     static void registerBlockEntities(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

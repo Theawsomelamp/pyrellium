@@ -47,5 +47,6 @@
 			"color": 0,
 			"children": [0, 1, 2, 3]
 		}
-	]
+	],
+	"render_type": "cutout"
 }
