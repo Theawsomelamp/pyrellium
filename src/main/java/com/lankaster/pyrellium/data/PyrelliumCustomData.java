@@ -8,6 +8,7 @@ import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
+import net.neoforged.fml.ModList;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -68,7 +69,11 @@ public class PyrelliumCustomData {
     public static void register() {
         register(ResourceLocation.fromNamespaceAndPath("minecraft", "worldgen/noise_settings/nether.json"), () -> true, PyrelliumCustomData::changeNoiseRouter);
 
-        register(ResourceLocation.fromNamespaceAndPath("minecraft", "dimension/the_nether.json"), () -> true, PyrelliumCustomData::changeBiomeNoise);
+        // Jadens Nether Expansion crashes with pyrellium cause the way they handle dimension gen
+        // Luckily the invasiveness also automatically places the pyrellium biomes, though at the cost of ignoring the config
+        if (!ModList.get().isLoaded("netherexp")) {
+            register(ResourceLocation.fromNamespaceAndPath("minecraft", "dimension/the_nether.json"), () -> true, PyrelliumCustomData::changeBiomeNoise);
+        }
     }
 
     private static JsonElement getJson(String string) {

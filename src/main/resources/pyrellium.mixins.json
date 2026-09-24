@@ -20,9 +20,6 @@
     "ItemRendererMixin",
     "ModelBakeryMixin"
   ],
-  "server": [
-    "DispenseItemBehaviorMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
 	}
