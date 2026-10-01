@@ -35,6 +35,7 @@ public class Config {
     }
 
     public static class Entities {
+        public float skeleton_crystal_arrow_chance = 0.05f;
         public Geodin geodin = new Geodin();
     }
 

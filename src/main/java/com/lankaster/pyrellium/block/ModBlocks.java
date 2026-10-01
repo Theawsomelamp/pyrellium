@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.Instrument;
@@ -169,7 +170,27 @@ public class ModBlocks {
         StrippableBlockRegistry.register(SHADEROOT_WOOD, STRIPPED_SHADEROOT_WOOD);
     }
 
+    public static void registerCompostables() {
+        CompostingChanceRegistry.INSTANCE.add(BROWN_SHELF_MUSHROOM, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(RED_SHELF_MUSHROOM, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(BOMB_PLANT, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_LEAVES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_SAPLING, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_ROOTS, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_SPROUTS, 0.5f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_VINES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(PYROLILY, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(GHOSTLY_LEAVES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(FLOWERING_GHOSTLY_LEAVES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(SHADEROOT_SAPLING, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(DEAD_ROOTS, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(DEAD_SPROUTS, 0.5f);
+        CompostingChanceRegistry.INSTANCE.add(GHOSTLY_VINES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(WISPBLOOM, 0.3f);
+    }
+
     public static void registerModBlocks() {
         registerStrippables();
+        registerCompostables();
     }
 }
