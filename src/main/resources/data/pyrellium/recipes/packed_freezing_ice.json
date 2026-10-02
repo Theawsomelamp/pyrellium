@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "pyrellium:freezing_ice"
+    },
+    {
+      "item": "pyrellium:freezing_ice"
+    },
+    {
+      "item": "pyrellium:freezing_ice"
+    },
+    {
+      "item": "pyrellium:freezing_ice"
+    },
+    {
+      "item": "pyrellium:freezing_ice"
+    },
+    {
+      "item": "pyrellium:freezing_ice"
+    },
+    {
+      "item": "pyrellium:freezing_ice"
+    },
+    {
+      "item": "pyrellium:freezing_ice"
+    },
+    {
+      "item": "pyrellium:freezing_ice"
+    }
+  ],
+  "result": {
+    "item": "pyrellium:packed_freezing_ice"
+  }
+}

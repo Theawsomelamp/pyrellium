@@ -22,7 +22,7 @@ public abstract class AbstractSkeletonEntityMixin {
 
     @Inject(method = "initEquipment", at = @At(value = "TAIL"))
     protected void addCrystalArrows(Random random, LocalDifficulty localDifficulty, CallbackInfo ci) {
-        if (random.nextDouble() <= Config.instance().entities.skeleton_crystal_arrow_chance) {
+        if (random.nextDouble() < Config.instance().entities.skeleton_crystal_arrow_chance) {
             AbstractSkeletonEntity entity = (AbstractSkeletonEntity) (Object) this;
             if (entity instanceof SkeletonEntity skeletonEntity && skeletonEntity.getEntityWorld().getRegistryKey().getValue().toString().equals("minecraft:the_nether")) {
                 equipStack(EquipmentSlot.OFFHAND, new ItemStack(random.nextBoolean() ? ModItems.OPAL_ARROW : ModItems.AMETHYST_ARROW, random.nextBetween(1, 4)));

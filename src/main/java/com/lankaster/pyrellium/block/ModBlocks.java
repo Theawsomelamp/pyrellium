@@ -46,6 +46,7 @@ public class ModBlocks {
     public static final Block SLEEPING_QUARTZ_GEODIN = registerBlockWithoutBlockItem("sleeping_quartz_geodin", new GeodinBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT), SMALL_QUARTZ_BUD, MEDIUM_QUARTZ_BUD, LARGE_QUARTZ_BUD, QUARTZ_CRYSTAL, new Identifier(Pyrellium.MOD_ID, "quartz")));
 
     public static final Block FREEZING_ICE = registerBlock("freezing_ice", new FreezingIceBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE).nonOpaque()));
+    public static final Block PACKED_FREEZING_ICE = registerBlock("packed_freezing_ice", new FreezingIceBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE)));
     public static final Block SILK_BLOCK = registerBlock("silk_block", new Block(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
     public static final Block SILK_CARPET = registerBlock("silk_carpet", new CarpetBlock(FabricBlockSettings.copyOf(Blocks.MOSS_CARPET).sounds(BlockSoundGroup.WOOL).velocityMultiplier(0.4F).jumpVelocityMultiplier(0.5F)));
     public static final Block HANGING_SILK = registerBlock("hanging_silk", new HangingSilkBlock(FabricBlockSettings.create().ticksRandomly().noCollision().burnable().strength(0.75F).pistonBehavior(PistonBehavior.DESTROY)));

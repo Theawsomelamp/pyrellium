@@ -102,6 +102,7 @@ public class Config {
 
     public static class FrostburnValley {
         public boolean enable_biome = true;
+        public boolean generate_soul_fire = true;
     }
 
     public static class GhostlyWoods {
