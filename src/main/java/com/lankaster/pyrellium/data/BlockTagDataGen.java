@@ -46,7 +46,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.LARGE_QUARTZ_BUD,
                 ModBlocks.BUDDING_QUARTZ,
                 ModBlocks.ROUGH_QUARTZ_BLOCK,
-                ModBlocks.SLEEPING_QUARTZ_GEODIN
+                ModBlocks.SLEEPING_QUARTZ_GEODIN,
+                ModBlocks.PACKED_FREEZING_ICE
         );
 
         valueLookupBuilder(BlockTags.SHOVEL_MINEABLE).add(

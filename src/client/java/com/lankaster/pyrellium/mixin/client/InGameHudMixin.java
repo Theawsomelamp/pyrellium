@@ -1,6 +1,6 @@
 package com.lankaster.pyrellium.mixin.client;
 
-import com.lankaster.pyrellium.block.ModBlocks;
+import com.lankaster.pyrellium.block.FreezingIceBlock;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -45,7 +45,7 @@ public abstract class InGameHudMixin {
 
     @WrapOperation(method = "renderMiscOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderOverlay(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/util/Identifier;F)V", ordinal = 1))
     public void renderBlackIceOverlay(InGameHud instance, DrawContext context, Identifier texture, float opacity, Operation<Void> original){
-        if (client.world.getChunk(client.player.getBlockPos()).getBlockState(client.player.getBlockPos().down()).isOf(ModBlocks.FREEZING_ICE) && client.player.getFreezingScale() <= 0.03f) {
+        if (client.world.getChunk(client.player.getBlockPos()).getBlockState(client.player.getBlockPos().down()).getBlock() instanceof FreezingIceBlock && client.player.getFreezingScale() <= 0.03f) {
             blackIce = true;
         }
 

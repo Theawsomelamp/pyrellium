@@ -97,5 +97,6 @@ public class LootTableDataGen extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.BUDDING_QUARTZ, dropsNothing());
         addDrop(ModBlocks.ROUGH_QUARTZ_BLOCK);
         addDrop(ModBlocks.SLEEPING_QUARTZ_GEODIN, dropsNothing());
+        addDrop(ModBlocks.PACKED_FREEZING_ICE);
     }
 }

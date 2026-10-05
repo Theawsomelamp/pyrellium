@@ -13,7 +13,7 @@
         "tick_chance": 0.0111
       }
     },
-    "minecraft:visual/fog_color": 2124390,
+    "minecraft:visual/fog_color": 6127228,
     "minecraft:visual/ambient_particles": {
       "modifier": "override",
       "argument": [
@@ -75,7 +75,8 @@
     [],
     [
       "pyrellium:freeze_lava_lake",
-      "pyrellium:ice_pillar"
+      "pyrellium:ice_pillar",
+      "pyrellium:basalt_wall"
     ],
     [],
     [],
@@ -87,7 +88,7 @@
       "minecraft:patch_soul_fire",
       "minecraft:glowstone_extra",
       "minecraft:glowstone",
-      "minecraft:patch_crimson_roots",
+      "pyrellium:patch_dead_sprouts",
       "minecraft:ore_magma",
       "minecraft:ore_soul_sand",
       "minecraft:ore_gravel_nether",
