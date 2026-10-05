@@ -8,7 +8,7 @@
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "minecraft:soul_fire"
+              "Name": "pyrellium:dead_sprouts"
             }
           }
         }
@@ -17,22 +17,8 @@
         {
           "type": "minecraft:block_predicate_filter",
           "predicate": {
-            "type": "minecraft:all_of",
-            "predicates": [
-              {
-                "type": "minecraft:matching_blocks",
-                "blocks": "minecraft:air"
-              },
-              {
-                "type": "minecraft:matching_blocks",
-                "blocks": "pyrellium:drained_soul_soil",
-                "offset": [
-                  0,
-                  -1,
-                  0
-                ]
-              }
-            ]
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
           }
         }
       ]
