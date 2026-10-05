@@ -21,6 +21,8 @@ The configuration file can be found at `/config/pyrellium.json`
     // Makes the vanilla mushroom items placeable on walls
     // Has no effect on if the block can generate in the world
     "placeable_wall_mushrooms": true,
+    // Determines if black ice gives powdered snow like freezing when standing on it
+    "black_ice_freezing": true,
     // The upwards velocity gained by landing on a red bounceshroom
     // 1.0 correlates to about 4 blocks
     "red_bounceshroom_bounce": 1.0,
@@ -131,7 +133,7 @@ The configuration file can be found at `/config/pyrellium.json`
     },
     "burning_grove": {
       "enable_biome": true,
-      // Whether to generate patches of pyrolillies on the floor
+      // Whether to generate patches of pyrolilies on the floor
       // Does not affect the ability for pyrolilies to spawn from bone mealing amber nylium
       "generate_pyrolily": true
     },
@@ -142,6 +144,8 @@ The configuration file can be found at `/config/pyrellium.json`
     },
     "frostburn_valley": {
       "enable_biome": true,
+      // Whether to generate soul fire patches across the biome.
+      "generate_soul_fire": true
     },
     "ghostly_woods": {
       "enable_biome": true,

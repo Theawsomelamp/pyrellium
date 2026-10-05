@@ -18,6 +18,7 @@ public class Config {
     public static class Blocks {
         public boolean placeable_bones = true;
         public boolean placeable_wall_mushrooms = true;
+        public boolean black_ice_freezing = true;
         public float red_bounceshroom_bounce = 1.0F;
         public float brown_bounceshroom_bounce = 0.75F;
         public float bomb_plant_explosion_strength = 1.0F;
