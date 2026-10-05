@@ -9,6 +9,7 @@ import com.lankaster.pyrellium.item.ModItemGroups;
 import com.lankaster.pyrellium.item.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
@@ -44,6 +45,7 @@ public class ModBlocks {
     public static final Block SLEEPING_QUARTZ_GEODIN = registerBlockWithoutBlockItem("sleeping_quartz_geodin", new GeodinBlock(AbstractBlock.Settings.copy(Blocks.SMOOTH_BASALT), SMALL_QUARTZ_BUD, MEDIUM_QUARTZ_BUD, LARGE_QUARTZ_BUD, QUARTZ_CRYSTAL, Identifier.of(Pyrellium.MOD_ID, "quartz")));
 
     public static final Block FREEZING_ICE = registerBlock("freezing_ice", new FreezingIceBlock(AbstractBlock.Settings.copy(Blocks.PACKED_ICE).nonOpaque()));
+    public static final Block PACKED_FREEZING_ICE = registerBlock("packed_freezing_ice", new FreezingIceBlock(AbstractBlock.Settings.copy(Blocks.PACKED_ICE)));
     public static final Block SILK_BLOCK = registerBlock("silk_block", new Block(AbstractBlock.Settings.copy(Blocks.WHITE_WOOL)));
     public static final Block SILK_CARPET = registerBlock("silk_carpet", new CarpetBlock(AbstractBlock.Settings.copy(Blocks.MOSS_CARPET).sounds(BlockSoundGroup.WOOL).velocityMultiplier(0.4F).jumpVelocityMultiplier(0.5F)));
     public static final Block HANGING_SILK = registerBlock("hanging_silk", new HangingSilkBlock(AbstractBlock.Settings.create().ticksRandomly().noCollision().burnable().strength(0.75F).pistonBehavior(PistonBehavior.DESTROY)));
@@ -168,6 +170,25 @@ public class ModBlocks {
         StrippableBlockRegistry.register(SHADEROOT_WOOD, STRIPPED_SHADEROOT_WOOD);
     }
 
+    public static void registerCompostables() {
+        CompostingChanceRegistry.INSTANCE.add(BROWN_SHELF_MUSHROOM, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(RED_SHELF_MUSHROOM, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(BOMB_PLANT, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_LEAVES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_SAPLING, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_ROOTS, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_SPROUTS, 0.5f);
+        CompostingChanceRegistry.INSTANCE.add(BURNING_VINES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(PYROLILY, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(GHOSTLY_LEAVES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(FLOWERING_GHOSTLY_LEAVES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(SHADEROOT_SAPLING, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(DEAD_ROOTS, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(DEAD_SPROUTS, 0.5f);
+        CompostingChanceRegistry.INSTANCE.add(GHOSTLY_VINES, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(WISPBLOOM, 0.3f);
+    }
+
     public static void registerSigns() {
         BlockEntityType.SIGN.addSupportedBlock(ModBlocks.BURNING_SIGN);
         BlockEntityType.SIGN.addSupportedBlock(ModBlocks.BURNING_WALL_SIGN);
@@ -181,6 +202,7 @@ public class ModBlocks {
 
     public static void registerModBlocks() {
         registerStrippables();
+        registerCompostables();
         registerSigns();
     }
 }

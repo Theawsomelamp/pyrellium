@@ -1,8 +1,8 @@
-// 1.21.1	2026-08-14T08:57:11.834369166	Pyrellium/Tags for minecraft:block
-849782080f70caa51070f533c3f2de734680506e data/minecraft/tags/block/logs.json
+// 1.21.1	2026-10-05T09:06:40.499277348	Pyrellium/Tags for minecraft:block
 bfd54eb15d5fbfa0c6803425b06910a113e16a77 data/minecraft/tags/block/wooden_slabs.json
+849782080f70caa51070f533c3f2de734680506e data/minecraft/tags/block/logs.json
 1ce900f3685830f47dd558c1fef790de818c0283 data/minecraft/tags/block/wooden_fences.json
-a303aa238ee90213acd29b93e31cb50281893bee data/minecraft/tags/block/mineable/pickaxe.json
+06b4b2ed9f85234a662d364e3ed642c6b135889c data/minecraft/tags/block/mineable/pickaxe.json
 9d5b219c81ea711f6bdc2f74b352e4fde756f389 data/minecraft/tags/block/planks.json
 90347a366d3a0ed1670b64a6e3c793caecffd476 data/minecraft/tags/block/leaves.json
 bcd5865f65fa18892175824220a395e159981583 data/minecraft/tags/block/flower_pots.json

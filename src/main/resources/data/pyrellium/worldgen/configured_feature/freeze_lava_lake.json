@@ -15,7 +15,7 @@
                 "block": "minecraft:lava"
               },
               "state": {
-                "Name": "pyrellium:freezing_ice"
+                "Name": "pyrellium:packed_freezing_ice"
               }
             }
           ]

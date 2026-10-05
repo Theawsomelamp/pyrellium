@@ -1,10 +1,11 @@
-// 1.21.1	2026-08-14T08:57:11.835420598	Pyrellium/Block Loot Tables
+// 1.21.1	2026-10-05T09:06:40.500952272	Pyrellium/Block Loot Tables
 1516546f46e56738575ca2db7efa2c7e41101e3b data/pyrellium/loot_table/blocks/burning_vines.json
 125b91bb76cd204c4aaa04734910698a29b565f1 data/pyrellium/loot_table/blocks/small_quartz_bud.json
 bf9eb8603fc602c159323511b7a19c59f240ba6c data/pyrellium/loot_table/blocks/dead_roots.json
 217db69434aea678986ee6ce20dac5ae4fa2b08b data/pyrellium/loot_table/blocks/burning_trapdoor.json
 20ed01cfdead652a575ad681cd1b224d5353495c data/pyrellium/loot_table/blocks/hanging_silk.json
 b9dd59017248ea3b68b8ef90ad4546eda7537781 data/pyrellium/loot_table/blocks/medium_quartz_bud.json
+9a561b69736319d513497c9c0589673353dece80 data/pyrellium/loot_table/blocks/packed_freezing_ice.json
 0bd923d6ca2ec235a573495b10877f2923e71233 data/pyrellium/loot_table/blocks/shaderoot_log.json
 be57acf6e15bd06760d0ca1e6cdc0401beb7cf03 data/pyrellium/loot_table/blocks/wispbloom.json
 1d4929d7d6176f60e5ea991a577527ed251ef375 data/pyrellium/loot_table/blocks/sleeping_amethyst_geodin.json
