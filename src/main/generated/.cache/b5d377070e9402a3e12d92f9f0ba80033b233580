@@ -1,4 +1,5 @@
-// 1.20.1	2026-07-30T17:02:03.380183347	Pyrellium/Block Loot Tables
+// 1.20.1	2026-10-05T09:14:39.218052337	Pyrellium/Block Loot Tables
+9a561b69736319d513497c9c0589673353dece80 data/pyrellium/loot_tables/blocks/packed_freezing_ice.json
 0685d038fe215716f8dff51351c28e82f6758297 data/pyrellium/loot_tables/blocks/rough_quartz_block.json
 1e6045dbdf191e27be1641f83b356d403e9ac809 data/pyrellium/loot_tables/blocks/silk_carpet.json
 9d9a8ed24c31f34b4a662809e5e1df89c60ab91c data/pyrellium/loot_tables/blocks/burning_sprouts.json
@@ -15,8 +16,8 @@ c3f2b562142dfa5bded6f7e60581b5e0b1650a74 data/pyrellium/loot_tables/blocks/red_w
 2c0c753f5e631efbb10329994c725f2092143e7f data/pyrellium/loot_tables/blocks/medium_opal_bud.json
 aac10815c9777d9c1d30a3d7dc189f23046acd16 data/pyrellium/loot_tables/blocks/ghostly_leaves.json
 be11e34717f0152db04a75bcbf79bf94e222cb40 data/pyrellium/loot_tables/blocks/burning_wood.json
-bfbd52074c6c90be6c40a0343f0f85c449a209af data/pyrellium/loot_tables/blocks/blackstone_rock.json
 197f92afcef958c80cbe31e521d73f711845c319 data/pyrellium/loot_tables/blocks/dead_roots.json
+bfbd52074c6c90be6c40a0343f0f85c449a209af data/pyrellium/loot_tables/blocks/blackstone_rock.json
 bb90021d3a3004729a99c15db1e1d96b4ca4aae7 data/pyrellium/loot_tables/blocks/dead_sprouts.json
 31766a3a454b2412c594412d2b80fc4053b66807 data/pyrellium/loot_tables/blocks/chain_fence.json
 be5b153cd1e715c6ff790dc8aba2cf4e1b7fbb6a data/pyrellium/loot_tables/blocks/burning_hanging_sign.json
@@ -24,8 +25,8 @@ be5b153cd1e715c6ff790dc8aba2cf4e1b7fbb6a data/pyrellium/loot_tables/blocks/burni
 9b90c54f0f7de97d7247c4f3b07d69699d1c09cf data/pyrellium/loot_tables/blocks/netherrack_mycelium.json
 a37815da6b68f2da4009d47410f94b654bab7ed6 data/pyrellium/loot_tables/blocks/shaderoot_hanging_sign.json
 93102bd17f2a787e84afb869449f41386b8dfe10 data/pyrellium/loot_tables/blocks/burning_log.json
-a5e745c50b5e79f99d0d43a2b5620c92821f0842 data/pyrellium/loot_tables/blocks/shaderoot_door.json
 be57acf6e15bd06760d0ca1e6cdc0401beb7cf03 data/pyrellium/loot_tables/blocks/wispbloom.json
+a5e745c50b5e79f99d0d43a2b5620c92821f0842 data/pyrellium/loot_tables/blocks/shaderoot_door.json
 d40eda51e7403164948463d77bc6cf41b341999f data/pyrellium/loot_tables/blocks/burning_nylium.json
 a80024027d1c6abf6cfb9017a9807472c66e8478 data/pyrellium/loot_tables/blocks/shaderoot_sapling.json
 c5f5d80f4c05c59dfed91485f5c5b7860736eb3a data/pyrellium/loot_tables/blocks/silk_block.json
@@ -72,8 +73,8 @@ f459f3fc5ccc160f35ed98f76d237afeee3fe29e data/pyrellium/loot_tables/blocks/large
 c78d36829c1b42776a7b8ebf5156cce0f984c958 data/pyrellium/loot_tables/blocks/burning_vines.json
 1d4929d7d6176f60e5ea991a577527ed251ef375 data/pyrellium/loot_tables/blocks/sleeping_opal_geodin.json
 abe170c56d003a4cd3f72f919e6b1d8b5b5c3dc3 data/pyrellium/loot_tables/blocks/shaderoot_planks.json
-1d217fac8dd97a0b89e09d03107151648d75688e data/pyrellium/loot_tables/blocks/shaderoot_stairs.json
 03c842ddc8c2bac48d0d0cfb1fa47e5f7c6400e2 data/pyrellium/loot_tables/blocks/flowering_ghostly_leaves.json
+1d217fac8dd97a0b89e09d03107151648d75688e data/pyrellium/loot_tables/blocks/shaderoot_stairs.json
 989442028eda391b30e00aa231131f040b94aa45 data/pyrellium/loot_tables/blocks/burning_fence.json
 1d4929d7d6176f60e5ea991a577527ed251ef375 data/pyrellium/loot_tables/blocks/spores.json
 f7755a7eaaee060defba18ab76c3ae5bbb557ba4 data/pyrellium/loot_tables/blocks/stripped_burning_log.json
