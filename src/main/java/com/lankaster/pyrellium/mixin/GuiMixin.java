@@ -2,7 +2,6 @@ package com.lankaster.pyrellium.mixin;
 
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.block.FreezingIceBlock;
-import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.item.ModItems;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
