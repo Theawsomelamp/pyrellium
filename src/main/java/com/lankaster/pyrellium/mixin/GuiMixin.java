@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.mixin;
 
 import com.lankaster.pyrellium.Pyrellium;
+import com.lankaster.pyrellium.block.FreezingIceBlock;
 import com.lankaster.pyrellium.block.ModBlocks;
 import com.lankaster.pyrellium.item.ModItems;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -44,7 +45,7 @@ public abstract class GuiMixin {
 
     @WrapOperation(method = "renderCameraOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;renderTextureOverlay(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/ResourceLocation;F)V", ordinal = 1))
     public void renderBlackIceOverlay(Gui instance, GuiGraphics context, ResourceLocation texture, float opacity, Operation<Void> original){
-        if (minecraft.level.getChunk(minecraft.player.blockPosition()).getBlockState(minecraft.player.blockPosition().below()).is(ModBlocks.FREEZING_ICE) && minecraft.player.getPercentFrozen() <= 0.03f) {
+        if (minecraft.level.getChunk(minecraft.player.blockPosition()).getBlockState(minecraft.player.blockPosition().below()).getBlock() instanceof FreezingIceBlock && minecraft.player.getPercentFrozen() <= 0.03f) {
             blackIce = true;
         }
 

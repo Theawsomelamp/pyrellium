@@ -76,6 +76,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> SLEEPING_QUARTZ_GEODIN = registerBlockWithoutBlockItem("sleeping_quartz_geodin", () -> new GeodinBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_BASALT), SMALL_QUARTZ_BUD.get(), MEDIUM_QUARTZ_BUD.get(), LARGE_QUARTZ_BUD.get(), QUARTZ_CRYSTAL.get(), ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "quartz")));
 
     public static final DeferredBlock<Block> FREEZING_ICE = registerBlock("freezing_ice", () -> new FreezingIceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PACKED_ICE).noOcclusion()));
+    public static final DeferredBlock<Block> PACKED_FREEZING_ICE = registerBlock("packed_freezing_ice", () -> new FreezingIceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PACKED_ICE)));
     public static final DeferredBlock<Block> SILK_BLOCK = registerBlock("silk_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     public static final DeferredBlock<Block> SILK_CARPET = registerBlock("silk_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET).sound(SoundType.WOOL).speedFactor(0.4F).jumpFactor(0.5F)));
     public static final DeferredBlock<Block> HANGING_SILK = registerBlock("hanging_silk", () -> new HangingSilkBlock(BlockBehaviour.Properties.of().randomTicks().noCollission().ignitedByLava().strength(0.75F).pushReaction(PushReaction.DESTROY)));

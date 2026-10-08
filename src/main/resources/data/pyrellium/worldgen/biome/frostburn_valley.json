@@ -4,7 +4,7 @@
   "has_precipitation": false,
   "effects": {
     "sky_color": 7254527,
-    "fog_color": 2124390,
+    "fog_color": 6127228,
     "water_color": 4159204,
     "water_fog_color": 329011,
     "ambient_sound": "minecraft:ambient.soul_sand_valley.loop",
@@ -76,7 +76,8 @@
     [],
     [
       "pyrellium:freeze_lava_lake",
-      "pyrellium:ice_pillar"
+      "pyrellium:ice_pillar",
+      "pyrellium:basalt_wall"
     ],
     [],
     [],
@@ -88,7 +89,8 @@
       "minecraft:patch_soul_fire",
       "minecraft:glowstone_extra",
       "minecraft:glowstone",
-      "minecraft:patch_crimson_roots",
+      "pyrellium:patch_dead_sprouts",
+      "pyrellium:frostburn_soul_fire_patch",
       "minecraft:ore_magma",
       "minecraft:ore_soul_sand",
       "minecraft:ore_gravel_nether",

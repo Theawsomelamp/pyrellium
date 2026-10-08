@@ -146,7 +146,7 @@ public class PyrelliumBiomeModifiers extends DatapackBuiltinEntriesProvider {
                 bootstrap.register(registerKey("blackstone_rock_patch"), new BiomeModifiers.AddFeaturesBiomeModifier(
                         HolderSet.direct(biomes.getOrThrow(ModBiomes.BLACKSTONE_SPRINGS)),
                         HolderSet.direct(placedFeatures.getOrThrow(makeKey("blackstone_rock_patch"))),
-                        GenerationStep.Decoration.UNDERGROUND_DECORATION
+                        GenerationStep.Decoration.VEGETAL_DECORATION
                 ));
             }
 

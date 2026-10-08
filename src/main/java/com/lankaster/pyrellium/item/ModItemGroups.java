@@ -44,6 +44,7 @@ public class ModItemGroups {
                         output.accept(ModBlocks.QUARTZ_CRYSTAL);
                         output.accept(ModBlocks.BUDDING_QUARTZ);
                         output.accept(ModBlocks.FREEZING_ICE);
+                        output.accept(ModBlocks.PACKED_FREEZING_ICE);
                         output.accept(ModBlocks.SILK_BLOCK);
                         output.accept(ModBlocks.SILK_CARPET);
                         output.accept(ModBlocks.HANGING_SILK);

@@ -41,7 +41,7 @@ public class ReplaceWallFeature extends Feature<ReplaceWallFeatureConfig> {
 
                 BlockState blockState = structureWorldAccess.getBlockState(blockPos2);
                 if (blockState.is(block)) {
-                    for (Direction direction : Direction.Plane.HORIZONTAL.shuffledCopy(RandomSource.create())) {
+                    for (Direction direction : Direction.values()) {
                         BlockPos blockPos3 = blockPos2.relative(direction);
                         if (structureWorldAccess.getBlockState(blockPos3).canBeReplaced()) {
                             this.setBlock(structureWorldAccess, blockPos2, replaceWallFeatureConfig.provider().getState(random, blockPos2));

@@ -1,5 +1,6 @@
 package com.lankaster.pyrellium.block;
 
+import com.lankaster.pyrellium.config.Config;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.entity.Entity;
@@ -14,8 +15,10 @@ public class FreezingIceBlock extends TransparentBlock {
     }
 
     public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
-        if (entity instanceof LivingEntity) {
-            entity.setIsInPowderSnow(true);
+        if (Config.instance().blocks.black_ice_freezing) {
+            if (entity instanceof LivingEntity) {
+                entity.setIsInPowderSnow(true);
+            }
         }
 
 

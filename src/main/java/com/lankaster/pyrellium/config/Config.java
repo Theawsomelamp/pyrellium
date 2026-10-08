@@ -18,6 +18,7 @@ public class Config {
     public static class Blocks {
         public boolean placeable_bones = true;
         public boolean placeable_wall_mushrooms = true;
+        public boolean black_ice_freezing = true;
         public float red_bounceshroom_bounce = 1.0F;
         public float brown_bounceshroom_bounce = 0.75F;
         public float bomb_plant_explosion_strength = 1.0F;
@@ -35,6 +36,7 @@ public class Config {
     }
 
     public static class Entities {
+        public float skeleton_crystal_arrow_chance = 0.05f;
         public Geodin geodin = new Geodin();
     }
 
@@ -47,16 +49,12 @@ public class Config {
         public int conversion_time = 1200;
     }
 
-    public record EnchantDistribution(boolean enchant_table_roll, boolean librarian_book_trade, boolean found_on_enchanted_loot) {
-    }
-
     public static class Enchants {
         public Rebound rebound = new Rebound();
     }
 
     public static class Rebound {
         public int max_level = 3;
-        public EnchantDistribution distribution = new EnchantDistribution(false, true, true);
         public float added_velocity_per_level = 0.2F;
         public float rebound_range = 6.0F;
     }

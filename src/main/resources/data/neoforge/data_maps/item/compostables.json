@@ -1,0 +1,49 @@
+{
+  "values": {
+    "pyrellium:brown_shelf_mushroom": {
+      "chance": 0.65
+    },
+    "pyrellium:red_shelf_mushroom": {
+      "chance": 0.65
+    },
+    "pyrellium:bomb_plant": {
+      "chance": 0.65
+    },
+    "pyrellium:burning_leaves": {
+      "chance": 0.3
+    },
+    "pyrellium:burning_sapling": {
+      "chance": 0.3
+    },
+    "pyrellium:burning_roots": {
+      "chance": 0.65
+    },
+    "pyrellium:burning_sprouts": {
+      "chance": 0.5
+    },
+    "pyrellium:burning_vines": {
+      "chance": 0.3
+    },
+    "pyrellium:pyrolily": {
+      "chance": 0.65
+    },
+    "pyrellium:ghostly_leaves": {
+      "chance": 0.3
+    },
+    "pyrellium:flowering_ghostly_leaves": {
+      "chance": 0.3
+    },
+    "pyrellium:dead_roots": {
+      "chance": 0.65
+    },
+    "pyrellium:dead_sprouts": {
+      "chance": 0.5
+    },
+    "pyrellium:ghostly_vines": {
+      "chance": 0.3
+    },
+    "pyrellium:wispbloom": {
+      "chance": 0.3
+    }
+  }
+}

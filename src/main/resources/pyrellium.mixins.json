@@ -3,20 +3,21 @@
   "package": "com.lankaster.pyrellium.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "NearestAttackableTargetGoalAccessor",
+    "AbstractArrowAccessor",
+    "AbstractSkeletonMixin",
     "BlockItemMixin",
     "GhastMixin",
     "ItemMixin",
-    "MultiPackResourceManagerMixin",
     "LivingEntityMixin",
-    "AbstractArrowAccessor",
+    "MultiPackResourceManagerMixin",
+    "NearestAttackableTargetGoalAccessor",
     "StraySpawningMixin",
     "WarningSuppressor"
   ],
   "client": [
     "BoatEntityRenderMixin",
-    "HeadStoneEditScreenMixin",
     "GuiMixin",
+    "HeadStoneEditScreenMixin",
     "ItemRendererMixin",
     "ModelBakeryMixin"
   ],
