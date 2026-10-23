@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:cyan_dye_from_wispbloom"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wispbloom": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pyrellium:wispbloom"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wispbloom",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:cyan_dye_from_wispbloom"
+    ]
+  },
+  "sends_telemetry_event": false
+}
