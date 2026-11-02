@@ -5,6 +5,7 @@ import com.lankaster.pyrellium.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBlockTags;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -63,10 +64,9 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.HANGING_SILK
         );
 
-        getOrCreateTagBuilder(BlockTags.DIRT).add(
+        getOrCreateTagBuilder(BlockTags.NYLIUM).add(
                 ModBlocks.NETHERRACK_MYCELIUM,
-                ModBlocks.BURNING_NYLIUM,
-                ModBlocks.DRAINED_SOUL_SOIL
+                ModBlocks.BURNING_NYLIUM
         );
 
         getOrCreateTagBuilder(BlockTags.LEAVES).add(
@@ -179,6 +179,14 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
 
         getOrCreateTagBuilder(BlockTags.IRON_ORES).add(
                 ModBlocks.BASALT_IRON_ORE
+        );
+
+        getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "nether_soils"))).forceAddTag(
+                BlockTags.NYLIUM
+        ).add(
+                Blocks.NETHERRACK,
+                Blocks.SOUL_SOIL,
+                ModBlocks.DRAINED_SOUL_SOIL
         );
 
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(

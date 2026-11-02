@@ -147,7 +147,7 @@ public class RecipeDataGen extends FabricRecipeProvider {
         offerHatRecipe(exporter, RecipeCategory.COMBAT, ModItems.MUSHROOM_CAP, Blocks.RED_MUSHROOM_BLOCK, Blocks.RED_MUSHROOM, Items.LEATHER_HELMET);
 
         offerShapelessRecipe(exporter, Items.LIGHT_BLUE_DYE, ModBlocks.PYROLILY, "light_blue_dye", 1);
-        offerShapelessRecipe(exporter, Items.CYAN_DYE, ModBlocks.WISPBLOOM, "cyan_dye", 1);
+        offerShapelessRecipe(exporter, Items.BLUE_DYE, ModBlocks.WISPBLOOM, "blue_dye", 1);
 
         // Opal Spyglass
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.OPAL_SPYGLASS)

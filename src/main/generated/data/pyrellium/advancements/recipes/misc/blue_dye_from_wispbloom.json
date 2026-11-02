@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:cyan_dye_from_wispbloom"
+        "recipe": "minecraft:blue_dye_from_wispbloom"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:cyan_dye_from_wispbloom"
+      "minecraft:blue_dye_from_wispbloom"
     ]
   },
   "sends_telemetry_event": false

@@ -2,7 +2,6 @@ package com.lankaster.pyrellium.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -15,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-public class BurningFlowerBlock extends FlowerBlock {
+public class BurningFlowerBlock extends NetherFlowerBlock {
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
     public BurningFlowerBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {

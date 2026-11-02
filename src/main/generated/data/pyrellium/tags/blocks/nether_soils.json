@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:nylium",
+    "minecraft:netherrack",
+    "minecraft:soul_soil",
+    "pyrellium:drained_soul_soil"
+  ]
+}

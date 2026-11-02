@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "group": "cyan_dye",
+  "group": "blue_dye",
   "ingredients": [
     {
       "item": "pyrellium:wispbloom"
     }
   ],
   "result": {
-    "item": "minecraft:cyan_dye"
+    "item": "minecraft:blue_dye"
   }
 }

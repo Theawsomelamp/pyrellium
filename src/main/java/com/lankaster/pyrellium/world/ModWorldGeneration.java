@@ -3,10 +3,7 @@ package com.lankaster.pyrellium.world;
 import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.entity.ModEntities;
-import com.lankaster.pyrellium.world.tree.BurningTrunkPlacer;
-import com.lankaster.pyrellium.world.tree.WeepingFoliagePlacer;
-import com.lankaster.pyrellium.world.tree.WillowFoliagePlacer;
-import com.lankaster.pyrellium.world.tree.HangingTreeDecorator;
+import com.lankaster.pyrellium.world.tree.*;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.entity.SpawnGroup;
@@ -105,5 +102,6 @@ public class ModWorldGeneration {
         WillowFoliagePlacer.registerWillowFoliagePlacer();
         WeepingFoliagePlacer.registerWeepingFoliagePlacer();
         HangingTreeDecorator.registerHangingTreeDecorator();
+        AlterSurfaceTreeDecorator.registerAlterSurfaceTreeDecorator();
     }
 }

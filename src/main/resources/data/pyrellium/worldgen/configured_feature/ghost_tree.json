@@ -105,6 +105,18 @@
             }
           }
         }
+      },
+      {
+        "type": "pyrellium:alter_surface",
+        "target": {
+          "Name": "minecraft:soul_soil"
+        },
+        "provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "pyrellium:drained_soul_soil"
+          }
+        }
       }
     ],
     "minimum_size": {
