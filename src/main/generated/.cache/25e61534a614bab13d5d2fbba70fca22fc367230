@@ -1,4 +1,4 @@
-// 1.20.1	2026-11-02T10:39:16.053938082	Pyrellium/Tags for minecraft:block
+// 1.20.1	2026-11-02T18:17:37.239370392	Pyrellium/Tags for minecraft:block
 616011de3bd0c321c1eded1392283734ebe6bdea data/minecraft/tags/blocks/wooden_trapdoors.json
 c90ec31abdeee3d686a4f62fd5c55c1c9df3aa99 data/pyrellium/tags/blocks/nether_soils.json
 e740b8e9c3c63572fc13b3cf73d9f4f193ed6673 data/minecraft/tags/blocks/wooden_slabs.json
@@ -11,16 +11,17 @@ ddb2d329b272cdc4045759875719c81446c4407c data/minecraft/tags/blocks/wooden_press
 287bfa8ca9b589d29f97852c69162ce7ae4db371 data/c/tags/blocks/clusters.json
 abfcbec8f782a617904f2d7c79387e44ca75825c data/minecraft/tags/blocks/flower_pots.json
 f9069a4700e14d6a9065bcb282138427b8519701 data/minecraft/tags/blocks/soul_fire_base_blocks.json
+4b13ffa3d540e84a05865d5b4164ad29f69b4985 data/c/tags/blocks/bars.json
 78b44965479c4b0a213cdec2c80de280d6e98c4b data/c/tags/blocks/budding_blocks.json
 0722cb7bd1a4361c9550b4a2c8eba983f6816e68 data/minecraft/tags/blocks/wooden_stairs.json
 61e90b6fa63d6c6fc2ec55394f889e693cc23420 data/minecraft/tags/blocks/wooden_fences.json
 f9069a4700e14d6a9065bcb282138427b8519701 data/minecraft/tags/blocks/mineable/shovel.json
 d1fa98f9782e2a302f6ca3af46c6c4062336e58e data/minecraft/tags/blocks/wall_signs.json
 5718c0ddfce11752aa33787e695b5135a175e474 data/minecraft/tags/blocks/ceiling_hanging_signs.json
-194f1e7326ebe369c472872c57c476df97fd7440 data/minecraft/tags/blocks/sword_efficient.json
+bf8d56aaae6af5b6cdc9053e1a610786e34aa7d1 data/minecraft/tags/blocks/sword_efficient.json
 cb3ae722d3ba963f95e78b6ca1636ebe940fea05 data/minecraft/tags/blocks/mineable/pickaxe.json
 090a23965bd56453320ce1dfe56d7a60d57ff2b6 data/pyrellium/tags/blocks/shaderoot_logs.json
-36558ce3070be3fca950f22c258f0715237687bc data/minecraft/tags/blocks/mineable/hoe.json
+104b02d7da291ed1584f0613d91d03df50fb44e9 data/minecraft/tags/blocks/mineable/hoe.json
 82fcf10078bf7aaf374bdc6fb64840aa7415912b data/pyrellium/tags/blocks/burning_logs.json
 046dc1335ed15f78b117da74a969be015941c258 data/minecraft/tags/blocks/fence_gates.json
 092a545743442d54ff2746df8a7be115061df3fe data/minecraft/tags/blocks/planks.json
@@ -31,3 +32,4 @@ ffa1f29afc01a66f70cbc17ddd5ce3782f78ea59 data/minecraft/tags/blocks/standing_sig
 e159fe6c908030d23e70737ad95e8bab40265dea data/minecraft/tags/blocks/wooden_buttons.json
 f7687de804bd3768bf75f8567fa1311326412e77 data/minecraft/tags/blocks/nylium.json
 8a83ef56c85465551f4717368ae7cf621b26b89c data/minecraft/tags/blocks/crystal_sound_blocks.json
+679d1809f266a6f4c2e807ca5f9cb2177bc1813f data/minecraft/tags/blocks/inside_step_sound_blocks.json

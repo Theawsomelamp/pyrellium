@@ -1,4 +1,4 @@
-// 1.20.1	2026-11-02T10:39:16.055060016	Pyrellium/Recipes
+// 1.20.1	2026-11-02T18:17:37.240354044	Pyrellium/Recipes
 16b6bcd916681f3d0913183182d59501622c0f0d data/pyrellium/recipes/shaderoot_stairs.json
 d8c62bbbb28767a1e3bce4fb67bdbb2e4c2bf8bd data/pyrellium/recipes/burning_button_from_burning_planks.json
 4117af85a166cfc6b110e433ef9eef7652536bd9 data/pyrellium/advancements/recipes/building_blocks/clear_opal_block.json
@@ -74,8 +74,8 @@ b23f6aac96842144ec83672dffe998172aa363d3 data/pyrellium/recipes/opal_arrow.json
 b74bac357535f4584bbb62c6a8960e5bc0a33fbf data/pyrellium/recipes/burning_planks.json
 1150ca211deceef44c368b471657243cfd82a07a data/pyrellium/advancements/recipes/redstone/shaderoot_pressure_plate.json
 fdba78be5ff7da18c624d00ca4a258cfaf009457 data/pyrellium/recipes/burning_boat.json
-2b1e2ca4d500ede062217584eed4c65e155766eb data/pyrellium/recipes/burning_stairs.json
 1a0f6f8127f00f1219e7a356424d6469f59af241 data/pyrellium/recipes/burning_wood.json
+2b1e2ca4d500ede062217584eed4c65e155766eb data/pyrellium/recipes/burning_stairs.json
 6c3388a0f354c167e501cafc3a83d238c758e425 data/pyrellium/recipes/burning_slab.json
 8a49b42e97418e3870965b86b7ef9d59876519ff data/pyrellium/advancements/recipes/building_blocks/burning_wood.json
 268f02497f94f436016124be9e187d3196cfce8d data/pyrellium/advancements/recipes/building_blocks/clear_amethyst_block.json
