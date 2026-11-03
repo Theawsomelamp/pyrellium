@@ -88,6 +88,18 @@
             }
           }
         }
+      },
+      {
+        "type": "pyrellium:alter_surface",
+        "target": {
+          "Name": "minecraft:netherrack"
+        },
+        "provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "pyrellium:burning_nylium"
+          }
+        }
       }
     ],
     "minimum_size": {

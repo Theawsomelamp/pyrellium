@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "clear_opal_block",
+  "key": {
+    "#": {
+      "item": "pyrellium:opal"
+    }
+  },
+  "pattern": [
+    " # ",
+    "# #",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "pyrellium:clear_opal_block"
+  }
+}

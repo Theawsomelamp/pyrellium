@@ -13,7 +13,11 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModBiomes {
+    private static final List<RegistryKey<Biome>> MOD_BIOMES = new ArrayList<>();
 
     public static final RegistryKey<Biome> BLACKSTONE_SPRINGS = registerBiome("blackstone_springs");
     public static final RegistryKey<Biome> BURNING_GROVE = registerBiome("burning_grove");
@@ -26,7 +30,13 @@ public class ModBiomes {
     public static final RegistryKey<Biome> QUARTZ_CAVERNS = registerBiome("quartz_caverns");
 
     private static RegistryKey<Biome> registerBiome(String name) {
-        return RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, name));
+        RegistryKey<Biome> key = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Pyrellium.MOD_ID, name));
+        MOD_BIOMES.add(key);
+        return key;
+    }
+
+    public static List<RegistryKey<Biome>> getAll() {
+        return MOD_BIOMES;
     }
 
     public static void bootstrap(Registerable<Biome> context) {

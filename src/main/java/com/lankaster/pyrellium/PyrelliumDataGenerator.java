@@ -18,6 +18,8 @@ public class PyrelliumDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(LootTableDataGen::new);
         pack.addProvider(EnchantmentTagDataGen::new);
         pack.addProvider(RegistryDataGen::new);
+        pack.addProvider(RecipeDataGen::new);
+        pack.addProvider(AdvancementDataGen::new);
     }
 
     @Override
