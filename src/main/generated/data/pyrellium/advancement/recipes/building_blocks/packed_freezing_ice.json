@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_freezing_ice": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pyrellium:freezing_ice"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pyrellium:packed_freezing_ice"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_freezing_ice"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pyrellium:packed_freezing_ice"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "clear_amethyst_block",
+  "key": {
+    "#": "minecraft:amethyst_shard"
+  },
+  "pattern": [
+    " # ",
+    "# #",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "pyrellium:clear_amethyst_block"
+  }
+}

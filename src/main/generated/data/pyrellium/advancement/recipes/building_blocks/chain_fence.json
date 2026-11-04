@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_iron_chain": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:iron_chain"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pyrellium:chain_fence"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_iron_chain"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pyrellium:chain_fence"
+    ]
+  }
+}

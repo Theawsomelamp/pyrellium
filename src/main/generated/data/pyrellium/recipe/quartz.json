@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "pyrellium:rough_quartz_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "minecraft:quartz"
+  }
+}

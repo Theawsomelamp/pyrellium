@@ -5,6 +5,9 @@ import com.lankaster.pyrellium.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.data.tag.ProvidedTagBuilder;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -17,6 +20,11 @@ import java.util.concurrent.CompletableFuture;
 public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
     public BlockTagDataGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
+    }
+
+    private ProvidedTagBuilder<Block, Block> valueLookupBuilder(Identifier id) {
+        TagKey<Block> tag = TagKey.of(RegistryKeys.BLOCK, id);
+        return this.valueLookupBuilder(tag);
     }
 
     @Override
@@ -57,17 +65,18 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
         valueLookupBuilder(BlockTags.HOE_MINEABLE).add(
                 ModBlocks.BURNING_LEAVES,
                 ModBlocks.GHOSTLY_LEAVES,
-                ModBlocks.FLOWERING_GHOSTLY_LEAVES
+                ModBlocks.FLOWERING_GHOSTLY_LEAVES,
+                ModBlocks.WISPBLOOM
         );
 
         valueLookupBuilder(BlockTags.SWORD_EFFICIENT).add(
-                ModBlocks.HANGING_SILK
+                ModBlocks.HANGING_SILK,
+                ModBlocks.WISPBLOOM
         );
 
-        valueLookupBuilder(BlockTags.DIRT).add(
+        valueLookupBuilder(BlockTags.NYLIUM).add(
                 ModBlocks.NETHERRACK_MYCELIUM,
-                ModBlocks.BURNING_NYLIUM,
-                ModBlocks.DRAINED_SOUL_SOIL
+                ModBlocks.BURNING_NYLIUM
         );
 
         valueLookupBuilder(BlockTags.LEAVES).add(
@@ -183,22 +192,38 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.CLEAR_OPAL_BLOCK
         );
 
+        valueLookupBuilder(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(
+                ModBlocks.WISPBLOOM
+        );
+
         valueLookupBuilder(BlockTags.IRON_ORES).add(
                 ModBlocks.BASALT_IRON_ORE
         );
 
-        valueLookupBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
+        valueLookupBuilder(Identifier.of(Pyrellium.MOD_ID, "nether_soils")).forceAddTag(
+                BlockTags.NYLIUM
+        ).add(
+                Blocks.NETHERRACK,
+                Blocks.SOUL_SOIL,
+                ModBlocks.DRAINED_SOUL_SOIL
+        );
+
+        valueLookupBuilder(Identifier.of(Pyrellium.MOD_ID, "burning_logs")).add(
                 ModBlocks.BURNING_LOG,
                 ModBlocks.BURNING_WOOD,
                 ModBlocks.STRIPPED_BURNING_LOG,
                 ModBlocks.STRIPPED_BURNING_WOOD
         );
 
-        valueLookupBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "shaderoot_logs"))).add(
+        valueLookupBuilder(Identifier.of(Pyrellium.MOD_ID, "shaderoot_logs")).add(
                 ModBlocks.SHADEROOT_LOG,
                 ModBlocks.SHADEROOT_WOOD,
                 ModBlocks.STRIPPED_SHADEROOT_LOG,
                 ModBlocks.STRIPPED_SHADEROOT_WOOD
+        );
+
+        valueLookupBuilder(Identifier.of("c", "bars")).add(
+                ModBlocks.CHAIN_FENCE
         );
 
         valueLookupBuilder(ConventionalBlockTags.BUDDING_BLOCKS).add(

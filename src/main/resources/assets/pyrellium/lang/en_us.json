@@ -137,5 +137,8 @@
 
   "headstone.edit": "Edit Headstone Message",
 
-  "trim_material.pyrellium.opal": "Opal Material"
+  "trim_material.pyrellium.opal": "Opal Material",
+
+  "advancement.pyrellium.visit_pyrellium_biomes": "Trough the Pyre",
+  "advancement.pyrellium.visit_pyrellium_biomes.desc": "Visit all the Pyrellium Biomes"
 }

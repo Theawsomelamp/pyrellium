@@ -6,6 +6,8 @@ import com.lankaster.pyrellium.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.data.tag.ProvidedTagBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -20,6 +22,14 @@ public class ItemTagDataGen extends FabricTagProvider.ItemTagProvider{
 
     public ItemTagDataGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
         super(output, completableFuture);
+    }
+
+    private ProvidedTagBuilder<Item, Item> valueLookupBuilder(Identifier id) {
+        return this.valueLookupBuilder(tag(id));
+    }
+
+    private TagKey<Item> tag(Identifier id) {
+        return TagKey.of(RegistryKeys.ITEM, id);
     }
 
     @Override
@@ -39,36 +49,65 @@ public class ItemTagDataGen extends FabricTagProvider.ItemTagProvider{
                 ModBlocks.SHADEROOT_SLAB.asItem()
         );
 
+        valueLookupBuilder(ItemTags.SIGNS).add(
+                ModBlocks.BURNING_SIGN_ITEM,
+                ModBlocks.SHADEROOT_SIGN_ITEM
+        );
+
+        valueLookupBuilder(ItemTags.HANGING_SIGNS).add(
+                ModBlocks.BURNING_HANGING_SIGN_ITEM,
+                ModBlocks.SHADEROOT_HANGING_SIGN_ITEM
+        );
+
+        valueLookupBuilder(ItemTags.BOATS).add(
+                ModBlocks.BURNING_BOAT,
+                ModBlocks.SHADEROOT_BOAT
+        );
+
+        valueLookupBuilder(ItemTags.CHEST_BOATS).add(
+                ModBlocks.BURNING_CHEST_BOAT,
+                ModBlocks.SHADEROOT_CHEST_BOAT
+        );
+
         valueLookupBuilder(ItemTags.SOUL_FIRE_BASE_BLOCKS).add(
                 ModBlocks.DRAINED_SOUL_SOIL.asItem()
         );
 
-        valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "burning_logs"))).add(
+        valueLookupBuilder(Identifier.of(Pyrellium.MOD_ID, "burning_logs")).add(
                 ModBlocks.BURNING_LOG.asItem(),
                 ModBlocks.BURNING_WOOD.asItem(),
                 ModBlocks.STRIPPED_BURNING_LOG.asItem(),
                 ModBlocks.STRIPPED_BURNING_WOOD.asItem()
         );
 
-        valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "shaderoot_logs"))).add(
+        valueLookupBuilder(Identifier.of(Pyrellium.MOD_ID, "shaderoot_logs")).add(
                 ModBlocks.SHADEROOT_LOG.asItem(),
                 ModBlocks.SHADEROOT_WOOD.asItem(),
                 ModBlocks.STRIPPED_SHADEROOT_LOG.asItem(),
                 ModBlocks.STRIPPED_SHADEROOT_WOOD.asItem()
         );
 
-        valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "opal_repair"))).add(
+        valueLookupBuilder(Identifier.of(Pyrellium.MOD_ID, "opal_repair")).add(
                 ModItems.OPAL
         );
 
-        valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "mushroom_repair"))).add(
+        valueLookupBuilder(Identifier.of(Pyrellium.MOD_ID, "mushroom_repair")).add(
                 Items.RED_MUSHROOM
         );
 
-        valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(Pyrellium.MOD_ID, "crystals"))).add(
+        valueLookupBuilder(Identifier.of(Pyrellium.MOD_ID, "crystals")).add(
                 Items.AMETHYST_SHARD,
                 ModItems.OPAL,
                 Items.QUARTZ
+        );
+
+        valueLookupBuilder(Identifier.of(Pyrellium.MOD_ID, "hats")).add(
+                ModItems.OPAL_TIARA,
+                ModItems.MUSHROOM_CAP
+        );
+
+        valueLookupBuilder(ItemTags.HEAD_ARMOR).addOptionalTag(
+                tag(Identifier.of(Pyrellium.MOD_ID, "hats"))
         );
 
         valueLookupBuilder(ConventionalItemTags.BUDDING_BLOCKS).add(

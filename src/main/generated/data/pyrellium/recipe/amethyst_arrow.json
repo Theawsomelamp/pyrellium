@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "amethyst_arrow",
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "B": "minecraft:stick",
+    "C": "minecraft:feather"
+  },
+  "pattern": [
+    "A",
+    "B",
+    "C"
+  ],
+  "result": {
+    "count": 4,
+    "id": "pyrellium:amethyst_arrow"
+  }
+}

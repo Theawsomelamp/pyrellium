@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "opal_arrow",
+  "key": {
+    "A": "pyrellium:opal",
+    "B": "minecraft:stick",
+    "C": "minecraft:feather"
+  },
+  "pattern": [
+    "A",
+    "B",
+    "C"
+  ],
+  "result": {
+    "count": 4,
+    "id": "pyrellium:opal_arrow"
+  }
+}

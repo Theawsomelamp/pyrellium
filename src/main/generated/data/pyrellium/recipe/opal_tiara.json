@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "opal_tiara",
+  "key": {
+    "A": "pyrellium:opal",
+    "B": "minecraft:gold_ingot",
+    "C": "minecraft:ghast_tear"
+  },
+  "pattern": [
+    " A ",
+    "BCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pyrellium:opal_tiara"
+  }
+}

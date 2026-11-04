@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": "pyrellium:opal",
+    "B": "minecraft:copper_ingot"
+  },
+  "pattern": [
+    "A",
+    "B",
+    "B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pyrellium:opal_spyglass"
+  }
+}

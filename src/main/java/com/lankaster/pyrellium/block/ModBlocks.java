@@ -51,7 +51,7 @@ public class ModBlocks {
     public static final Block SILK_CARPET = registerBlock("silk_carpet", CarpetBlock::new, AbstractBlock.Settings.copy(Blocks.MOSS_CARPET).sounds(BlockSoundGroup.WOOL).velocityMultiplier(0.4F).jumpVelocityMultiplier(0.5F));
     public static final Block HANGING_SILK = registerBlock("hanging_silk", HangingSilkBlock::new, AbstractBlock.Settings.create().ticksRandomly().noCollision().burnable().strength(0.75F).pistonBehavior(PistonBehavior.DESTROY));
 
-    public static final Block NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", NyliumBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM));
+    public static final Block NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", properties -> new GrowFeatureBlock(properties, RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "mushroom_wastes_vegetation_bonemeal"))), AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM));
     public static final Block BROWN_BOUNCESHROOM = registerBlock("brown_bounceshroom", properties -> new BounceMushroomBlock(properties, Config.instance().blocks.brown_bounceshroom_bounce), AbstractBlock.Settings.copy(Blocks.BROWN_MUSHROOM_BLOCK));
     public static final Block RED_BOUNCESHROOM = registerBlock("red_bounceshroom", properties -> new BounceMushroomBlock(properties, Config.instance().blocks.red_bounceshroom_bounce), AbstractBlock.Settings.copy(Blocks.RED_MUSHROOM_BLOCK));
     public static final Block BROWN_WALL_MUSHROOM = registerBlockWithoutBlockItem("brown_wall_mushroom", WallMushroomBlock::new, AbstractBlock.Settings.copy(Blocks.BROWN_MUSHROOM));
@@ -68,9 +68,9 @@ public class ModBlocks {
     public static final Block BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", CarpetBlock::new, AbstractBlock.Settings.copy(Blocks.BLACKSTONE).nonOpaque());
 
     public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));
-    public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", ModNyliumBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM));
+    public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", properties -> new GrowFeatureBlock(properties, RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "burning_grove_vegetation_bonemeal"))), AbstractBlock.Settings.copy(Blocks.CRIMSON_NYLIUM));
     public static final Block BURNING_LEAVES = registerBlock("burning_leaves", properties -> new ModLeavesBlock(properties, 7, 0.0F, ParticleTypes.CHERRY_LEAVES), AbstractBlock.Settings.copy(Blocks.OAK_LEAVES));
-    public static final Block BURNING_SAPLING = registerBlock("burning_sapling", properties -> new SaplingBlock(new ModSaplingGenerator().BURNING, properties), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING));
+    public static final Block BURNING_SAPLING = registerBlock("burning_sapling", properties -> new NetherSaplingBlock(new ModSaplingGenerator().BURNING, properties), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING));
     public static final Block POTTED_BURNING_SAPLING = registerBlockWithoutBlockItem("potted_burning_sapling", properties -> new FlowerPotBlock(ModBlocks.BURNING_SAPLING, properties), AbstractBlock.Settings.copy(Blocks.POTTED_OAK_SAPLING));
     public static final Block BURNING_LOG = registerBlock("burning_log", PillarBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD));
     public static final Block BURNING_WOOD = registerBlock("burning_wood", PillarBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_HYPHAE).sounds(BlockSoundGroup.WOOD));
@@ -89,8 +89,8 @@ public class ModBlocks {
     public static final Block BURNING_WALL_SIGN = registerBlockWithoutBlockItem("burning_wall_sign", properties -> new WallSignBlock(BURNING, properties), AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).lootTable(BURNING_SIGN.getLootTableKey()));
     public static final Block BURNING_HANGING_SIGN = registerBlockWithoutBlockItem("burning_hanging_sign", properties -> new HangingSignBlock(BURNING, properties), AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F));
     public static final Block BURNING_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("burning_wall_hanging_sign", properties -> new WallHangingSignBlock(BURNING, properties), AbstractBlock.Settings.create().mapColor(Blocks.CRIMSON_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).lootTable(BURNING_HANGING_SIGN.getLootTableKey()));
-    public static final Block BURNING_ROOTS = registerBlock("burning_roots", RootsBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_ROOTS));
-    public static final Block BURNING_SPROUTS = registerBlock("burning_sprouts", SproutsBlock::new, AbstractBlock.Settings.copy(Blocks.NETHER_SPROUTS));
+    public static final Block BURNING_ROOTS = registerBlock("burning_roots", properties -> new ModRootsBlock(properties, false), AbstractBlock.Settings.copy(Blocks.WARPED_ROOTS));
+    public static final Block BURNING_SPROUTS = registerBlock("burning_sprouts", properties -> new ModRootsBlock(properties, true), AbstractBlock.Settings.copy(Blocks.NETHER_SPROUTS));
     public static final Block BURNING_VINES = registerBlock("burning_vines", HangingVinesBlock::new, AbstractBlock.Settings.copy(Blocks.TWISTING_VINES));
     public static final Block PYROLILY = registerBlock("pyrolily", properties -> new BurningFlowerBlock(StatusEffects.FIRE_RESISTANCE, 5, properties), AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 9));
     public static final Block POTTED_PYROLILY = registerBlockWithoutBlockItem("potted_pyrolily", properties -> new FlowerPotBlock(ModBlocks.PYROLILY, properties), AbstractBlock.Settings.copy(Blocks.POTTED_POPPY).luminance((state) -> 7));
@@ -104,10 +104,10 @@ public class ModBlocks {
 
     /// Back to the blocks
     public static final WoodType SHADEROOT = WoodTypeBuilder.copyOf(WoodType.OAK).register(Identifier.of(Pyrellium.MOD_ID, "shaderoot"), new BlockSetType("shaderoot"));
-    public static final Block DRAINED_SOUL_SOIL = registerBlock("drained_soul_soil", Block::new, AbstractBlock.Settings.copy(Blocks.SOUL_SOIL));
+    public static final Block DRAINED_SOUL_SOIL = registerBlock("drained_soul_soil", properties -> new GrowFeatureBlock(properties, RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "ghost_forest_vegetation_bonemeal"))), AbstractBlock.Settings.copy(Blocks.SOUL_SOIL));
     public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", properties -> new ModLeavesBlock(properties, 10, 0.0F, ParticleTypes.CHERRY_LEAVES), AbstractBlock.Settings.copy(Blocks.OAK_LEAVES));
     public static final Block FLOWERING_GHOSTLY_LEAVES = registerBlock("flowering_ghostly_leaves", properties -> new ModLeavesBlock(properties, 10, 0.0F, ParticleTypes.CHERRY_LEAVES), AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).luminance((state) -> 4));
-    public static final Block SHADEROOT_SAPLING = registerBlock("shaderoot_sapling", properties -> new SaplingBlock(new ModSaplingGenerator().SHADEROOT, properties), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING));
+    public static final Block SHADEROOT_SAPLING = registerBlock("shaderoot_sapling", properties -> new NetherSaplingBlock(new ModSaplingGenerator().SHADEROOT, properties), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING));
     public static final Block POTTED_SHADEROOT_SAPLING = registerBlockWithoutBlockItem("potted_shaderoot_sapling", properties -> new FlowerPotBlock(ModBlocks.SHADEROOT_SAPLING, properties), AbstractBlock.Settings.copy(Blocks.POTTED_OAK_SAPLING));
     public static final Block SHADEROOT_LOG = registerBlock("shaderoot_log", PillarBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_STEM).sounds(BlockSoundGroup.WOOD));
     public static final Block SHADEROOT_WOOD = registerBlock("shaderoot_wood", PillarBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).sounds(BlockSoundGroup.WOOD));
@@ -126,10 +126,10 @@ public class ModBlocks {
     public static final Block SHADEROOT_WALL_SIGN = registerBlockWithoutBlockItem("shaderoot_wall_sign", properties -> new WallSignBlock(SHADEROOT, properties), AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).lootTable(SHADEROOT_SIGN.getLootTableKey()));
     public static final Block SHADEROOT_HANGING_SIGN = registerBlockWithoutBlockItem("shaderoot_hanging_sign", properties -> new HangingSignBlock(SHADEROOT, properties), AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F));
     public static final Block SHADEROOT_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("shaderoot_wall_hanging_sign", properties -> new WallHangingSignBlock(SHADEROOT, properties), AbstractBlock.Settings.create().mapColor(Blocks.WARPED_PLANKS.getDefaultMapColor()).instrument(NoteBlockInstrument.BASS).solid().noCollision().strength(1.0F).lootTable(SHADEROOT_HANGING_SIGN.getLootTableKey()));
-    public static final Block DEAD_ROOTS = registerBlock("dead_roots", RootsBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_ROOTS));
-    public static final Block DEAD_SPROUTS = registerBlock("dead_sprouts", SproutsBlock::new, AbstractBlock.Settings.copy(Blocks.NETHER_SPROUTS));
+    public static final Block DEAD_ROOTS = registerBlock("dead_roots", properties -> new ModRootsBlock(properties, false), AbstractBlock.Settings.copy(Blocks.WARPED_ROOTS));
+    public static final Block DEAD_SPROUTS = registerBlock("dead_sprouts", properties -> new ModRootsBlock(properties, true), AbstractBlock.Settings.copy(Blocks.NETHER_SPROUTS));
     public static final Block GHOSTLY_VINES = registerBlock("ghostly_vines", HangingVinesBlock::new, AbstractBlock.Settings.copy(Blocks.TWISTING_VINES).luminance((state) -> 4));
-    public static final Block WISPBLOOM = registerBlock("wispbloom", FlowerbedBlock::new, AbstractBlock.Settings.copy(Blocks.PINK_PETALS).luminance((state) -> 4));
+    public static final Block WISPBLOOM = registerBlock("wispbloom", NetherFlowerBedBlock::new, AbstractBlock.Settings.copy(Blocks.PINK_PETALS).luminance((state) -> 4));
     public static final Block SHADEROOT_SHELF = registerBlock("shaderoot_shelf", ShelfBlock::new, AbstractBlock.Settings.copy(SHADEROOT_PLANKS));
 
     /// More Items
