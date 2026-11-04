@@ -135,6 +135,7 @@ public class RecipeDataGen extends FabricRecipeProvider {
                 offerWoodSetRecipes(ModBlocks.BURNING_PLANKS,
                         ModBlocks.BURNING_STAIRS, ModBlocks.BURNING_SLAB, ModBlocks.BURNING_FENCE, ModBlocks.BURNING_FENCE_GATE, ModBlocks.BURNING_DOOR, ModBlocks.BURNING_TRAPDOOR, ModBlocks.BURNING_PRESSURE_PLATE, ModBlocks.BURNING_BUTTON, ModBlocks.BURNING_SIGN_ITEM);
                 offerHangingSignRecipe(ModBlocks.BURNING_HANGING_SIGN_ITEM, ModBlocks.STRIPPED_BURNING_LOG);
+                offerShelfRecipe(ModBlocks.BURNING_SHELF, ModBlocks.STRIPPED_BURNING_LOG);
                 offerBoatRecipe(ModBlocks.BURNING_BOAT, ModBlocks.BURNING_PLANKS);
                 offerChestBoatRecipe(ModBlocks.BURNING_CHEST_BOAT, ModBlocks.BURNING_BOAT);
 
@@ -143,6 +144,7 @@ public class RecipeDataGen extends FabricRecipeProvider {
                 offerWoodSetRecipes(ModBlocks.SHADEROOT_PLANKS,
                         ModBlocks.SHADEROOT_STAIRS, ModBlocks.SHADEROOT_SLAB, ModBlocks.SHADEROOT_FENCE, ModBlocks.SHADEROOT_FENCE_GATE, ModBlocks.SHADEROOT_DOOR, ModBlocks.SHADEROOT_TRAPDOOR, ModBlocks.SHADEROOT_PRESSURE_PLATE, ModBlocks.SHADEROOT_BUTTON, ModBlocks.SHADEROOT_SIGN_ITEM);
                 offerHangingSignRecipe(ModBlocks.SHADEROOT_HANGING_SIGN_ITEM, ModBlocks.STRIPPED_SHADEROOT_LOG);
+                offerShelfRecipe(ModBlocks.SHADEROOT_SHELF, ModBlocks.STRIPPED_SHADEROOT_LOG);
                 offerBoatRecipe(ModBlocks.SHADEROOT_BOAT, ModBlocks.SHADEROOT_PLANKS);
                 offerChestBoatRecipe(ModBlocks.SHADEROOT_CHEST_BOAT, ModBlocks.SHADEROOT_BOAT);
 
