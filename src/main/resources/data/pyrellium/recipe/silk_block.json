@@ -1,21 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
+  "group": "silk_block",
   "key": {
-    "X": {
+    "A": {
       "item": "minecraft:spider_eye"
     },
-    "#": {
+    "B": {
       "item": "minecraft:string"
     }
   },
   "pattern": [
-    " # ",
-    "#X#",
-    " # "
+    " B ",
+    "BAB",
+    " B "
   ],
   "result": {
+    "count": 2,
     "id": "pyrellium:silk_block"
-  },
-  "show_notification": true
+  }
 }

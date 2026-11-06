@@ -1,7 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
-  "group": "wooden_slab",
   "key": {
     "#": {
       "item": "pyrellium:shaderoot_planks"
@@ -13,6 +12,5 @@
   "result": {
     "count": 6,
     "id": "pyrellium:shaderoot_slab"
-  },
-  "show_notification": true
+  }
 }

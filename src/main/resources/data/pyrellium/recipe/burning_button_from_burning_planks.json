@@ -1,13 +1,14 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "redstone",
+  "category": "misc",
   "group": "wooden_button",
   "ingredients": [
     {
-      "item": "pyrellium:shaderoot_planks"
+      "item": "pyrellium:burning_planks"
     }
   ],
   "result": {
-    "id": "pyrellium:shaderoot_button"
+    "count": 1,
+    "id": "pyrellium:burning_button"
   }
 }

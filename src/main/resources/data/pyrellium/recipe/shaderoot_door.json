@@ -1,7 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
-  "group": "wooden_door",
   "key": {
     "#": {
       "item": "pyrellium:shaderoot_planks"
@@ -15,6 +14,5 @@
   "result": {
     "count": 3,
     "id": "pyrellium:shaderoot_door"
-  },
-  "show_notification": true
+  }
 }

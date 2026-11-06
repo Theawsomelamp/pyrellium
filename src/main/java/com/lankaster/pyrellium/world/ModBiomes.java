@@ -11,7 +11,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModBiomes {
+    private static final List<ResourceKey<Biome>> MOD_BIOMES = new ArrayList<>();
 
     public static final ResourceKey<Biome> BLACKSTONE_SPRINGS = registerBiome("blackstone_springs");
     public static final ResourceKey<Biome> BURNING_GROVE = registerBiome("burning_grove");
@@ -24,7 +28,13 @@ public class ModBiomes {
     public static final ResourceKey<Biome> QUARTZ_CAVERNS = registerBiome("quartz_caverns");
 
     private static ResourceKey<Biome> registerBiome(String name) {
-        return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, name));
+        ResourceKey<Biome> key = ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, name));
+        MOD_BIOMES.add(key);
+        return key;
+    }
+
+    public static List<ResourceKey<Biome>> getAll() {
+        return MOD_BIOMES;
     }
 
     public static void bootstrap(BootstrapContext<Biome> context) {

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:blue_dye_from_wispbloom"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wispbloom": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pyrellium:wispbloom"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wispbloom"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:blue_dye_from_wispbloom"
+    ]
+  }
+}

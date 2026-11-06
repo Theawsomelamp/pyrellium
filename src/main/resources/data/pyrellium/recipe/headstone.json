@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
-  "pattern": [
-    " x ",
-    "xxx",
-    "xxx"
-  ],
   "key": {
-    "x": {
+    "#": {
       "item": "minecraft:stone_bricks"
     }
   },
+  "pattern": [
+    " # ",
+    "###",
+    "###"
+  ],
   "result": {
-    "id": "pyrellium:headstone",
-    "count": 3
+    "count": 3,
+    "id": "pyrellium:headstone"
   }
 }

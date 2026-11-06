@@ -1,25 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "equipment",
+  "category": "misc",
+  "group": "opal_arrow",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
+    "A": {
       "item": "pyrellium:opal"
     },
-    "Y": {
+    "B": {
+      "item": "minecraft:stick"
+    },
+    "C": {
       "item": "minecraft:feather"
     }
   },
   "pattern": [
-    "X",
-    "#",
-    "Y"
+    "A",
+    "B",
+    "C"
   ],
   "result": {
     "count": 4,
     "id": "pyrellium:opal_arrow"
-  },
-  "show_notification": true
+  }
 }

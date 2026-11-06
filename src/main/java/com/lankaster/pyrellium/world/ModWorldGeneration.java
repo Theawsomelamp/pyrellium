@@ -1,10 +1,7 @@
 package com.lankaster.pyrellium.world;
 
 import com.lankaster.pyrellium.Pyrellium;
-import com.lankaster.pyrellium.world.tree.BurningTrunkPlacer;
-import com.lankaster.pyrellium.world.tree.HangingTreeDecorator;
-import com.lankaster.pyrellium.world.tree.WeepingFoliagePlacer;
-import com.lankaster.pyrellium.world.tree.WillowFoliagePlacer;
+import com.lankaster.pyrellium.world.tree.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
@@ -22,6 +19,7 @@ public class ModWorldGeneration {
 
     public static final Supplier<TrunkPlacerType<BurningTrunkPlacer>> BURNING_TRUNK_PLACER = TRUNK_PLACERS.register("burning_trunk_placer", () -> new TrunkPlacerType<>(BurningTrunkPlacer.CODEC));
     public static final Supplier<TreeDecoratorType<HangingTreeDecorator>> HANGING_TREE_DECORATOR = TREE_DECORATORS.register("hanging_vines", () -> new TreeDecoratorType<>(HangingTreeDecorator.CODEC));
+    public static final Supplier<TreeDecoratorType<AlterSurfaceTreeDecorator>> ALTER_SURFACE = TREE_DECORATORS.register("alter_surface", () -> new TreeDecoratorType<>(AlterSurfaceTreeDecorator.CODEC));
     public static final Supplier<FoliagePlacerType<WeepingFoliagePlacer>> WEEPING_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("weeping_foliage_placer", () -> new FoliagePlacerType<>(WeepingFoliagePlacer.CODEC));
     public static final Supplier<FoliagePlacerType<WillowFoliagePlacer>> WILLOW_FOLIAGE_PLACER = ModWorldGeneration.FOLIAGE_PLACERS.register("willow_foliage_placer", () -> new FoliagePlacerType<>(WillowFoliagePlacer.CODEC));
 

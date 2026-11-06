@@ -6,6 +6,8 @@ import com.lankaster.pyrellium.entity.ModBoatEntity;
 import com.lankaster.pyrellium.entity.ModChestBoatEntity;
 import com.lankaster.pyrellium.item.ModBoatItem;
 import com.lankaster.pyrellium.item.ModItems;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.AmethystClusterBlock;
@@ -18,13 +20,8 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.NetherSproutsBlock;
-import net.minecraft.world.level.block.NyliumBlock;
-import net.minecraft.world.level.block.PinkPetalsBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
-import net.minecraft.world.level.block.RootsBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.StandingSignBlock;
@@ -81,7 +78,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> SILK_CARPET = registerBlock("silk_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET).sound(SoundType.WOOL).speedFactor(0.4F).jumpFactor(0.5F)));
     public static final DeferredBlock<Block> HANGING_SILK = registerBlock("hanging_silk", () -> new HangingSilkBlock(BlockBehaviour.Properties.of().randomTicks().noCollission().ignitedByLava().strength(0.75F).pushReaction(PushReaction.DESTROY)));
 
-    public static final DeferredBlock<Block> NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", () -> new NyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM)));
+    public static final DeferredBlock<Block> NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", () -> new GrowFeatureBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM), ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "mushroom_wastes_vegetation_bonemeal"))));
     public static final DeferredBlock<Block> BROWN_BOUNCESHROOM = registerBlock("brown_bounceshroom", () -> new BounceMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM_BLOCK), Config.instance().blocks.brown_bounceshroom_bounce));
     public static final DeferredBlock<Block> RED_BOUNCESHROOM = registerBlock("red_bounceshroom", () -> new BounceMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK), Config.instance().blocks.red_bounceshroom_bounce));
     public static final DeferredBlock<Block> BROWN_WALL_MUSHROOM = registerBlockWithoutBlockItem("brown_wall_mushroom", () -> new WallMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)));
@@ -98,9 +95,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE).noOcclusion()));
 
     public static final WoodType BURNING = WoodType.register(new WoodType(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "burning").toString(), new BlockSetType("burning")));
-    public static final DeferredBlock<Block> BURNING_NYLIUM = registerBlock("burning_nylium", () -> new ModNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM)));
+    public static final DeferredBlock<Block> BURNING_NYLIUM = registerBlock("burning_nylium", () -> new GrowFeatureBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM), ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "burning_grove_vegetation_bonemeal"))));
     public static final DeferredBlock<Block> BURNING_LEAVES = registerBlock("burning_leaves", () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES), 7));
-    public static final DeferredBlock<Block> BURNING_SAPLING = registerBlock("burning_sapling", () -> new SaplingBlock(new ModSaplingGenerator().BURNING, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<Block> BURNING_SAPLING = registerBlock("burning_sapling", () -> new NetherSaplingBlock(new ModSaplingGenerator().BURNING, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
     public static final DeferredBlock<Block> POTTED_BURNING_SAPLING = registerBlockWithoutBlockItem("potted_burning_sapling", () -> new FlowerPotBlock(ModBlocks.BURNING_SAPLING.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)));
     public static final DeferredBlock<Block> BURNING_LOG = registerBlock("burning_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_STEM).sound(SoundType.WOOD)) {
         @Override
@@ -139,8 +136,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BURNING_WALL_SIGN = registerBlockWithoutBlockItem("burning_wall_sign", () -> new WallSignBlock(BURNING, BlockBehaviour.Properties.of().mapColor(Blocks.CRIMSON_PLANKS.defaultMapColor()).instrument(NoteBlockInstrument.BASS).forceSolidOn().noCollission().strength(1.0F).dropsLike(BURNING_SIGN.get())));
     public static final DeferredBlock<Block> BURNING_HANGING_SIGN = registerBlockWithoutBlockItem("burning_hanging_sign", () -> new CeilingHangingSignBlock(BURNING, BlockBehaviour.Properties.of().mapColor(Blocks.CRIMSON_PLANKS.defaultMapColor()).instrument(NoteBlockInstrument.BASS).forceSolidOn().noCollission().strength(1.0F)));
     public static final DeferredBlock<Block> BURNING_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("burning_wall_hanging_sign", () -> new WallHangingSignBlock(BURNING, BlockBehaviour.Properties.of().mapColor(Blocks.CRIMSON_PLANKS.defaultMapColor()).instrument(NoteBlockInstrument.BASS).forceSolidOn().noCollission().strength(1.0F).dropsLike(BURNING_HANGING_SIGN.get())));
-    public static final DeferredBlock<Block> BURNING_ROOTS = registerBlock("burning_roots", () -> new RootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_ROOTS)));
-    public static final DeferredBlock<Block> BURNING_SPROUTS = registerBlock("burning_sprouts", () -> new NetherSproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS)));
+    public static final DeferredBlock<Block> BURNING_ROOTS = registerBlock("burning_roots", () -> new ModRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_ROOTS), false));
+    public static final DeferredBlock<Block> BURNING_SPROUTS = registerBlock("burning_sprouts", () -> new ModRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS), true));
     public static final DeferredBlock<Block> BURNING_VINES = registerBlock("burning_vines", () -> new HangingVinesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES)));
     public static final DeferredBlock<Block> PYROLILY = registerBlock("pyrolily", () -> new BurningFlowerBlock(MobEffects.FIRE_RESISTANCE, 5, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).lightLevel((state) -> 9)));
     public static final DeferredBlock<Block> POTTED_PYROLILY = registerBlockWithoutBlockItem("potted_pyrolily", () -> new FlowerPotBlock(ModBlocks.PYROLILY.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).lightLevel((state) -> 7)));
@@ -153,10 +150,10 @@ public class ModBlocks {
 
     /// Back to the blocks
     public static final WoodType SHADEROOT = WoodType.register(new WoodType(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "shaderoot").toString(), new BlockSetType("shaderoot")));
-    public static final DeferredBlock<Block> DRAINED_SOUL_SOIL = registerBlock("drained_soul_soil", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_SOIL)));
+    public static final DeferredBlock<Block> DRAINED_SOUL_SOIL = registerBlock("drained_soul_soil", () -> new GrowFeatureBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_SOIL), ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "ghost_forest_vegetation_bonemeal"))));
     public static final DeferredBlock<Block> GHOSTLY_LEAVES = registerBlock("ghostly_leaves", () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES), 10));
     public static final DeferredBlock<Block> FLOWERING_GHOSTLY_LEAVES = registerBlock("flowering_ghostly_leaves", () -> new ModLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).lightLevel((state) -> 4), 10));
-    public static final DeferredBlock<Block> SHADEROOT_SAPLING = registerBlock("shaderoot_sapling", () -> new SaplingBlock(new ModSaplingGenerator().SHADEROOT, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<Block> SHADEROOT_SAPLING = registerBlock("shaderoot_sapling", () -> new NetherSaplingBlock(new ModSaplingGenerator().SHADEROOT, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
     public static final DeferredBlock<Block> POTTED_SHADEROOT_SAPLING = registerBlockWithoutBlockItem("potted_shaderoot_sapling", () -> new FlowerPotBlock(ModBlocks.SHADEROOT_SAPLING.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)));
     public static final DeferredBlock<Block> SHADEROOT_LOG = registerBlock("shaderoot_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_STEM).sound(SoundType.WOOD)) {
         @Override
@@ -195,10 +192,10 @@ public class ModBlocks {
     public static final DeferredBlock<Block> SHADEROOT_WALL_SIGN = registerBlockWithoutBlockItem("shaderoot_wall_sign", () -> new WallSignBlock(SHADEROOT, BlockBehaviour.Properties.of().mapColor(Blocks.WARPED_PLANKS.defaultMapColor()).instrument(NoteBlockInstrument.BASS).forceSolidOn().noCollission().strength(1.0F).dropsLike(SHADEROOT_SIGN.get())));
     public static final DeferredBlock<Block> SHADEROOT_HANGING_SIGN = registerBlockWithoutBlockItem("shaderoot_hanging_sign", () -> new CeilingHangingSignBlock(SHADEROOT, BlockBehaviour.Properties.of().mapColor(Blocks.WARPED_PLANKS.defaultMapColor()).instrument(NoteBlockInstrument.BASS).forceSolidOn().noCollission().strength(1.0F)));
     public static final DeferredBlock<Block> SHADEROOT_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("shaderoot_wall_hanging_sign", () -> new WallHangingSignBlock(SHADEROOT, BlockBehaviour.Properties.of().mapColor(Blocks.WARPED_PLANKS.defaultMapColor()).instrument(NoteBlockInstrument.BASS).forceSolidOn().noCollission().strength(1.0F).dropsLike(SHADEROOT_HANGING_SIGN.get())));
-    public static final DeferredBlock<Block> DEAD_ROOTS = registerBlock("dead_roots", () -> new RootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_ROOTS)));
-    public static final DeferredBlock<Block> DEAD_SPROUTS = registerBlock("dead_sprouts", () -> new NetherSproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS)));
+    public static final DeferredBlock<Block> DEAD_ROOTS = registerBlock("dead_roots", () -> new ModRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_ROOTS), false));
+    public static final DeferredBlock<Block> DEAD_SPROUTS = registerBlock("dead_sprouts", () -> new ModRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS), true));
     public static final DeferredBlock<Block> GHOSTLY_VINES = registerBlock("ghostly_vines", () -> new HangingVinesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).lightLevel((state) -> 4)));
-    public static final DeferredBlock<Block> WISPBLOOM = registerBlock("wispbloom", () -> new PinkPetalsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS).lightLevel((state) -> 4)));
+    public static final DeferredBlock<Block> WISPBLOOM = registerBlock("wispbloom", () -> new NetherFlowerBedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS).lightLevel((state) -> 4)));
 
     /// More Items
     public static final DeferredItem<Item> SHADEROOT_SIGN_ITEM = ModItems.registerItem("shaderoot_sign", () -> new SignItem((new net.minecraft.world.item.Item.Properties().stacksTo(16)), ModBlocks.SHADEROOT_SIGN.get(), ModBlocks.SHADEROOT_WALL_SIGN.get()));
