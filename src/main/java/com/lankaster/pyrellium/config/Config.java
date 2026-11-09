@@ -10,6 +10,7 @@ public class Config {
     public Enchants enchants = new Enchants();
     public GlobalFeatures globalFeatures = new GlobalFeatures();
     public Biomes biomes = new Biomes();
+    public Compatibility compatibility = new Compatibility();
 
     public static Config instance() {
         return INSTANCE;
@@ -133,5 +134,14 @@ public class Config {
         public boolean enable_biome = true;
         public boolean generate_quartz_spikes = true;
         public boolean generate_quartz_cracks = true;
+    }
+
+    public static class Compatibility {
+        public Trinkets trinkets = new Trinkets();
+    }
+
+    public static class Trinkets {
+        public boolean render_equipment = true;
+        public boolean apply_equipment_effects = true;
     }
 }

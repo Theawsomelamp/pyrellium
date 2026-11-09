@@ -49,5 +49,6 @@ public class OpalTiaraItem extends ArmorItem {
         super.appendTooltip(stack, world, tooltip, context);
 
         tooltip.add(Text.translatable("item.pyrellium.opal_tiara.desc").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal(""));
     }
 }

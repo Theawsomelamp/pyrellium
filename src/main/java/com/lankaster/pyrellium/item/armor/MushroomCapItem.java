@@ -49,5 +49,6 @@ public class MushroomCapItem extends ArmorItem {
 
         tooltip.add(Text.translatable("item.pyrellium.mushroom_cap.desc").formatted(Formatting.GRAY));
         tooltip.add(Text.translatable("item.pyrellium.mushroom_cap.desc2").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal(""));
     }
 }

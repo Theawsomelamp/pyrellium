@@ -1,5 +1,6 @@
 package com.lankaster.pyrellium.mixin;
 
+import com.lankaster.pyrellium.compat.TrinketsCompat;
 import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +18,7 @@ public class GhastEntityMixin {
         TargetPredicate predicate = ((ActiveTargetGoalAccessor) goal).getTargetPredicate();
 
         predicate.setPredicate(
-                (LivingEntity entity) -> !entity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.OPAL_TIARA)
+                (LivingEntity entity) -> !(entity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.OPAL_TIARA) || TrinketsCompat.isTrinketEquipped(ModItems.OPAL_TIARA, entity))
         );
         return goal;
     }
