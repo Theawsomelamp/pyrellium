@@ -17,6 +17,29 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	maven { url "https://maven.shedaniel.me" }
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = "Modrinth"
+				url = "https://api.modrinth.com/maven"
+			}
+		}
+		filter {
+			includeGroup "maven.modrinth"
+		}
+	}
+	maven {
+		name = "Ladysnake Libs"
+		url = 'https://maven.ladysnake.org/releases'
+	}
+	maven {
+		name = "Nucleoid"
+		url = 'https://maven.nucleoid.xyz/releases'
+		metadataSources {
+			// trinkets pom has wrong group
+			artifact()
+		}
+	}
 }
 
 loom {
@@ -66,6 +89,11 @@ dependencies {
 	// REI. Optional
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+
+	// Trinkets
+	modImplementation "eu.pb4.fork:trinkets:${project.trinkets_version}"
+	modImplementation "org.ladysnake.cardinal-components-api:cardinal-components-base:7.3.0"
+	modImplementation "org.ladysnake.cardinal-components-api:cardinal-components-entity:7.3.0"
 	
 }
 

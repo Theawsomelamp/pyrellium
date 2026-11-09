@@ -21,5 +21,7 @@ public class DescriptiveItem extends Item {
         String[] txt = Text.translatable(this.getTranslationKey() + ".desc").getString().split("\\n");
         for (String t : txt)
             textConsumer.accept(Text.literal(t).formatted(Formatting.GRAY));
+        // This is here for trinkets related reasons
+        textConsumer.accept(Text.literal(""));
     }
 }

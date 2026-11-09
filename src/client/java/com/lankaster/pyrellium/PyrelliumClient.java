@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium;
 
 import com.lankaster.pyrellium.block.ModBlocks;
+import com.lankaster.pyrellium.compat.ClientTrinketsCompat;
 import com.lankaster.pyrellium.item.ModItems;
 import com.lankaster.pyrellium.networking.ModClientNetworking;
 import com.lankaster.pyrellium.particles.ModParticles;
@@ -12,6 +13,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.render.BlockRenderLayer;
 
 public class PyrelliumClient implements ClientModInitializer {
@@ -20,6 +22,10 @@ public class PyrelliumClient implements ClientModInitializer {
 		WorldRenderEvents.AFTER_ENTITIES.register(BlockOutline::renderBoxOverlay);
 
 		ArmorRenderer.register(new HatRender(), ModItems.OPAL_TIARA, ModItems.MUSHROOM_CAP);
+
+		if (FabricLoader.getInstance().isModLoaded("trinkets")) {
+			ClientTrinketsCompat.init();
+		}
 
 		ModModelLayers.register();
 		ModBlockEntityRenderer.register();

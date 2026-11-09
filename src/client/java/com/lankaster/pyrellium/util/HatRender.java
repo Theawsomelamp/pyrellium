@@ -23,6 +23,11 @@ public class HatRender implements ArmorRenderer {
     @Override
     public void render(@NonNull MatrixStack matrices, @NonNull OrderedRenderCommandQueue orderedRenderCommandQueue, ItemStack stack, @NonNull BipedEntityRenderState bipedEntityRenderState, @NonNull EquipmentSlot slot, int light, @NonNull BipedEntityModel<BipedEntityRenderState> contextModel) {
 
+        renderModels(matrices, orderedRenderCommandQueue, stack, bipedEntityRenderState, light, contextModel);
+    }
+
+    public static void renderModels(@NonNull MatrixStack matrices, @NonNull OrderedRenderCommandQueue orderedRenderCommandQueue, ItemStack stack, @NonNull BipedEntityRenderState bipedEntityRenderState, int light, @NonNull BipedEntityModel<BipedEntityRenderState> contextModel) {
+
         if (!stack.isEmpty() && stack.isOf(ModItems.OPAL_TIARA)) {
             matrices.push();
             contextModel.getHead().applyTransform(matrices);

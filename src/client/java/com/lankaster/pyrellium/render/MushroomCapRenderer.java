@@ -1,19 +1,12 @@
 package com.lankaster.pyrellium.render;
 
-import com.lankaster.pyrellium.Pyrellium;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.entity.state.EntityRenderState;
-import net.minecraft.util.Identifier;
 
 public class MushroomCapRenderer extends EntityModel<EntityRenderState> {
-    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(Identifier.of(Pyrellium.MOD_ID, "mushroom_cap"), "main");
-    public final ModelPart hat;
-
     public MushroomCapRenderer(ModelPart root) {
         super(root);
-        this.hat = root.getChild("hat");
     }
 
     public static TexturedModelData getTexturedModelData() {
