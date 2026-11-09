@@ -22,6 +22,11 @@ public class HatRender implements ArmorRenderer {
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, ItemStack stack, LivingEntity entity,
                        EquipmentSlot slot, int light, BipedEntityModel<LivingEntity> contextModel) {
 
+        renderModels(matrices, vertexConsumers, stack, light, contextModel);
+    }
+
+    public static void renderModels(MatrixStack matrices, VertexConsumerProvider vertexConsumers, ItemStack stack, int light, BipedEntityModel<LivingEntity> contextModel) {
+
         if (!stack.isEmpty() && stack.isOf(ModItems.OPAL_TIARA)) {
             matrices.push();
             contextModel.getHead().rotate(matrices);

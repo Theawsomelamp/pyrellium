@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.mixin;
 
 import com.google.gson.JsonSyntaxException;
+import com.lankaster.pyrellium.compat.TrinketsCompat;
 import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.enchant.ModEnchants;
 import com.lankaster.pyrellium.item.ModItems;
@@ -51,7 +52,7 @@ public abstract class LivingEntityMixin {
                 throw new JsonSyntaxException("Error reading status effect: could not find status effect with id: " + id);
             }
 
-            if (Objects.equals(effect, Registries.STATUS_EFFECT.getEntry(blocked_effect.get())) && this.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
+            if (Objects.equals(effect, Registries.STATUS_EFFECT.getEntry(blocked_effect.get())) && (this.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP) || TrinketsCompat.isTrinketEquipped(ModItems.MUSHROOM_CAP, (LivingEntity) (Object) this))) {
                 return new StatusEffectInstance(
                         effect,
                         (int) (original.getDuration() * Config.instance().items.mushroom_cap_effect_multiplier)

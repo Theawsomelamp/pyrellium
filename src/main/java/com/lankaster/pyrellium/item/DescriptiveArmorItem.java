@@ -21,5 +21,7 @@ public class DescriptiveArmorItem extends ArmorItem {
         String[] txt = Text.translatable(this.getOrCreateTranslationKey() + ".desc").getString().split("\\n");
         for (String t : txt)
             tooltip.add(Text.literal(t).formatted(Formatting.GRAY));
+        // This is here for trinkets related reasons
+        tooltip.add(Text.literal(""));
     }
 }

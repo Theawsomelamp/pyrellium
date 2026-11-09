@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.block;
 
 import com.google.gson.JsonSyntaxException;
+import com.lankaster.pyrellium.compat.TrinketsCompat;
 import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.block.Block;
@@ -59,7 +60,7 @@ public class SporesBlock extends Block {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!state.get(DISPERSED)) {
             if (entity instanceof LivingEntity livingEntity) {
-                if (!livingEntity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP)) {
+                if (!(livingEntity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.MUSHROOM_CAP) || TrinketsCompat.isTrinketEquipped(ModItems.MUSHROOM_CAP, livingEntity))) {
                     Optional<StatusEffect> effect = Registries.STATUS_EFFECT.getOrEmpty(Identifier.tryParse(Config.instance().blocks.spores_effect));
                     if(effect.isEmpty()) {
                         throw new JsonSyntaxException("Error reading status effect: could not find status effect with id: " + Config.instance().blocks.spores_effect);

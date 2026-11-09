@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium;
 
 import com.lankaster.pyrellium.block.ModBlocks;
+import com.lankaster.pyrellium.compat.ClientTrinketsCompat;
 import com.lankaster.pyrellium.entity.CrystalArrowRenderer;
 import com.lankaster.pyrellium.entity.GeodinModel;
 import com.lankaster.pyrellium.entity.GeodinRenderer;
@@ -19,6 +20,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.BoatEntityRenderer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
@@ -30,6 +32,10 @@ public class PyrelliumClient implements ClientModInitializer {
 
 		ArmorRenderer.register(new HatRender(), ModItems.OPAL_TIARA);
 		ArmorRenderer.register(new HatRender(), ModItems.MUSHROOM_CAP);
+
+		if (FabricLoader.getInstance().isModLoaded("trinkets")) {
+			ClientTrinketsCompat.init();
+		}
 
 		EntityRendererRegistry.register(ModEntities.CRYSTAL_ARROW, CrystalArrowRenderer::new);
 		EntityRendererRegistry.register(ModEntities.BOMB_FLOWER, FlyingItemEntityRenderer::new);

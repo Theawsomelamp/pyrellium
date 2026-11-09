@@ -17,6 +17,10 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	maven { url "https://maven.shedaniel.me" }
+	maven {url "https://maven.terraformersmc.com"}
+	maven {
+		url = 'https://maven.ladysnake.org/releases'
+	}
 }
 
 loom {
@@ -66,7 +70,9 @@ dependencies {
 	// REI. Optional
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-	
+
+	// Trinkets
+	modImplementation("dev.emi:trinkets:${project.trinkets_version}")
 }
 
 processResources {
