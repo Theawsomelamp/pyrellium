@@ -1,5 +1,6 @@
 package com.lankaster.pyrellium.mixin;
 
+import com.lankaster.pyrellium.compat.CuriosCompat;
 import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,7 +18,7 @@ public class GhastMixin {
         TargetingConditions predicate = ((NearestAttackableTargetGoalAccessor) goal).getTargetConditions();
 
         predicate.selector(
-                (LivingEntity entity) -> !entity.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.OPAL_TIARA)
+                (LivingEntity entity) -> !(entity.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.OPAL_TIARA) || CuriosCompat.isCurioEquipped(ModItems.OPAL_TIARA.get(), entity))
         );
         return goal;
     }

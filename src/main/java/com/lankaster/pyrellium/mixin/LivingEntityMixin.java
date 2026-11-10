@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.mixin;
 
 import com.google.gson.JsonSyntaxException;
+import com.lankaster.pyrellium.compat.CuriosCompat;
 import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.enchant.ModEnchants;
 import com.lankaster.pyrellium.item.ModItems;
@@ -51,7 +52,7 @@ public abstract class LivingEntityMixin {
                 throw new JsonSyntaxException("Error reading status effect: could not find status effect with id: " + id);
             }
 
-            if (Objects.equals(effect, BuiltInRegistries.MOB_EFFECT.wrapAsHolder(blocked_effect.get())) && this.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.MUSHROOM_CAP)) {
+            if (Objects.equals(effect, BuiltInRegistries.MOB_EFFECT.wrapAsHolder(blocked_effect.get())) && (this.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.MUSHROOM_CAP) || CuriosCompat.isCurioEquipped(ModItems.MUSHROOM_CAP.get(), (LivingEntity) (Object) this))) {
                 return new MobEffectInstance(
                         effect,
                         (int) (original.getDuration() * Config.instance().items.mushroom_cap_effect_multiplier)

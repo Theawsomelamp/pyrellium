@@ -25,10 +25,15 @@ public class HatRender<T extends LivingEntity, M extends EntityModel<T> & Headed
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
+
+        renderModels(poseStack, bufferSource, packedLight, livingEntity, this.getParentModel());
+    }
+
+    public static void renderModels(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, LivingEntity livingEntity, HeadedModel contextModel) {
         for (ItemStack stack : livingEntity.getArmorSlots()) {
             if (!stack.isEmpty() && stack.is(ModItems.OPAL_TIARA)) {
                 poseStack.pushPose();
-                this.getParentModel().getHead().translateAndRotate(poseStack);
+                contextModel.getHead().translateAndRotate(poseStack);
                 poseStack.scale(1.19F, 1.19F, 1.19F);
                 VertexConsumer vertexConsumer = ItemRenderer.getArmorFoilBuffer(bufferSource, opalTiara.renderType(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/item/opal_tiara_model.png")), false);
                 opalTiara.renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, -1);
@@ -37,7 +42,7 @@ public class HatRender<T extends LivingEntity, M extends EntityModel<T> & Headed
 
             if (!stack.isEmpty() && stack.is(ModItems.MUSHROOM_CAP)) {
                 poseStack.pushPose();
-                this.getParentModel().getHead().translateAndRotate(poseStack);
+                contextModel.getHead().translateAndRotate(poseStack);
                 poseStack.scale(1.19F, 1.19F, 1.19F);
                 VertexConsumer vertexConsumer = ItemRenderer.getArmorFoilBuffer(bufferSource, mushroomCap.renderType(ResourceLocation.fromNamespaceAndPath(Pyrellium.MOD_ID, "textures/item/mushroom_cap_model.png")), false);
                 mushroomCap.renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, -1);

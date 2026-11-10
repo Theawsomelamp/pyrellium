@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.block;
 
 import com.google.gson.JsonSyntaxException;
+import com.lankaster.pyrellium.compat.CuriosCompat;
 import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.item.ModItems;
 import net.minecraft.world.level.block.Block;
@@ -59,7 +60,7 @@ public class SporesBlock extends Block {
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
         if (!state.getValue(DISPERSED)) {
             if (entity instanceof LivingEntity livingEntity) {
-                if (!livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.MUSHROOM_CAP)) {
+                if (!(livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.MUSHROOM_CAP) || CuriosCompat.isCurioEquipped(ModItems.MUSHROOM_CAP.get(), livingEntity))) {
                     Optional<MobEffect> effect = BuiltInRegistries.MOB_EFFECT.getOptional(ResourceLocation.tryParse(Config.instance().blocks.spores_effect));
                     if(effect.isEmpty()) {
                         throw new JsonSyntaxException("Error reading status effect: could not find status effect with id: " + Config.instance().blocks.spores_effect);

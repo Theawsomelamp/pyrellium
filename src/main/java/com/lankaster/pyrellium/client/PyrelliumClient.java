@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.client;
 
 import com.lankaster.pyrellium.block.entity.ModBlockEntities;
+import com.lankaster.pyrellium.client.compat.ClientCuriosCompat;
 import com.lankaster.pyrellium.client.entity.CrystalArrowRenderer;
 import com.lankaster.pyrellium.client.entity.GeodinModel;
 import com.lankaster.pyrellium.client.entity.GeodinRenderer;
@@ -17,7 +18,9 @@ import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.PlayerSkin;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
@@ -63,5 +66,14 @@ public class PyrelliumClient {
 		if(event.getSkin(PlayerSkin.Model.SLIM) instanceof PlayerRenderer playerRenderer) {
 			playerRenderer.addLayer(new HatRender<>(playerRenderer));
 		}
+	}
+
+	@SubscribeEvent
+	public static void onClientSetup(FMLClientSetupEvent event) {
+		event.enqueueWork(() -> {
+			if (ModList.get().isLoaded("curios")) {
+				ClientCuriosCompat.init();
+			}
+		});
 	}
 }
