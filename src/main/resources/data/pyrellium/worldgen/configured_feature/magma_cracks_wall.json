@@ -23,10 +23,10 @@
       ]
     },
     "target": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:netherrack"
-      }
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:netherrack"
+      ]
     }
   }
 }

@@ -1,13 +1,10 @@
 package com.lankaster.pyrellium.world.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import org.jetbrains.annotations.Nullable;
@@ -21,10 +18,8 @@ public class ReplaceWallFeature extends Feature<ReplaceWallFeatureConfig> {
     public boolean generate(FeatureContext<ReplaceWallFeatureConfig> context){
         ReplaceWallFeatureConfig replaceWallFeatureConfig = context.getConfig();
         StructureWorldAccess structureWorldAccess = context.getWorld();
-        BlockPos origin = context.getOrigin();
         Random random = context.getRandom();
-        Block block = replaceWallFeatureConfig.target().get(random, origin).getBlock();
-        BlockPos blockPos = moveDownToTarget(structureWorldAccess, context.getOrigin().mutableCopy().clamp(Direction.Axis.Y, structureWorldAccess.getBottomY() + 1, structureWorldAccess.getTopY() - 1), block);
+        BlockPos blockPos = moveDownToTarget(replaceWallFeatureConfig, structureWorldAccess, context.getOrigin().mutableCopy().clamp(Direction.Axis.Y, structureWorldAccess.getBottomY() + 1, structureWorldAccess.getTopY() - 1));
         if (blockPos == null) {
             return false;
         } else {
@@ -39,8 +34,7 @@ public class ReplaceWallFeature extends Feature<ReplaceWallFeatureConfig> {
                     break;
                 }
 
-                BlockState blockState = structureWorldAccess.getBlockState(blockPos2);
-                if (blockState.isOf(block)) {
+                if (replaceWallFeatureConfig.target().test(structureWorldAccess, blockPos2)) {
                     for (Direction direction : Direction.values()) {
                         BlockPos blockPos3 = blockPos2.offset(direction);
                         if (structureWorldAccess.getBlockState(blockPos3).isReplaceable()) {
@@ -56,10 +50,9 @@ public class ReplaceWallFeature extends Feature<ReplaceWallFeatureConfig> {
     }
 
     @Nullable
-    private static BlockPos moveDownToTarget(WorldAccess world, BlockPos.Mutable mutablePos, Block target) {
+    private static BlockPos moveDownToTarget(ReplaceWallFeatureConfig config, StructureWorldAccess world, BlockPos.Mutable mutablePos) {
         while(mutablePos.getY() > world.getBottomY() + 1) {
-            BlockState blockState = world.getBlockState(mutablePos);
-            if (blockState.isOf(target)) {
+            if (config.target().test(world, mutablePos)) {
                 return mutablePos;
             }
 

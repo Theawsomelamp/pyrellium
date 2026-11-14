@@ -71,7 +71,7 @@ public class ModBlocks {
 
     public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(new Identifier(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));
     public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new GrowFeatureBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_NYLIUM), RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "burning_grove_vegetation_bonemeal"))));
-    public static final Block BURNING_LEAVES = registerBlock("burning_leaves", new ModLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES), 7));
+    public static final Block BURNING_LEAVES = registerBlock("burning_leaves", new ModLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES), 9));
     public static final Block BURNING_SAPLING = registerBlock("burning_sapling", new NetherSaplingBlock(new BurningSaplingGenerator(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
     public static final Block POTTED_BURNING_SAPLING = registerBlockWithoutBlockItem("potted_burning_sapling", new FlowerPotBlock(ModBlocks.BURNING_SAPLING, FabricBlockSettings.copyOf(Blocks.POTTED_OAK_SAPLING)));
     public static final Block BURNING_LOG = registerBlock("burning_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)));
@@ -106,8 +106,8 @@ public class ModBlocks {
     /// Back to the blocks
     public static final WoodType SHADEROOT = WoodTypeBuilder.copyOf(WoodType.OAK).register(new Identifier(Pyrellium.MOD_ID, "shaderoot"), new BlockSetType("shaderoot"));
     public static final Block DRAINED_SOUL_SOIL = registerBlock("drained_soul_soil", new GrowFeatureBlock(FabricBlockSettings.copyOf(Blocks.SOUL_SOIL), RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "ghost_forest_vegetation_bonemeal"))));
-    public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", new ModLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES), 10));
-    public static final Block FLOWERING_GHOSTLY_LEAVES = registerBlock("flowering_ghostly_leaves", new ModLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance(4), 10));
+    public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", new ModLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES), 12));
+    public static final Block FLOWERING_GHOSTLY_LEAVES = registerBlock("flowering_ghostly_leaves", new ModLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance(4), 12));
     public static final Block SHADEROOT_SAPLING = registerBlock("shaderoot_sapling", new NetherSaplingBlock(new ShaderootSaplingGenerator(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
     public static final Block POTTED_SHADEROOT_SAPLING = registerBlockWithoutBlockItem("potted_shaderoot_sapling", new FlowerPotBlock(ModBlocks.SHADEROOT_SAPLING, FabricBlockSettings.copyOf(Blocks.POTTED_OAK_SAPLING)));
     public static final Block SHADEROOT_LOG = registerBlock("shaderoot_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STEM).sounds(BlockSoundGroup.WOOD)));
