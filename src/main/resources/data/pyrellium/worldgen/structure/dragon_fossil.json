@@ -1,11 +1,12 @@
 {
   "type": "minecraft:jigsaw",
   "biomes": [
-    "minecraft:soul_sand_valley"
+    "minecraft:soul_sand_valley",
+    "pyrellium:frostburn_valley"
   ],
   "step": "surface_structures",
   "spawn_overrides": {},
-  "terrain_adaptation": "beard_box",
+  "terrain_adaptation": "beard_thin",
   "start_pool": "pyrellium:dragon_fossil",
   "size": 1,
   "start_height": {
