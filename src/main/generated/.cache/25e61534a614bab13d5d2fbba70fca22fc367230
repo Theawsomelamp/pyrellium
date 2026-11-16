@@ -1,11 +1,11 @@
-// 1.20.1	2026-11-02T18:17:37.239370392	Pyrellium/Tags for minecraft:block
+// 1.20.1	2026-11-16T10:10:37.677864713	Pyrellium/Tags for minecraft:block
 616011de3bd0c321c1eded1392283734ebe6bdea data/minecraft/tags/blocks/wooden_trapdoors.json
 c90ec31abdeee3d686a4f62fd5c55c1c9df3aa99 data/pyrellium/tags/blocks/nether_soils.json
 e740b8e9c3c63572fc13b3cf73d9f4f193ed6673 data/minecraft/tags/blocks/wooden_slabs.json
 a45243148067d56b420d674371ab2911e4cc5dce data/minecraft/tags/blocks/wooden_doors.json
 ddb2d329b272cdc4045759875719c81446c4407c data/minecraft/tags/blocks/wooden_pressure_plates.json
 86c16453fdcf1e30357d2cea675fc2bdd62f459c data/minecraft/tags/blocks/wall_hanging_signs.json
-7c57577d1d9e3ac7b08b27e0e8af5a57392eccc5 data/minecraft/tags/blocks/logs.json
+0b90eb0feed42486fb6784dac9c3cb767e0c18bd data/minecraft/tags/blocks/logs.json
 1302516770b99357f500e8617e9f0d968f29af41 data/minecraft/tags/blocks/saplings.json
 607ff33f51a853b2e7c735a585e30841c2e1102f data/minecraft/tags/blocks/iron_ores.json
 287bfa8ca9b589d29f97852c69162ce7ae4db371 data/c/tags/blocks/clusters.json
@@ -18,8 +18,8 @@ f9069a4700e14d6a9065bcb282138427b8519701 data/minecraft/tags/blocks/soul_fire_ba
 f9069a4700e14d6a9065bcb282138427b8519701 data/minecraft/tags/blocks/mineable/shovel.json
 d1fa98f9782e2a302f6ca3af46c6c4062336e58e data/minecraft/tags/blocks/wall_signs.json
 5718c0ddfce11752aa33787e695b5135a175e474 data/minecraft/tags/blocks/ceiling_hanging_signs.json
+7c3e7077aa7b65d4e87bc91426bd08a9856c804c data/minecraft/tags/blocks/mineable/pickaxe.json
 bf8d56aaae6af5b6cdc9053e1a610786e34aa7d1 data/minecraft/tags/blocks/sword_efficient.json
-cb3ae722d3ba963f95e78b6ca1636ebe940fea05 data/minecraft/tags/blocks/mineable/pickaxe.json
 090a23965bd56453320ce1dfe56d7a60d57ff2b6 data/pyrellium/tags/blocks/shaderoot_logs.json
 104b02d7da291ed1584f0613d91d03df50fb44e9 data/minecraft/tags/blocks/mineable/hoe.json
 82fcf10078bf7aaf374bdc6fb64840aa7415912b data/pyrellium/tags/blocks/burning_logs.json

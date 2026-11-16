@@ -1,4 +1,4 @@
-// 1.20.1	2026-11-02T18:17:37.241786553	Pyrellium/Block Loot Tables
+// 1.20.1	2026-11-16T10:10:37.681189865	Pyrellium/Block Loot Tables
 9a561b69736319d513497c9c0589673353dece80 data/pyrellium/loot_tables/blocks/packed_freezing_ice.json
 0685d038fe215716f8dff51351c28e82f6758297 data/pyrellium/loot_tables/blocks/rough_quartz_block.json
 1e6045dbdf191e27be1641f83b356d403e9ac809 data/pyrellium/loot_tables/blocks/silk_carpet.json
@@ -7,8 +7,8 @@ fd15814479e506d83b40b5eb0ccbea9fa76cac69 data/pyrellium/loot_tables/blocks/hangi
 2d75d9fb0fdbb1aabd34f8c6d7eb81b4c704c300 data/pyrellium/loot_tables/blocks/burning_pressure_plate.json
 ab8ba7c129e4581734bbc75d545f13b649aaead3 data/pyrellium/loot_tables/blocks/pyrolily.json
 29a968d2b5eac9b626a966be233b29b3e3cf684d data/pyrellium/loot_tables/blocks/brown_wall_mushroom.json
-c99b7559553a317320f07278c8d3eca7ec4312b7 data/pyrellium/loot_tables/blocks/burning_planks.json
 95dae2c76bbe78f7484a02cebc56e7ccae707de3 data/pyrellium/loot_tables/blocks/medium_quartz_bud.json
+c99b7559553a317320f07278c8d3eca7ec4312b7 data/pyrellium/loot_tables/blocks/burning_planks.json
 eccfbf9b5b53a4abb3b8671cb08d76a0dd5a4ce6 data/pyrellium/loot_tables/blocks/shaderoot_fence_gate.json
 c3f2b562142dfa5bded6f7e60581b5e0b1650a74 data/pyrellium/loot_tables/blocks/red_wall_mushroom.json
 6be7f1059c58afeb5d553db3f11f5a1516134d2b data/pyrellium/loot_tables/blocks/potted_pyrolily.json
@@ -21,6 +21,7 @@ bfbd52074c6c90be6c40a0343f0f85c449a209af data/pyrellium/loot_tables/blocks/black
 bb90021d3a3004729a99c15db1e1d96b4ca4aae7 data/pyrellium/loot_tables/blocks/dead_sprouts.json
 31766a3a454b2412c594412d2b80fc4053b66807 data/pyrellium/loot_tables/blocks/chain_fence.json
 be5b153cd1e715c6ff790dc8aba2cf4e1b7fbb6a data/pyrellium/loot_tables/blocks/burning_hanging_sign.json
+a0aee9f46e9d3973c43f534010f5e201e4214b97 data/pyrellium/loot_tables/blocks/spiked_bone.json
 8bbf5319fe9a8626724eacb2baf6b71dc681882c data/pyrellium/loot_tables/blocks/opal_block.json
 9b90c54f0f7de97d7247c4f3b07d69699d1c09cf data/pyrellium/loot_tables/blocks/netherrack_mycelium.json
 a37815da6b68f2da4009d47410f94b654bab7ed6 data/pyrellium/loot_tables/blocks/shaderoot_hanging_sign.json

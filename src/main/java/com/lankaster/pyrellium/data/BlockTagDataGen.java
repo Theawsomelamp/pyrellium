@@ -21,8 +21,11 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
     }
 
     private FabricTagBuilder getOrCreateTagBuilder(Identifier id) {
-        TagKey<Block> tag = TagKey.of(RegistryKeys.BLOCK, id);
-        return this.getOrCreateTagBuilder(tag);
+        return this.getOrCreateTagBuilder(tag(id));
+    }
+
+    private TagKey<Block> tag(Identifier id) {
+        return TagKey.of(RegistryKeys.BLOCK, id);
     }
 
     @Override
@@ -53,7 +56,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.BUDDING_QUARTZ,
                 ModBlocks.ROUGH_QUARTZ_BLOCK,
                 ModBlocks.SLEEPING_QUARTZ_GEODIN,
-                ModBlocks.PACKED_FREEZING_ICE
+                ModBlocks.PACKED_FREEZING_ICE,
+                ModBlocks.SPIKED_BONE
         );
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
@@ -98,16 +102,9 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.POTTED_SHADEROOT_SAPLING
         );
 
-        getOrCreateTagBuilder(BlockTags.LOGS).add(
-                ModBlocks.BURNING_LOG,
-                ModBlocks.BURNING_WOOD,
-                ModBlocks.STRIPPED_BURNING_LOG,
-                ModBlocks.STRIPPED_BURNING_WOOD,
-                ModBlocks.SHADEROOT_LOG,
-                ModBlocks.SHADEROOT_WOOD,
-                ModBlocks.STRIPPED_SHADEROOT_LOG,
-                ModBlocks.STRIPPED_SHADEROOT_WOOD
-        );
+        getOrCreateTagBuilder(BlockTags.LOGS)
+                .forceAddTag(tag(new Identifier(Pyrellium.MOD_ID, "burning_logs")))
+                .forceAddTag(tag(new Identifier(Pyrellium.MOD_ID, "shaderoot_logs")));
 
         getOrCreateTagBuilder(BlockTags.PLANKS).add(
                 ModBlocks.BURNING_PLANKS,
