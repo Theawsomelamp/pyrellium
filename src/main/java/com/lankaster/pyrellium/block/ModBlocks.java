@@ -69,6 +69,7 @@ public class ModBlocks {
 
     // Misc zone
     public static final Block BASALT_IRON_ORE = registerBlock("basalt_iron_ore", new PillarBlock(FabricBlockSettings.copyOf(Blocks.BASALT)));
+    public static final Block BASALT_VENT = registerBlock("basalt_vent", new BasaltVentBlock(FabricBlockSettings.copyOf(Blocks.BASALT)));
     public static final Block HEADSTONE = registerBlock("headstone", new HeadStoneBlock(FabricBlockSettings.create().mapColor(Blocks.STONE.getDefaultMapColor()).instrument(Instrument.BASS).solid().nonOpaque().strength(1.5F, 6.0F), WoodType.OAK));
     public static final Block CHAIN_FENCE = registerBlock("chain_fence", new ChainFenceBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS)));
     public static final Block BONE = registerBlockWithoutBlockItem("bone", new BoneItemBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)));

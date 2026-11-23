@@ -143,7 +143,7 @@ public abstract class LivingEntityMixin {
             ItemStack umbrella = getEquippedStack(getUmbrellaHand());
             flyingTicks++;
             if (!entity.isOnGround()) {
-                if (!entity.getWorld().isClient && flyingTicks % 160 == 0) {
+                if (!entity.getWorld().isClient && flyingTicks % 80 == 0) {
                     umbrella.damage(1, entity, player -> player.sendEquipmentBreakStatus(getUmbrellaHand()));
                 }
             } else {

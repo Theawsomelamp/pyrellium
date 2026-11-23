@@ -35,7 +35,6 @@ public class Config {
         public String[] mushroom_cap_effects = {"minecraft:poison"};
         public int crystal_arrow_shatter_radius = 2;
         public int crystal_arrow_shatter_damage = 2;
-        public int silk_umbrella_durability = 256;
     }
 
     public static class Entities {
@@ -80,6 +79,7 @@ public class Config {
         public boolean nether_forest_fallen_logs = true;
         public boolean gilded_blackstone_patches = true;
         public boolean soul_sand_valley_bones = true;
+        public boolean basalt_deltas_vents = true;
     }
 
     public static class Biomes {

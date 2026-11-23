@@ -204,7 +204,8 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 BlockTags.CAMPFIRES
         ).add(
                 Blocks.LAVA,
-                Blocks.LAVA_CAULDRON
+                Blocks.LAVA_CAULDRON,
+                ModBlocks.BASALT_VENT
         );
 
         getOrCreateTagBuilder(new Identifier(Pyrellium.MOD_ID, "burning_logs")).add(

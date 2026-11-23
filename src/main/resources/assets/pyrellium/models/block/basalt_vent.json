@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minecraft:block/basalt_top",
+    "east": "minecraft:block/basalt_side",
+    "north": "minecraft:block/basalt_side",
+    "particle": "minecraft:block/basalt_side",
+    "south": "minecraft:block/basalt_side",
+    "up": "pyrellium:block/basalt_vent_top",
+    "west": "minecraft:block/basalt_side"
+  }
+}

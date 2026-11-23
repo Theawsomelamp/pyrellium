@@ -178,5 +178,16 @@ public class RecipeDataGen extends FabricRecipeProvider {
                 .pattern("###")
                 .criterion(hasItem(Blocks.STONE_BRICKS), conditionsFromItem(Blocks.STONE_BRICKS))
                 .offerTo(exporter);
+
+        // Silk Umbrella
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.SILK_UMBRELLA, 1)
+                .pattern("BAB")
+                .pattern(" C ")
+                .pattern(" C ")
+                .input('A', ModBlocks.SILK_BLOCK).input('B', ModBlocks.SILK_CARPET).input('C', Items.BLAZE_ROD)
+                .criterion(hasItem(ModBlocks.SILK_BLOCK), conditionsFromItem(ModBlocks.SILK_BLOCK))
+                .criterion(hasItem(ModBlocks.SILK_CARPET), conditionsFromItem(ModBlocks.SILK_CARPET))
+                .criterion(hasItem(Items.BLAZE_ROD), conditionsFromItem(Items.BLAZE_ROD))
+                .offerTo(exporter);
     }
 }

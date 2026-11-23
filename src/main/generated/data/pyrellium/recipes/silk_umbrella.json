@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "pyrellium:silk_block"
+    },
+    "B": {
+      "item": "pyrellium:silk_carpet"
+    },
+    "C": {
+      "item": "minecraft:blaze_rod"
+    }
+  },
+  "pattern": [
+    "BAB",
+    " C ",
+    " C "
+  ],
+  "result": {
+    "item": "pyrellium:silk_umbrella"
+  },
+  "show_notification": true
+}
