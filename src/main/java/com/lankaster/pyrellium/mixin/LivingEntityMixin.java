@@ -1,10 +1,12 @@
 package com.lankaster.pyrellium.mixin;
 
 import com.google.gson.JsonSyntaxException;
+import com.lankaster.pyrellium.Pyrellium;
 import com.lankaster.pyrellium.compat.TrinketsCompat;
 import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.enchant.ModEnchants;
 import com.lankaster.pyrellium.item.ModItems;
+import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -16,8 +18,11 @@ import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
@@ -26,6 +31,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -36,6 +42,22 @@ import java.util.Optional;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
     @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
+
+    @Unique
+    int flyingTicks = 0;
+
+    @Unique
+    private boolean isHoldingUmbrella() {
+        return (getEquippedStack(EquipmentSlot.MAINHAND).isOf(ModItems.SILK_UMBRELLA) || getEquippedStack(EquipmentSlot.OFFHAND).isOf(ModItems.SILK_UMBRELLA));
+    }
+
+    @Unique
+    private EquipmentSlot getUmbrellaHand() {
+        if (getEquippedStack(EquipmentSlot.MAINHAND).isOf(ModItems.SILK_UMBRELLA)) {
+            return EquipmentSlot.MAINHAND;
+        }
+        return EquipmentSlot.OFFHAND;
+    }
 
     @ModifyVariable(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"), argsOnly = true)
     private StatusEffectInstance poisonInHalf(StatusEffectInstance original) {
@@ -79,6 +101,53 @@ public abstract class LivingEntityMixin {
                     target.getEntityWorld().addParticle(ParticleTypes.SWEEP_ATTACK, target.getX(), target.getY(), target.getZ(), 0.0F, 0.0F, 0.0F);
                     target.getEntityWorld().playSound(null, target.getBlockPos(), SoundEvents.ITEM_TRIDENT_HIT, SoundCategory.PLAYERS, 0.8F, 0.5F);
                 }
+            }
+        }
+    }
+
+    @ModifyVariable(method = "travel", at = @At("STORE"), ordinal = 0)
+    public double modifyFallingVelocity(double d) {
+        LivingEntity entity = ((LivingEntity) (Object) this);
+        if(entity.getVelocity().y > 0D) {
+            return d;
+        }
+
+        if(isHoldingUmbrella() || (entity.isFallFlying() && Config.instance().misc.elytra_catch_updrafts)) {
+            for(int i = -1; i < 6; ++i) {
+                BlockState state = entity.getEntityWorld().getBlockState(entity.getBlockPos().down(i + 1));
+                double velocity = -Config.instance().misc.updraft_velocity;
+                if (state.isIn(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "updraft_blocks")))) {
+                    Optional<Boolean> lit = state.getOrEmpty(Properties.LIT);
+                    if (lit.isPresent() && lit.get() == false) {
+                        return d;
+                    }
+                    entity.onLanding();
+                    return entity.isFallFlying() ? velocity * 2.5 : velocity;
+                } else if (!state.isAir()) {
+                    i = 6;
+                }
+            }
+
+            if (isHoldingUmbrella()) {
+                entity.limitFallDistance();
+                return Math.max(d - (entity.fallDistance / 10), 0.01);
+            }
+        }
+        return d;
+    }
+
+    @Inject(method = "tickMovement", at = @At("TAIL"))
+    public void tickSilkUmbrella(CallbackInfo ci) {
+        if (isHoldingUmbrella()) {
+            LivingEntity entity = ((LivingEntity) (Object) this);
+            ItemStack umbrella = getEquippedStack(getUmbrellaHand());
+            flyingTicks++;
+            if (!entity.isOnGround()) {
+                if (!entity.getWorld().isClient && flyingTicks % 160 == 0) {
+                    umbrella.damage(1, entity, player -> player.sendEquipmentBreakStatus(getUmbrellaHand()));
+                }
+            } else {
+                flyingTicks = 0;
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.lankaster.pyrellium.item;
 
 import com.lankaster.pyrellium.Pyrellium;
+import com.lankaster.pyrellium.config.Config;
 import com.lankaster.pyrellium.entity.ModEntities;
 import com.lankaster.pyrellium.item.armor.MushroomCapItem;
 import com.lankaster.pyrellium.item.armor.OpalTiaraItem;
@@ -19,6 +20,7 @@ public class ModItems {
     public static final Item OPAL_ARROW = registerItem("opal_arrow", new CrystalArrowItem(new FabricItemSettings()));
     public static final Item BOMB_FLOWER = registerItem("bomb_flower", new BombFlowerItem((new Item.Settings()).maxCount(16)));
     public static final Item MUSHROOM_CAP = registerItem("mushroom_cap", new MushroomCapItem(new FabricItemSettings()));
+    public static final Item SILK_UMBRELLA = registerItem("silk_umbrella", new DescriptiveItem(new FabricItemSettings().maxCount(1).maxDamage(Config.instance().items.silk_umbrella_durability)));
     public static final Item GEODIN_SPAWN_EGG = registerItem("geodin_spawn_egg", new SpawnEggItem(ModEntities.GEODIN, 10066840, 5652608, new FabricItemSettings()));
 
     public static Item registerItem(String name, Item item) {

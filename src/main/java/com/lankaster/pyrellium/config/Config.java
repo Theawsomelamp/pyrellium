@@ -8,6 +8,7 @@ public class Config {
     public Items items = new Items();
     public Entities entities = new Entities();
     public Enchants enchants = new Enchants();
+    public Misc misc = new Misc();
     public GlobalFeatures globalFeatures = new GlobalFeatures();
     public Biomes biomes = new Biomes();
     public Compatibility compatibility = new Compatibility();
@@ -34,6 +35,7 @@ public class Config {
         public String[] mushroom_cap_effects = {"minecraft:poison"};
         public int crystal_arrow_shatter_radius = 2;
         public int crystal_arrow_shatter_damage = 2;
+        public int silk_umbrella_durability = 256;
     }
 
     public static class Entities {
@@ -62,6 +64,11 @@ public class Config {
         public EnchantDistribution distribution = new EnchantDistribution(false, true, true);
         public float added_velocity_per_level = 0.2F;
         public float rebound_range = 6.0F;
+    }
+
+    public static class Misc {
+        public float updraft_velocity = 1.2F;
+        public boolean elytra_catch_updrafts = true;
     }
 
     public static class GlobalFeatures {

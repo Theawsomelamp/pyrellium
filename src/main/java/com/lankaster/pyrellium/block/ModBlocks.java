@@ -27,6 +27,7 @@ import net.minecraft.util.Identifier;
 
 
 public class ModBlocks {
+    // Opal blocks
     public static final Block OPAL_BLOCK = registerBlock("opal_block", new Block(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)));
     public static final Block SMALL_OPAL_BUD = registerBlock("small_opal_bud", new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD)));
     public static final Block MEDIUM_OPAL_BUD = registerBlock("medium_opal_bud", new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(Blocks.MEDIUM_AMETHYST_BUD)));
@@ -34,11 +35,13 @@ public class ModBlocks {
     public static final Block OPAL_CLUSTER = registerBlock("opal_cluster", new AmethystClusterBlock(7, 3, FabricBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER)));
     public static final Block BUDDING_OPAL = registerBlock("budding_opal", new BuddingBlock(FabricBlockSettings.copyOf(Blocks.BUDDING_AMETHYST), SMALL_OPAL_BUD, MEDIUM_OPAL_BUD, LARGE_OPAL_BUD, OPAL_CLUSTER));
 
+    // Gem misc
     public static final Block CLEAR_AMETHYST_BLOCK = registerBlock("clear_amethyst_block", new GlassBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).nonOpaque()));
     public static final Block CLEAR_OPAL_BLOCK = registerBlock("clear_opal_block", new GlassBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).nonOpaque()));
     public static final Block SLEEPING_AMETHYST_GEODIN = registerBlockWithoutBlockItem("sleeping_amethyst_geodin", new GeodinBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT), Blocks.SMALL_AMETHYST_BUD, Blocks.MEDIUM_AMETHYST_BUD, Blocks.LARGE_AMETHYST_BUD, Blocks.AMETHYST_CLUSTER, new Identifier("minecraft", "amethyst")));
     public static final Block SLEEPING_OPAL_GEODIN = registerBlockWithoutBlockItem("sleeping_opal_geodin", new GeodinBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT), SMALL_OPAL_BUD, MEDIUM_OPAL_BUD, LARGE_OPAL_BUD, OPAL_CLUSTER, new Identifier(Pyrellium.MOD_ID, "opal")));
 
+    // Quartz blocks
     public static final Block ROUGH_QUARTZ_BLOCK = registerBlock("rough_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
     public static final Block SMALL_QUARTZ_BUD = registerBlock("small_quartz_bud", new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
     public static final Block MEDIUM_QUARTZ_BUD = registerBlock("medium_quartz_bud", new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
@@ -47,12 +50,14 @@ public class ModBlocks {
     public static final Block BUDDING_QUARTZ = registerBlock("budding_quartz", new BuddingBlock(FabricBlockSettings.copyOf(Blocks.BUDDING_AMETHYST), SMALL_QUARTZ_BUD, MEDIUM_QUARTZ_BUD, LARGE_QUARTZ_BUD, QUARTZ_CRYSTAL));
     public static final Block SLEEPING_QUARTZ_GEODIN = registerBlockWithoutBlockItem("sleeping_quartz_geodin", new GeodinBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT), SMALL_QUARTZ_BUD, MEDIUM_QUARTZ_BUD, LARGE_QUARTZ_BUD, QUARTZ_CRYSTAL, new Identifier(Pyrellium.MOD_ID, "quartz")));
 
+    // Ice & Silk
     public static final Block FREEZING_ICE = registerBlock("freezing_ice", new FreezingIceBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE).nonOpaque()));
     public static final Block PACKED_FREEZING_ICE = registerBlock("packed_freezing_ice", new FreezingIceBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE)));
     public static final Block SILK_BLOCK = registerBlock("silk_block", new Block(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
     public static final Block SILK_CARPET = registerBlock("silk_carpet", new CarpetBlock(FabricBlockSettings.copyOf(Blocks.MOSS_CARPET).sounds(BlockSoundGroup.WOOL).velocityMultiplier(0.4F).jumpVelocityMultiplier(0.5F)));
     public static final Block HANGING_SILK = registerBlock("hanging_silk", new HangingSilkBlock(FabricBlockSettings.create().ticksRandomly().noCollision().burnable().strength(0.75F).pistonBehavior(PistonBehavior.DESTROY)));
 
+    // Mushroom wastes blocks
     public static final Block NETHERRACK_MYCELIUM = registerBlock("netherrack_mycelium", new GrowFeatureBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_NYLIUM), RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "mushroom_wastes_vegetation_bonemeal"))));
     public static final Block BROWN_BOUNCESHROOM = registerBlock("brown_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.BROWN_MUSHROOM_BLOCK), Config.instance().blocks.brown_bounceshroom_bounce));
     public static final Block RED_BOUNCESHROOM = registerBlock("red_bounceshroom", new BounceMushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM_BLOCK), Config.instance().blocks.red_bounceshroom_bounce));
@@ -62,6 +67,7 @@ public class ModBlocks {
     public static final Block RED_SHELF_MUSHROOM = registerBlock("red_shelf_mushroom", new RedShelfMushroomBlock(FabricBlockSettings.copyOf(Blocks.RED_MUSHROOM)));
     public static final Block SPORES = registerBlock("spores", new SporesBlock(FabricBlockSettings.copyOf(Blocks.COBWEB).strength(-1.0F).sounds(BlockSoundGroup.FROGSPAWN)));
 
+    // Misc zone
     public static final Block BASALT_IRON_ORE = registerBlock("basalt_iron_ore", new PillarBlock(FabricBlockSettings.copyOf(Blocks.BASALT)));
     public static final Block HEADSTONE = registerBlock("headstone", new HeadStoneBlock(FabricBlockSettings.create().mapColor(Blocks.STONE.getDefaultMapColor()).instrument(Instrument.BASS).solid().nonOpaque().strength(1.5F, 6.0F), WoodType.OAK));
     public static final Block CHAIN_FENCE = registerBlock("chain_fence", new ChainFenceBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS)));
@@ -70,6 +76,7 @@ public class ModBlocks {
     public static final Block BOMB_PLANT = registerBlock("bomb_plant", new BombPlantBlock(FabricBlockSettings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block BLACKSTONE_ROCK = registerPlaceableOnWaterBlock("blackstone_rock", new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE).nonOpaque()));
 
+    // Burning woods blocks
     public static final WoodType BURNING = WoodTypeBuilder.copyOf(WoodType.OAK).register(new Identifier(Pyrellium.MOD_ID, "burning"), new BlockSetType("burning"));
     public static final Block BURNING_NYLIUM = registerBlock("burning_nylium", new GrowFeatureBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_NYLIUM), RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "burning_grove_vegetation_bonemeal"))));
     public static final Block BURNING_LEAVES = registerBlock("burning_leaves", new ModLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES), 9));
@@ -98,13 +105,13 @@ public class ModBlocks {
     public static final Block PYROLILY = registerBlock("pyrolily", new BurningFlowerBlock(StatusEffects.FIRE_RESISTANCE, 5, FabricBlockSettings.copyOf(Blocks.POPPY).luminance(9)));
     public static final Block POTTED_PYROLILY = registerBlockWithoutBlockItem("potted_pyrolily", new FlowerPotBlock(ModBlocks.PYROLILY, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY).luminance(7)));
 
-    /// Registry order being an ass
+    // Burning woods items
     public static final Item BURNING_SIGN_ITEM = ModItems.registerItem("burning_sign", new SignItem((new Item.Settings().maxCount(16)), ModBlocks.BURNING_SIGN, ModBlocks.BURNING_WALL_SIGN));
     public static final Item BURNING_HANGING_SIGN_ITEM = ModItems.registerItem("burning_hanging_sign", new HangingSignItem(ModBlocks.BURNING_HANGING_SIGN, ModBlocks.BURNING_WALL_HANGING_SIGN, (new Item.Settings().maxCount(16))));
     public static final Item BURNING_BOAT = ModItems.registerItem("burning_boat", new ModBoatItem(false, ModBoatEntity.Type.BURNING, ModChestBoatEntity.Type.BURNING, (new Item.Settings()).maxCount(1)));
     public static final Item BURNING_CHEST_BOAT = ModItems.registerItem("burning_chest_boat", new ModBoatItem(true, ModBoatEntity.Type.BURNING, ModChestBoatEntity.Type.BURNING, (new Item.Settings()).maxCount(1)));
 
-    /// Back to the blocks
+    // Ghostly woods blocks
     public static final WoodType SHADEROOT = WoodTypeBuilder.copyOf(WoodType.OAK).register(new Identifier(Pyrellium.MOD_ID, "shaderoot"), new BlockSetType("shaderoot"));
     public static final Block DRAINED_SOUL_SOIL = registerBlock("drained_soul_soil", new GrowFeatureBlock(FabricBlockSettings.copyOf(Blocks.SOUL_SOIL), RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Pyrellium.MOD_ID, "ghost_forest_vegetation_bonemeal"))));
     public static final Block GHOSTLY_LEAVES = registerBlock("ghostly_leaves", new ModLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES), 12));
@@ -133,7 +140,7 @@ public class ModBlocks {
     public static final Block GHOSTLY_VINES = registerBlock("ghostly_vines", new HangingVinesBlock(FabricBlockSettings.copyOf(Blocks.TWISTING_VINES).luminance(4)));
     public static final Block WISPBLOOM = registerBlock("wispbloom", new NetherFlowerBedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS).luminance(4)));
 
-    /// More Items
+    // Ghostly woods items
     public static final Item SHADEROOT_SIGN_ITEM = ModItems.registerItem("shaderoot_sign", new SignItem((new Item.Settings().maxCount(16)), ModBlocks.SHADEROOT_SIGN, ModBlocks.SHADEROOT_WALL_SIGN));
     public static final Item SHADEROOT_HANGING_SIGN_ITEM = ModItems.registerItem("shaderoot_hanging_sign", new HangingSignItem(ModBlocks.SHADEROOT_HANGING_SIGN, ModBlocks.SHADEROOT_WALL_HANGING_SIGN, (new Item.Settings().maxCount(16))));
     public static final Item SHADEROOT_BOAT = ModItems.registerItem("shaderoot_boat", new ModBoatItem(false, ModBoatEntity.Type.SHADEROOT, ModChestBoatEntity.Type.SHADEROOT, (new Item.Settings()).maxCount(1)));

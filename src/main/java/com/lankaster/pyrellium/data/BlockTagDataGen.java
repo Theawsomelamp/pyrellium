@@ -198,6 +198,15 @@ public class BlockTagDataGen extends FabricTagProvider.BlockTagProvider{
                 ModBlocks.DRAINED_SOUL_SOIL
         );
 
+        getOrCreateTagBuilder(new Identifier(Pyrellium.MOD_ID, "updraft_blocks")).forceAddTag(
+                BlockTags.FIRE
+        ).forceAddTag(
+                BlockTags.CAMPFIRES
+        ).add(
+                Blocks.LAVA,
+                Blocks.LAVA_CAULDRON
+        );
+
         getOrCreateTagBuilder(new Identifier(Pyrellium.MOD_ID, "burning_logs")).add(
                 ModBlocks.BURNING_LOG,
                 ModBlocks.BURNING_WOOD,

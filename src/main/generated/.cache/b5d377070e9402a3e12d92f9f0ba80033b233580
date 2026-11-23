@@ -1,4 +1,4 @@
-// 1.20.1	2026-11-16T10:10:37.681189865	Pyrellium/Block Loot Tables
+// 1.20.1	2026-11-23T14:00:25.559502689	Pyrellium/Block Loot Tables
 9a561b69736319d513497c9c0589673353dece80 data/pyrellium/loot_tables/blocks/packed_freezing_ice.json
 0685d038fe215716f8dff51351c28e82f6758297 data/pyrellium/loot_tables/blocks/rough_quartz_block.json
 1e6045dbdf191e27be1641f83b356d403e9ac809 data/pyrellium/loot_tables/blocks/silk_carpet.json
@@ -13,8 +13,8 @@ eccfbf9b5b53a4abb3b8671cb08d76a0dd5a4ce6 data/pyrellium/loot_tables/blocks/shade
 c3f2b562142dfa5bded6f7e60581b5e0b1650a74 data/pyrellium/loot_tables/blocks/red_wall_mushroom.json
 6be7f1059c58afeb5d553db3f11f5a1516134d2b data/pyrellium/loot_tables/blocks/potted_pyrolily.json
 163941a8471c64d36e8b9b3311955d3056ab0d65 data/pyrellium/loot_tables/blocks/potted_burning_sapling.json
-2c0c753f5e631efbb10329994c725f2092143e7f data/pyrellium/loot_tables/blocks/medium_opal_bud.json
 aac10815c9777d9c1d30a3d7dc189f23046acd16 data/pyrellium/loot_tables/blocks/ghostly_leaves.json
+2c0c753f5e631efbb10329994c725f2092143e7f data/pyrellium/loot_tables/blocks/medium_opal_bud.json
 be11e34717f0152db04a75bcbf79bf94e222cb40 data/pyrellium/loot_tables/blocks/burning_wood.json
 bfbd52074c6c90be6c40a0343f0f85c449a209af data/pyrellium/loot_tables/blocks/blackstone_rock.json
 197f92afcef958c80cbe31e521d73f711845c319 data/pyrellium/loot_tables/blocks/dead_roots.json
@@ -26,8 +26,8 @@ a0aee9f46e9d3973c43f534010f5e201e4214b97 data/pyrellium/loot_tables/blocks/spike
 9b90c54f0f7de97d7247c4f3b07d69699d1c09cf data/pyrellium/loot_tables/blocks/netherrack_mycelium.json
 a37815da6b68f2da4009d47410f94b654bab7ed6 data/pyrellium/loot_tables/blocks/shaderoot_hanging_sign.json
 93102bd17f2a787e84afb869449f41386b8dfe10 data/pyrellium/loot_tables/blocks/burning_log.json
-be57acf6e15bd06760d0ca1e6cdc0401beb7cf03 data/pyrellium/loot_tables/blocks/wispbloom.json
 a5e745c50b5e79f99d0d43a2b5620c92821f0842 data/pyrellium/loot_tables/blocks/shaderoot_door.json
+be57acf6e15bd06760d0ca1e6cdc0401beb7cf03 data/pyrellium/loot_tables/blocks/wispbloom.json
 d40eda51e7403164948463d77bc6cf41b341999f data/pyrellium/loot_tables/blocks/burning_nylium.json
 a80024027d1c6abf6cfb9017a9807472c66e8478 data/pyrellium/loot_tables/blocks/shaderoot_sapling.json
 c5f5d80f4c05c59dfed91485f5c5b7860736eb3a data/pyrellium/loot_tables/blocks/silk_block.json
