@@ -228,7 +228,7 @@ public class PyrelliumCustomData {
     }
 
     public static String changeNoiseRouter(JsonElement json) {
-        if (Config.instance().globalFeatures.raised_nether_height && !detectModification(json)) {
+        if (Config.instance().global_features.raised_nether_height && !detectModification(json)) {
             json.getAsJsonObject().asMap().replace("noise", getJson("""
                     { "min_y": 0, "height": 192, "size_horizontal": 1, "size_vertical": 2 }"""));
 

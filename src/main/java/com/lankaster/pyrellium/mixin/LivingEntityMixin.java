@@ -127,7 +127,7 @@ public abstract class LivingEntityMixin {
 
                     if (EnchantmentHelper.getEquipmentLevel(ModEnchants.WIND_RIDER, entity) >= 1) {
                         int level = (EnchantmentHelper.getEquipmentLevel(ModEnchants.WIND_RIDER, entity));
-                        float velocityPerLevel = Config.instance().enchants.wind_rider.added_velocity_per_level;
+                        float velocityPerLevel = Config.instance().enchants.wind_rider.added_updraft_velocity_per_level;
                         velocity -= (level * velocityPerLevel);
                     }
 

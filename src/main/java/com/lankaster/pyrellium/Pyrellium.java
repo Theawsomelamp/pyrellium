@@ -28,7 +28,8 @@ public class Pyrellium implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ConfigHandler.load(FabricLoader.getInstance().getConfigDir().resolve("pyrellium.json"));
+		ConfigHandler.registerEntries();
+		ConfigHandler.load(FabricLoader.getInstance().getConfigDir().resolve("pyrellium.json5"));
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new PyrelliumReloadListener());
 		PyrelliumCustomData.register();
 

@@ -3,13 +3,12 @@ package com.lankaster.pyrellium.config;
 public class Config {
     protected static Config INSTANCE = new Config();
 
-    public String comment = "For help with the config, refer to https://github.com/Theawsomelamp/pyrellium#configuration";
     public Blocks blocks = new Blocks();
     public Items items = new Items();
     public Entities entities = new Entities();
     public Enchants enchants = new Enchants();
     public Misc misc = new Misc();
-    public GlobalFeatures globalFeatures = new GlobalFeatures();
+    public GlobalFeatures global_features = new GlobalFeatures();
     public Biomes biomes = new Biomes();
     public Compatibility compatibility = new Compatibility();
 
@@ -42,12 +41,12 @@ public class Config {
         public Geodin geodin = new Geodin();
     }
 
-    public record EntityAttributes(float max_health, float armor, float movement_speed, float attack_damage) {
+    public record EntityAttributes(float max_health, float armor, float movement_speed) {
     }
 
     public static class Geodin {
         public int spawn_weight = 80;
-        public EntityAttributes attributes = new EntityAttributes(16.0f, 4.0f, 0.2f, 0.0f);
+        public EntityAttributes attributes = new EntityAttributes(16.0f, 4.0f, 0.2f);
         public int conversion_time = 1200;
     }
 
@@ -70,7 +69,7 @@ public class Config {
     public static class WindRider {
         public int max_level = 3;
         public EnchantDistribution distribution = new EnchantDistribution(false, true, true);
-        public float added_velocity_per_level = 0.3F;
+        public float added_updraft_velocity_per_level = 0.3F;
     }
 
     public static class Glide {
