@@ -113,7 +113,7 @@ public abstract class LivingEntityMixin {
         }
 
         if(isHoldingUmbrella() || (entity.isFallFlying() && Config.instance().misc.elytra_catch_updrafts)) {
-            for(int i = -1; i < 6; ++i) {
+            for(int i = -1; i < 5; ++i) {
                 BlockState state = entity.getEntityWorld().getBlockState(entity.getBlockPos().down(i + 1));
                 double velocity = -Config.instance().misc.updraft_velocity;
                 if (state.isIn(TagKey.of(RegistryKeys.BLOCK, Identifier.of(Pyrellium.MOD_ID, "updraft_blocks")))) {
@@ -121,8 +121,17 @@ public abstract class LivingEntityMixin {
                     if (lit.isPresent() && lit.get() == false) {
                         return d;
                     }
+
                     entity.onLanding();
-                    return entity.isFallFlying() ? velocity * 2.5 : velocity;
+                    entity.getEntityWorld().playSound(null, entity.getBlockPos(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 0.4F, 2.0F);
+
+                    if (EnchantmentHelper.getEquipmentLevel(ModEnchants.WIND_RIDER, entity) >= 1) {
+                        int level = (EnchantmentHelper.getEquipmentLevel(ModEnchants.WIND_RIDER, entity));
+                        float velocityPerLevel = Config.instance().enchants.wind_rider.added_velocity_per_level;
+                        velocity -= (level * velocityPerLevel);
+                    }
+
+                    return entity.isFallFlying() ? velocity * 2 : velocity;
                 } else if (!state.isAir()) {
                     i = 6;
                 }
@@ -130,7 +139,8 @@ public abstract class LivingEntityMixin {
 
             if (isHoldingUmbrella()) {
                 entity.limitFallDistance();
-                return Math.max(d - (entity.fallDistance / 10), 0.01);
+                boolean hasGlide = EnchantmentHelper.getEquipmentLevel(ModEnchants.GLIDE, entity) >= 1;
+                return hasGlide ? 0.005 : Math.max(d - (entity.fallDistance / 10), 0.01);
             }
         }
         return d;

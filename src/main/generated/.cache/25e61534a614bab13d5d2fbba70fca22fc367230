@@ -1,4 +1,4 @@
-// 1.20.1	2026-11-23T15:59:30.964478801	Pyrellium/Tags for minecraft:block
+// 1.20.1	2026-11-25T10:33:09.570132495	Pyrellium/Tags for minecraft:block
 91289fdcc378ce5eb3491918893463212f3668bb data/pyrellium/tags/blocks/updraft_blocks.json
 616011de3bd0c321c1eded1392283734ebe6bdea data/minecraft/tags/blocks/wooden_trapdoors.json
 c90ec31abdeee3d686a4f62fd5c55c1c9df3aa99 data/pyrellium/tags/blocks/nether_soils.json
@@ -17,10 +17,10 @@ f9069a4700e14d6a9065bcb282138427b8519701 data/minecraft/tags/blocks/soul_fire_ba
 0722cb7bd1a4361c9550b4a2c8eba983f6816e68 data/minecraft/tags/blocks/wooden_stairs.json
 61e90b6fa63d6c6fc2ec55394f889e693cc23420 data/minecraft/tags/blocks/wooden_fences.json
 f9069a4700e14d6a9065bcb282138427b8519701 data/minecraft/tags/blocks/mineable/shovel.json
-5718c0ddfce11752aa33787e695b5135a175e474 data/minecraft/tags/blocks/ceiling_hanging_signs.json
 d1fa98f9782e2a302f6ca3af46c6c4062336e58e data/minecraft/tags/blocks/wall_signs.json
-7c3e7077aa7b65d4e87bc91426bd08a9856c804c data/minecraft/tags/blocks/mineable/pickaxe.json
+5718c0ddfce11752aa33787e695b5135a175e474 data/minecraft/tags/blocks/ceiling_hanging_signs.json
 bf8d56aaae6af5b6cdc9053e1a610786e34aa7d1 data/minecraft/tags/blocks/sword_efficient.json
+7c3e7077aa7b65d4e87bc91426bd08a9856c804c data/minecraft/tags/blocks/mineable/pickaxe.json
 090a23965bd56453320ce1dfe56d7a60d57ff2b6 data/pyrellium/tags/blocks/shaderoot_logs.json
 104b02d7da291ed1584f0613d91d03df50fb44e9 data/minecraft/tags/blocks/mineable/hoe.json
 82fcf10078bf7aaf374bdc6fb64840aa7415912b data/pyrellium/tags/blocks/burning_logs.json

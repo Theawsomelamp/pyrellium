@@ -56,6 +56,8 @@ public class Config {
 
     public static class Enchants {
         public Rebound rebound = new Rebound();
+        public WindRider wind_rider = new WindRider();
+        public Glide glide= new Glide();
     }
 
     public static class Rebound {
@@ -63,6 +65,17 @@ public class Config {
         public EnchantDistribution distribution = new EnchantDistribution(false, true, true);
         public float added_velocity_per_level = 0.2F;
         public float rebound_range = 6.0F;
+    }
+
+    public static class WindRider {
+        public int max_level = 3;
+        public EnchantDistribution distribution = new EnchantDistribution(false, true, true);
+        public float added_velocity_per_level = 0.3F;
+    }
+
+    public static class Glide {
+        public int max_level = 1;
+        public EnchantDistribution distribution = new EnchantDistribution(false, false, true);
     }
 
     public static class Misc {

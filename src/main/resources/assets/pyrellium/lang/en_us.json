@@ -21,6 +21,10 @@
 
   "enchantment.pyrellium.rebound": "Rebound",
   "enchantment.pyrellium.rebound.desc": "Allows users to redirect projectiles by hitting them, higher levels increase the velocity it is sent back at.",
+  "enchantment.pyrellium.wind_rider": "Wind Rider",
+  "enchantment.pyrellium.wind_rider.desc": "Increases the upwards velocity gained from catching an updraft",
+  "enchantment.pyrellium.glide": "Glide",
+  "enchantment.pyrellium.glide.desc": "Significantly reduces falling speed while using the Silk Umbrella",
 
   "item.pyrellium.opal": "Opal",
   "item.pyrellium.opal_spyglass": "Opal Spyglass",
